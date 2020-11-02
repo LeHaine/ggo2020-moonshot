@@ -6,28 +6,49 @@ filter: Linear,Linear
 repeat: none
 empty
   rotate: false
-  xy: 62, 18
-  size: 1, 1
-  orig: 1, 1
+  xy: 59, 77
+  size: 3, 3
+  orig: 3, 3
   offset: 0, 0
   index: -1
 fxCircle0
   rotate: false
-  xy: 46, 1
+  xy: 44, 60
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fxDot0
   rotate: false
-  xy: 53, 35
+  xy: 59, 81
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
+fxGib0
+  rotate: false
+  xy: 1, 66
+  size: 6, 5
+  orig: 6, 5
+  offset: 0, 0
+  index: -1
+fxGib1
+  rotate: false
+  xy: 8, 76
+  size: 6, 5
+  orig: 6, 5
+  offset: 0, 0
+  index: -1
+fxGib2
+  rotate: false
+  xy: 15, 76
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
 fxImpact0
   rotate: false
-  xy: 46, 18
+  xy: 17, 66
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -42,13 +63,13 @@ fxLine0
 fxLineDir0
   rotate: false
   xy: 1, 62
-  size: 33, 3
-  orig: 33, 3
+  size: 32, 3
+  orig: 32, 3
   offset: 0, 0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 55, 28
+  xy: 1, 76
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -67,23 +88,142 @@ fxTail0
   orig: 33, 11
   offset: 0, 0
   index: -1
+heroCrouchIdleGun0
+  rotate: false
+  xy: 31, 115
+  size: 14, 12
+  orig: 14, 12
+  offset: 0, 0
+  index: -1
+heroCrouchIdleGun1
+  rotate: false
+  xy: 31, 101
+  size: 14, 13
+  orig: 14, 13
+  offset: 0, 0
+  index: -1
+heroCrouchRun0
+  rotate: false
+  xy: 46, 96
+  size: 14, 12
+  orig: 14, 12
+  offset: 0, 0
+  index: -1
+heroCrouchRun1
+  rotate: false
+  xy: 1, 116
+  size: 14, 11
+  orig: 14, 11
+  offset: 0, 0
+  index: -1
+heroCrouchRun2
+  rotate: false
+  xy: 46, 109
+  size: 14, 11
+  orig: 14, 11
+  offset: 0, 0
+  index: -1
+heroCrouchRun3
+  rotate: false
+  xy: 1, 83
+  size: 15, 12
+  orig: 15, 12
+  offset: 0, 0
+  index: -1
+heroCrouchShoot0
+  rotate: false
+  xy: 31, 115
+  size: 14, 12
+  orig: 14, 12
+  offset: 0, 0
+  index: -1
+heroIdle0
+  rotate: false
+  xy: 34, 65
+  size: 8, 17
+  orig: 8, 17
+  offset: 0, 0
+  index: -1
+heroIdle1
+  rotate: false
+  xy: 35, 46
+  size: 8, 18
+  orig: 8, 18
+  offset: 0, 0
+  index: -1
+heroIdleGun0
+  rotate: false
+  xy: 17, 82
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
+heroIdleGun1
+  rotate: false
+  xy: 1, 96
+  size: 14, 19
+  orig: 14, 19
+  offset: 0, 0
+  index: -1
+heroRunGun0
+  rotate: false
+  xy: 46, 1
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+heroRunGun1
+  rotate: false
+  xy: 46, 41
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
+heroRunGun2
+  rotate: false
+  xy: 43, 77
+  size: 15, 18
+  orig: 15, 18
+  offset: 0, 0
+  index: -1
+heroRunGun3
+  rotate: false
+  xy: 46, 21
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+heroStandShoot0
+  rotate: false
+  xy: 17, 82
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
+heroStandShoot1
+  rotate: false
+  xy: 16, 101
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
 pixel
   rotate: false
-  xy: 62, 20
+  xy: 44, 46
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 uiBar
   rotate: false
-  xy: 46, 34
+  xy: 1, 72
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 46, 28
+  xy: 8, 66
   size: 8, 5
   orig: 8, 5
   offset: 0, 0

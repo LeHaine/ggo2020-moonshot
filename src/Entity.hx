@@ -179,6 +179,16 @@ class Entity {
 	inline function get_centerY()
 		return footY - hei * 0.5;
 
+	public var shootX(get, never):Float;
+
+	function get_shootX()
+		return footX + dir * 10;
+
+	public var shootY(get, never):Float;
+
+	function get_shootY()
+		return footY - radius * 1.35;
+
 	public var prevFrameFootX:Float = -Const.INFINITE;
 	public var prevFrameFootY:Float = -Const.INFINITE;
 
@@ -579,11 +589,13 @@ class Entity {
 		if ((level.hasCollision(cx + 1, cy) || level.hasCollision(cx + 1, Std.int(headY / Const.GRID))) && xr >= 0.7) {
 			xr = 0.7;
 			dx *= Math.pow(0.5, tmod);
+			onCollision(1, 0);
 		}
 
 		if ((level.hasCollision(cx - 1, cy) || level.hasCollision(cx - 1, Std.int(headY / Const.GRID))) && xr <= 0.3) {
 			xr = 0.3;
 			dx *= Math.pow(0.5, tmod);
+			onCollision(-1, 0);
 		}
 	}
 
@@ -619,13 +631,17 @@ class Entity {
 		if (level.hasCollision(cx, cy - 1) && yr <= 1) {
 			yr = 1;
 			dy = 0;
+			onCollision(0, -1);
 		}
 
 		if (level.hasCollision(cx, cy + 1) && yr >= 1) {
 			dy = 0;
 			yr = 1;
+			onCollision(0, 1);
 		}
 	}
+
+	public function onCollision(fromX:Int, fromY:Int) {}
 
 	public function postUpdate() {
 		syncPosition();

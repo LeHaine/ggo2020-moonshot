@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>4</int>
         <key>texturePackerVersion</key>
-        <string>5.3.0</string>
+        <string>5.4.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -169,7 +169,7 @@
             <key>trimMargin</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">None</enum>
+            <enum type="SpriteSettings::TrimMode">Crop</enum>
             <key>tracerTolerance</key>
             <int>200</int>
             <key>heuristicMask</key>
@@ -224,6 +224,24 @@
                 <rect>1,1,1,1</rect>
                 <key>scale9Paddings</key>
                 <rect>1,1,1,1</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export_tiles/fxGib0.png</key>
+            <key type="filename">export_tiles/fxGib1.png</key>
+            <key type="filename">export_tiles/fxGib2.png</key>
+            <key type="filename">export_tiles/uiBarBg.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,1,4,3</rect>
+                <key>scale9Paddings</key>
+                <rect>2,1,4,3</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -317,6 +335,37 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">export_tiles/heroCrouchIdleGun0.png</key>
+            <key type="filename">export_tiles/heroCrouchIdleGun1.png</key>
+            <key type="filename">export_tiles/heroCrouchRun0.png</key>
+            <key type="filename">export_tiles/heroCrouchRun1.png</key>
+            <key type="filename">export_tiles/heroCrouchRun2.png</key>
+            <key type="filename">export_tiles/heroCrouchRun3.png</key>
+            <key type="filename">export_tiles/heroCrouchShoot0.png</key>
+            <key type="filename">export_tiles/heroIdle0.png</key>
+            <key type="filename">export_tiles/heroIdle1.png</key>
+            <key type="filename">export_tiles/heroIdleGun0.png</key>
+            <key type="filename">export_tiles/heroIdleGun1.png</key>
+            <key type="filename">export_tiles/heroRunGun0.png</key>
+            <key type="filename">export_tiles/heroRunGun1.png</key>
+            <key type="filename">export_tiles/heroRunGun2.png</key>
+            <key type="filename">export_tiles/heroRunGun3.png</key>
+            <key type="filename">export_tiles/heroStandShoot0.png</key>
+            <key type="filename">export_tiles/heroStandShoot1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,6,8,12</rect>
+                <key>scale9Paddings</key>
+                <rect>4,6,8,12</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">export_tiles/uiBar.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -329,21 +378,6 @@
                 <rect>2,1,3,1</rect>
                 <key>scale9Paddings</key>
                 <rect>2,1,3,1</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">export_tiles/uiBarBg.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>2,1,4,3</rect>
-                <key>scale9Paddings</key>
-                <rect>2,1,4,3</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
