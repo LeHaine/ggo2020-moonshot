@@ -1,3 +1,5 @@
+import hxd.Res;
+import hxd.Cursor.CustomCursor;
 import hxd.Key;
 
 class Main extends dn.Process {
@@ -5,10 +7,33 @@ class Main extends dn.Process {
 
 	public var controller:dn.heaps.Controller;
 	public var ca:dn.heaps.Controller.ControllerAccess;
+	public var mouseX(get, never):Float;
 
+	var scene:h2d.Scene;
+
+	function get_mouseX()
+		return (scene.mouseX - Game.ME.scroller.x) / Const.SCALE;
+
+	public var mouseY(get, never):Float;
+
+	function get_mouseY()
+		return (scene.mouseY - Game.ME.scroller.y) / Const.SCALE;
+
+	public var rawMouseX(get, never):Float;
+
+	function get_rawMouseX()
+		return (scene.mouseX) / Const.SCALE;
+
+	public var rawMouseY(get, never):Float;
+
+	function get_rawMouseY()
+		return (scene.mouseY) / Const.SCALE;
+
+	@:access(h2d.Scene)
 	public function new(s:h2d.Scene) {
 		super();
 		ME = this;
+		scene = s;
 
 		createRoot(s);
 
@@ -25,6 +50,7 @@ class Main extends dn.Process {
 		#else
 		hxd.Res.initEmbed();
 		#end
+		scene.events.defaultCursor = Cursor.Custom(new CustomCursor([Res.cursor.toBitmap()], 0, 16, 16));
 
 		// Hot reloading
 		#if debug
