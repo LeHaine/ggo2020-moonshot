@@ -179,16 +179,6 @@ class Entity {
 	inline function get_centerY()
 		return footY - hei * 0.5;
 
-	public var shootX(get, never):Float;
-
-	function get_shootX()
-		return footX + dir * 10;
-
-	public var shootY(get, never):Float;
-
-	function get_shootY()
-		return footY - radius * 1.35;
-
 	public var prevFrameFootX:Float = -Const.INFINITE;
 	public var prevFrameFootY:Float = -Const.INFINITE;
 

@@ -76,9 +76,11 @@ class Hero extends ScaledEntity {
 			}
 
 			setSquashX(0.95);
-			fx.shoot(shootX, shootY, shootX + 10 * dir, shootY, 0x2780D8);
-			fx.bulletCase(shootX - dir * 5, shootY, dir);
-			new Bullet(M.round(centerX), M.round(centerY - 3), this, angToMouse() + rnd(-0.5, 0.5) * M.DEG_RAD);
+			var bulletX = centerX;
+			var bulletY = centerY - 3;
+			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 5);
+			fx.bulletCase(bulletX - dir * 5, bulletY, dir);
+			new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-0.5, 0.5) * M.DEG_RAD);
 		}
 	}
 

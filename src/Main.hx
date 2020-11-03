@@ -7,9 +7,10 @@ class Main extends dn.Process {
 
 	public var controller:dn.heaps.Controller;
 	public var ca:dn.heaps.Controller.ControllerAccess;
-	public var mouseX(get, never):Float;
 
 	var scene:h2d.Scene;
+
+	public var mouseX(get, never):Float;
 
 	function get_mouseX()
 		return (scene.mouseX - Game.ME.scroller.x) / Const.SCALE;

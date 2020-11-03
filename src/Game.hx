@@ -4,6 +4,16 @@ import dn.Process;
 class Game extends Process {
 	public static var ME:Game;
 
+	public var mouseX(get, never):Float;
+
+	function get_mouseX()
+		return Main.ME.mouseX;
+
+	public var mouseY(get, never):Float;
+
+	function get_mouseY()
+		return Main.ME.mouseY;
+
 	/** Game controller (pad or keyboard) **/
 	public var ca:dn.heaps.Controller.ControllerAccess;
 

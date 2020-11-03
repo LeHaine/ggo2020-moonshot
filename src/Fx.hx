@@ -183,11 +183,7 @@ class Fx extends dn.Process {
 		}
 	}
 
-	public function shoot(fx:Float, fy:Float, tx:Float, ty:Float, c:UInt) {
-		var dir = fx < tx ? 1 : -1;
-		var a = Math.atan2(ty - fy, tx - fx);
-		a = M.radClamp(a, dir == 1 ? 0 : 3.14, 0.1);
-
+	public function shoot(fx:Float, fy:Float, a:Float, c:UInt, dist:Int) {
 		// Core
 		for (i in 0...4) {
 			var d = i <= 2 ? 0 : rnd(0, 5);
@@ -222,9 +218,8 @@ class Fx extends dn.Process {
 
 		// Shoot line
 		var n = 40;
-		var d = M.dist(fx, fy, tx, ty) - 10;
 		for (i in 0...n) {
-			var d = 0.8 * d * i / (n - 1) + rnd(0, 6);
+			var d = 0.8 * dist * i / (n - 1) + rnd(0, 6);
 			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
 			p.setFadeS(rnd(0.4, 0.6), 0, rnd(0.1, 0.12));
 			p.colorize(c);
