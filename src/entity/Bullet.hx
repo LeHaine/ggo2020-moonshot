@@ -10,7 +10,6 @@ class Bullet extends ScaledEntity {
 		super(0, 0);
 		ALL.push(this);
 		this.owner = owner;
-
 		setPosPixel(x, y);
 		dx = Math.cos(angle) * speed * tmod;
 		dy = Math.sin(angle) * speed * tmod;
@@ -21,6 +20,15 @@ class Bullet extends ScaledEntity {
 		hasGravity = false;
 		frictX = 1;
 		frictY = 1;
+	}
+
+	override function onTouch(from:Entity) {
+		super.onTouch(from);
+
+		if (from != owner) {
+			from.hit(1, this);
+			destroy();
+		}
 	}
 
 	override function dispose() {

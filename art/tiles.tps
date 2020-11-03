@@ -352,6 +352,7 @@
             <key type="filename">export_tiles/heroRunGun3.png</key>
             <key type="filename">export_tiles/heroStandShoot0.png</key>
             <key type="filename">export_tiles/heroStandShoot1.png</key>
+            <key type="filename">export_tiles/scientistStandShoot0.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -363,6 +364,24 @@
                 <rect>4,6,8,12</rect>
                 <key>scale9Paddings</key>
                 <rect>4,6,8,12</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export_tiles/scientistDeadBody0.png</key>
+            <key type="filename">export_tiles/scientistDeathBounce0.png</key>
+            <key type="filename">export_tiles/scientistDeathFall0.png</key>
+            <key type="filename">export_tiles/scientistDeathFall1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,6,12,12</rect>
+                <key>scale9Paddings</key>
+                <rect>6,6,12,12</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

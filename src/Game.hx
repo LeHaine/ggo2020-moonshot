@@ -77,6 +77,13 @@ class Game extends Process {
 		// Create entities here
 		hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
 
+		for (mob in level.data.l_Entities.all_Mob) {
+			switch (mob.f_type) {
+				case Scientist:
+					new entity.mob.Scientist(mob.cx, mob.cy);
+			}
+		}
+
 		camera.trackTarget(hero, true, 0, -Const.GRID * 2);
 
 		fx.clear();

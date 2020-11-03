@@ -1,75 +1,75 @@
 
 tiles.png
-size: 64,128
+size: 128,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 empty
   rotate: false
-  xy: 59, 77
+  xy: 123, 20
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 fxCircle0
   rotate: false
-  xy: 44, 60
+  xy: 46, 39
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fxDot0
   rotate: false
-  xy: 59, 81
+  xy: 123, 24
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 fxGib0
   rotate: false
-  xy: 1, 66
+  xy: 121, 39
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxGib1
   rotate: false
-  xy: 8, 76
+  xy: 121, 45
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxGib2
   rotate: false
-  xy: 15, 76
+  xy: 99, 16
   size: 5, 5
   orig: 5, 5
   offset: 0, 0
   index: -1
 fxImpact0
   rotate: false
-  xy: 17, 66
+  xy: 1, 46
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 fxLine0
   rotate: false
-  xy: 1, 58
+  xy: 80, 1
   size: 33, 3
   orig: 33, 3
   offset: 0, 0
   index: -1
 fxLineDir0
   rotate: false
-  xy: 1, 62
+  xy: 80, 5
   size: 32, 3
   orig: 32, 3
   offset: 0, 0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 1, 76
+  xy: 114, 39
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -83,147 +83,182 @@ fxSmoke0
   index: -1
 fxTail0
   rotate: false
-  xy: 1, 46
+  xy: 46, 1
   size: 33, 11
   orig: 33, 11
   offset: 0, 0
   index: -1
 heroCrouchIdleGun0
   rotate: false
-  xy: 31, 115
+  xy: 16, 65
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchIdleGun1
   rotate: false
-  xy: 31, 101
+  xy: 32, 56
   size: 14, 13
   orig: 14, 13
   offset: 0, 0
   index: -1
 heroCrouchRun0
   rotate: false
-  xy: 46, 96
+  xy: 1, 75
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchRun1
   rotate: false
-  xy: 1, 116
+  xy: 47, 56
   size: 14, 11
   orig: 14, 11
   offset: 0, 0
   index: -1
 heroCrouchRun2
   rotate: false
-  xy: 46, 109
+  xy: 62, 58
   size: 14, 11
   orig: 14, 11
   offset: 0, 0
   index: -1
 heroCrouchRun3
   rotate: false
-  xy: 1, 83
+  xy: 79, 51
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
   index: -1
 heroCrouchShoot0
   rotate: false
-  xy: 31, 115
+  xy: 16, 65
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroIdle0
   rotate: false
-  xy: 34, 65
-  size: 8, 17
-  orig: 8, 17
-  offset: 0, 0
-  index: -1
-heroIdle1
-  rotate: false
-  xy: 35, 46
+  xy: 114, 20
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
   index: -1
+heroIdle1
+  rotate: false
+  xy: 105, 9
+  size: 8, 19
+  orig: 8, 19
+  offset: 0, 0
+  index: -1
 heroIdleGun0
   rotate: false
-  xy: 17, 82
+  xy: 17, 46
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 heroIdleGun1
   rotate: false
-  xy: 1, 96
+  xy: 99, 29
   size: 14, 19
   orig: 14, 19
   offset: 0, 0
   index: -1
 heroRunGun0
   rotate: false
-  xy: 46, 1
+  xy: 46, 19
   size: 16, 19
   orig: 16, 19
   offset: 0, 0
   index: -1
 heroRunGun1
   rotate: false
-  xy: 46, 41
+  xy: 80, 32
   size: 16, 18
   orig: 16, 18
   offset: 0, 0
   index: -1
 heroRunGun2
   rotate: false
-  xy: 43, 77
+  xy: 63, 39
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
   index: -1
 heroRunGun3
   rotate: false
-  xy: 46, 21
+  xy: 63, 19
   size: 16, 19
   orig: 16, 19
   offset: 0, 0
   index: -1
 heroStandShoot0
   rotate: false
-  xy: 17, 82
+  xy: 17, 46
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 heroStandShoot1
   rotate: false
-  xy: 16, 101
+  xy: 1, 56
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 pixel
   rotate: false
-  xy: 44, 46
+  xy: 123, 28
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
+scientistDeadBody0
+  rotate: false
+  xy: 46, 13
+  size: 24, 5
+  orig: 24, 5
+  offset: 0, 0
+  index: -1
+scientistDeathBounce0
+  rotate: false
+  xy: 80, 9
+  size: 24, 6
+  orig: 24, 6
+  offset: 0, 0
+  index: -1
+scientistDeathFall0
+  rotate: false
+  xy: 97, 49
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
+scientistDeathFall1
+  rotate: false
+  xy: 80, 16
+  size: 18, 15
+  orig: 18, 15
+  offset: 0, 0
+  index: -1
+scientistStandShoot0
+  rotate: false
+  xy: 114, 1
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
 uiBar
   rotate: false
-  xy: 1, 72
+  xy: 114, 46
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 8, 66
+  xy: 71, 13
   size: 8, 5
   orig: 8, 5
   offset: 0, 0

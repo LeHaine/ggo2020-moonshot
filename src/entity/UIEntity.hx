@@ -6,6 +6,7 @@ class UIEntity extends NoScaleEntity {
 	public function new(x:Int, y:Int) {
 		super(x, y);
 		hasGravity = false;
+		isCollidable = false;
 		spr.set("empty");
 		entityUpdatedListener = (e:Entity) -> {
 			cx = e.cx;
@@ -24,6 +25,8 @@ class UIEntity extends NoScaleEntity {
 	}
 
 	override function hit(dmg:Int, from:Null<Entity>) {}
+
+	override function performEntityCollisions() {}
 
 	override function performXCollisionCheck() {}
 

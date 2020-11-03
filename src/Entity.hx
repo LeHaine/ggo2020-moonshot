@@ -182,6 +182,8 @@ class Entity {
 	public var prevFrameFootX:Float = -Const.INFINITE;
 	public var prevFrameFootY:Float = -Const.INFINITE;
 
+	public var isCollidable = true;
+
 	var actions:Array<{id:String, cb:Void->Void, t:Float}> = [];
 
 	private var entityUpdatedListeners:Array<(e:Entity) -> Void> = [];
@@ -539,6 +541,7 @@ class Entity {
 	public function fixedUpdate() {} // runs at a "guaranteed" 30 fps
 
 	public function update() { // runs at an unknown fps
+		performEntityCollisions();
 		performXSteps();
 		performYSteps();
 
@@ -557,6 +560,41 @@ class Entity {
 			disableBounds();
 		#end
 	}
+
+	private function performEntityCollisions() {
+		if (!isCollidable) {
+			return;
+		}
+		for (e in ALL) {
+			if (e != this && e.isCollidable && !destroyed && !e.destroyed) {
+				var d = distPx(e);
+				if (d < radius + e.radius) {
+					// var repel = 0.05 * tmod;
+					// var a = Math.atan2(e.footY - footY, e.footX - footX);
+
+					// if (!imovable) {
+					// 	var r = e.weight == weight ? 0.5 : e.weight / (weight + e.weight);
+					// 	if (r <= 0.1)
+					// 		r = 0;
+					// 	dx -= Math.cos(a) * repel * r;
+					// 	dy -= Math.sin(a) * repel * r;
+					// }
+					// if (!e.imovable) {
+					// 	var r = e.weight == weight ? 0.5 : weight / (weight + e.weight);
+					// 	if (r <= 0.1)
+					// 		r = 0;
+					// 	e.dx += Math.cos(a) * repel * r;
+					// 	e.dy += Math.sin(a) * repel * r;
+					// }
+
+					onTouch(e);
+					e.onTouch(this);
+				}
+			}
+		}
+	}
+
+	public function onTouch(from:Entity) {}
 
 	private function performXSteps() {
 		var steps = M.ceil(M.fabs(dxTotal * tmod));
@@ -639,7 +677,23 @@ class Entity {
 		}
 	}
 
-	public function onCollision(fromX:Int, fromY:Int) {}
+	public function onCollision(fromX:Int, fromY:Int) {
+		if (fromX != 0) {
+			onTouchWall(fromX);
+		}
+
+		if (fromY == 1) {
+			onTouchGround();
+		} else if (fromY == -1) {
+			onTouchCeiling();
+		}
+	}
+
+	public function onTouchCeiling() {}
+
+	public function onTouchGround() {}
+
+	public function onTouchWall(dir:Int) {}
 
 	public function postUpdate() {
 		syncPosition();

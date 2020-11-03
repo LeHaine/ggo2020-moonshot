@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 23,
+	"nextUid": 28,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -241,6 +241,56 @@
 				"pivotX": 0.5,
 				"pivotY": 1,
 				"fieldDefs": []
+			},
+			{
+				"identifier": "Mob",
+				"uid": 24,
+				"width": 16,
+				"height": 32,
+				"color": "#FF0000",
+				"renderMode": "Rectangle",
+				"showName": true,
+				"tilesetId": null,
+				"tileId": null,
+				"tileRenderMode": "Stretch",
+				"maxPerLevel": 0,
+				"limitBehavior": "DiscardOldOnes",
+				"pivotX": 0.5,
+				"pivotY": 1,
+				"fieldDefs": [
+					{
+						"identifier": "type",
+						"__type": "ExternEnum.MobTypes",
+						"uid": 26,
+						"type": { "id": "F_Enum", "params": [25] },
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "ValueOnly",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": true,
+						"min": null,
+						"max": null,
+						"defaultOverride": null
+					},
+					{
+						"identifier": "health",
+						"__type": "Int",
+						"uid": 27,
+						"type": "F_Int",
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "NameAndValue",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": true,
+						"min": 1,
+						"max": null,
+						"defaultOverride": { "id": "V_Int", "params": [1] }
+					}
+				]
 			}
 		],
 		"tilesets": [
@@ -258,7 +308,7 @@
 		],
 		"enums": [],
 		"externalEnums": [
-			{ "identifier": "Affect", "uid": 3, "values": [{ "id": "Stun", "tileId": null, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "151fbf1f363d1b497d4ef79e2e957b6f" },
+			{ "identifier": "Affect", "uid": 3, "values": [{ "id": "Stun", "tileId": null, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "a961653def02ad4f300f364ca93d9ba3" },
 			{ "identifier": "LevelMark", "uid": 22, "values": [
 				{ "id": "Grab", "tileId": null, "__tileSrcRect": null },
 				{ "id": "GrabLeft", "tileId": null, "__tileSrcRect": null },
@@ -267,7 +317,8 @@
 				{ "id": "PlatformEndLeft", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PlatformEndRight", "tileId": null, "__tileSrcRect": null },
 				{ "id": "SmallStep", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "151fbf1f363d1b497d4ef79e2e957b6f" }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "a961653def02ad4f300f364ca93d9ba3" },
+			{ "identifier": "MobTypes", "uid": 25, "values": [{ "id": "Scientist", "tileId": null, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "a961653def02ad4f300f364ca93d9ba3" }
 		]
 	},
 	"levels": [{
@@ -291,7 +342,60 @@
 				"autoLayerTiles": [],
 				"seed": 9094781,
 				"gridTiles": [],
-				"entityInstances": [{ "__identifier": "Hero", "__grid": [27,9], "__tile": null, "defUid": 20, "px": [440,160], "fieldInstances": [] }]
+				"entityInstances": [
+					{ "__identifier": "Hero", "__grid": [27,9], "__tile": null, "defUid": 20, "px": [440,160], "fieldInstances": [] },
+					{ "__identifier": "Mob", "__grid": [20,9], "__tile": null, "defUid": 24, "px": [328,160], "fieldInstances": [
+						{
+							"__identifier": "type",
+							"__value": "Scientist",
+							"__type": "ExternEnum.MobTypes",
+							"defUid": 26,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Scientist"]
+							}]
+						},
+						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] }
+					] },
+					{ "__identifier": "Mob", "__grid": [33,6], "__tile": null, "defUid": 24, "px": [536,112], "fieldInstances": [
+						{
+							"__identifier": "type",
+							"__value": "Scientist",
+							"__type": "ExternEnum.MobTypes",
+							"defUid": 26,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Scientist"]
+							}]
+						},
+						{
+							"__identifier": "health",
+							"__value": 3,
+							"__type": "Int",
+							"defUid": 27,
+							"realEditorValues": [{ "id": "V_Int", "params": [3] }]
+						}
+					] },
+					{ "__identifier": "Mob", "__grid": [42,9], "__tile": null, "defUid": 24, "px": [680,160], "fieldInstances": [
+						{
+							"__identifier": "type",
+							"__value": "Scientist",
+							"__type": "ExternEnum.MobTypes",
+							"defUid": 26,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Scientist"]
+							}]
+						},
+						{
+							"__identifier": "health",
+							"__value": 5,
+							"__type": "Int",
+							"defUid": 27,
+							"realEditorValues": [{ "id": "V_Int", "params": [5] }]
+						}
+					] }
+				]
 			},
 			{
 				"__identifier": "Collisions",
