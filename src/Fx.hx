@@ -183,7 +183,7 @@ class Fx extends dn.Process {
 		}
 	}
 
-	public function shoot(fx:Float, fy:Float, a:Float, c:UInt, dist:Int) {
+	public function shoot(fx:Float, fy:Float, a:Float, c:UInt, dist:Float) {
 		// Core
 		for (i in 0...4) {
 			var d = i <= 2 ? 0 : rnd(0, 5);
@@ -192,7 +192,7 @@ class Fx extends dn.Process {
 			p.colorize(c);
 			p.setCenterRatio(0, 0.5);
 
-			p.scaleX = rnd(8, 15);
+			p.scaleX = rnd(1, 1.5);
 			p.scaleXMul = rnd(0.9, 0.97);
 
 			// p.moveAng(a, rnd(1,3));
@@ -201,12 +201,12 @@ class Fx extends dn.Process {
 		}
 
 		// Core sides
-		for (i in 0...20) {
+		for (i in 0...5) {
 			var a = a + rnd(0.2, 0.5, true);
 			var d = i <= 2 ? 0 : rnd(0, 5);
 			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
 			p.setFadeS(rnd(0.4, 0.6), 0, rnd(0.1, 0.12));
-			p.colorize(0xF5450A);
+			p.colorize(c);
 			p.setCenterRatio(0, 0.5);
 
 			p.scaleX = rnd(3, 5);
@@ -217,7 +217,7 @@ class Fx extends dn.Process {
 		}
 
 		// Shoot line
-		var n = 40;
+		var n = 10;
 		for (i in 0...n) {
 			var d = 0.8 * dist * i / (n - 1) + rnd(0, 6);
 			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);

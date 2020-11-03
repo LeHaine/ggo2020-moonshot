@@ -38,6 +38,7 @@ class Hero extends ScaledEntity {
 			cd.setS("airControl", 10);
 		}
 
+		dir = M.sign(Math.cos(angToMouse()));
 		performCrouch();
 		performShot();
 		performRun(spd);
@@ -78,7 +79,7 @@ class Hero extends ScaledEntity {
 			setSquashX(0.95);
 			var bulletX = centerX;
 			var bulletY = centerY - 3;
-			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 5);
+			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
 			fx.bulletCase(bulletX - dir * 5, bulletY, dir);
 			new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-0.5, 0.5) * M.DEG_RAD);
 		}
@@ -90,7 +91,6 @@ class Hero extends ScaledEntity {
 		}
 		if (ca.leftDist() > 0 && !cd.has("run")) {
 			dx += Math.cos(ca.leftAngle()) * ca.leftDist() * spd * (0.4 + 0.6 * cd.getRatio("airControl")) * tmod;
-			dir = M.sign(Math.cos(ca.leftAngle()));
 		} else {
 			dx *= Math.pow(0.8, tmod);
 		}
