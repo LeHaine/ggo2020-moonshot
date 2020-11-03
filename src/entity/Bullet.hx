@@ -6,6 +6,7 @@ class Bullet extends ScaledEntity {
 
 		yr = from.yr - 0.5;
 		dir = from.dir;
+		hei = 1;
 		hasGravity = false;
 		spr.set("fxDot");
 		dx = dir * 0.5;
