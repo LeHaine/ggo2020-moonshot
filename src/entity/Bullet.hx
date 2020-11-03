@@ -1,16 +1,31 @@
 package entity;
 
 class Bullet extends ScaledEntity {
-	public function new(from:Entity) {
-		super(from.cx, from.cy);
+	public var ALL:Array<Bullet> = [];
 
-		yr = from.yr - 0.5;
-		dir = from.dir;
+	var owner:Entity;
+	var speed = 0.5;
+
+	public function new(x:Int, y:Int, owner:Entity, angle:Float) {
+		super(0, 0);
+		ALL.push(this);
+		this.owner = owner;
+
+		setPosPixel(x, y);
+		dx = Math.cos(angle) * speed * tmod;
+		dy = Math.sin(angle) * speed * tmod;
+
+		spr.set("fxDot");
+		spr.setCenterRatio();
 		hei = 1;
 		hasGravity = false;
-		spr.set("fxDot");
-		dx = dir * 0.5;
 		frictX = 1;
+		frictY = 1;
+	}
+
+	override function dispose() {
+		super.dispose();
+		ALL.remove(this);
 	}
 
 	override function onCollision(fromX:Int, fromY:Int) {
