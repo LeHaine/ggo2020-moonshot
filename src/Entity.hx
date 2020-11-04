@@ -337,6 +337,12 @@ class Entity {
 	public inline function distPxFree(x:Float, y:Float)
 		return M.dist(footX, footY, x, y);
 
+	public inline function distCaseX(e:Entity)
+		return M.fabs((cx + xr) - (e.cx + e.xr));
+
+	public inline function distCaseY(e:Entity)
+		return M.fabs((cy + yr) - (e.cy + e.yr));
+
 	public function makePoint()
 		return new CPoint(cx, cy, xr, yr);
 

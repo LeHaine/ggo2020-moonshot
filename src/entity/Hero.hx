@@ -41,6 +41,7 @@ class Hero extends ScaledEntity {
 		dir = M.sign(Math.cos(angToMouse()));
 		performCrouch();
 		performShot();
+		performKick();
 		performRun(spd);
 		performJump();
 	}
@@ -82,6 +83,23 @@ class Hero extends ScaledEntity {
 			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
 			fx.bulletCase(bulletX - dir * 5, bulletY, dir);
 			new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-0.5, 0.5) * M.DEG_RAD);
+		}
+	}
+
+	private function performKick() {
+		if (controlsLocked()) {
+			return;
+		}
+
+		if (ca.bPressed() && !cd.hasSetS("kick", 0.5)) {
+			for (mob in Mob.ALL) {
+				if (mob.isAlive() && distCaseX(mob) <= 1.5 && dirTo(mob) == dir && mob.isCollidable) {
+					mob.hit(1, this);
+					mob.bump(dirTo(mob) * rnd(0.1, 0.3), -rnd(0.15, 0.25));
+				}
+			}
+			spr.anim.playOverlap("heroKick", 0.22);
+			lockControlS(0.2);
 		}
 	}
 

@@ -168,10 +168,10 @@ class Fx extends dn.Process {
 		}
 	}
 
-	public function gibs(x:Float, y:Float, dir:Int, amount:Int = 10) {
+	public function gibs(x:Float, y:Float, dir:Int, amount:Int = 10, color:UInt = 0x951d1d) {
 		for (i in 0...amount) {
 			var p = allocTopNormal(getTile("fxGib"), x + rnd(0, 4, true), y + rnd(0, 8, true));
-			p.colorize(0x951d1d);
+			p.colorize(color);
 			p.setFadeS(rnd(0.6, 1), 0, rnd(1, 3));
 			p.dx = dir * rnd(3, 7);
 			p.dy = rnd(-1, 0);

@@ -165,6 +165,13 @@ heroIdleGun1
   orig: 14, 19
   offset: 0, 0
   index: -1
+heroKick0
+  rotate: false
+  xy: 18, 95
+  size: 15, 18
+  orig: 15, 18
+  offset: 0, 0
+  index: -1
 heroRunGun0
   rotate: false
   xy: 109, 56
@@ -181,7 +188,7 @@ heroRunGun1
   index: -1
 heroRunGun2
   rotate: false
-  xy: 18, 95
+  xy: 34, 95
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -202,7 +209,7 @@ heroStandShoot0
   index: -1
 heroStandShoot1
   rotate: false
-  xy: 34, 95
+  xy: 50, 58
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
@@ -247,6 +254,13 @@ scientistGunDraw0
   xy: 114, 21
   size: 13, 18
   orig: 13, 18
+  offset: 0, 0
+  index: -1
+scientistHit0
+  rotate: false
+  xy: 34, 75
+  size: 15, 18
+  orig: 15, 18
   offset: 0, 0
   index: -1
 scientistIdle0
@@ -328,7 +342,7 @@ scientistStandShoot0
   index: -1
 uiBar
   rotate: false
-  xy: 34, 88
+  xy: 34, 65
   size: 6, 3
   orig: 6, 3
   offset: 0, 0

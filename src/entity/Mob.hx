@@ -32,10 +32,24 @@ class Mob extends ScaledEntity {
 			}
 		}
 
+		if (from != null) {
+			if (from.is(Bullet)) {
+				var bullet = cast(from, Bullet);
+				fx.gibs(centerX, centerY, -dirTo(bullet.owner));
+				bump(-dirTo(bullet.owner) * rnd(0.06, 0.12), -rnd(0.04, 0.08));
+			} else {
+				bump(-dirTo(from) * rnd(0.06, 0.12), -rnd(0.04, 0.08));
+			}
+		}
 		super.hit(dmg, from);
 	}
 
 	public function canBePushed() {
 		return true;
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+		spr.anim.setGlobalSpeed(rnd(0.1, 0.3));
 	}
 }

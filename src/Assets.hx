@@ -29,5 +29,9 @@ class Assets {
 		tiles.defineAnim("heroCrouchIdleGun", "0(10), 1(15)");
 
 		tiles.defineAnim("scientistDeathFall", "0(30), 1(9999)");
+		tiles.defineAnim("scientistRunGun", "0-3(3)");
+		tiles.defineAnim("scientistIdle", "0(10), 1(15)");
+		tiles.defineAnim("scientistIdleGunDown", "0(10), 1(15)");
+		tiles.defineAnim("scientistIdleGunUp", "0(10), 1(15)");
 	}
 }

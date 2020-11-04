@@ -3,7 +3,8 @@ package entity;
 class Bullet extends ScaledEntity {
 	public var ALL:Array<Bullet> = [];
 
-	var owner:Entity;
+	public var owner:Entity;
+
 	var speed = 0.5;
 
 	public function new(x:Int, y:Int, owner:Entity, angle:Float) {
