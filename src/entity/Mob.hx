@@ -10,12 +10,13 @@ class Mob extends ScaledEntity {
 	public static var ALL:Array<Mob> = [];
 
 	var lastBodyPartShot:Null<Body>;
+	var data:World.Entity_Mob;
 
-	public function new(x, y) {
-		super(x, y);
+	public function new(data:World.Entity_Mob) {
+		super(data.cx, data.cy);
 		ALL.push(this);
-
-		initLife(5);
+		this.data = data;
+		initLife(data.f_health);
 	}
 
 	override function hit(dmg:Int, from:Null<Entity>) {

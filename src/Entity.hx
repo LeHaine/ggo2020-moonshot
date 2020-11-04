@@ -1,3 +1,5 @@
+import entity.Bullet;
+
 class Entity {
 	public static var ALL:Array<Entity> = [];
 	public static var GC:Array<Entity> = [];
@@ -105,6 +107,13 @@ class Entity {
 		return hei = v;
 	}
 
+	public var width(default, set):Float = Const.GRID;
+
+	inline function set_width(v) {
+		invalidateDebugBounds = true;
+		return width = v;
+	}
+
 	public var radius(default, set) = Const.GRID * 0.5;
 
 	inline function set_radius(v) {
@@ -178,6 +187,16 @@ class Entity {
 
 	inline function get_centerY()
 		return footY - hei * 0.5;
+
+	public var handLeft(get, never):Float;
+
+	inline function get_handLeft()
+		return footX - width * 0.5;
+
+	public var handRight(get, never):Float;
+
+	inline function get_handRight()
+		return footX + width * 0.5;
 
 	public var prevFrameFootX:Float = -Const.INFINITE;
 	public var prevFrameFootY:Float = -Const.INFINITE;
@@ -396,7 +415,7 @@ class Entity {
 
 		// Hei
 		debugBounds.lineStyle(1, c, 0.5);
-		debugBounds.drawRect(-radius, -hei, radius * 2, hei);
+		debugBounds.drawRect(-width * 0.5, -hei, width, hei);
 
 		// Feet
 		debugBounds.lineStyle(1, 0xffffff, 1);
@@ -566,32 +585,51 @@ class Entity {
 			return;
 		}
 		for (e in ALL) {
-			if (e != this && e.isCollidable && !destroyed && !e.destroyed) {
-				var d = distPx(e);
-				if (d < radius + e.radius) {
-					// var repel = 0.05 * tmod;
-					// var a = Math.atan2(e.footY - footY, e.footX - footX);
+			if (e != this && e.isCollidable && !destroyed && !e.destroyed && isCollidingWith(e)) {
+				// var repel = 0.05 * tmod;
+				// var a = Math.atan2(e.footY - footY, e.footX - footX);
 
-					// if (!imovable) {
-					// 	var r = e.weight == weight ? 0.5 : e.weight / (weight + e.weight);
-					// 	if (r <= 0.1)
-					// 		r = 0;
-					// 	dx -= Math.cos(a) * repel * r;
-					// 	dy -= Math.sin(a) * repel * r;
-					// }
-					// if (!e.imovable) {
-					// 	var r = e.weight == weight ? 0.5 : weight / (weight + e.weight);
-					// 	if (r <= 0.1)
-					// 		r = 0;
-					// 	e.dx += Math.cos(a) * repel * r;
-					// 	e.dy += Math.sin(a) * repel * r;
-					// }
+				// if (!imovable) {
+				// 	var r = e.weight == weight ? 0.5 : e.weight / (weight + e.weight);
+				// 	if (r <= 0.1)
+				// 		r = 0;
+				// 	dx -= Math.cos(a) * repel * r;
+				// 	dy -= Math.sin(a) * repel * r;
+				// }
+				// if (!e.imovable) {
+				// 	var r = e.weight == weight ? 0.5 : weight / (weight + e.weight);
+				// 	if (r <= 0.1)
+				// 		r = 0;
+				// 	e.dx += Math.cos(a) * repel * r;
+				// 	e.dy += Math.sin(a) * repel * r;
+				// }
 
-					onTouch(e);
-					e.onTouch(this);
-				}
+				onTouch(e);
+				e.onTouch(this);
 			}
 		}
+	}
+
+	public function isCollidingWith(with:Entity) {
+		var lx = handLeft;
+		var ly = headY;
+		var rx = handRight;
+		var ry = footY;
+
+		var lx2 = with.handLeft;
+		var ly2 = with.headY;
+		var rx2 = with.handRight;
+		var ry2 = with.footY;
+
+		if (lx > rx2 || lx2 > rx) {
+			return false;
+		}
+
+		if (ly > ry2 || ly2 > ry) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public function onTouch(from:Entity) {}

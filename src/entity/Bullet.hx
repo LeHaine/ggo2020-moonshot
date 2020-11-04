@@ -17,6 +17,8 @@ class Bullet extends ScaledEntity {
 		spr.set("fxDot");
 		spr.setCenterRatio();
 		hei = 1;
+		width = 1;
+		radius = 0.5;
 		hasGravity = false;
 		frictX = 1;
 		frictY = 1;

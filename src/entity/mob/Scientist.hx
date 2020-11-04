@@ -1,8 +1,8 @@
 package entity.mob;
 
 class Scientist extends Mob {
-	public function new(x, y) {
-		super(x, y);
+	public function new(data:World.Entity_Mob) {
+		super(data);
 
 		spr.set("scientistStandShoot");
 	}

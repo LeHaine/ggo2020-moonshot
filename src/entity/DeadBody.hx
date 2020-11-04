@@ -3,7 +3,7 @@ package entity;
 class DeadBody extends ScaledEntity {
 	public static var ALL:Array<DeadBody> = [];
 
-	public function new(e:Entity, sid:String) {
+	public function new(e:Entity, sid:String, ?xMult:Float = 1, ?yMult:Float = 1) {
 		super(e.cx, e.cy);
 		ALL.push(this);
 		xr = e.xr;
@@ -11,11 +11,12 @@ class DeadBody extends ScaledEntity {
 		isCollidable = false;
 		sprScaleX = e.sprScaleX;
 		sprScaleY = e.sprScaleY;
-		dx = e.lastHitDirFromSource * 0.18;
+		dx = e.lastHitDirFromSource * 0.18 * xMult;
 		dir = -e.lastHitDirFromSource;
 		gravityMul = 0.25;
-		frictX = frictY = 0.97;
-		dy = -0.1;
+		frictX = 1;
+		frictY = 0.97;
+		dy = -0.05 * yMult;
 		spr.set(e.spr.groupName);
 		spr.anim.registerStateAnim(sid + "DeathBounce", 2, function() return !onGround && cd.has("hitGround"));
 		spr.anim.registerStateAnim(sid + "DeathFall", 1, function() return !onGround);
@@ -34,8 +35,9 @@ class DeadBody extends ScaledEntity {
 		if (M.fabs(dy) <= 0.05) {
 			dy = 0;
 			frictX = frictY = 0.8;
-		} else
+		} else {
 			dy = -dy * 0.7;
+		}
 		cd.setS("hitGround", Const.INFINITE);
 	}
 
@@ -54,10 +56,7 @@ class DeadBody extends ScaledEntity {
 			// Push mobs
 			for (e in entity.Mob.ALL) {
 				if (e.isAlive() && distPx(e) <= radius + e.radius && !e.cd.hasSetS("bodyHit", 0.4) && e.canBePushed()) {
-					if (!e.cd.hasSetS("bodyDmg", 1)) {
-						e.hit(1, this);
-					}
-					e.bump(dirTo(e) * 0.4, -0.2);
+					e.bump(dirTo(e) * rnd(0.025, 0.15), rnd(-0.05, -0.1));
 				}
 			}
 		}
