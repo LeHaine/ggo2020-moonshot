@@ -18,8 +18,8 @@ class DeadBody extends ScaledEntity {
 		frictY = 0.97;
 		dy = -0.05 * yMult;
 		spr.set(e.spr.groupName);
-		spr.anim.registerStateAnim(sid + "DeathBounce", 2, function() return !onGround && cd.has("hitGround"));
-		spr.anim.registerStateAnim(sid + "DeathFall", 1, function() return !onGround);
+		spr.anim.registerStateAnim(sid + "DeathBounce", 2, () -> !onGround && cd.has("hitGround"));
+		spr.anim.registerStateAnim(sid + "DeathFall", 1, () -> !onGround);
 		spr.anim.registerStateAnim(sid + "DeadBody", 0);
 		spr.colorize(e.spr.color.toColor());
 		cd.setS("bleeding", 2);
@@ -49,8 +49,9 @@ class DeadBody extends ScaledEntity {
 
 	override public function update() {
 		super.update();
-		if (cd.has("bleeding") && !cd.hasSetS("bleedFx", 0.03))
+		if (cd.has("bleeding") && !cd.hasSetS("bleedFx", 0.03)) {
 			fx.woundBleed(centerX - dir * 8, centerY);
+		}
 
 		if (!onGround) {
 			// Push mobs
@@ -61,7 +62,8 @@ class DeadBody extends ScaledEntity {
 			}
 		}
 
-		if (!cd.has("decay"))
+		if (!cd.has("decay")) {
 			destroy();
+		}
 	}
 }
