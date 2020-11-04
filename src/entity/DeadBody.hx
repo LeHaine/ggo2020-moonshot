@@ -43,8 +43,9 @@ class DeadBody extends ScaledEntity {
 
 	override public function postUpdate() {
 		super.postUpdate();
-		if (cd.has("decay"))
+		if (cd.has("decay")) {
 			spr.scaleY = cd.getRatio("decay");
+		}
 	}
 
 	override public function update() {
