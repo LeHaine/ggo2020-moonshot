@@ -6,49 +6,49 @@ filter: Linear,Linear
 repeat: none
 empty
   rotate: false
-  xy: 123, 20
+  xy: 67, 19
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 fxCircle0
   rotate: false
-  xy: 46, 39
+  xy: 1, 58
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fxDot0
   rotate: false
-  xy: 123, 24
+  xy: 67, 23
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 fxGib0
   rotate: false
-  xy: 121, 39
+  xy: 8, 88
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxGib1
   rotate: false
-  xy: 121, 45
+  xy: 18, 58
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxGib2
   rotate: false
-  xy: 99, 16
+  xy: 94, 36
   size: 5, 5
   orig: 5, 5
   offset: 0, 0
   index: -1
 fxImpact0
   rotate: false
-  xy: 1, 46
+  xy: 18, 65
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -69,7 +69,7 @@ fxLineDir0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 114, 39
+  xy: 1, 88
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -90,56 +90,56 @@ fxTail0
   index: -1
 heroCrouchIdleGun0
   rotate: false
-  xy: 16, 65
+  xy: 16, 114
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchIdleGun1
   rotate: false
-  xy: 32, 56
+  xy: 1, 114
   size: 14, 13
   orig: 14, 13
   offset: 0, 0
   index: -1
 heroCrouchRun0
   rotate: false
-  xy: 1, 75
+  xy: 31, 114
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchRun1
   rotate: false
-  xy: 47, 56
+  xy: 1, 46
   size: 14, 11
   orig: 14, 11
   offset: 0, 0
   index: -1
 heroCrouchRun2
   rotate: false
-  xy: 62, 58
+  xy: 16, 46
   size: 14, 11
   orig: 14, 11
   offset: 0, 0
   index: -1
 heroCrouchRun3
   rotate: false
-  xy: 79, 51
+  xy: 1, 75
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
   index: -1
 heroCrouchShoot0
   rotate: false
-  xy: 16, 65
+  xy: 16, 114
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroIdle0
   rotate: false
-  xy: 114, 20
+  xy: 67, 33
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
@@ -153,63 +153,63 @@ heroIdle1
   index: -1
 heroIdleGun0
   rotate: false
-  xy: 17, 46
+  xy: 31, 46
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 heroIdleGun1
   rotate: false
-  xy: 99, 29
+  xy: 94, 48
   size: 14, 19
   orig: 14, 19
   offset: 0, 0
   index: -1
 heroRunGun0
   rotate: false
-  xy: 46, 19
+  xy: 109, 56
   size: 16, 19
   orig: 16, 19
   offset: 0, 0
   index: -1
 heroRunGun1
   rotate: false
-  xy: 80, 32
+  xy: 109, 76
   size: 16, 18
   orig: 16, 18
   offset: 0, 0
   index: -1
 heroRunGun2
   rotate: false
-  xy: 63, 39
+  xy: 18, 95
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
   index: -1
 heroRunGun3
   rotate: false
-  xy: 63, 19
+  xy: 75, 55
   size: 16, 19
   orig: 16, 19
   offset: 0, 0
   index: -1
 heroStandShoot0
   rotate: false
-  xy: 17, 46
+  xy: 31, 46
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 heroStandShoot1
   rotate: false
-  xy: 1, 56
+  xy: 34, 95
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 pixel
   rotate: false
-  xy: 123, 28
+  xy: 67, 27
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
@@ -230,35 +230,112 @@ scientistDeathBounce0
   index: -1
 scientistDeathFall0
   rotate: false
-  xy: 97, 49
+  xy: 1, 95
   size: 16, 18
   orig: 16, 18
   offset: 0, 0
   index: -1
 scientistDeathFall1
   rotate: false
-  xy: 80, 16
+  xy: 109, 40
   size: 18, 15
   orig: 18, 15
   offset: 0, 0
   index: -1
-scientistStandShoot0
+scientistGunDraw0
   rotate: false
-  xy: 114, 1
+  xy: 114, 21
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
+scientistIdle0
+  rotate: false
+  xy: 100, 29
+  size: 8, 18
+  orig: 8, 18
+  offset: 0, 0
+  index: -1
+scientistIdle1
+  rotate: false
+  xy: 71, 13
+  size: 8, 19
+  orig: 8, 19
+  offset: 0, 0
+  index: -1
+scientistIdleGunDown0
+  rotate: false
+  xy: 114, 21
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
+scientistIdleGunDown1
+  rotate: false
+  xy: 114, 1
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1
+scientistIdleGunUp0
+  rotate: false
+  xy: 17, 75
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
+scientistIdleGunUp1
+  rotate: false
+  xy: 92, 68
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+scientistRunGun0
+  rotate: false
+  xy: 46, 19
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+scientistRunGun1
+  rotate: false
+  xy: 46, 39
+  size: 19, 18
+  orig: 19, 18
+  offset: 0, 0
+  index: -1
+scientistRunGun2
+  rotate: false
+  xy: 76, 36
+  size: 17, 18
+  orig: 17, 18
+  offset: 0, 0
+  index: -1
+scientistRunGun3
+  rotate: false
+  xy: 80, 16
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+scientistStandShoot0
+  rotate: false
+  xy: 17, 75
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
 uiBar
   rotate: false
-  xy: 114, 46
+  xy: 34, 88
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 71, 13
+  xy: 66, 52
   size: 8, 5
   orig: 8, 5
   offset: 0, 0
