@@ -31,7 +31,7 @@ class DeadBody extends ScaledEntity {
 		ALL.remove(this);
 	}
 
-	override function onTouchGround() {
+	override function onTouchGround(fallHeight:Float) {
 		if (M.fabs(dy) <= 0.05) {
 			dy = 0;
 			frictX = frictY = 0.8;

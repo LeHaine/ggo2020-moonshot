@@ -146,6 +146,11 @@ class Entity {
 	inline function get_lastHitDirToSource()
 		return lastDmgSource == null ? dir : dirTo(lastDmgSource);
 
+	public var fallHeight(get, never):Float;
+
+	inline function get_fallHeight()
+		return cy + yr - fallHighestCy;
+
 	// Visual components
 	public var spr:HSprite;
 	public var baseColor:h3d.Vector;
@@ -202,6 +207,8 @@ class Entity {
 	public var prevFrameFootY:Float = -Const.INFINITE;
 
 	public var isCollidable = true;
+
+	var fallHighestCy = 0.0;
 
 	var actions:Array<{id:String, cb:Void->Void, t:Float}> = [];
 
@@ -680,9 +687,14 @@ class Entity {
 	}
 
 	private function performYSteps() {
-		if (!onGround && hasGravity) {
+		if (performGravityCheck()) {
 			dy += gravityMul * Const.GRAVITY * tmod;
 		}
+
+		if (onGround) {
+			fallHighestCy = cy + yr;
+		}
+
 		var steps = M.ceil(M.fabs(dyTotal * tmod));
 		var step = dyTotal * tmod / steps;
 
@@ -707,7 +719,14 @@ class Entity {
 			bdy = 0;
 	}
 
+	private function performGravityCheck() {
+		return !onGround && hasGravity;
+	}
+
 	private function performYCollisionCheck() {
+		if (onGround || dy <= 0) {
+			fallHighestCy = cy + yr;
+		}
 		if (level.hasCollision(cx, cy - 1) && yr <= 1) {
 			yr = 1;
 			dy = 0;
@@ -727,7 +746,7 @@ class Entity {
 		}
 
 		if (fromY == 1) {
-			onTouchGround();
+			onTouchGround(fallHeight);
 		} else if (fromY == -1) {
 			onTouchCeiling();
 		}
@@ -735,7 +754,7 @@ class Entity {
 
 	public function onTouchCeiling() {}
 
-	public function onTouchGround() {}
+	public function onTouchGround(fallHeight:Float) {}
 
 	public function onTouchWall(dir:Int) {}
 

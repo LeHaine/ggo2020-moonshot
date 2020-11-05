@@ -8,6 +8,7 @@ class Hero extends ScaledEntity {
 
 	var hasGun = true;
 	var crouching = false;
+	var climbing = false;
 
 	public function new(e:World.Entity_Hero) {
 		super(e.cx, e.cy);
@@ -28,10 +29,14 @@ class Hero extends ScaledEntity {
 		spr.anim.registerStateAnim('heroCrouchRun', 5, 2.5, () -> hasGun && crouching && M.fabs(dx) >= 0.04 * tmod);
 	}
 
+	override function performGravityCheck():Bool {
+		return super.performGravityCheck() && !climbing;
+	}
+
 	override function update() {
 		super.update();
 
-		var spd = crouching ? 0.02 : 0.04;
+		var spd = crouching ? 0.02 : 0.03;
 
 		if (onGround) {
 			cd.setS("onGroundRecently", 0.15);
@@ -43,6 +48,7 @@ class Hero extends ScaledEntity {
 		performShot();
 		performKick();
 		performRun(spd);
+		performLedgeHop();
 		performJump();
 	}
 
@@ -118,19 +124,67 @@ class Hero extends ScaledEntity {
 		if (controlsLocked()) {
 			return;
 		}
-		if (ca.aPressed() && cd.has("onGroundRecently")) {
-			setSquashX(0.7);
-			dy = -0.35 * tmod;
-			cd.setS("jumpForce", 0.1);
-			cd.setS("jumpExtra", 0.1);
-			if (crouching) {
-				toggleCrouch();
+		if (ca.aPressed() && canJump()) {
+			if (climbing) {
+				climbing = false;
+				cd.setS("climbLock", 0.2);
+				dx = dir * 0.1 * tmod;
+				if (dy > 0) {
+					dy = 0.2;
+				} else {
+					dy = -0.05 * tmod;
+					cd.setS("jumpForce", 0.1);
+					cd.setS("jumpExtra", 0.1);
+				}
+			} else {
+				setSquashX(0.7);
+				dy = -0.35 * tmod;
+				cd.setS("jumpForce", 0.1);
+				cd.setS("jumpExtra", 0.1);
+				if (crouching) {
+					toggleCrouch();
+				}
 			}
 		} else if (cd.has("jumpExtra") && ca.aDown()) {
 			dy -= 0.04 * tmod;
 		}
 		if (cd.has("jumpForce") && ca.aDown()) {
 			dy -= 0.05 * cd.getRatio("jumpForce") * tmod;
+		}
+	}
+
+	private function canJump() {
+		var jumpKeyboardDown = ca.isKeyboardDown(K.Z) || ca.isKeyboardDown(K.W) || ca.isKeyboardDown(K.UP);
+		return (!climbing && cd.has("onGroundRecently") || climbing && jumpKeyboardDown);
+	}
+
+	private function performLedgeHop() {
+		// Ledge hopping
+		if (!climbing
+			&& level.hasMark(GrabLeft, cx, cy)
+			&& (dy < 0 || (fallHeight >= 1 && dy >= 0))
+			&& xr <= 0.7
+			&& !cd.hasSetS("hopLimit", 0.1)) {
+			lockControlS(0.15);
+			cd.setS("ledgeClimb", 0.5);
+			spr.anim.playOverlap("heroLedgeClimb");
+			xr = M.fmin(xr, 0.1);
+			yr = 0.1;
+			dx = M.fmin(-0.35, dx) * tmod;
+			dy = -0.16 * tmod;
+		}
+		if (!climbing
+			&& level.hasMark(GrabRight, cx, cy)
+			&& (dy < 0 || (fallHeight >= 1 && dy >= 0))
+			&& xr >= 0.3
+			&& !cd.hasSetS("hopLimit", 0.1)) {
+			lockControlS(0.15);
+			cd.setS("ledgeClimb", 0.5);
+			spr.anim.playOverlap("heroLedgeClimb");
+			xr = M.fmax(xr, 0.9);
+			yr = 0.1;
+			dx = M.fmax(0.35, dx) * tmod;
+			dy = -0.16 * tmod;
 		}
 	}
 
