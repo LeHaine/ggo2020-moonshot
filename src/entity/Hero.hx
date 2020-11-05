@@ -163,7 +163,7 @@ class Hero extends ScaledEntity {
 		if (!climbing
 			&& level.hasMark(GrabLeft, cx, cy)
 			&& (dy < 0 || (fallHeight >= 1 && dy >= 0))
-			&& xr <= 0.7
+			&& xr <= 0.5
 			&& !cd.hasSetS("hopLimit", 0.1)) {
 			lockControlS(0.15);
 			cd.setS("ledgeClimb", 0.5);
@@ -176,7 +176,7 @@ class Hero extends ScaledEntity {
 		if (!climbing
 			&& level.hasMark(GrabRight, cx, cy)
 			&& (dy < 0 || (fallHeight >= 1 && dy >= 0))
-			&& xr >= 0.3
+			&& xr >= 0.5
 			&& !cd.hasSetS("hopLimit", 0.1)) {
 			lockControlS(0.15);
 			cd.setS("ledgeClimb", 0.5);
