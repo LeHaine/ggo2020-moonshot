@@ -93,6 +93,8 @@ class Level extends dn.Process {
 		root.removeChildren();
 
 		var tg = new h2d.TileGroup(tilesetSource, root);
+		data.l_Background.renderInTileGroup(tg, false);
+		data.l_Details.renderInTileGroup(tg, false);
 		data.l_Collisions.renderInTileGroup(tg, false);
 	}
 
