@@ -159,8 +159,6 @@ class Hero extends ScaledEntity {
 	}
 
 	private function performLedgeHop() {
-		// Ledge hopping
-
 		var heightExtended = Std.int(Math.min(1, M.floor(hei / Const.GRID)));
 		if (!climbing
 			&& (level.hasMark(GrabLeft, cx, cy) || (level.hasMark(GrabLeft, cx, cy - heightExtended) && yr <= 0.5))
@@ -170,13 +168,14 @@ class Hero extends ScaledEntity {
 			lockControlS(0.15);
 			cd.setS("ledgeClimb", 0.5);
 			spr.anim.playOverlap("heroLedgeClimb");
-			xr = M.fmin(xr, 0.1);
+			xr = 0.1;
 			yr = 0.1;
 			dx = M.fmin(-0.35, dx) * tmod;
 			dy = -0.16 * tmod;
 
 			if (level.hasMark(GrabLeft, cx, cy - heightExtended)) {
 				cy -= 1;
+				yr = 0.9;
 			}
 		}
 
@@ -189,13 +188,14 @@ class Hero extends ScaledEntity {
 			lockControlS(0.15);
 			cd.setS("ledgeClimb", 0.5);
 			spr.anim.playOverlap("heroLedgeClimb");
-			xr = M.fmax(xr, 0.9);
+			xr = 0.9;
 			yr = 0.1;
 			dx = M.fmax(0.35, dx) * tmod;
 			dy = -0.16 * tmod;
 
 			if (level.hasMark(GrabRight, cx, cy - heightExtended)) {
 				cy -= 1;
+				yr = 0.9;
 			}
 		}
 	}
