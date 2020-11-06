@@ -481,6 +481,16 @@ class Entity {
 		}
 	}
 
+	public function getActionTimeLeft(id:String) {
+		for (a in actions) {
+			if (a.id == id) {
+				return a.t;
+			}
+		}
+
+		return 0;
+	}
+
 	function updateActions() {
 		var i = 0;
 		while (i < actions.length) {

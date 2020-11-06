@@ -5,15 +5,23 @@ class Bullet extends ScaledEntity {
 
 	public var owner:Entity;
 
-	var speed = 0.5;
+	public var damage:Int;
+	public var doesAoeDamage = false;
+	public var damageRadius = 1.;
+	public var damageRadiusMul = 1.;
 
-	public function new(x:Int, y:Int, owner:Entity, angle:Float) {
+	var speed = 0.5;
+	var angle:Float;
+
+	public function new(x:Int, y:Int, owner:Entity, angle:Float, damage:Int = 1) {
 		super(0, 0);
 		ALL.push(this);
 		this.owner = owner;
+		this.damage = damage;
+		this.angle = angle;
+
 		setPosPixel(x, y);
-		dx = Math.cos(angle) * speed * tmod;
-		dy = Math.sin(angle) * speed * tmod;
+		setSpeed(speed);
 
 		spr.set("fxDot");
 		spr.setCenterRatio();
@@ -25,11 +33,27 @@ class Bullet extends ScaledEntity {
 		frictY = 1;
 	}
 
+	public function setSpeed(newSpeed:Float) {
+		speed = newSpeed;
+		dx = Math.cos(angle) * speed * tmod;
+		dy = Math.sin(angle) * speed * tmod;
+	}
+
+	public function setSize(size:Int) {
+		sprScaleX = size;
+		sprScaleY = size;
+		hei = size;
+		width = size;
+		radius = size / 2;
+	}
+
 	override function onTouch(from:Entity) {
 		super.onTouch(from);
 
 		if (from != owner) {
-			from.hit(1, this);
+			from.hit(damage, this);
+			fx.moonShotExplosion(centerX, centerY, damageRadiusMul);
+			performAoe();
 			destroy();
 		}
 	}
@@ -41,7 +65,22 @@ class Bullet extends ScaledEntity {
 
 	override function onCollision(fromX:Int, fromY:Int) {
 		super.onCollision(fromX, fromY);
-
+		fx.moonShotExplosion(centerX, centerY, damageRadiusMul);
+		performAoe();
 		destroy();
+	}
+
+	private function performAoe() {
+		if (!doesAoeDamage) {
+			return;
+		}
+		for (entity in Mob.ALL) {
+			var dist = distCase(entity);
+			if (dist <= damageRadius) {
+				var damageRatio = 1 - (dist / damageRadius);
+				var aoeDamage = Std.int(Math.max(1, M.floor(damage * damageRatio)));
+				entity.hit(aoeDamage, this);
+			}
+		}
 	}
 }

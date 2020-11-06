@@ -80,7 +80,7 @@ class Main extends dn.Process {
 		controller.bind(X, Key.MOUSE_LEFT);
 		controller.bind(A, Key.UP, Key.SPACE, Key.Z);
 		controller.bind(B, Key.F);
-		controller.bind(Y, Key.E);
+		controller.bind(Y, Key.MOUSE_RIGHT);
 		controller.bind(RB, Key.SHIFT);
 		controller.bind(SELECT, Key.R);
 		controller.bind(START, Key.N);

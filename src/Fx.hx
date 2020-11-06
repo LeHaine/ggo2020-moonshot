@@ -195,7 +195,6 @@ class Fx extends dn.Process {
 			p.scaleX = rnd(1, 1.5);
 			p.scaleXMul = rnd(0.9, 0.97);
 
-			// p.moveAng(a, rnd(1,3));
 			p.rotation = a;
 			p.lifeS = 0;
 		}
@@ -235,6 +234,57 @@ class Fx extends dn.Process {
 		}
 	}
 
+	public function strongShot(fx:Float, fy:Float, a:Float, c:UInt, dist:Float) {
+		// Core
+		for (i in 0...12) {
+			var d = i <= 2 ? 0 : rnd(0, 5);
+			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
+			p.setFadeS(rnd(0.6, 1), 0, rnd(0.1, 0.12));
+			p.colorize(c);
+			p.setCenterRatio(0, 0.5);
+
+			p.scaleX = rnd(8, 15);
+			p.scaleXMul = rnd(0.9, 0.97);
+
+			p.rotation = a;
+			p.lifeS = 0;
+		}
+
+		// Core sides
+		for (i in 0...40) {
+			var a = a + rnd(0.2, 0.5, true);
+			var d = i <= 2 ? 0 : rnd(0, 5);
+			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
+			p.setFadeS(rnd(0.4, 0.6), 0, rnd(0.1, 0.12));
+			p.colorize(c);
+			p.setCenterRatio(0, 0.5);
+
+			p.scaleX = rnd(3, 5);
+			p.scaleXMul = rnd(0.9, 0.97);
+
+			p.rotation = a;
+			p.lifeS = 0;
+		}
+
+		// Shoot line
+		var n = 80;
+		for (i in 0...n) {
+			var d = 0.8 * dist * i / (n - 1) + rnd(0, 6);
+			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
+			p.setFadeS(rnd(0.4, 0.6), 0, rnd(0.1, 0.12));
+			p.colorize(c);
+
+			p.scaleX = rnd(3, 5);
+			p.moveAng(a, rnd(2, 10));
+			p.frict = 0.8;
+			p.gy = rnd(0, 0.1);
+			p.scaleXMul = rnd(0.9, 0.97);
+
+			p.rotation = a;
+			p.lifeS = 0.1 * i / (n - 1);
+		}
+	}
+
 	public function bulletCase(x:Float, y:Float, dir:Int) {
 		var p = allocTopNormal(getTile("fxDot"), x, y);
 		p.colorize(0x0);
@@ -249,6 +299,78 @@ class Fx extends dn.Process {
 
 		p.onUpdate = _hardPhysics;
 		p.lifeS = rnd(5, 10);
+	}
+
+	public function moonShotExplosion(x:Float, y:Float, mul:Float) {
+		var dustColor = 0xa9c2d8;
+
+		// dust particles
+		var n = Std.int(M.ceil(40 * mul));
+		for (i in 0...n) {
+			var p = allocTopNormal(getTile("fxSmallCircle"), x + rnd(0, 3, true), y + rnd(0, 4, true));
+			p.setFadeS(rnd(0.7, 1), 0, rnd(3, 7));
+			p.colorize(Color.interpolateInt(dustColor, 0x0, rnd(0, 0.1)));
+
+			p.setScale(rnd(0.3, 0.7, true) * mul);
+			p.scaleMul = rnd(0.98, 0.99);
+
+			p.dx = rnd(0, 9, true) * mul;
+			p.dy = i <= n * 0.25 ? -rnd(6, 12) * mul : -rnd(1, 7) * mul;
+			p.gy = rnd(0.1, 0.3);
+			p.frict = rnd(0.85, 0.96);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.3, true);
+
+			p.lifeS = rnd(5, 10);
+			p.onUpdate = _hardPhysics;
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+
+		// bigger dust particles
+		var n = Std.int(M.ceil(20 * mul));
+		for (i in 0...n) {
+			var p = allocBgNormal(getTile("fxSmallCircle"), x + rnd(0, 3, true), y + rnd(0, 4, true));
+			p.colorize(Color.interpolateInt(dustColor, 0x0, rnd(0, 0.1)));
+			p.setFadeS(rnd(0.7, 1), 0, rnd(3, 7));
+
+			p.setScale(rnd(0.75, 1.5, true) * mul);
+			p.scaleMul = rnd(0.98, 0.99);
+
+			p.dx = rnd(0, 5, true) * mul;
+			p.dy = rnd(-5, 0) * mul;
+			p.gy = rnd(0.1, 0.2);
+			p.frict = rnd(0.85, 0.96);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.3, true);
+
+			p.lifeS = rnd(5, 10);
+			p.onUpdate = _hardPhysics;
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+
+		// smoke
+		var n = Std.int(M.ceil(10 * mul));
+		for (i in 0...n) {
+			var p = allocBgNormal(getTile("fxSmoke"), x + rnd(0, 5, true), y + rnd(0, 7, true));
+			p.colorAnimS(0xcfd6d8, 0xabb7ba, rnd(2, 4));
+			p.setFadeS(rnd(0.2, 0.4), 0, rnd(0.5, 1));
+
+			p.setScale(rnd(0.25, 0.5, true) * mul);
+			p.scaleMul = rnd(0.998, 0.999);
+
+			p.dx = rnd(0, 1.3, true) * mul;
+			p.dy = rnd(-2, 0) * mul;
+			p.frict = rnd(0.93, 0.96);
+			p.gy = -rnd(0.005, 0.008);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.02, true);
+
+			p.lifeS = rnd(0.25, 0.35);
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
 	}
 
 	function _hardPhysics(p:HParticle) {

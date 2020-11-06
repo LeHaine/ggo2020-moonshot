@@ -88,7 +88,7 @@ class Camera extends dn.Process {
 		dy *= Math.pow(frict, tmod);
 	}
 
-	public inline function bumpAng(a, dist) {
+	public inline function bumpAng(a, dist:Float) {
 		bumpOffX += Math.cos(a) * dist;
 		bumpOffY += Math.sin(a) * dist;
 	}

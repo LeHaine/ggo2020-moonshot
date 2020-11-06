@@ -1,24 +1,32 @@
 package entity;
 
+import h2d.Flow.FlowAlign;
 import dn.heaps.Controller.ControllerAccess;
 
 class Hero extends ScaledEntity {
 	var ca:ControllerAccess;
-	var name:Text;
 
 	var hasGun = true;
 	var crouching = false;
 	var climbing = false;
+
+	var chargeStrongShotBarWrapper:UIEntity;
+	var chargeStrongShotBar:ui.Bar;
 
 	public function new(e:World.Entity_Hero) {
 		super(e.cx, e.cy);
 		ca = Main.ME.controller.createAccess("hero");
 		ca.setLeftDeadZone(0.2);
 
-		name = new Text(cx, cy, "Hero");
-		name.follow(this);
-
+		createChargeStrongShotBar();
 		registerHeroAnimations();
+	}
+
+	private function createChargeStrongShotBar() {
+		chargeStrongShotBarWrapper = new UIEntity(cx, cy);
+		chargeStrongShotBarWrapper.follow(this);
+		renderChargeBar(0);
+		chargeStrongShotBar.visible = false;
 	}
 
 	private function registerHeroAnimations() {
@@ -36,7 +44,7 @@ class Hero extends ScaledEntity {
 	override function update() {
 		super.update();
 
-		var spd = crouching ? 0.02 : 0.03;
+		var spd = crouching || isChargingAction("strongShot") ? 0.02 : 0.03;
 
 		if (onGround) {
 			cd.setS("onGroundRecently", 0.15);
@@ -45,6 +53,7 @@ class Hero extends ScaledEntity {
 
 		performCrouch();
 		performShot();
+		performStrongShot();
 		performKick();
 		performRun(spd);
 		performLedgeHop();
@@ -82,13 +91,87 @@ class Hero extends ScaledEntity {
 				spr.anim.play("heroCrouchShoot");
 			}
 
-			setSquashX(0.95);
-			var bulletX = centerX;
-			var bulletY = centerY - 3;
-			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
-			fx.bulletCase(bulletX - dir * 5, bulletY, dir);
-			new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-0.5, 0.5) * M.DEG_RAD);
+			spawnBullet();
 		}
+	}
+
+	private function performStrongShot() {
+		if (controlsLocked()) {
+			return;
+		}
+
+		var isCharging = isChargingAction("strongShot");
+		var maxDamage = 5;
+		var maxSize = 5;
+		var chargeTime = 1;
+		var maxCharge = 2;
+		if (ca.yDown() && !isCharging && !cd.has("strongShot")) {
+			chargeAction("strongShot", chargeTime, () -> {
+				var bullet = spawnBullet(maxDamage, maxSize, maxCharge * 2, true);
+				bullet.setSpeed(1);
+				bullet.damageRadiusMul = 1;
+				resetAndHideChargeBar();
+				cd.setS("strongShot", 0.5);
+			});
+		} else if (!ca.yDown() && isCharging && !cd.has("shoostrongShot")) {
+			var timeLeft = getActionTimeLeft("strongShot");
+			cancelAction("strongShot");
+			cd.setS("strongShot", 0.5);
+
+			var ratio = 1 - (timeLeft / 1);
+			var bulletDamage = Std.int(Math.max(1, M.floor(maxDamage * ratio)));
+			var bulletSize = Std.int(Math.max(1, M.floor(maxSize * ratio)));
+			var bullet = spawnBullet(bulletDamage, bulletSize, maxCharge * ratio, true);
+			bullet.setSpeed(Math.max(0.5, 1 * ratio));
+			bullet.damageRadiusMul = ratio;
+			resetAndHideChargeBar();
+		} else if (ca.yDown() && isCharging) {
+			var timeLeft = getActionTimeLeft("strongShot");
+			var ratio = 1 - (timeLeft / 1);
+			chargeStrongShotBar.visible = true;
+			renderChargeBar(ratio);
+		}
+	}
+
+	private function renderChargeBar(v:Float) {
+		if (chargeStrongShotBar == null) {
+			chargeStrongShotBar = new ui.Bar(50, 5, 0xFF0000, chargeStrongShotBarWrapper.spr);
+			chargeStrongShotBar.x -= 25;
+			chargeStrongShotBar.enableOldValue(0xFF0000, 4);
+		}
+
+		chargeStrongShotBar.set(v, 1);
+	}
+
+	private function resetAndHideChargeBar() {
+		renderChargeBar(0);
+		chargeStrongShotBar.visible = false;
+	}
+
+	private function spawnBullet(damage:Int = 1, size:Int = 1, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
+		setSquashX(0.85);
+		var bulletX = centerX;
+		var bulletY = centerY - 3;
+		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(angToMouse());
+		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToMouse());
+		if (bounceMul >= 2) {
+			fx.strongShot(bulletX, bulletY, angToMouse(), 0x2780D8, 75);
+			camera.bumpAng(-angToMouse(), rnd(1, 2));
+			camera.shakeS(0.3, 0.1);
+		} else if (bounceMul >= 1) {
+			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
+			camera.bumpAng(-angToMouse(), rnd(0.75, 1));
+			camera.shakeS(0.2, 0.075);
+		} else {
+			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
+			camera.bumpAng(-angToMouse(), rnd(0.1, 0.15));
+			camera.shakeS(0.10, 0.05);
+		}
+		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-0.5, 0.5) * M.DEG_RAD, damage);
+		bullet.damageRadiusMul = 0.15;
+		bullet.setSize(size);
+		bullet.doesAoeDamage = doesAoeDamage;
+		return bullet;
 	}
 
 	private function performKick() {

@@ -3,7 +3,7 @@ package entity;
 class UIEntity extends NoScaleEntity {
 	private var entityUpdatedListener:(e:Entity) -> Void;
 
-	public function new(x:Int, y:Int) {
+	public function new(x:Int = 0, y:Int = 0) {
 		super(x, y);
 		hasGravity = false;
 		isCollidable = false;
