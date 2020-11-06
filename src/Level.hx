@@ -96,6 +96,7 @@ class Level extends dn.Process {
 		data.l_Background.renderInTileGroup(tg, false);
 		data.l_Details.renderInTileGroup(tg, false);
 		data.l_Collisions.renderInTileGroup(tg, false);
+		data.l_CollisionDetails.renderInTileGroup(tg, false);
 	}
 
 	override function postUpdate() {
