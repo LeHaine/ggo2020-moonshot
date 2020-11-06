@@ -727,8 +727,9 @@ class Entity {
 		if (onGround || dy <= 0) {
 			fallHighestCy = cy + yr;
 		}
-		if (level.hasCollision(cx, cy - 1) && yr <= 1) {
-			yr = 1;
+		var heightCoordDiff = M.floor(hei / Const.GRID);
+		if (level.hasCollision(cx, cy - 1) && yr <= heightCoordDiff) {
+			yr = heightCoordDiff;
 			dy = 0;
 			onCollision(0, -1);
 		}

@@ -43,7 +43,6 @@ class Hero extends ScaledEntity {
 			cd.setS("airControl", 10);
 		}
 
-		dir = M.sign(Math.cos(angToMouse()));
 		performCrouch();
 		performShot();
 		performKick();
@@ -115,6 +114,7 @@ class Hero extends ScaledEntity {
 		}
 		if (ca.leftDist() > 0 && !cd.has("run")) {
 			dx += Math.cos(ca.leftAngle()) * ca.leftDist() * spd * (0.4 + 0.6 * cd.getRatio("airControl")) * tmod;
+			dir = M.sign(Math.cos(ca.leftAngle()));
 		} else {
 			dx *= Math.pow(0.8, tmod);
 		}
@@ -160,11 +160,13 @@ class Hero extends ScaledEntity {
 
 	private function performLedgeHop() {
 		// Ledge hopping
+
+		var heightExtended = Std.int(Math.min(1, M.floor(hei / Const.GRID)));
 		if (!climbing
-			&& level.hasMark(GrabLeft, cx, cy)
-			&& (dy < 0 || (fallHeight >= 1 && dy >= 0))
-			&& xr <= 0.5
-			&& !cd.hasSetS("hopLimit", 0.1)) {
+			&& (level.hasMark(GrabLeft, cx, cy) || (level.hasMark(GrabLeft, cx, cy - heightExtended) && yr <= 0.5))
+			&& dir == -1
+			&& !cd.hasSetS("hopLimit", 0.1)
+			&& !cd.has("onGroundRecently")) {
 			lockControlS(0.15);
 			cd.setS("ledgeClimb", 0.5);
 			spr.anim.playOverlap("heroLedgeClimb");
@@ -172,12 +174,18 @@ class Hero extends ScaledEntity {
 			yr = 0.1;
 			dx = M.fmin(-0.35, dx) * tmod;
 			dy = -0.16 * tmod;
+
+			if (level.hasMark(GrabLeft, cx, cy - heightExtended)) {
+				cy -= 1;
+			}
 		}
+
 		if (!climbing
-			&& level.hasMark(GrabRight, cx, cy)
-			&& (dy < 0 || (fallHeight >= 1 && dy >= 0))
+			&& (level.hasMark(GrabRight, cx, cy) || (level.hasMark(GrabRight, cx, cy - heightExtended) && yr <= 0.5))
+			&& dir == 1
 			&& xr >= 0.5
-			&& !cd.hasSetS("hopLimit", 0.1)) {
+			&& !cd.hasSetS("hopLimit", 0.1)
+			&& !cd.has("onGroundRecently")) {
 			lockControlS(0.15);
 			cd.setS("ledgeClimb", 0.5);
 			spr.anim.playOverlap("heroLedgeClimb");
@@ -185,6 +193,10 @@ class Hero extends ScaledEntity {
 			yr = 0.1;
 			dx = M.fmax(0.35, dx) * tmod;
 			dy = -0.16 * tmod;
+
+			if (level.hasMark(GrabRight, cx, cy - heightExtended)) {
+				cy -= 1;
+			}
 		}
 	}
 

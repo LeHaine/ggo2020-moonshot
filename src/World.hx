@@ -1,1 +1,1 @@
-private typedef _Tmp = haxe.macro.MacroType<[led.Project.build("res/world/world.json")]>;
+private typedef _Tmp = haxe.macro.MacroType<[ldtk.Project.build("res/world/world.json")]>;
