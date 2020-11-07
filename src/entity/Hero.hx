@@ -12,7 +12,7 @@ class Hero extends ScaledEntity {
 
 	var chargeStrongShotBarWrapper:UIEntity;
 	var chargeStrongShotBar:ui.Bar;
-	var chargeTime = 2.; // secondary strong shot charge time
+	var chargeTime = 1.5; // secondary strong shot charge time
 	var maxCharge = 2; // secondary strong shot max charge
 
 	public function new(e:World.Entity_Hero) {
