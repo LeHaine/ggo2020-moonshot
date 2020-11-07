@@ -14,6 +14,6 @@ class ModStation extends ScaledEntity {
 		hasGravity = false;
 		isCollidable = false;
 		interactable = new ModStationInteractable(cx, cy);
-		interactable.follow(this, 0, -22);
+		interactable.follow(this, 0, -2);
 	}
 }

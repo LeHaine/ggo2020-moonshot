@@ -2,8 +2,8 @@ package entity;
 
 class UIEntity extends NoScaleEntity {
 	private var entityUpdatedListener:(e:Entity) -> Void;
-	private var offsetX:Int = 0;
-	private var offsetY:Int = 0;
+	private var offsetXr:Float = 0;
+	private var offsetYr:Float = 0;
 
 	public function new(x:Int = 0, y:Int = 0) {
 		super(x, y);
@@ -11,19 +11,22 @@ class UIEntity extends NoScaleEntity {
 		isCollidable = false;
 		spr.set("empty");
 		entityUpdatedListener = (e:Entity) -> {
-			setPosPixel(e.centerX + offsetX, e.centerY + offsetY);
+			cx = e.cx;
+			cy = e.cy;
+			xr = e.xr + offsetXr;
+			yr = e.yr + offsetYr;
 		}
 	}
 
 	/**
 	 * Follow entity on scroller.
 	 * @param entity the entity to follow
-	 * @param offsetX the amount of pixels to offset on the x coord
-	 * @param offsetY the amopunt of pixels to ffset on the y coord
+	 * @param offsetXr the amount of grid coords to offset on the x coord
+	 * @param offsetYr the amopunt of grid coords to offset on the y coord
 	 */
-	public function follow(entity:Entity, offsetX:Int = 0, offsetY:Int = 0) {
-		this.offsetX = offsetX;
-		this.offsetY = offsetY;
+	public function follow(entity:Entity, offsetXr:Float = 0, offsetYr:Float = 0) {
+		this.offsetXr = offsetXr;
+		this.offsetYr = offsetYr;
 		entity.registerEntityUpdatedListener(entityUpdatedListener);
 	}
 
