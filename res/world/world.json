@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 69,
+	"nextUid": 70,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -617,6 +617,23 @@
 						"defaultOverride": { "id": "V_Int", "params": [1] }
 					}
 				]
+			},
+			{
+				"identifier": "ModStation",
+				"uid": 69,
+				"width": 16,
+				"height": 16,
+				"color": "#989C9A",
+				"renderMode": "Tile",
+				"showName": true,
+				"tilesetId": 4,
+				"tileId": 0,
+				"tileRenderMode": "Stretch",
+				"maxPerLevel": 1,
+				"limitBehavior": "DiscardOldOnes",
+				"pivotX": 0.5,
+				"pivotY": 1,
+				"fieldDefs": []
 			}
 		],
 		"tilesets": [
@@ -788,7 +805,8 @@
 							}]
 						},
 						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] }
-					] }
+					] },
+					{ "__identifier": "ModStation", "__grid": [30,18], "__tile": { "tilesetUid": 4, "srcRect": [0,0,16,16] }, "defUid": 69, "px": [488,304], "fieldInstances": [] }
 				]
 			},
 			{
