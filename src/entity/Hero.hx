@@ -12,6 +12,8 @@ class Hero extends ScaledEntity {
 
 	var chargeStrongShotBarWrapper:UIEntity;
 	var chargeStrongShotBar:ui.Bar;
+	var chargeTime = 2.; // secondary strong shot charge time
+	var maxCharge = 2; // secondary strong shot max charge
 
 	public function new(e:World.Entity_Hero) {
 		super(e.cx, e.cy);
@@ -103,11 +105,9 @@ class Hero extends ScaledEntity {
 		var isCharging = isChargingAction("strongShot");
 		var maxDamage = 5;
 		var maxSize = 5;
-		var chargeTime = 1;
-		var maxCharge = 2;
 		if (ca.yDown() && !isCharging && !cd.has("strongShot")) {
 			chargeAction("strongShot", chargeTime, () -> {
-				var bullet = spawnBullet(maxDamage, maxSize, maxCharge * 2, true);
+				var bullet = spawnBullet(maxDamage, maxSize, maxCharge, true);
 				bullet.setSpeed(1);
 				bullet.damageRadiusMul = 1;
 				resetAndHideChargeBar();
@@ -118,7 +118,7 @@ class Hero extends ScaledEntity {
 			cancelAction("strongShot");
 			cd.setS("strongShot", 0.5);
 
-			var ratio = 1 - (timeLeft / 1);
+			var ratio = 1 - (timeLeft / chargeTime);
 			var bulletDamage = Std.int(Math.max(1, M.floor(maxDamage * ratio)));
 			var bulletSize = Std.int(Math.max(1, M.floor(maxSize * ratio)));
 			var bullet = spawnBullet(bulletDamage, bulletSize, maxCharge * ratio, true);
@@ -127,7 +127,7 @@ class Hero extends ScaledEntity {
 			resetAndHideChargeBar();
 		} else if (ca.yDown() && isCharging) {
 			var timeLeft = getActionTimeLeft("strongShot");
-			var ratio = 1 - (timeLeft / 1);
+			var ratio = 1 - (timeLeft / chargeTime);
 			chargeStrongShotBar.visible = true;
 			renderChargeBar(ratio);
 		}
