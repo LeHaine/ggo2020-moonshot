@@ -113,7 +113,7 @@ class Hero extends ScaledEntity {
 				resetAndHideChargeBar();
 				cd.setS("strongShot", 0.5);
 			});
-		} else if (!ca.yDown() && isCharging && !cd.has("shoostrongShot")) {
+		} else if (!ca.yDown() && isCharging && !cd.has("strongShot")) {
 			var timeLeft = getActionTimeLeft("strongShot");
 			cancelAction("strongShot");
 			cd.setS("strongShot", 0.5);
