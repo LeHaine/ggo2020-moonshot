@@ -3,10 +3,10 @@
 		"fileType": "LDtk Project JSON",
 		"app": "LDtk",
 		"appAuthor": "Sebastien Benard",
-		"appVersion": "0.5.0-beta",
+		"appVersion": "0.5.1-beta",
 		"url": "https://deepnight.net/tools/ldtk-2d-level-editor/"
 	},
-	"jsonVersion": "0.5.0",
+	"jsonVersion": "0.5.1",
 	"defaultPivotX": 0.5,
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
@@ -806,7 +806,7 @@
 						},
 						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] }
 					] },
-					{ "__identifier": "ModStation", "__grid": [30,18], "__tile": { "tilesetUid": 4, "srcRect": [0,0,16,16] }, "defUid": 69, "px": [488,304], "fieldInstances": [] }
+					{ "__identifier": "ModStation", "__grid": [30,19], "__tile": { "tilesetUid": 4, "srcRect": [0,0,16,16] }, "defUid": 69, "px": [488,320], "fieldInstances": [] }
 				]
 			},
 			{
