@@ -13,7 +13,7 @@ empty
   index: -1
 fxCircle0
   rotate: false
-  xy: 61, 72
+  xy: 1, 80
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -27,28 +27,28 @@ fxDot0
   index: -1
 fxGib0
   rotate: false
-  xy: 24, 46
+  xy: 23, 46
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxGib1
   rotate: false
-  xy: 17, 46
+  xy: 23, 52
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxGib2
   rotate: false
-  xy: 17, 52
+  xy: 25, 62
   size: 5, 5
   orig: 5, 5
   offset: 0, 0
   index: -1
 fxImpact0
   rotate: false
-  xy: 1, 87
+  xy: 31, 116
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -69,7 +69,7 @@ fxLineDir0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 17, 65
+  xy: 16, 72
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -90,21 +90,21 @@ fxTail0
   index: -1
 heroCrouchIdleGun0
   rotate: false
-  xy: 68, 104
+  xy: 80, 87
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchIdleGun1
   rotate: false
-  xy: 50, 89
+  xy: 1, 65
   size: 14, 13
   orig: 14, 13
   offset: 0, 0
   index: -1
 heroCrouchRun0
   rotate: false
-  xy: 83, 104
+  xy: 66, 100
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
@@ -125,21 +125,21 @@ heroCrouchRun2
   index: -1
 heroCrouchRun3
   rotate: false
-  xy: 52, 103
+  xy: 31, 65
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
   index: -1
 heroCrouchShoot0
   rotate: false
-  xy: 98, 97
+  xy: 66, 113
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroDash0
   rotate: false
-  xy: 35, 104
+  xy: 47, 58
   size: 16, 15
   orig: 16, 15
   offset: 0, 0
@@ -174,7 +174,7 @@ heroIdleGun1
   index: -1
 heroKick0
   rotate: false
-  xy: 1, 46
+  xy: 35, 97
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -209,7 +209,7 @@ heroRunGun1
   index: -1
 heroRunGun2
   rotate: false
-  xy: 1, 65
+  xy: 35, 78
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -230,14 +230,14 @@ heroStandShoot0
   index: -1
 heroStandShoot1
   rotate: false
-  xy: 46, 58
+  xy: 51, 97
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 modStation
   rotate: false
-  xy: 78, 87
+  xy: 18, 80
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -286,7 +286,7 @@ scientistGunDraw0
   index: -1
 scientistHit0
   rotate: false
-  xy: 34, 77
+  xy: 64, 72
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -321,7 +321,7 @@ scientistIdleGunDown1
   index: -1
 scientistIdleGunUp0
   rotate: false
-  xy: 17, 77
+  xy: 1, 46
   size: 16, 18
   orig: 16, 18
   offset: 0, 0
@@ -363,22 +363,29 @@ scientistRunGun3
   index: -1
 scientistStandShoot0
   rotate: false
-  xy: 17, 77
+  xy: 1, 46
   size: 16, 18
   orig: 16, 18
   offset: 0, 0
   index: -1
 uiBar
   rotate: false
-  xy: 24, 52
+  xy: 23, 58
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 83, 71
+  xy: 16, 65
   size: 8, 5
   orig: 8, 5
+  offset: 0, 0
+  index: -1
+uiDownArrow
+  rotate: false
+  xy: 83, 71
+  size: 8, 8
+  orig: 8, 8
   offset: 0, 0
   index: -1

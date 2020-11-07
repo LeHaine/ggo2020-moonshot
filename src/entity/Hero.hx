@@ -1,5 +1,6 @@
 package entity;
 
+import dn.DecisionHelper;
 import h2d.Flow.FlowAlign;
 import dn.heaps.Controller.ControllerAccess;
 
@@ -14,6 +15,8 @@ class Hero extends ScaledEntity {
 	var chargeStrongShotBar:ui.Bar;
 	var chargeTime = 1.5; // secondary strong shot charge time
 	var maxCharge = 2; // secondary strong shot max charge
+
+	var interactableFocus:Null<Interactable>;
 
 	public function new(e:World.Entity_Hero) {
 		super(e.cx, e.cy);
@@ -53,6 +56,7 @@ class Hero extends ScaledEntity {
 			cd.setS("airControl", 10);
 		}
 
+		performInteraction();
 		performCrouch();
 		performShot();
 		performStrongShot();
@@ -61,6 +65,47 @@ class Hero extends ScaledEntity {
 		performLedgeHop();
 		performJump();
 		performDash();
+	}
+
+	private function performInteraction() {
+		if (onGround) {
+			var dh = new DecisionHelper(Interactable.ALL);
+			dh.remove(function(e) return distCase(e) > 2);
+			dh.score(function(e) return -distCase(e));
+
+			var best = dh.getBest();
+			if (interactableFocus != best) {
+				if (interactableFocus != null) {
+					interactableFocus.unfocus();
+				}
+
+				interactableFocus = best;
+
+				if (interactableFocus != null) {
+					interactableFocus.focus();
+				}
+			}
+
+			if (interactableFocus != null) {
+				if (!ca.yDown()) {
+					interactableFocus.resetSecondaryInteractionTimer();
+				}
+				if (ca.yLongPressing()) {
+					if (interactableFocus.canSecondaryInteraction(this)) {
+						interactableFocus.secondaryInteract(this);
+					}
+				} else if (ca.yShortPressed()) {
+					interactableFocus.resetSecondaryInteractionTimer();
+					if (interactableFocus.canInteraction(this)) {
+						interactableFocus.interact(this);
+					}
+				}
+			}
+		} else if (!onGround && interactableFocus != null) {
+			interactableFocus.resetSecondaryInteractionTimer();
+			interactableFocus.unfocus();
+			interactableFocus = null;
+		}
 	}
 
 	private function performCrouch() {
