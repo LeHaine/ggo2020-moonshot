@@ -75,7 +75,10 @@ class Game extends Process {
 		level = new Level(idx, world.levels[idx]);
 
 		// Create entities here
-		hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
+
+		for (station in level.data.l_Entities.all_ModStation) {
+			new entity.ModStation(station);
+		}
 
 		for (mob in level.data.l_Entities.all_Mob) {
 			switch (mob.f_type) {
@@ -83,6 +86,8 @@ class Game extends Process {
 					new entity.mob.Scientist(mob);
 			}
 		}
+
+		hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
 
 		camera.trackTarget(hero, true, 0, -Const.GRID * 2);
 
