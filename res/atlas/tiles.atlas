@@ -90,21 +90,21 @@ fxTail0
   index: -1
 heroCrouchIdleGun0
   rotate: false
-  xy: 109, 97
+  xy: 50, 103
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchIdleGun1
   rotate: false
-  xy: 94, 87
+  xy: 35, 103
   size: 14, 13
   orig: 14, 13
   offset: 0, 0
   index: -1
 heroCrouchRun0
   rotate: false
-  xy: 35, 110
+  xy: 65, 103
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
@@ -125,16 +125,23 @@ heroCrouchRun2
   index: -1
 heroCrouchRun3
   rotate: false
-  xy: 78, 87
+  xy: 50, 89
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
   index: -1
 heroCrouchShoot0
   rotate: false
-  xy: 35, 96
+  xy: 80, 103
   size: 14, 12
   orig: 14, 12
+  offset: 0, 0
+  index: -1
+heroDash0
+  rotate: false
+  xy: 78, 87
+  size: 16, 15
+  orig: 16, 15
   offset: 0, 0
   index: -1
 heroIdle0

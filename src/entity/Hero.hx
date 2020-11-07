@@ -60,6 +60,7 @@ class Hero extends ScaledEntity {
 		performRun(spd);
 		performLedgeHop();
 		performJump();
+		performDash();
 	}
 
 	private function performCrouch() {
@@ -207,7 +208,7 @@ class Hero extends ScaledEntity {
 		if (controlsLocked()) {
 			return;
 		}
-		if (ca.aPressed() && canJump()) {
+		if (ca.aPressed() && !ca.ltDown() && canJump()) {
 			if (climbing) {
 				climbing = false;
 				cd.setS("climbLock", 0.2);
@@ -280,6 +281,17 @@ class Hero extends ScaledEntity {
 				cy -= 1;
 				yr = 0.9;
 			}
+		}
+	}
+
+	private function performDash() {
+		if (controlsLocked()) {
+			return;
+		}
+
+		if (ca.aPressed() && ca.ltDown() && !cd.hasSetS("dash", 0.75)) {
+			dx = 1 * dir;
+			spr.anim.playOverlap("heroDash", 0.22);
 		}
 	}
 

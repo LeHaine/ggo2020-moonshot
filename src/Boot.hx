@@ -35,7 +35,7 @@ class Boot extends hxd.App {
 				speed = speed >= 1 ? 0.25 : 1;
 
 			// Manual debug turbo when holding ADD key, END key or LEFT STICK on a gamepad
-			boost = ca.isKeyboardDown(K.NUMPAD_ADD) || ca.isKeyboardDown(K.END) || ca.ltDown() ? 5 : 1;
+			boost = ca.isKeyboardDown(K.NUMPAD_ADD) || ca.isKeyboardDown(K.END) || ca.rtDown() ? 5 : 1;
 		}
 		#end
 
