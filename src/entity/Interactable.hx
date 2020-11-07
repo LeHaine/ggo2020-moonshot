@@ -1,5 +1,6 @@
 package entity;
 
+import h2d.Flow.FlowAlign;
 import hxd.Timer;
 import dn.heaps.filter.PixelOutline;
 import h2d.filter.Outline;
@@ -14,6 +15,7 @@ class Interactable extends UIEntity {
 	public var secondaryInteractionDelay:Float;
 	public var secondaryDelayActionTimer:Float;
 	public var canInteract:Bool;
+	public var focusRange:Float = 2.;
 
 	public function new(x, y) {
 		super(x, y);
@@ -21,10 +23,11 @@ class Interactable extends UIEntity {
 		secondaryInteractionDelay = 0.3;
 		secondaryDelayActionTimer = 0;
 
-		wrapper = new h2d.Flow();
+		wrapper = new h2d.Flow(spr);
 		wrapper.alpha = 0;
 		wrapper.visible = false;
 		wrapper.layout = Vertical;
+		wrapper.horizontalAlign = FlowAlign.Middle;
 
 		window = new h2d.Flow(wrapper);
 		window.alpha = 0.85;

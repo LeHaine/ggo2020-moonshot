@@ -70,7 +70,7 @@ class Hero extends ScaledEntity {
 	private function performInteraction() {
 		if (onGround) {
 			var dh = new DecisionHelper(Interactable.ALL);
-			dh.remove(function(e) return distCase(e) > 2);
+			dh.remove(function(e) return distCase(e) > e.focusRange);
 			dh.score(function(e) return -distCase(e));
 
 			var best = dh.getBest();
@@ -87,14 +87,14 @@ class Hero extends ScaledEntity {
 			}
 
 			if (interactableFocus != null) {
-				if (!ca.yDown()) {
+				if (!ca.rbDown()) {
 					interactableFocus.resetSecondaryInteractionTimer();
 				}
-				if (ca.yLongPressing()) {
+				if (ca.isLongPressing(RB)) {
 					if (interactableFocus.canSecondaryInteraction(this)) {
 						interactableFocus.secondaryInteract(this);
 					}
-				} else if (ca.yShortPressed()) {
+				} else if (ca.isShortPressed(RB)) {
 					interactableFocus.resetSecondaryInteractionTimer();
 					if (interactableFocus.canInteraction(this)) {
 						interactableFocus.interact(this);
@@ -112,7 +112,7 @@ class Hero extends ScaledEntity {
 		if (controlsLocked()) {
 			return;
 		}
-		if (ca.rbPressed()) {
+		if (ca.lbPressed()) {
 			toggleCrouch();
 		}
 	}
