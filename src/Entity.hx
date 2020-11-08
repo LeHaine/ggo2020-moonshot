@@ -49,7 +49,7 @@ class Entity {
 	public var onGround(get, never):Bool;
 
 	inline function get_onGround() {
-		return dy == 0 && level.hasCollision(cx, cy + 1) && yr == 1;
+		return dy == 0 && (level.hasCollision(cx, cy + 1) || level.hasOneWayPlatform(cx, cy + 1)) && yr == 1;
 	}
 
 	/** Cooldowns **/
@@ -744,7 +744,7 @@ class Entity {
 			onCollision(0, -1);
 		}
 
-		if (level.hasCollision(cx, cy + 1) && yr >= 1) {
+		if ((level.hasCollision(cx, cy + 1) || level.hasOneWayPlatform(cx, cy + 1)) && yr >= 1 && shouldCheckFloorCollision()) {
 			dy = 0;
 			yr = 1;
 			onCollision(0, 1);
@@ -752,6 +752,10 @@ class Entity {
 	}
 
 	private function shouldCheckCeilingCollision() {
+		return true;
+	}
+
+	private function shouldCheckFloorCollision() {
 		return true;
 	}
 

@@ -94,6 +94,10 @@ class Level extends dn.Process {
 			&& data.l_Collisions.getInt(cx, cy + 1) == 1;
 	}
 
+	public inline function hasOneWayPlatform(cx, cy):Bool {
+		return !isValid(cx, cy) ? true : data.l_Collisions.getInt(cx, cy) == 2;
+	}
+
 	/** Render current level**/
 	function render() {
 		root.removeChildren();

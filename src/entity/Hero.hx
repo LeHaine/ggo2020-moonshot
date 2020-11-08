@@ -64,6 +64,7 @@ class Hero extends Character {
 		performLedgeHop();
 		performJump();
 		performLadderClimb(spd);
+		performOneWayPlatform();
 		performDash();
 	}
 
@@ -114,19 +115,11 @@ class Hero extends Character {
 	}
 
 	private function performCrouch() {
-		if (controlsLocked()) {
-			return;
-		}
-		if (ca.lbPressed()) {
-			toggleCrouch();
-		}
-	}
-
-	private function toggleCrouch() {
-		crouching = !crouching;
-		if (crouching) {
+		if (isLeftJoystickDown()) {
+			crouching = true;
 			hei = 12;
-		} else {
+		} else if (crouching && !level.hasCollision(cx, cy - 1)) {
+			crouching = false;
 			hei = 16;
 		}
 	}
@@ -275,9 +268,6 @@ class Hero extends Character {
 				dy = -0.35 * tmod;
 				cd.setS("jumpForce", 0.1);
 				cd.setS("jumpExtra", 0.1);
-				if (crouching) {
-					toggleCrouch();
-				}
 			}
 		} else if (cd.has("jumpExtra") && ca.aDown()) {
 			dy -= 0.04 * tmod;
@@ -289,7 +279,7 @@ class Hero extends Character {
 
 	private function canJump() {
 		var jumpKeyboardDown = ca.isKeyboardDown(K.Z) || ca.isKeyboardDown(K.W) || ca.isKeyboardDown(K.UP);
-		return (!climbing && cd.has("onGroundRecently") || climbing && jumpKeyboardDown);
+		return (!climbing && cd.has("onGroundRecently") || climbing && jumpKeyboardDown) && !crouching;
 	}
 
 	private function performLadderClimb(spd:Float) {
@@ -337,6 +327,26 @@ class Hero extends Character {
 		// movement
 		if (climbing && ca.leftDist() > 0 && !cd.hasSetS("climbStep", 0.2)) {
 			dy += Math.sin(ca.leftAngle()) * spd * 7;
+		}
+	}
+
+	private function performOneWayPlatform() {
+		if (!onGround && dy < 0) {
+			if (level.hasOneWayPlatform(cx, cy - 1) && yr <= 0.5) {
+				lockControlS(0.15);
+				dy = -0.38 * tmod;
+				yr = 0;
+				spr.anim.playOverlap("heroLedgeClimb", 0.66);
+			}
+		}
+		if (onGround || dy < 0) {
+			cd.setS("fallSquash", 1);
+			var jumpThruPlatformDown = ca.isKeyboardDown(K.SPACE);
+			if (jumpThruPlatformDown && crouching && level.hasOneWayPlatform(cx, cy + 1)) {
+				cy += 1;
+				yr = 0;
+				cd.setS("hopLimit", 0.5);
+			}
 		}
 	}
 
