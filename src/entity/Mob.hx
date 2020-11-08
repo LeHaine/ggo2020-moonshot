@@ -6,7 +6,7 @@ enum Body {
 	Legs;
 }
 
-class Mob extends ScaledEntity {
+class Mob extends Character {
 	public static var ALL:Array<Mob> = [];
 
 	var lastBodyPartShot:Null<Body>;

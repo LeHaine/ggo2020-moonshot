@@ -4,12 +4,11 @@ import dn.DecisionHelper;
 import h2d.Flow.FlowAlign;
 import dn.heaps.Controller.ControllerAccess;
 
-class Hero extends ScaledEntity {
+class Hero extends Character {
 	var ca:ControllerAccess;
 
 	var hasGun = true;
 	var crouching = false;
-	var climbing = false;
 
 	var chargeStrongShotBarWrapper:UIEntity;
 	var chargeStrongShotBar:ui.Bar;
@@ -64,7 +63,13 @@ class Hero extends ScaledEntity {
 		performRun(spd);
 		performLedgeHop();
 		performJump();
+		performLadderClimb(spd);
 		performDash();
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+		spr.anim.setGlobalSpeed(0.2);
 	}
 
 	private function performInteraction() {
@@ -287,6 +292,54 @@ class Hero extends ScaledEntity {
 		return (!climbing && cd.has("onGroundRecently") || climbing && jumpKeyboardDown);
 	}
 
+	private function performLadderClimb(spd:Float) {
+		if (!climbing && !cd.has("climbLock") && !controlsLocked() && ca.leftDist() > 0) {
+			// start climbing up
+			if (isLeftJoystickUp() && level.hasLadder(cx, cy)) {
+				startClimbing();
+				setSquashX(0.6);
+				dy -= 0.2 * tmod;
+			}
+			// start climbing down
+			if (isLeftJoystickDown() && level.hasLadder(cx, cy + 1)) {
+				startClimbing();
+				cy++;
+				yr = 0.1;
+				setSquashY(0.6);
+				dy = 0.2 * tmod;
+			}
+		}
+
+		// no longer on/near ladder
+		if (climbing && !level.hasLadder(cx, cy)) {
+			stopClimbing();
+		}
+
+		// reached top
+		if (climbing && dy < 0 && !level.hasLadder(cx, cy - 1) && yr <= 0.7) {
+			stopClimbing();
+			dy = -0.2 * tmod;
+			yr = 0.2;
+			cd.setS("climbLock", 0.2);
+		}
+
+		if (climbing) {
+			xr += (0.5 - xr) * 0.1;
+		}
+
+		// reached bottom
+		if (climbing && dy > 0 && !level.hasLadder(cx, cy + 1)) {
+			stopClimbing();
+			dy = 0.1 * tmod;
+			cd.setS("climbLock", 0.2);
+		}
+
+		// movement
+		if (climbing && ca.leftDist() > 0 && !cd.hasSetS("climbStep", 0.2)) {
+			dy += Math.sin(ca.leftAngle()) * spd * 7;
+		}
+	}
+
 	private function performLedgeHop() {
 		var heightExtended = Std.int(Math.min(1, M.floor(hei / Const.GRID)));
 		if (!climbing
@@ -340,8 +393,11 @@ class Hero extends ScaledEntity {
 		}
 	}
 
-	override function postUpdate() {
-		super.postUpdate();
-		spr.anim.setGlobalSpeed(0.2);
+	private function isLeftJoystickDown() {
+		return M.radDistance(ca.leftAngle(), M.PIHALF) <= M.PIHALF * 0.5;
+	}
+
+	private function isLeftJoystickUp() {
+		return M.radDistance(ca.leftAngle(), -M.PIHALF) <= M.PIHALF * 0.5;
 	}
 }

@@ -738,7 +738,7 @@ class Entity {
 			fallHighestCy = cy + yr;
 		}
 		var heightCoordDiff = M.floor(hei / Const.GRID);
-		if (level.hasCollision(cx, cy - 1) && yr <= heightCoordDiff) {
+		if (level.hasCollision(cx, cy - 1) && yr <= heightCoordDiff && shouldCheckCeilingCollision()) {
 			yr = heightCoordDiff;
 			dy = 0;
 			onCollision(0, -1);
@@ -749,6 +749,10 @@ class Entity {
 			yr = 1;
 			onCollision(0, 1);
 		}
+	}
+
+	private function shouldCheckCeilingCollision() {
+		return true;
 	}
 
 	public function onCollision(fromX:Int, fromY:Int) {

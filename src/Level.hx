@@ -88,6 +88,12 @@ class Level extends dn.Process {
 		return !isValid(cx, cy) ? true : data.l_Collisions.getInt(cx, cy) == 0;
 	}
 
+	public inline function hasLadder(cx, cy):Bool {
+		return !isValid(cx, cy) ? true : data.l_Collisions.getInt(cx, cy) == 1
+			|| hasCollision(cx, cy)
+			&& data.l_Collisions.getInt(cx, cy + 1) == 1;
+	}
+
 	/** Render current level**/
 	function render() {
 		root.removeChildren();
