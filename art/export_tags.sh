@@ -1,7 +1,7 @@
 #!/bin/bash
 aseprite="D:/Program Files/Aseprite/Aseprite.exe"
 fileName=""
-excludeFiles=("gun" "cursor")
+excludeFiles=("gun" "cursor", "uiDownArrow", "keys", "ladder")
 for file in ./ase/*.aseprite ; do
   fileName="${file##*/}"
   fileName="${fileName%.*}"
