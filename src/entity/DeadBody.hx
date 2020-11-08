@@ -51,7 +51,8 @@ class DeadBody extends ScaledEntity {
 	override public function update() {
 		super.update();
 		if (cd.has("bleeding") && !cd.hasSetS("bleedFx", 0.03)) {
-			fx.woundBleed(centerX - dir * 8, centerY);
+			var range = dir * 8;
+			fx.woundBleed(centerX - rnd(range, -range), footY);
 		}
 
 		if (!onGround) {

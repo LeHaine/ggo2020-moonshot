@@ -207,11 +207,11 @@ class Hero extends ScaledEntity {
 		} else if (bounceMul >= 1) {
 			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
 			camera.bumpAng(-angToMouse(), rnd(0.75, 1));
-			camera.shakeS(0.2, 0.075);
+			camera.shakeS(0.3, 0.075);
 		} else {
 			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
 			camera.bumpAng(-angToMouse(), rnd(0.1, 0.15));
-			camera.shakeS(0.10, 0.05);
+			camera.shakeS(0.3, 0.05);
 		}
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-0.5, 0.5) * M.DEG_RAD, damage);
 		bullet.damageRadiusMul = 0.15;
