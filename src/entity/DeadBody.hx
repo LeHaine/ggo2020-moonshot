@@ -55,6 +55,21 @@ class DeadBody extends ScaledEntity {
 			fx.woundBleed(centerX - rnd(range, -range), footY);
 		}
 
+		if (level.hasCollision(cx - 1, cy) && xr <= 0.6 && dx < 0 || level.hasCollision(cx + 1, cy) && xr >= 0.4 && dx > 0) {
+			dx *= -0.6;
+			game.camera.bump(dir * 2, 0);
+		}
+
+		if (onGround || cd.has("landedOnce")) {
+			sprSquashX = 1;
+			sprSquashY += (0.2 - sprSquashY) * 0.3;
+			spr.rotation = 0;
+		} else {
+			sprSquashX += (0.6 - sprSquashX) * 0.3;
+			sprSquashY += (1.3 - sprSquashY) * 0.3;
+			spr.rotation += (-dir * 0.9 - spr.rotation) * 0.6;
+		}
+
 		if (!onGround) {
 			// Push mobs
 			for (e in entity.Mob.ALL) {
