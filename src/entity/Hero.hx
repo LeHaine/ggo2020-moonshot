@@ -1,5 +1,6 @@
 package entity;
 
+import hxd.Key;
 import dn.DecisionHelper;
 import h2d.Flow.FlowAlign;
 import dn.heaps.Controller.ControllerAccess;
@@ -93,18 +94,8 @@ class Hero extends Character {
 			}
 
 			if (interactableFocus != null) {
-				if (!ca.rbDown()) {
-					interactableFocus.resetSecondaryInteractionTimer();
-				}
-				if (ca.isLongPressing(RB)) {
-					if (interactableFocus.canSecondaryInteraction(this)) {
-						interactableFocus.secondaryInteract(this);
-					}
-				} else if (ca.isShortPressed(RB)) {
-					interactableFocus.resetSecondaryInteractionTimer();
-					if (interactableFocus.canInteraction(this)) {
-						interactableFocus.interact(this);
-					}
+				if (ca.isPressed(RB) && interactableFocus.canInteraction(this)) {
+					interactableFocus.interact(this);
 				}
 			}
 		} else if (!onGround && interactableFocus != null) {

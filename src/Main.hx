@@ -1,3 +1,4 @@
+import ui.ModStationWindow;
 import hxd.Res;
 import hxd.Cursor.CustomCursor;
 import hxd.Key;
@@ -81,7 +82,7 @@ class Main extends dn.Process {
 		controller.bind(A, Key.UP, Key.SPACE, Key.Z);
 		controller.bind(B, Key.F);
 		controller.bind(Y, Key.MOUSE_RIGHT);
-		controller.bind(RB, Key.C);
+		controller.bind(RB, Key.E);
 		controller.bind(LT, Key.SHIFT);
 		controller.bind(SELECT, Key.R);
 		controller.bind(START, Key.N);
@@ -92,6 +93,10 @@ class Main extends dn.Process {
 	}
 
 	public function startGame() {
+		if (ModStationWindow.ME != null) {
+			ModStationWindow.ME.destroy();
+		}
+
 		if (Game.ME != null) {
 			Game.ME.destroy();
 			delayer.addF(function() {

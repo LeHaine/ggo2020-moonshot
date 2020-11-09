@@ -71,7 +71,8 @@ class Interactable extends UIEntity {
 
 	public function focus() {
 		wrapper.visible = true;
-		game.tw.createS(wrapper.alpha, 0 > 1, 0.2).end(() -> canInteract = true);
+		canInteract = true;
+		game.tw.createS(wrapper.alpha, 0 > 1, 0.2);
 	}
 
 	public function unfocus() {

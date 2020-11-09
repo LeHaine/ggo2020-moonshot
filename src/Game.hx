@@ -42,6 +42,8 @@ class Game extends Process {
 
 	public var hero:entity.Hero;
 
+	public var money:Int = 0;
+
 	public function new() {
 		super(Main.ME);
 		ME = this;
