@@ -178,7 +178,6 @@ class ModStationWindow extends dn.Process {
 		}
 
 		flow.interactive.onOver = (e) -> {
-			//		Assets.SBANK.select(1);
 			cursorIdx = index;
 		}
 		flow.interactive.onClick = (e) -> interact();
@@ -195,7 +194,6 @@ class ModStationWindow extends dn.Process {
 
 	function close() {
 		if (!closed) {
-			//		Assets.SBANK.accept(0.8);
 			closed = true;
 			cd.setS("closing", 99999);
 			tw.createS(root.alpha, 0, 0.4);
