@@ -1,11 +1,17 @@
 package entity;
 
-import hxd.Key;
+import data.WeaponTrait;
 import dn.DecisionHelper;
-import h2d.Flow.FlowAlign;
 import dn.heaps.Controller.ControllerAccess;
 
 class Hero extends Character {
+	public var pierceChance = 0.;
+	public var targetsToPierce = 0;
+	public var projectiles = 1;
+	public var damageMul = 1.;
+	public var shotsPerSecond = 5.;
+	public var accuracy = 2.;
+
 	var ca:ControllerAccess;
 
 	var hasGun = true;
@@ -119,7 +125,7 @@ class Hero extends Character {
 		if (controlsLocked()) {
 			return;
 		}
-		if (ca.xDown() && !cd.hasSetS("shoot", 0.2)) {
+		if (ca.xDown() && !cd.hasSetS("shoot", 1 / shotsPerSecond)) {
 			if (ca.leftDist() == 0 && !crouching) {
 				spr.anim.play("heroStandShoot");
 			}
@@ -128,7 +134,11 @@ class Hero extends Character {
 				spr.anim.play("heroCrouchShoot");
 			}
 
-			spawnBullet();
+			for (i in 0...projectiles) {
+				var bullet = spawnPrimaryBullet();
+				var sign = i % 2 == 0 ? 1 : -1;
+				bullet.setPosPixel(bullet.centerX, bullet.centerY - i * 3 * sign);
+			}
 		}
 	}
 
@@ -142,7 +152,7 @@ class Hero extends Character {
 		var maxSize = 5;
 		if (ca.yDown() && !isCharging && !cd.has("strongShot")) {
 			chargeAction("strongShot", chargeTime, () -> {
-				var bullet = spawnBullet(maxDamage, maxSize, maxCharge, true);
+				var bullet = spawnSecondaryBullet(maxDamage, maxSize, maxCharge);
 				bullet.setSpeed(1);
 				bullet.damageRadiusMul = 1;
 				resetAndHideChargeBar();
@@ -156,7 +166,7 @@ class Hero extends Character {
 			var ratio = 1 - (timeLeft / chargeTime);
 			var bulletDamage = Std.int(Math.max(1, M.floor(maxDamage * ratio)));
 			var bulletSize = Std.int(Math.max(1, M.floor(maxSize * ratio)));
-			var bullet = spawnBullet(bulletDamage, bulletSize, maxCharge * ratio, true);
+			var bullet = spawnSecondaryBullet(bulletDamage, bulletSize, maxCharge * ratio);
 			bullet.setSpeed(Math.max(0.5, 1 * ratio));
 			bullet.damageRadiusMul = ratio;
 			resetAndHideChargeBar();
@@ -183,7 +193,25 @@ class Hero extends Character {
 		chargeStrongShotBar.visible = false;
 	}
 
-	private function spawnBullet(damage:Int = 1, size:Int = 1, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
+	private function spawnPrimaryBullet(damage:Int = 1, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
+		setSquashX(0.85);
+		var bulletX = centerX;
+		var bulletY = centerY - 3;
+		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(angToMouse());
+		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToMouse());
+		fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
+		camera.bumpAng(-angToMouse(), rnd(0.1, 0.15));
+		camera.shakeS(0.3, 0.05);
+		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-5 + accuracy, 5 - accuracy) * M.DEG_RAD, damage);
+		bullet.damageRadiusMul = 0.15;
+		bullet.doesAoeDamage = doesAoeDamage;
+		bullet.targetsToPierce = targetsToPierce;
+		bullet.damageMul = damageMul;
+		bullet.pierceChance = pierceChance;
+		return bullet;
+	}
+
+	private function spawnSecondaryBullet(damage:Int = 1, size:Int = 1, bounceMul:Float = 0.) {
 		setSquashX(0.85);
 		var bulletX = centerX;
 		var bulletY = centerY - 3;
@@ -202,10 +230,10 @@ class Hero extends Character {
 			camera.bumpAng(-angToMouse(), rnd(0.1, 0.15));
 			camera.shakeS(0.3, 0.05);
 		}
-		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-0.5, 0.5) * M.DEG_RAD, damage);
+		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-2, 2) * M.DEG_RAD, damage);
 		bullet.damageRadiusMul = 0.15;
 		bullet.setSize(size);
-		bullet.doesAoeDamage = doesAoeDamage;
+		bullet.doesAoeDamage = true;
 		return bullet;
 	}
 

@@ -21,7 +21,6 @@ class ModStationInteractable extends Interactable {
 
 	override function interact(by:Hero) {
 		super.interact(by);
-		trace("open mod station!");
 		new ModStationWindow(0);
 	}
 }

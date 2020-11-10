@@ -72,11 +72,11 @@ class ModStationWindow extends dn.Process {
 		masterFlow.addSpacing(8);
 		var tf = new h2d.Text(Assets.fontMedium, masterFlow);
 		if (Game.ME.ca.isGamePad()) {
-			tf.text = "[B-Button] to cancel";
+			tf.text = "[B] to cancel";
 		} else {
 			tf.text = "ESC to cancel";
 		}
-		tf.textColor = 0xFFA8A2;
+		tf.textColor = 0xd95b52;
 
 		cd.setS("lock", 0.2);
 		generateTraits(seed);
@@ -91,11 +91,11 @@ class ModStationWindow extends dn.Process {
 		var rnd = new Rand(seed);
 
 		#if debug
-		var testTrait = new data.Traits.SplitShot();
+		addItem(new data.Traits.SplitShot(), 0);
+		addItem(new data.Traits.Rifle(), 1);
+		addItem(new data.Traits.PiercingShot(), 2);
 
-		addItem(testTrait, 0);
-		addItem(testTrait, 1);
-		addItem(testTrait, 2);
+		Game.ME.money = 500;
 		#end
 	}
 
@@ -137,19 +137,23 @@ class ModStationWindow extends dn.Process {
 		desc.maxWidth = 300;
 		desc.textColor = 0xBBBBBB;
 
-		var attrBox = new h2d.Flow(infoBox);
-		attrBox.horizontalSpacing = 8;
-		attrBox.maxWidth = attrBox.minWidth = 250;
+		for (attr in trait.attributes) {
+			var attrBox = new h2d.Flow(infoBox);
+			attrBox.horizontalSpacing = 8;
+			attrBox.maxWidth = attrBox.minWidth = 250;
 
-		var attrTf = new h2d.Text(Assets.fontMedium, attrBox);
-		attrTf.text = '${trait.attribute}:';
-		attrTf.textColor = 0xBBBBBB;
+			var attrTf = new h2d.Text(Assets.fontMedium, attrBox);
+			attrTf.text = '${attr.name}:';
+			attrTf.textColor = 0xBBBBBB;
 
-		var attrValueTf = new h2d.Text(Assets.fontMedium, attrBox);
-		attrBox.getProperties(attrValueTf).horizontalAlign = FlowAlign.Right;
-		attrValueTf.text = '+${Std.string(trait.attributeValue)}';
-		attrValueTf.textColor = 0x00FF00;
-
+			var attrValueTf = new h2d.Text(Assets.fontMedium, attrBox);
+			attrBox.getProperties(attrValueTf).horizontalAlign = FlowAlign.Right;
+			var value = attr.isPercentage ? '${M.pretty(attr.value * 100)}%' : Std.string(attr.value);
+			var sign = attr.value >= 0 ? "+" : "";
+			var textColor = attr.positive ? 0x00FF00 : 0xFF0000;
+			attrValueTf.text = '${sign}${value}';
+			attrValueTf.textColor = textColor;
+		}
 		var priceBox = new h2d.Flow(flow);
 		flow.getProperties(priceBox).verticalAlign = FlowAlign.Bottom;
 		priceBox.horizontalSpacing = 8;
@@ -173,7 +177,8 @@ class ModStationWindow extends dn.Process {
 		var interact = () -> {
 			if (Game.ME.money >= trait.price) {
 				close();
-				// TODO upgrade weapon impl here
+				Game.ME.money -= trait.price;
+				Game.ME.addWeaponTrait(trait);
 			}
 		}
 

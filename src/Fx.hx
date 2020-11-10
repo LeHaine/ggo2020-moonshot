@@ -392,7 +392,6 @@ class Fx extends dn.Process {
 			var p = allocTopNormal(getTile("fxDot"), x + rnd(0, 3, true), y + rnd(0, 4, true));
 			p.colorize(Color.interpolateInt(0xFF0000, 0x6F0000, rnd(0, 1)));
 			p.dx = Math.sin(x + ftime * 0.03) * 0.2;
-			//		p.dy = rnd(-0.075, -0.05);
 			p.gy = rnd(0.1, 0.2);
 			p.frict = rnd(0.85, 0.96);
 			p.lifeS = rnd(1, 3);

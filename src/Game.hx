@@ -1,3 +1,4 @@
+import data.WeaponTrait;
 import hxd.Key;
 import dn.Process;
 
@@ -43,6 +44,7 @@ class Game extends Process {
 	public var hero:entity.Hero;
 
 	public var money:Int = 0;
+	public var traits:Array<WeaponTrait> = [];
 
 	public function new() {
 		super(Main.ME);
@@ -162,6 +164,11 @@ class Game extends Process {
 
 		if (M.fabs(curGameSpeed - targetGameSpeed) <= 0.001)
 			curGameSpeed = targetGameSpeed;
+	}
+
+	public function addWeaponTrait(trait:WeaponTrait) {
+		traits.push(trait);
+		trait.modify(hero);
 	}
 
 	/**

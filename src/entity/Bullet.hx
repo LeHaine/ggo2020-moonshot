@@ -4,8 +4,12 @@ class Bullet extends ScaledEntity {
 	public var ALL:Array<Bullet> = [];
 
 	public var owner:Entity;
+	public var pierceChance = 0.;
+	public var targetsToPierce = 0;
+	public var targetsPierced:Array<Entity> = [];
 
 	public var damage:Int;
+	public var damageMul = 1.;
 	public var doesAoeDamage = false;
 	public var damageRadius = 1.;
 	public var damageRadiusMul = 1.;
@@ -50,11 +54,21 @@ class Bullet extends ScaledEntity {
 	override function onTouch(from:Entity) {
 		super.onTouch(from);
 
-		if (from != owner) {
+		if (from != owner && !from.is(Bullet)) {
 			from.hit(damage, this);
-			fx.moonShotExplosion(centerX, centerY, damageRadiusMul);
-			performAoe();
-			destroy();
+			var didPierce = rnd(0, 1) <= pierceChance;
+			if (targetsToPierce <= 0 && !targetsPierced.contains(from) && !didPierce) {
+				fx.moonShotExplosion(centerX, centerY, damageRadiusMul);
+				performAoe();
+				destroy();
+			} else {
+				// we want the pierce chance to stack with the targetToPierce
+				// if it pierced based off chance then we want to keep the guaranteed targets to pierce still
+				if (!didPierce) {
+					targetsToPierce--;
+				}
+				targetsPierced.push(from);
+			}
 		}
 	}
 
