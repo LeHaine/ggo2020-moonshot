@@ -26,9 +26,12 @@ class ModStationWindow extends dn.Process {
 		cb:Void->Void
 	}>;
 
-	public function new(seed:Int) {
+	var onItemBought:Null<() -> Void>;
+
+	public function new(seed:Int, ?itemBoughtCb:() -> Void) {
 		super(Main.ME);
 		ME = this;
+		onItemBought = itemBoughtCb;
 		ca = Main.ME.controller.createAccess("modStation", true);
 
 		createRootInLayers(Main.ME.root, Const.DP_UI);
@@ -176,6 +179,9 @@ class ModStationWindow extends dn.Process {
 
 		var interact = () -> {
 			if (Game.ME.money >= trait.price) {
+				if (onItemBought != null) {
+					onItemBought();
+				}
 				close();
 				Game.ME.money -= trait.price;
 				Game.ME.addWeaponTrait(trait);

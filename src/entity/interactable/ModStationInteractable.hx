@@ -4,8 +4,11 @@ import ui.ModStationWindow;
 import h2d.Flow.FlowAlign;
 
 class ModStationInteractable extends Interactable {
-	public function new(x:Int, y:Int) {
+	var onItemBought:() -> Void;
+
+	public function new(x:Int, y:Int, onItemBought:() -> Void) {
 		super(x, y);
+		this.onItemBought = onItemBought;
 		focusRange = 2.2;
 		createWindow();
 	}
@@ -21,6 +24,6 @@ class ModStationInteractable extends Interactable {
 
 	override function interact(by:Hero) {
 		super.interact(by);
-		new ModStationWindow(0);
+		new ModStationWindow(0, onItemBought);
 	}
 }

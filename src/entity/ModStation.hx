@@ -13,7 +13,14 @@ class ModStation extends ScaledEntity {
 
 		hasGravity = false;
 		isCollidable = false;
-		interactable = new ModStationInteractable(cx, cy);
+		interactable = new ModStationInteractable(cx, cy, onItemBought);
 		interactable.follow(this, 0, -2);
+	}
+
+	private function onItemBought() {
+		#if !debug
+		destroy();
+		interactable.destroy();
+		#end
 	}
 }
