@@ -11,6 +11,10 @@ class Hero extends Character {
 	public var damageMul = 1.;
 	public var shotsPerSecond = 5.;
 	public var accuracy = 2.;
+	public var chargeTime = 1.5; // secondary strong shot charge time
+	public var maxCharge = 2; // secondary strong shot max charge
+
+	public var traits:Array<WeaponTrait> = [];
 
 	var ca:ControllerAccess;
 
@@ -19,8 +23,6 @@ class Hero extends Character {
 
 	var chargeStrongShotBarWrapper:UIEntity;
 	var chargeStrongShotBar:ui.Bar;
-	var chargeTime = 1.5; // secondary strong shot charge time
-	var maxCharge = 2; // secondary strong shot max charge
 
 	var interactableFocus:Null<Interactable>;
 

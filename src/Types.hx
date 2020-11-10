@@ -1,5 +1,9 @@
 enum Affect {
 	Stun;
+	Bleed;
+	Freeze;
+	Burn;
+	Poison;
 }
 
 enum MobTypes {

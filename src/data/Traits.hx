@@ -72,3 +72,24 @@ class Rifle extends WeaponTrait {
 		hero.accuracy /= 2;
 	}
 }
+
+class FasterCharge extends WeaponTrait {
+	public function new() {
+		name = "Faster Charge";
+		icon = "splitShotIcon";
+		desc = "Secondary attack charges slightly faster";
+		addAttribute("Charge speed", 0.25, true, true);
+		price = 100;
+		tier = S;
+	}
+
+	override public function modify(hero:Hero) {
+		super.modify(hero);
+		hero.chargeTime *= 0.75;
+	}
+
+	override public function unmodify(hero:Hero) {
+		super.unmodify(hero);
+		hero.chargeTime /= 0.75;
+	}
+}

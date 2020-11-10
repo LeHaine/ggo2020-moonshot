@@ -44,7 +44,6 @@ class Game extends Process {
 	public var hero:entity.Hero;
 
 	public var money:Int = 0;
-	public var traits:Array<WeaponTrait> = [];
 
 	public function new() {
 		super(Main.ME);
@@ -167,7 +166,7 @@ class Game extends Process {
 	}
 
 	public function addWeaponTrait(trait:WeaponTrait) {
-		traits.push(trait);
+		hero.traits.push(trait);
 		trait.modify(hero);
 	}
 
