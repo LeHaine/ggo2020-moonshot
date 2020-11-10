@@ -56,7 +56,7 @@ class ModStationWindow extends dn.Process {
 		titleTf.text = "Modification Station";
 
 		var subTitleTf = new h2d.Text(Assets.fontSmall, masterFlow);
-		subTitleTf.text = "Modify your weapon traits here";
+		subTitleTf.text = "Choose one trait to upgrade";
 
 		var moneyBox = new h2d.Flow(masterFlow);
 		moneyBox.verticalAlign = Middle;
