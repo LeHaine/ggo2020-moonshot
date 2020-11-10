@@ -23,7 +23,7 @@ class Attribute {
 	}
 }
 
-class WeaponTrait {
+class Trait {
 	public var name:String;
 	public var icon:String;
 	public var price:Int;

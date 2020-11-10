@@ -1,6 +1,6 @@
 package entity;
 
-import data.WeaponTrait;
+import data.Trait;
 import dn.DecisionHelper;
 import dn.heaps.Controller.ControllerAccess;
 
@@ -14,7 +14,7 @@ class Hero extends Character {
 	public var chargeTime = 1.5; // secondary strong shot charge time
 	public var maxCharge = 2; // secondary strong shot max charge
 
-	public var traits:Array<WeaponTrait> = [];
+	public var traits:Array<Trait> = [];
 
 	var ca:ControllerAccess;
 

@@ -1,4 +1,4 @@
-import data.WeaponTrait;
+import data.Trait;
 import hxd.Key;
 import dn.Process;
 
@@ -165,7 +165,7 @@ class Game extends Process {
 			curGameSpeed = targetGameSpeed;
 	}
 
-	public function addWeaponTrait(trait:WeaponTrait) {
+	public function addTrait(trait:Trait) {
 		hero.traits.push(trait);
 		trait.modify(hero);
 	}

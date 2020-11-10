@@ -2,7 +2,7 @@ package data;
 
 import entity.Hero;
 
-class SplitShot extends WeaponTrait {
+class SplitShot extends Trait {
 	public function new() {
 		name = "Split Shot";
 		icon = "splitShotIcon";
@@ -24,7 +24,7 @@ class SplitShot extends WeaponTrait {
 	}
 }
 
-class PiercingShot extends WeaponTrait {
+class PiercingShot extends Trait {
 	public function new() {
 		name = "Piercing Shot";
 		icon = "splitShotIcon";
@@ -45,7 +45,7 @@ class PiercingShot extends WeaponTrait {
 	}
 }
 
-class Rifle extends WeaponTrait {
+class Rifle extends Trait {
 	public function new() {
 		name = "Rifle";
 		icon = "splitShotIcon";
@@ -73,7 +73,7 @@ class Rifle extends WeaponTrait {
 	}
 }
 
-class FasterCharge extends WeaponTrait {
+class FasterCharge extends Trait {
 	public function new() {
 		name = "Faster Charge";
 		icon = "splitShotIcon";

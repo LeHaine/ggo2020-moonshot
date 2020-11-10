@@ -1,7 +1,7 @@
 package ui;
 
 import h2d.Flow.FlowAlign;
-import data.WeaponTrait;
+import data.Trait;
 import dn.Rand;
 import hxd.Key;
 
@@ -102,7 +102,7 @@ class ModStationWindow extends dn.Process {
 		#end
 	}
 
-	function addItem(trait:WeaponTrait, index:Int) {
+	function addItem(trait:Trait, index:Int) {
 		var flow = new h2d.Flow(itemFlow);
 		flow.verticalAlign = Top;
 		flow.backgroundTile = Assets.tiles.getTile("uiButton");
@@ -184,7 +184,7 @@ class ModStationWindow extends dn.Process {
 				}
 				close();
 				Game.ME.money -= trait.price;
-				Game.ME.addWeaponTrait(trait);
+				Game.ME.addTrait(trait);
 			}
 		}
 
