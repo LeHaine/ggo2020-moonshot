@@ -54,10 +54,10 @@ class Bullet extends ScaledEntity {
 	override function onTouch(from:Entity) {
 		super.onTouch(from);
 
-		if (from != owner && !from.is(Bullet)) {
+		if (from != owner && !from.is(Bullet) && !targetsPierced.contains(from)) {
 			from.hit(damage, this);
 			var didPierce = rnd(0, 1) <= pierceChance;
-			if (targetsToPierce <= 0 && !targetsPierced.contains(from) && !didPierce) {
+			if (targetsToPierce <= 0 && !didPierce) {
 				fx.moonShotExplosion(centerX, centerY, damageRadiusMul);
 				performAoe();
 				destroy();
