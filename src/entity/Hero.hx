@@ -201,7 +201,7 @@ class Hero extends Character {
 		var bulletY = centerY - 3;
 		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(angToMouse());
 		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToMouse());
-		fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
+		fx.moonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
 		camera.bumpAng(-angToMouse(), rnd(0.1, 0.15));
 		camera.shakeS(0.3, 0.05);
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-5 + accuracy, 5 - accuracy) * M.DEG_RAD, damage);
@@ -220,15 +220,15 @@ class Hero extends Character {
 		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(angToMouse());
 		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToMouse());
 		if (bounceMul >= 2) {
-			fx.strongShot(bulletX, bulletY, angToMouse(), 0x2780D8, 75);
+			fx.strongMoonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 75);
 			camera.bumpAng(-angToMouse(), rnd(1, 2));
 			camera.shakeS(0.3, 0.1);
 		} else if (bounceMul >= 1) {
-			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
+			fx.moonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
 			camera.bumpAng(-angToMouse(), rnd(0.75, 1));
 			camera.shakeS(0.3, 0.075);
 		} else {
-			fx.shoot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
+			fx.moonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
 			camera.bumpAng(-angToMouse(), rnd(0.1, 0.15));
 			camera.shakeS(0.3, 0.05);
 		}

@@ -183,8 +183,60 @@ class Fx extends dn.Process {
 		}
 	}
 
-	public function shoot(fx:Float, fy:Float, a:Float, c:UInt, dist:Float) {
-		// Core
+	public function normalShot(fx:Float, fy:Float, a:Float, c:UInt, dist:Float) {
+		// ceneter
+		for (i in 0...4) {
+			var d = i <= 2 ? 0 : rnd(0, 5);
+			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
+			p.setFadeS(rnd(0.6, 1), 0, rnd(0.1, 0.12));
+			p.colorize(c);
+			p.setCenterRatio(0, 0.5);
+
+			p.scaleX = rnd(8, 15);
+			p.scaleXMul = rnd(0.9, 0.97);
+
+			p.rotation = a;
+			p.lifeS = 0;
+		}
+
+		//  sides
+		for (i in 0...20) {
+			var a = a + rnd(0.2, 0.5, true);
+			var d = i <= 2 ? 0 : rnd(0, 5);
+			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
+			p.alpha = 0.7;
+			p.setFadeS(rnd(0.4, 0.6), 0, rnd(0.1, 0.12));
+			p.colorize(0xF5450A);
+			p.setCenterRatio(0, 0.5);
+
+			p.scaleX = rnd(3, 5);
+			p.scaleXMul = rnd(0.9, 0.97);
+
+			p.rotation = a;
+			p.lifeS = 0;
+		}
+
+		// trail
+		var n = 40;
+		for (i in 0...n) {
+			var d = 0.8 * dist * i / (n - 1) + rnd(0, 6);
+			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
+			p.setFadeS(rnd(0.4, 0.6), 0, rnd(0.1, 0.12));
+			p.colorize(c);
+
+			p.scaleX = rnd(3, 5);
+			p.moveAng(a, rnd(2, 10));
+			p.frict = 0.8;
+			p.gy = rnd(0, 0.1);
+			p.scaleXMul = rnd(0.9, 0.97);
+
+			p.rotation = a;
+			p.lifeS = 0.1 * i / (n - 1);
+		}
+	}
+
+	public function moonShot(fx:Float, fy:Float, a:Float, c:UInt, dist:Float) {
+		// center
 		for (i in 0...4) {
 			var d = i <= 2 ? 0 : rnd(0, 5);
 			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
@@ -199,7 +251,7 @@ class Fx extends dn.Process {
 			p.lifeS = 0;
 		}
 
-		// Core sides
+		// sides
 		for (i in 0...5) {
 			var a = a + rnd(0.2, 0.5, true);
 			var d = i <= 2 ? 0 : rnd(0, 5);
@@ -215,7 +267,7 @@ class Fx extends dn.Process {
 			p.lifeS = 0;
 		}
 
-		// Shoot line
+		// bullet trail
 		var n = 10;
 		for (i in 0...n) {
 			var d = 0.8 * dist * i / (n - 1) + rnd(0, 6);
@@ -234,8 +286,8 @@ class Fx extends dn.Process {
 		}
 	}
 
-	public function strongShot(fx:Float, fy:Float, a:Float, c:UInt, dist:Float) {
-		// Core
+	public function strongMoonShot(fx:Float, fy:Float, a:Float, c:UInt, dist:Float) {
+		// center
 		for (i in 0...12) {
 			var d = i <= 2 ? 0 : rnd(0, 5);
 			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(a) * d, fy + Math.sin(a) * d);
@@ -250,7 +302,7 @@ class Fx extends dn.Process {
 			p.lifeS = 0;
 		}
 
-		// Core sides
+		// sides
 		for (i in 0...40) {
 			var a = a + rnd(0.2, 0.5, true);
 			var d = i <= 2 ? 0 : rnd(0, 5);
@@ -266,7 +318,7 @@ class Fx extends dn.Process {
 			p.lifeS = 0;
 		}
 
-		// Shoot line
+		// trail
 		var n = 80;
 		for (i in 0...n) {
 			var d = 0.8 * dist * i / (n - 1) + rnd(0, 6);

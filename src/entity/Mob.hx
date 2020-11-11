@@ -16,8 +16,9 @@ class Mob extends Character {
 	var patrolTarget:Null<CPoint>;
 	var aggroTarget:Null<Entity>;
 	var attackCooldown = 1.2;
+	var initialAttackCooldown = rnd(1, 2);
 	var shouldSpawnDeadBody = true;
-	var aggroRange = 5;
+	var aggroRange = 15;
 	var attackRange = 8;
 
 	public var defense = 0;
@@ -105,14 +106,6 @@ class Mob extends Character {
 				}
 			}
 		}
-
-		// Hit hero
-		if (distCaseX(hero) <= attackRange
-			&& hero.footY >= footY - Const.GRID * 1
-			&& hero.footY <= footY + Const.GRID * 0.5
-			&& !cd.hasSetS("attackCooldown", attackCooldown)) {
-			attack();
-		}
 	}
 
 	private function checkIfAggroLost() {
@@ -126,6 +119,7 @@ class Mob extends Character {
 	private function checkToAggroHero() {
 		if (hero.isAlive() && distCase(hero) <= aggroRange && onGround && M.fabs(cy - hero.cy) <= 2 && sightCheck(hero)) {
 			if (aggro(hero)) {
+				cd.setS("initialAttackCooldown", initialAttackCooldown);
 				dir = dirTo(aggroTarget);
 				lockControlS(0.5);
 				setSquashX(0.6);
@@ -138,10 +132,15 @@ class Mob extends Character {
 	private function onTargetAggroed() {}
 
 	private function handleAggroTarget(spd:Float) {
-		if (sightCheck(aggroTarget) && M.fabs(cy - aggroTarget.cy) <= aggroRange) {
+		if (sightCheck(aggroTarget) && distCase(hero) <= aggroRange && distCase(hero) > attackRange) {
 			// Track aggro target
 			dir = dirTo(aggroTarget);
 			dx += spd * 1.2 * dir * tmod;
+		} else if (sightCheck(aggroTarget) && distCase(hero) <= aggroRange && distCase(hero) <= attackRange) {
+			dir = dirTo(aggroTarget);
+			if (!cd.hasSetS("attackCooldown", attackCooldown) && !cd.has("initialAttackCooldown")) {
+				attack();
+			}
 		} else {
 			// Wander aggressively
 			if (!cd.hasSetS("aggroSearch", rnd(0.5, 0.9))) {
