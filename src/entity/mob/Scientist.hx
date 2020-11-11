@@ -29,6 +29,7 @@ class Scientist extends Mob {
 		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToTarget);
 		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, distPx(aggroTarget));
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget + rnd(-5, 5) * M.DEG_RAD, damage);
+		bullet.damageRadiusMul = 0.15;
 		return bullet;
 	}
 

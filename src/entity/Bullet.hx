@@ -78,8 +78,8 @@ class Bullet extends ScaledEntity {
 	}
 
 	override function onCollision(fromX:Int, fromY:Int) {
-        super.onCollision(fromX, fromY);
-        
+		super.onCollision(fromX, fromY);
+
 		fx.moonShotExplosion(centerX, centerY, damageRadiusMul);
 		performAoe();
 		destroy();
