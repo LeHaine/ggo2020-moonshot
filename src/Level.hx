@@ -57,8 +57,8 @@ class Level extends dn.Process {
 		return cx + cy * wid;
 
 	/** Return TRUE if mark is present at coordinates **/
-	public inline function hasMark(mark:LevelMark, cx:Int, cy:Int) {
-		return !isValid(cx, cy) || !marks.exists(mark) ? false : marks.get(mark).exists(coordId(cx, cy));
+	public inline function hasMark(mark:LevelMark, cx:Int, cy:Int, dir:Int = 0) {
+		return !isValid(cx, cy) || !marks.exists(mark) ? false : marks.get(mark).get(coordId(cx, cy)) == (dir == 0 ? 0 : dir > 0 ? 1 : -1);
 	}
 
 	public inline function setMarks(cx, cy, marks:Array<LevelMark>) {

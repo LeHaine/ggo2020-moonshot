@@ -19,3 +19,9 @@ enum LevelMark {
 	PlatformEndLeft;
 	PlatformEndRight;
 }
+
+enum PatrolTypes {
+	AutoPatrol;
+	FixedPatrol;
+	BusyWork;
+}

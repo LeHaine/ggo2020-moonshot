@@ -3,15 +3,15 @@
 		"fileType": "LDtk Project JSON",
 		"app": "LDtk",
 		"appAuthor": "Sebastien Benard",
-		"appVersion": "0.5.1-beta",
+		"appVersion": "0.5.2-beta",
 		"url": "https://deepnight.net/tools/ldtk-2d-level-editor/"
 	},
-	"jsonVersion": "0.5.1",
+	"jsonVersion": "0.5.2",
 	"defaultPivotX": 0.5,
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 83,
+	"nextUid": 87,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -801,6 +801,54 @@
 						"min": 1,
 						"max": null,
 						"defaultOverride": { "id": "V_Int", "params": [1] }
+					},
+					{
+						"identifier": "patrol",
+						"__type": "Point",
+						"uid": 83,
+						"type": "F_Point",
+						"isArray": false,
+						"canBeNull": true,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "PointStar",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": false,
+						"min": null,
+						"max": null,
+						"defaultOverride": null
+					},
+					{
+						"identifier": "initialDir",
+						"__type": "Int",
+						"uid": 84,
+						"type": "F_Int",
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "NameAndValue",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": false,
+						"min": -1,
+						"max": 1,
+						"defaultOverride": { "id": "V_Int", "params": [1] }
+					},
+					{
+						"identifier": "patrolType",
+						"__type": "ExternEnum.PatrolTypes",
+						"uid": 86,
+						"type": { "id": "F_Enum", "params": [85] },
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "ValueOnly",
+						"editorDisplayPos": "Beneath",
+						"editorAlwaysShow": false,
+						"min": null,
+						"max": null,
+						"defaultOverride": null
 					}
 				]
 			},
@@ -838,7 +886,13 @@
 		],
 		"enums": [],
 		"externalEnums": [
-			{ "identifier": "Affect", "uid": 3, "values": [{ "id": "Stun", "tileId": null, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "a961653def02ad4f300f364ca93d9ba3" },
+			{ "identifier": "Affect", "uid": 3, "values": [
+				{ "id": "Bleed", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Burn", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Freeze", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Poison", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Stun", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "b79433ade8618efb134e5ef3fd65b2a3" },
 			{ "identifier": "LevelMark", "uid": 22, "values": [
 				{ "id": "Grab", "tileId": null, "__tileSrcRect": null },
 				{ "id": "GrabLeft", "tileId": null, "__tileSrcRect": null },
@@ -847,8 +901,13 @@
 				{ "id": "PlatformEndLeft", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PlatformEndRight", "tileId": null, "__tileSrcRect": null },
 				{ "id": "SmallStep", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "a961653def02ad4f300f364ca93d9ba3" },
-			{ "identifier": "MobTypes", "uid": 25, "values": [{ "id": "Scientist", "tileId": null, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "a961653def02ad4f300f364ca93d9ba3" }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "b79433ade8618efb134e5ef3fd65b2a3" },
+			{ "identifier": "MobTypes", "uid": 25, "values": [{ "id": "Scientist", "tileId": null, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "b79433ade8618efb134e5ef3fd65b2a3" },
+			{ "identifier": "PatrolTypes", "uid": 85, "values": [
+				{ "id": "AutoPatrol", "tileId": null, "__tileSrcRect": null },
+				{ "id": "BusyWork", "tileId": null, "__tileSrcRect": null },
+				{ "id": "FixedPatrol", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "b79433ade8618efb134e5ef3fd65b2a3" }
 		]
 	},
 	"levels": [{
@@ -875,20 +934,6 @@
 				"seed": 9094781,
 				"gridTiles": [],
 				"entityInstances": [
-					{ "__identifier": "Hero", "__grid": [33,11], "__tile": null, "defUid": 20, "px": [536,192], "fieldInstances": [] },
-					{ "__identifier": "Mob", "__grid": [22,19], "__tile": null, "defUid": 24, "px": [360,320], "fieldInstances": [
-						{
-							"__identifier": "type",
-							"__value": "Scientist",
-							"__type": "ExternEnum.MobTypes",
-							"defUid": 26,
-							"realEditorValues": [{
-								"id": "V_String",
-								"params": ["Scientist"]
-							}]
-						},
-						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] }
-					] },
 					{ "__identifier": "Mob", "__grid": [33,16], "__tile": null, "defUid": 24, "px": [536,272], "fieldInstances": [
 						{
 							"__identifier": "type",
@@ -906,6 +951,18 @@
 							"__type": "Int",
 							"defUid": 27,
 							"realEditorValues": [{ "id": "V_Int", "params": [3] }]
+						},
+						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
+						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+						{
+							"__identifier": "patrolType",
+							"__value": "AutoPatrol",
+							"__type": "ExternEnum.PatrolTypes",
+							"defUid": 86,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["AutoPatrol"]
+							}]
 						}
 					] },
 					{ "__identifier": "Mob", "__grid": [42,19], "__tile": null, "defUid": 24, "px": [680,320], "fieldInstances": [
@@ -925,47 +982,21 @@
 							"__type": "Int",
 							"defUid": 27,
 							"realEditorValues": [{ "id": "V_Int", "params": [5] }]
+						},
+						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
+						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+						{
+							"__identifier": "patrolType",
+							"__value": "BusyWork",
+							"__type": "ExternEnum.PatrolTypes",
+							"defUid": 86,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["BusyWork"]
+							}]
 						}
 					] },
-					{ "__identifier": "Mob", "__grid": [21,19], "__tile": null, "defUid": 24, "px": [344,320], "fieldInstances": [
-						{
-							"__identifier": "type",
-							"__value": "Scientist",
-							"__type": "ExternEnum.MobTypes",
-							"defUid": 26,
-							"realEditorValues": [{
-								"id": "V_String",
-								"params": ["Scientist"]
-							}]
-						},
-						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] }
-					] },
-					{ "__identifier": "Mob", "__grid": [20,19], "__tile": null, "defUid": 24, "px": [328,320], "fieldInstances": [
-						{
-							"__identifier": "type",
-							"__value": "Scientist",
-							"__type": "ExternEnum.MobTypes",
-							"defUid": 26,
-							"realEditorValues": [{
-								"id": "V_String",
-								"params": ["Scientist"]
-							}]
-						},
-						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] }
-					] },
-					{ "__identifier": "Mob", "__grid": [19,19], "__tile": null, "defUid": 24, "px": [312,320], "fieldInstances": [
-						{
-							"__identifier": "type",
-							"__value": "Scientist",
-							"__type": "ExternEnum.MobTypes",
-							"defUid": 26,
-							"realEditorValues": [{
-								"id": "V_String",
-								"params": ["Scientist"]
-							}]
-						},
-						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] }
-					] },
+					{ "__identifier": "ModStation", "__grid": [30,19], "__tile": null, "defUid": 69, "px": [488,320], "fieldInstances": [] },
 					{ "__identifier": "Mob", "__grid": [18,19], "__tile": null, "defUid": 24, "px": [296,320], "fieldInstances": [
 						{
 							"__identifier": "type",
@@ -977,22 +1008,30 @@
 								"params": ["Scientist"]
 							}]
 						},
-						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] }
-					] },
-					{ "__identifier": "Mob", "__grid": [17,19], "__tile": null, "defUid": 24, "px": [280,320], "fieldInstances": [
+						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
 						{
-							"__identifier": "type",
-							"__value": "Scientist",
-							"__type": "ExternEnum.MobTypes",
-							"defUid": 26,
+							"__identifier": "patrol",
+							"__value": { "cx": 25, "cy": 19 },
+							"__type": "Point",
+							"defUid": 83,
 							"realEditorValues": [{
 								"id": "V_String",
-								"params": ["Scientist"]
+								"params": ["25,19"]
 							}]
 						},
-						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] }
+						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+						{
+							"__identifier": "patrolType",
+							"__value": "FixedPatrol",
+							"__type": "ExternEnum.PatrolTypes",
+							"defUid": 86,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["FixedPatrol"]
+							}]
+						}
 					] },
-					{ "__identifier": "ModStation", "__grid": [30,19], "__tile": null, "defUid": 69, "px": [488,320], "fieldInstances": [] }
+					{ "__identifier": "Hero", "__grid": [7,19], "__tile": null, "defUid": 20, "px": [120,320], "fieldInstances": [] }
 				]
 			},
 			{

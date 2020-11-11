@@ -46,6 +46,11 @@ class Entity {
 	inline function get_camera()
 		return Game.ME.camera;
 
+	public var hero(get, never):entity.Hero;
+
+	inline function get_hero()
+		return Game.ME.hero;
+
 	public var onGround(get, never):Bool;
 
 	inline function get_onGround() {
@@ -248,12 +253,26 @@ class Entity {
 			onDie();
 	}
 
+	public function fallDamage(dmg:Int) {
+		if (!isAlive() || dmg <= 0)
+			return;
+
+		life = M.iclamp(life - dmg, 0, maxLife);
+
+		onFallDamage(dmg);
+		if (life <= 0) {
+			onDie();
+		}
+	}
+
 	public function kill(by:Null<Entity>) {
 		if (isAlive())
 			hit(life, by);
 	}
 
 	function onDamage(dmg:Int, from:Entity) {}
+
+	function onFallDamage(dmg:Int) {}
 
 	function onDie() {
 		destroy();
@@ -349,6 +368,18 @@ class Entity {
 
 	public inline function distCaseY(e:Entity)
 		return M.fabs((cy + yr) - (e.cy + e.yr));
+
+	inline function canSeeThrough(x, y) {
+		return x == cx && y == cy ? true : !level.hasCollision(x, y);
+	}
+
+	public inline function sightCheckCase(x, y) {
+		return dn.Bresenham.checkThinLine(cx, cy, x, y, canSeeThrough);
+	}
+
+	public inline function sightCheck(e:Entity) {
+		return sightCheckCase(e.cx, e.cy);
+	}
 
 	public function makePoint()
 		return new CPoint(cx, cy, xr, yr);

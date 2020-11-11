@@ -15,6 +15,12 @@ class Scientist extends Mob {
 		}
 	}
 
+	override function attack() {}
+
+	override function onTargetAggroed() {}
+
+	override function performBusyWork() {}
+
 	override function onDie() {
 		super.onDie();
 		new DeadBody(this, "scientist");
