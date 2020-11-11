@@ -59,7 +59,7 @@ class Bullet extends ScaledEntity {
 				return;
 			}
 			from.hit(damage, this);
-			var didPierce = rnd(0, 1) <= pierceChance;
+			var didPierce = rnd(0, 1) < pierceChance;
 			if (targetsToPierce <= 0 && !didPierce) {
 				fx.moonShotExplosion(centerX, centerY, damageRadiusMul);
 				performAoe();

@@ -58,6 +58,10 @@ class Mob extends Character {
 	}
 
 	override function hit(dmg:Int, from:Null<Entity>) {
+		super.hit(dmg, from);
+		if (!isAlive()) {
+			return;
+		}
 		if (from != null) {
 			if (M.dist(from.centerX, from.centerY, headX, headY) < 1) {
 				lastBodyPartShot = Head;
@@ -80,7 +84,6 @@ class Mob extends Character {
 				bump(-dirTo(from) * rnd(0.06, 0.12), -rnd(0.04, 0.08));
 			}
 		}
-		super.hit(dmg, from);
 	}
 
 	public function canBePushed() {
@@ -153,7 +156,6 @@ class Mob extends Character {
 
 	private function handleAggroTarget(spd:Float) {
 		if (sightCheck(aggroTarget) && distCase(hero) <= aggroRange && distCase(hero) > attackRange) {
-			// Track aggro target
 			dir = dirTo(aggroTarget);
 			dx += spd * 1.2 * dir * tmod;
 		} else if (sightCheck(aggroTarget) && distCase(hero) <= aggroRange && distCase(hero) <= attackRange) {
@@ -162,7 +164,6 @@ class Mob extends Character {
 				attack();
 			}
 		} else {
-			// Wander aggressively
 			if (!cd.hasSetS("aggroSearch", rnd(0.5, 0.9))) {
 				dir *= -1;
 				cd.setS("aggroWander", rnd(0.1, 0.4));

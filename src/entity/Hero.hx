@@ -224,7 +224,7 @@ class Hero extends Character {
 			camera.bumpAng(-angToMouse(), rnd(1, 2));
 			camera.shakeS(0.3, 0.1);
 		} else if (bounceMul >= 1) {
-			fx.moonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
+			fx.moonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 15);
 			camera.bumpAng(-angToMouse(), rnd(0.75, 1));
 			camera.shakeS(0.3, 0.075);
 		} else {
