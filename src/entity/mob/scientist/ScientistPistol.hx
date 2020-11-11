@@ -27,8 +27,8 @@ class ScientistPistol extends Mob {
 
 	private function spawnPrimaryBullet(damage:Int = 1, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
 		setSquashX(0.85);
-		var bulletX = centerX;
-		var bulletY = centerY - 3;
+		var bulletX = centerX + (dir * 3);
+		var bulletY = centerY - 6;
 		var angToTarget = angTo(aggroTarget);
 		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(angToTarget);
 		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToTarget);
