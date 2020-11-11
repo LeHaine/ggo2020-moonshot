@@ -1,11 +1,16 @@
-package entity.mob;
+package entity.mob.scientist;
 
-class Scientist extends Mob {
+class ScientistPistol extends Mob {
+	private var targetAggroed:Bool;
+
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
 		attackRange = 10;
-		spr.anim.registerStateAnim("scientistIdleGunDown", 0);
+		spr.anim.registerStateAnim("scientistIdle", 0);
+		spr.anim.registerStateAnim("scientistIdleGunDown", 1, () -> targetAggroed && aggroTarget == null);
+		spr.anim.registerStateAnim("scientistIdleGunUp", 2, () -> targetAggroed && aggroTarget != null);
+		spr.anim.registerStateAnim("scientistRunGun", 5, 2.5, () -> targetAggroed && M.fabs(dx) >= 0.04 * tmod);
 	}
 
 	override function hit(dmg:Int, from:Null<Entity>) {
@@ -33,7 +38,10 @@ class Scientist extends Mob {
 		return bullet;
 	}
 
-	override function onTargetAggroed() {}
+	override function onTargetAggroed() {
+		spr.anim.playOverlap("scientistGunDraw");
+		targetAggroed = true;
+	}
 
 	override function performBusyWork() {}
 

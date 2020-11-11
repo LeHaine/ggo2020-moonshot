@@ -237,6 +237,6 @@ class Mob extends Character {
 
 	override function postUpdate() {
 		super.postUpdate();
-		spr.anim.setGlobalSpeed(rnd(0.1, 0.3));
+		spr.anim.setGlobalSpeed(rnd(0.15, 0.25));
 	}
 }
