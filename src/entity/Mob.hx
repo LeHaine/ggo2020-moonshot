@@ -15,10 +15,27 @@ class Mob extends Character {
 	var origin:CPoint;
 	var patrolTarget:Null<CPoint>;
 	var aggroTarget:Null<Entity>;
-	var attackCooldown = 1.2;
+
 	var initialAttackCooldown = rnd(1, 2);
+	var attackCdVariance = 0.25;
+	var attackCd:Float;
+	var baseAttackCooldown(default, set):Float;
+
+	inline function set_baseAttackCooldown(v:Float) {
+		attackCd = rnd(-attackCdVariance, attackCdVariance) * v + v;
+		return baseAttackCooldown = v;
+	}
+
 	var shouldSpawnDeadBody = true;
-	var aggroRange = 15;
+	var baseAggroRange(default, set):Float;
+	var aggroRangeVariance = 0.15;
+
+	inline function set_baseAggroRange(v:Float) {
+		aggroRange = rnd(-aggroRangeVariance, aggroRangeVariance) * v + v;
+		return baseAggroRange = v;
+	}
+
+	var aggroRange:Float;
 	var attackRange = 8;
 
 	public var defense = 0;
@@ -35,6 +52,9 @@ class Mob extends Character {
 
 		origin = makePoint();
 		patrolTarget = data.f_patrol == null ? null : new CPoint(data.f_patrol.cx, data.f_patrol.cy);
+
+		baseAttackCooldown = 1.2;
+		baseAggroRange = 15;
 	}
 
 	override function hit(dmg:Int, from:Null<Entity>) {
@@ -141,7 +161,7 @@ class Mob extends Character {
 			dx += spd * 1.2 * dir * tmod;
 		} else if (sightCheck(aggroTarget) && distCase(hero) <= aggroRange && distCase(hero) <= attackRange) {
 			dir = dirTo(aggroTarget);
-			if (!cd.hasSetS("attackCooldown", attackCooldown) && !cd.has("initialAttackCooldown")) {
+			if (!cd.hasSetS("attackCooldown", attackCd) && !cd.has("initialAttackCooldown")) {
 				attack();
 			}
 		} else {
