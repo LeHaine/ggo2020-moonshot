@@ -997,7 +997,8 @@
 						}
 					] },
 					{ "__identifier": "ModStation", "__grid": [30,19], "__tile": null, "defUid": 69, "px": [488,320], "fieldInstances": [] },
-					{ "__identifier": "Mob", "__grid": [18,19], "__tile": null, "defUid": 24, "px": [296,320], "fieldInstances": [
+					{ "__identifier": "Hero", "__grid": [7,19], "__tile": null, "defUid": 20, "px": [120,320], "fieldInstances": [] },
+					{ "__identifier": "Mob", "__grid": [17,19], "__tile": null, "defUid": 24, "px": [280,320], "fieldInstances": [
 						{
 							"__identifier": "type",
 							"__value": "Scientist",
@@ -1011,12 +1012,12 @@
 						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
 						{
 							"__identifier": "patrol",
-							"__value": { "cx": 25, "cy": 19 },
+							"__value": { "cx": 23, "cy": 19 },
 							"__type": "Point",
 							"defUid": 83,
 							"realEditorValues": [{
 								"id": "V_String",
-								"params": ["25,19"]
+								"params": ["23,19"]
 							}]
 						},
 						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
@@ -1030,8 +1031,7 @@
 								"params": ["FixedPatrol"]
 							}]
 						}
-					] },
-					{ "__identifier": "Hero", "__grid": [7,19], "__tile": null, "defUid": 20, "px": [120,320], "fieldInstances": [] }
+					] }
 				]
 			},
 			{
