@@ -55,6 +55,9 @@ class Bullet extends ScaledEntity {
 		super.onTouch(from);
 
 		if (from != owner && !from.is(Bullet) && !targetsPierced.contains(from)) {
+			if (from.is(Mob) && owner.is(Mob)) {
+				return;
+			}
 			from.hit(damage, this);
 			var didPierce = rnd(0, 1) <= pierceChance;
 			if (targetsToPierce <= 0 && !didPierce) {

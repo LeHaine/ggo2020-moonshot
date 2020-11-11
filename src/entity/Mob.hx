@@ -73,9 +73,6 @@ class Mob extends Character {
 		if (from != null) {
 			if (from.is(Bullet)) {
 				var bullet = cast(from, Bullet);
-				if (bullet.owner.is(Mob)) {
-					return;
-				}
 				fx.gibs(centerX, centerY, -dirTo(bullet.owner));
 				bump(-dirTo(bullet.owner) * rnd(0.06, 0.12), -rnd(0.04, 0.08));
 				aggro(hero);
