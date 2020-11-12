@@ -197,7 +197,7 @@ class Hero extends Character {
 
 	private function spawnPrimaryBullet(damage:Int = 1, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
 		setSquashX(0.85);
-		var bulletX = centerX;
+		var bulletX = centerX + (dir * 2);
 		var bulletY = centerY - 3;
 		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(angToMouse());
 		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToMouse());
