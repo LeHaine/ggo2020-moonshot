@@ -31,6 +31,8 @@ class Hero extends Character {
 		ca = Main.ME.controller.createAccess("hero");
 		ca.setLeftDeadZone(0.2);
 
+		initLife(10);
+
 		createChargeStrongShotBar();
 		registerHeroAnimations();
 	}
