@@ -1,5 +1,7 @@
 package entity;
 
+import ui.Bar;
+
 enum Body {
 	Head;
 	Torso;
@@ -42,6 +44,8 @@ class Mob extends Character {
 	public var defense = 0;
 	public var damage = 1;
 
+	var healthBar:Bar;
+
 	public function new(data:World.Entity_Mob) {
 		super(data.cx, data.cy);
 		ALL.push(this);
@@ -60,6 +64,7 @@ class Mob extends Character {
 
 	override function hit(dmg:Int, from:Null<Entity>) {
 		super.hit(dmg, from);
+		showHealth();
 		if (!isAlive()) {
 			return;
 		}
@@ -230,14 +235,47 @@ class Mob extends Character {
 
 	override function onFallDamage(dmg:Int) {
 		super.onFallDamage(dmg);
+		showHealth();
 		if (life <= 0) {
 			shouldSpawnDeadBody = false;
 			//	fx.fallBloodSplatter(centerX, centerY);
 		}
 	}
 
+	public function showHealth() {
+		renderHealthBar();
+		healthBar.alpha = 1;
+	}
+
+	public function renderHealthBar() {
+		if (healthBar == null) {
+			healthBar = new Bar(10, 2, 0xFF0000);
+			healthBar.enableOldValue(0xFF0000);
+			game.scroller.add(healthBar, Const.DP_FRONT);
+			healthBar.alpha = 0;
+		}
+
+		healthBar.set(life / maxLife, 1);
+	}
+
 	override function postUpdate() {
 		super.postUpdate();
 		spr.anim.setGlobalSpeed(rnd(0.15, 0.25));
+
+		if (healthBar != null) {
+			healthBar.x = Std.int(spr.x - healthBar.outerWidth * 0.5);
+			healthBar.y = Std.int(spr.y - hei * 1.35 - healthBar.outerHeight);
+			if (!cd.has("showhealthBar")) {
+				healthBar.alpha += ((life < maxLife ? 0.3 : 0) - healthBar.alpha) * 0.03;
+			}
+		}
+	}
+
+	override function dispose() {
+		super.dispose();
+		if (healthBar != null) {
+			healthBar.remove();
+			healthBar = null;
+		}
 	}
 }
