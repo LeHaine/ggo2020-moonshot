@@ -9,7 +9,7 @@ class Hero extends Character {
 	public var targetsToPierce = 0;
 	public var projectiles = 1;
 	public var damageMul = 1.;
-	public var shotsPerSecond = 5.;
+	public var shotsPerSecond = 2.;
 	public var accuracy = 2.;
 	public var chargeTime = 1.5; // secondary strong shot charge time
 	public var maxCharge = 2; // secondary strong shot max charge
