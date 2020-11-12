@@ -6,7 +6,7 @@ class ScientistStun extends Mob {
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
-		attackRange = 10;
+		attackRange = 5;
 		spr.anim.registerStateAnim("scientistStunIdle", 0);
 		spr.anim.registerStateAnim("scientistStunIdleGunDown", 1, () -> targetAggroed && aggroTarget == null);
 		spr.anim.registerStateAnim("scientistStunIdleGunUp", 2, () -> targetAggroed && aggroTarget != null);

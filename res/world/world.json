@@ -909,7 +909,7 @@
 				{ "id": "Freeze", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Poison", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "b79433ade8618efb134e5ef3fd65b2a3" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "88d390eeb99d8c710b8fda479818fef6" },
 			{ "identifier": "LevelMark", "uid": 22, "values": [
 				{ "id": "Grab", "tileId": null, "__tileSrcRect": null },
 				{ "id": "GrabLeft", "tileId": null, "__tileSrcRect": null },
@@ -918,13 +918,17 @@
 				{ "id": "PlatformEndLeft", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PlatformEndRight", "tileId": null, "__tileSrcRect": null },
 				{ "id": "SmallStep", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "b79433ade8618efb134e5ef3fd65b2a3" },
-			{ "identifier": "MobTypes", "uid": 25, "values": [{ "id": "Scientist", "tileId": null, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "b79433ade8618efb134e5ef3fd65b2a3" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "88d390eeb99d8c710b8fda479818fef6" },
+			{ "identifier": "MobTypes", "uid": 25, "values": [
+				{ "id": "Scientist_Hammer", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Scientist_Pistol", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Scientist_Stun", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "88d390eeb99d8c710b8fda479818fef6" },
 			{ "identifier": "PatrolTypes", "uid": 85, "values": [
 				{ "id": "AutoPatrol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "BusyWork", "tileId": null, "__tileSrcRect": null },
 				{ "id": "FixedPatrol", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "b79433ade8618efb134e5ef3fd65b2a3" }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "88d390eeb99d8c710b8fda479818fef6" }
 		]
 	},
 	"levels": [{
@@ -954,12 +958,12 @@
 					{ "__identifier": "Mob", "__grid": [33,16], "__tile": null, "defUid": 24, "px": [536,272], "fieldInstances": [
 						{
 							"__identifier": "type",
-							"__value": "Scientist",
+							"__value": "Scientist_Hammer",
 							"__type": "ExternEnum.MobTypes",
 							"defUid": 26,
 							"realEditorValues": [{
 								"id": "V_String",
-								"params": ["Scientist"]
+								"params": ["Scientist_Hammer"]
 							}]
 						},
 						{
@@ -985,12 +989,12 @@
 					{ "__identifier": "Mob", "__grid": [42,19], "__tile": null, "defUid": 24, "px": [680,320], "fieldInstances": [
 						{
 							"__identifier": "type",
-							"__value": "Scientist",
+							"__value": "Scientist_Hammer",
 							"__type": "ExternEnum.MobTypes",
 							"defUid": 26,
 							"realEditorValues": [{
 								"id": "V_String",
-								"params": ["Scientist"]
+								"params": ["Scientist_Hammer"]
 							}]
 						},
 						{
@@ -1018,12 +1022,12 @@
 					{ "__identifier": "Mob", "__grid": [17,19], "__tile": null, "defUid": 24, "px": [280,320], "fieldInstances": [
 						{
 							"__identifier": "type",
-							"__value": "Scientist",
+							"__value": "Scientist_Pistol",
 							"__type": "ExternEnum.MobTypes",
 							"defUid": 26,
 							"realEditorValues": [{
 								"id": "V_String",
-								"params": ["Scientist"]
+								"params": ["Scientist_Pistol"]
 							}]
 						},
 						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
@@ -1046,6 +1050,31 @@
 							"realEditorValues": [{
 								"id": "V_String",
 								"params": ["FixedPatrol"]
+							}]
+						}
+					] },
+					{ "__identifier": "Mob", "__grid": [14,19], "__tile": null, "defUid": 24, "px": [232,320], "fieldInstances": [
+						{
+							"__identifier": "type",
+							"__value": "Scientist_Hammer",
+							"__type": "ExternEnum.MobTypes",
+							"defUid": 26,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Scientist_Hammer"]
+							}]
+						},
+						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
+						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
+						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+						{
+							"__identifier": "patrolType",
+							"__value": "AutoPatrol",
+							"__type": "ExternEnum.PatrolTypes",
+							"defUid": 86,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["AutoPatrol"]
 							}]
 						}
 					] }

@@ -29,6 +29,7 @@ class Mob extends Character {
 	var shouldSpawnDeadBody = true;
 	var baseAggroRange(default, set):Float;
 	var aggroRangeVariance = 0.15;
+	var baseSpd = 0.01;
 
 	inline function set_baseAggroRange(v:Float) {
 		aggroRange = rnd(-aggroRangeVariance, aggroRangeVariance) * v + v;
@@ -111,7 +112,7 @@ class Mob extends Character {
 		checkToAggroHero();
 
 		if (!controlsLocked()) {
-			var spd = 0.01 * (0.2 + 0.8 * cd.getRatio("airControl"));
+			var spd = baseSpd * (0.2 + 0.8 * cd.getRatio("airControl"));
 
 			if (aggroTarget != null) {
 				handleAggroTarget(spd);

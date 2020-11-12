@@ -84,9 +84,13 @@ class Game extends Process {
 		}
 
 		for (mob in level.data.l_Entities.all_Mob) {
-			switch (mob.f_type) {
-				case Scientist:
+			switch mob.f_type {
+				case Scientist_Pistol:
 					new entity.mob.scientist.ScientistPistol(mob);
+				case Scientist_Stun:
+					new entity.mob.scientist.ScientistStun(mob);
+				case Scientist_Hammer:
+					new entity.mob.scientist.ScientistHammer(mob);
 			}
 		}
 

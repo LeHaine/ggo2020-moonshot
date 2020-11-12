@@ -45,6 +45,6 @@ class Assets {
 		tiles.defineAnim("scientistHammerRunHammer", "0-3(3)");
 		tiles.defineAnim("scientistHammerIdle", "0(10), 1(15)");
 		tiles.defineAnim("scientistHammerIdleHammer", "0(10), 1(15)");
-		tiles.defineAnim("scientistHammerSwing", "0(2), 1, 2(4)");
+		tiles.defineAnim("scientistHammerSwing", "0(2), 1, 2(8)");
 	}
 }

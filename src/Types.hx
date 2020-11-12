@@ -7,7 +7,9 @@ enum Affect {
 }
 
 enum MobTypes {
-	Scientist;
+	Scientist_Pistol;
+	Scientist_Stun;
+	Scientist_Hammer;
 }
 
 enum LevelMark {
