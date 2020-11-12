@@ -43,7 +43,12 @@ class Game extends Process {
 
 	public var hero:entity.Hero;
 
-	public var money:Int = 0;
+	public var money(default, set):Int = 0;
+
+	inline function set_money(v) {
+		hud.invalidate();
+		return money = v;
+	}
 
 	public function new() {
 		super(Main.ME);

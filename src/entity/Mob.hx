@@ -116,7 +116,7 @@ class Mob extends Character {
 		checkIfAggroLost();
 		checkToAggroHero();
 
-		if (!controlsLocked()) {
+		if (!controlsLocked() && !hasAffect(Stun)) {
 			var spd = baseSpd * (0.2 + 0.8 * cd.getRatio("airControl"));
 
 			if (aggroTarget != null) {

@@ -126,7 +126,7 @@ class Hero extends Character {
 	}
 
 	private function performShot() {
-		if (controlsLocked()) {
+		if (controlsLocked() || hasAffect(Stun)) {
 			return;
 		}
 		if (ca.xDown() && !cd.hasSetS("shoot", 1 / shotsPerSecond)) {
@@ -242,7 +242,7 @@ class Hero extends Character {
 	}
 
 	private function performKick() {
-		if (controlsLocked()) {
+		if (controlsLocked() || hasAffect(Stun)) {
 			return;
 		}
 
@@ -251,6 +251,7 @@ class Hero extends Character {
 				if (mob.isAlive() && distCaseX(mob) <= 1.5 && dirTo(mob) == dir && mob.isCollidable) {
 					mob.hit(1, this);
 					mob.bump(dirTo(mob) * rnd(0.1, 0.3), -rnd(0.15, 0.25));
+					mob.setAffectS(Stun, 0.2);
 				}
 			}
 			spr.anim.playOverlap("heroKick", 0.22);
@@ -259,7 +260,7 @@ class Hero extends Character {
 	}
 
 	private function performRun(spd:Float) {
-		if (controlsLocked()) {
+		if (controlsLocked() || hasAffect(Stun)) {
 			return;
 		}
 		if (ca.leftDist() > 0 && !cd.has("run")) {
@@ -271,7 +272,7 @@ class Hero extends Character {
 	}
 
 	private function performJump() {
-		if (controlsLocked()) {
+		if (controlsLocked() || hasAffect(Stun)) {
 			return;
 		}
 		if (ca.aPressed() && !ca.ltDown() && canJump()) {
@@ -416,7 +417,7 @@ class Hero extends Character {
 	}
 
 	private function performDash() {
-		if (controlsLocked()) {
+		if (controlsLocked() || hasAffect(Stun)) {
 			return;
 		}
 
