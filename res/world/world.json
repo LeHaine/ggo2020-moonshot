@@ -1030,7 +1030,13 @@
 								"params": ["Scientist_Pistol"]
 							}]
 						},
-						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
+						{
+							"__identifier": "health",
+							"__value": 5,
+							"__type": "Int",
+							"defUid": 27,
+							"realEditorValues": [{ "id": "V_Int", "params": [5] }]
+						},
 						{
 							"__identifier": "patrol",
 							"__value": { "cx": 34, "cy": 19 },
@@ -1064,7 +1070,13 @@
 								"params": ["Scientist_Hammer"]
 							}]
 						},
-						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
+						{
+							"__identifier": "health",
+							"__value": 5,
+							"__type": "Int",
+							"defUid": 27,
+							"realEditorValues": [{ "id": "V_Int", "params": [5] }]
+						},
 						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
 						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
 						{
