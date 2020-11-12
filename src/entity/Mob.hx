@@ -39,7 +39,7 @@ class Mob extends Character {
 	}
 
 	var aggroRange:Float;
-	var attackRange = 8;
+	var attackRange = 8.;
 
 	public var defense = 0;
 	public var damage = 1;

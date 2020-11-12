@@ -968,10 +968,10 @@
 						},
 						{
 							"__identifier": "health",
-							"__value": 3,
+							"__value": 30,
 							"__type": "Int",
 							"defUid": 27,
-							"realEditorValues": [{ "id": "V_Int", "params": [3] }]
+							"realEditorValues": [{ "id": "V_Int", "params": [30] }]
 						},
 						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
 						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
@@ -999,10 +999,10 @@
 						},
 						{
 							"__identifier": "health",
-							"__value": 5,
+							"__value": 50,
 							"__type": "Int",
 							"defUid": 27,
-							"realEditorValues": [{ "id": "V_Int", "params": [5] }]
+							"realEditorValues": [{ "id": "V_Int", "params": [50] }]
 						},
 						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
 						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
@@ -1032,10 +1032,10 @@
 						},
 						{
 							"__identifier": "health",
-							"__value": 5,
+							"__value": 50,
 							"__type": "Int",
 							"defUid": 27,
-							"realEditorValues": [{ "id": "V_Int", "params": [5] }]
+							"realEditorValues": [{ "id": "V_Int", "params": [50] }]
 						},
 						{
 							"__identifier": "patrol",
@@ -1072,10 +1072,10 @@
 						},
 						{
 							"__identifier": "health",
-							"__value": 5,
+							"__value": 50,
 							"__type": "Int",
 							"defUid": 27,
-							"realEditorValues": [{ "id": "V_Int", "params": [5] }]
+							"realEditorValues": [{ "id": "V_Int", "params": [50] }]
 						},
 						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
 						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
@@ -1087,6 +1087,68 @@
 							"realEditorValues": [{
 								"id": "V_String",
 								"params": ["AutoPatrol"]
+							}]
+						}
+					] },
+					{ "__identifier": "Mob", "__grid": [42,8], "__tile": null, "defUid": 24, "px": [680,144], "fieldInstances": [
+						{
+							"__identifier": "type",
+							"__value": "Scientist_Hammer",
+							"__type": "ExternEnum.MobTypes",
+							"defUid": 26,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Scientist_Hammer"]
+							}]
+						},
+						{
+							"__identifier": "health",
+							"__value": 10,
+							"__type": "Int",
+							"defUid": 27,
+							"realEditorValues": [{ "id": "V_Int", "params": [10] }]
+						},
+						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
+						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+						{
+							"__identifier": "patrolType",
+							"__value": "AutoPatrol",
+							"__type": "ExternEnum.PatrolTypes",
+							"defUid": 86,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["AutoPatrol"]
+							}]
+						}
+					] },
+					{ "__identifier": "Mob", "__grid": [30,9], "__tile": null, "defUid": 24, "px": [488,160], "fieldInstances": [
+						{
+							"__identifier": "type",
+							"__value": "Scientist_Pistol",
+							"__type": "ExternEnum.MobTypes",
+							"defUid": 26,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Scientist_Pistol"]
+							}]
+						},
+						{
+							"__identifier": "health",
+							"__value": 10,
+							"__type": "Int",
+							"defUid": 27,
+							"realEditorValues": [{ "id": "V_Int", "params": [10] }]
+						},
+						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
+						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+						{
+							"__identifier": "patrolType",
+							"__value": "BusyWork",
+							"__type": "ExternEnum.PatrolTypes",
+							"defUid": 86,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["BusyWork"]
 							}]
 						}
 					] }

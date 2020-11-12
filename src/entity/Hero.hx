@@ -31,7 +31,7 @@ class Hero extends Character {
 		ca = Main.ME.controller.createAccess("hero");
 		ca.setLeftDeadZone(0.2);
 
-		initLife(10);
+		initLife(100);
 
 		createChargeStrongShotBar();
 		registerHeroAnimations();
@@ -152,7 +152,7 @@ class Hero extends Character {
 		}
 
 		var isCharging = isChargingAction("strongShot");
-		var maxDamage = 5;
+		var maxDamage = 50;
 		var maxSize = 5;
 		if (ca.yDown() && !isCharging && !cd.has("strongShot")) {
 			chargeAction("strongShot", chargeTime, () -> {
@@ -197,7 +197,7 @@ class Hero extends Character {
 		chargeStrongShotBar.visible = false;
 	}
 
-	private function spawnPrimaryBullet(damage:Int = 1, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
+	private function spawnPrimaryBullet(damage:Int = 10, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
 		setSquashX(0.85);
 		var bulletX = centerX + (dir * 2);
 		var bulletY = centerY - 3;
@@ -215,7 +215,7 @@ class Hero extends Character {
 		return bullet;
 	}
 
-	private function spawnSecondaryBullet(damage:Int = 1, size:Int = 1, bounceMul:Float = 0.) {
+	private function spawnSecondaryBullet(damage:Int = 10, size:Int = 1, bounceMul:Float = 0.) {
 		setSquashX(0.85);
 		var bulletX = centerX;
 		var bulletY = centerY - 3;

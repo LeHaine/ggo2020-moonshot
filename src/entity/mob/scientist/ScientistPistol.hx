@@ -6,6 +6,7 @@ class ScientistPistol extends Mob {
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
+		damage = 10;
 		attackRange = 10;
 		spr.anim.registerStateAnim("scientistPistolIdle", 0);
 		spr.anim.registerStateAnim("scientistPistolIdleGunDown", 1, () -> targetAggroed && aggroTarget == null);
@@ -25,15 +26,15 @@ class ScientistPistol extends Mob {
 		spawnPrimaryBullet();
 	}
 
-	private function spawnPrimaryBullet(damage:Int = 1, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
+	private function spawnPrimaryBullet() {
 		setSquashX(0.85);
 		var bulletX = centerX + (dir * 3);
 		var bulletY = centerY - 6;
 		var angToTarget = angTo(aggroTarget);
-		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(angToTarget);
-		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToTarget);
+		var dmgVariance = M.ceil(damage * 0.15);
 		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, distPx(aggroTarget));
-		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget + rnd(-5, 5) * M.DEG_RAD, damage);
+		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget + rnd(-5, 5) * M.DEG_RAD,
+			irnd(damage - dmgVariance, damage + dmgVariance));
 		bullet.damageRadiusMul = 0.15;
 		return bullet;
 	}

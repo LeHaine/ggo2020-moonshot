@@ -6,7 +6,8 @@ class ScientistHammer extends Mob {
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
-		attackRange = 2;
+		damage = 13;
+		attackRange = 2.5;
 		attackCd = 3;
 		baseSpd = 0.02;
 		spr.anim.registerStateAnim("scientistHammerIdle", 0);
@@ -23,7 +24,8 @@ class ScientistHammer extends Mob {
 			camera.bump(0, rnd(0.1, 0.15));
 			camera.shakeS(0.2, 0.5);
 			if (distCase(hero) <= attackRange) {
-				hero.hit(3, this);
+				var dmgVariance = M.ceil(damage * 0.15);
+				hero.hit(irnd(damage - dmgVariance, damage + dmgVariance), this);
 				hero.bump(0, -rnd(0.15, 0.25));
 			}
 		};
