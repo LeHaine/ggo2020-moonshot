@@ -1,23 +1,23 @@
 package entity.mob.scientist;
 
-class ScientistStung extends Mob {
+class ScientistStun extends Mob {
 	private var targetAggroed:Bool;
 
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
 		attackRange = 10;
-		spr.anim.registerStateAnim("scientistIdle", 0);
-		spr.anim.registerStateAnim("scientistIdleGunDown", 1, () -> targetAggroed && aggroTarget == null);
-		spr.anim.registerStateAnim("scientistIdleGunUp", 2, () -> targetAggroed && aggroTarget != null);
-		spr.anim.registerStateAnim("scientistRunGun", 5, 2.5, () -> targetAggroed && M.fabs(dx) >= 0.04 * tmod);
+		spr.anim.registerStateAnim("scientistStunIdle", 0);
+		spr.anim.registerStateAnim("scientistStunIdleGunDown", 1, () -> targetAggroed && aggroTarget == null);
+		spr.anim.registerStateAnim("scientistStunIdleGunUp", 2, () -> targetAggroed && aggroTarget != null);
+		spr.anim.registerStateAnim("scientistStunRunGun", 5, 2.5, () -> targetAggroed && M.fabs(dx) >= 0.04 * tmod);
 	}
 
 	override function hit(dmg:Int, from:Null<Entity>) {
 		super.hit(dmg, from);
 
 		if (isAlive()) {
-			spr.anim.playOverlap("scientistHit", 0.66);
+			spr.anim.playOverlap("scientistStunHit", 0.66);
 		}
 	}
 
@@ -39,7 +39,7 @@ class ScientistStung extends Mob {
 	}
 
 	override function onTargetAggroed() {
-		spr.anim.playOverlap("scientistGunDraw");
+		spr.anim.playOverlap("scientistStunGunDraw");
 		targetAggroed = true;
 	}
 
@@ -47,6 +47,6 @@ class ScientistStung extends Mob {
 
 	override function onDie() {
 		super.onDie();
-		new DeadBody(this, "scientist");
+		new DeadBody(this, "scientistStun");
 	}
 }

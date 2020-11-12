@@ -29,10 +29,22 @@ class Assets {
 		tiles.defineAnim("heroCrouchIdleGun", "0(10), 1(15)");
 		tiles.defineAnim("heroLedgeClimb", "0(1), 1(2)");
 
-		tiles.defineAnim("scientistDeathFall", "0(30), 1(9999)");
-		tiles.defineAnim("scientistRunGun", "0-3(3)");
-		tiles.defineAnim("scientistIdle", "0(10), 1(15)");
-		tiles.defineAnim("scientistIdleGunDown", "0(10), 1(15)");
-		tiles.defineAnim("scientistIdleGunUp", "0(10), 1(15)");
+		tiles.defineAnim("scientistPistolDeathFall", "0(30), 1(9999)");
+		tiles.defineAnim("scientistPistolRunGun", "0-3(3)");
+		tiles.defineAnim("scientistPistolIdle", "0(10), 1(15)");
+		tiles.defineAnim("scientistPistolIdleGunDown", "0(10), 1(15)");
+		tiles.defineAnim("scientistPistolIdleGunUp", "0(10), 1(15)");
+
+		tiles.defineAnim("scientistStunDeathFall", "0(30), 1(9999)");
+		tiles.defineAnim("scientistStunRunGun", "0-3(3)");
+		tiles.defineAnim("scientistStunIdle", "0(10), 1(15)");
+		tiles.defineAnim("scientistStunIdleGunDown", "0(10), 1(15)");
+		tiles.defineAnim("scientistStunIdleGunUp", "0(10), 1(15)");
+
+		tiles.defineAnim("scientistHammerDeathFall", "0(30), 1(9999)");
+		tiles.defineAnim("scientistHammerRunHammer", "0-3(3)");
+		tiles.defineAnim("scientistHammerIdle", "0(10), 1(15)");
+		tiles.defineAnim("scientistHammerIdleHammer", "0(10), 1(15)");
+		tiles.defineAnim("scientistHammerSwing", "0(2), 1, 2(4)");
 	}
 }

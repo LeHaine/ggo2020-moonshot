@@ -13,21 +13,21 @@ coin
   index: -1
 empty
   rotate: false
-  xy: 218, 109
+  xy: 249, 30
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 fxCircle0
   rotate: false
-  xy: 130, 74
+  xy: 129, 184
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fxDot0
   rotate: false
-  xy: 218, 113
+  xy: 249, 34
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
@@ -41,21 +41,21 @@ fxGib0
   index: -1
 fxGib1
   rotate: false
-  xy: 213, 99
+  xy: 249, 14
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxGib2
   rotate: false
-  xy: 212, 109
+  xy: 249, 24
   size: 5, 5
   orig: 5, 5
   offset: 0, 0
   index: -1
 fxImpact0
   rotate: false
-  xy: 130, 91
+  xy: 145, 206
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -97,77 +97,77 @@ fxTail0
   index: -1
 heroCrouchIdleGun0
   rotate: false
-  xy: 146, 91
+  xy: 241, 112
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchIdleGun1
   rotate: false
-  xy: 164, 89
+  xy: 198, 103
   size: 14, 13
   orig: 14, 13
   offset: 0, 0
   index: -1
 heroCrouchRun0
   rotate: false
-  xy: 130, 101
+  xy: 241, 125
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchRun1
   rotate: false
-  xy: 145, 104
+  xy: 241, 138
   size: 14, 11
   orig: 14, 11
   offset: 0, 0
   index: -1
 heroCrouchRun2
   rotate: false
-  xy: 130, 114
+  xy: 149, 94
   size: 14, 11
   orig: 14, 11
   offset: 0, 0
   index: -1
 heroCrouchRun3
   rotate: false
-  xy: 238, 124
+  xy: 176, 197
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
   index: -1
 heroCrouchShoot0
   rotate: false
-  xy: 161, 103
+  xy: 198, 117
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroDash0
   rotate: false
-  xy: 179, 98
+  xy: 177, 181
   size: 16, 15
   orig: 16, 15
   offset: 0, 0
   index: -1
 heroIdle0
   rotate: false
-  xy: 213, 46
+  xy: 213, 86
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
   index: -1
 heroIdle1
   rotate: false
-  xy: 245, 26
+  xy: 245, 52
   size: 8, 19
   orig: 8, 19
   offset: 0, 0
   index: -1
 heroIdleGun0
   rotate: false
-  xy: 198, 62
+  xy: 164, 70
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
@@ -181,203 +181,441 @@ heroIdleGun1
   index: -1
 heroKick0
   rotate: false
-  xy: 240, 86
+  xy: 240, 150
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
   index: -1
 heroLedgeClimb0
   rotate: false
-  xy: 176, 114
+  xy: 148, 126
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 heroLedgeClimb1
   rotate: false
-  xy: 130, 126
+  xy: 146, 183
   size: 13, 16
   orig: 13, 16
   offset: 0, 0
   index: -1
 heroRunGun0
   rotate: false
-  xy: 130, 54
+  xy: 162, 129
   size: 16, 19
   orig: 16, 19
   offset: 0, 0
   index: -1
 heroRunGun1
   rotate: false
-  xy: 196, 81
+  xy: 239, 169
   size: 16, 18
   orig: 16, 18
   offset: 0, 0
   index: -1
 heroRunGun2
   rotate: false
-  xy: 196, 100
+  xy: 160, 187
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
   index: -1
 heroRunGun3
   rotate: false
-  xy: 147, 54
+  xy: 179, 142
   size: 16, 19
   orig: 16, 19
   offset: 0, 0
   index: -1
 heroStandShoot0
   rotate: false
-  xy: 198, 62
+  xy: 164, 70
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 heroStandShoot1
   rotate: false
-  xy: 164, 70
+  xy: 164, 89
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 keyE
   rotate: false
-  xy: 245, 14
+  xy: 245, 40
   size: 10, 11
   orig: 10, 11
   offset: 0, 0
   index: -1
 modStation
   rotate: false
-  xy: 147, 74
+  xy: 195, 171
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 pixel
   rotate: false
-  xy: 254, 26
+  xy: 253, 30
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
-scientistDeadBody0
+scientistHammerDeadBody0
   rotate: false
-  xy: 224, 8
+  xy: 224, 22
   size: 24, 5
   orig: 24, 5
   offset: 0, 0
   index: -1
-scientistDeathBounce0
+scientistHammerDeathBounce0
   rotate: false
   xy: 224, 1
   size: 24, 6
   orig: 24, 6
   offset: 0, 0
   index: -1
-scientistDeathFall0
+scientistHammerDeathFall0
   rotate: false
-  xy: 222, 92
+  xy: 130, 127
   size: 16, 18
   orig: 16, 18
   offset: 0, 0
   index: -1
-scientistDeathFall1
+scientistHammerDeathFall1
   rotate: false
-  xy: 179, 62
+  xy: 222, 117
   size: 18, 15
   orig: 18, 15
   offset: 0, 0
   index: -1
-scientistGunDraw0
+scientistHammerHammerDraw0
   rotate: false
-  xy: 145, 116
-  size: 13, 18
-  orig: 13, 18
-  offset: 0, 0
-  index: -1
-scientistHit0
-  rotate: false
-  xy: 222, 111
-  size: 15, 18
-  orig: 15, 18
-  offset: 0, 0
-  index: -1
-scientistIdle0
-  rotate: false
-  xy: 213, 65
-  size: 8, 18
-  orig: 8, 18
-  offset: 0, 0
-  index: -1
-scientistIdle1
-  rotate: false
-  xy: 244, 46
-  size: 8, 19
-  orig: 8, 19
-  offset: 0, 0
-  index: -1
-scientistIdleGunDown0
-  rotate: false
-  xy: 145, 116
-  size: 13, 18
-  orig: 13, 18
-  offset: 0, 0
-  index: -1
-scientistIdleGunDown1
-  rotate: false
-  xy: 242, 66
-  size: 13, 19
-  orig: 13, 19
-  offset: 0, 0
-  index: -1
-scientistIdleGunUp0
-  rotate: false
-  xy: 239, 105
+  xy: 161, 149
   size: 16, 18
   orig: 16, 18
   offset: 0, 0
   index: -1
-scientistIdleGunUp1
+scientistHammerHit0
   rotate: false
-  xy: 179, 78
-  size: 16, 19
-  orig: 16, 19
+  xy: 163, 108
+  size: 15, 20
+  orig: 15, 20
   offset: 0, 0
   index: -1
-scientistRunGun0
+scientistHammerIdle0
   rotate: false
-  xy: 224, 14
-  size: 20, 19
-  orig: 20, 19
+  xy: 213, 105
+  size: 8, 18
+  orig: 8, 18
   offset: 0, 0
   index: -1
-scientistRunGun1
+scientistHammerIdle1
   rotate: false
-  xy: 222, 54
+  xy: 213, 46
+  size: 8, 19
+  orig: 8, 19
+  offset: 0, 0
+  index: -1
+scientistHammerIdleHammer0
+  rotate: false
+  xy: 242, 92
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1
+scientistHammerIdleHammer1
+  rotate: false
+  xy: 199, 62
+  size: 13, 20
+  orig: 13, 20
+  offset: 0, 0
+  index: -1
+scientistHammerRunHammer0
+  rotate: false
+  xy: 179, 121
+  size: 17, 20
+  orig: 17, 20
+  offset: 0, 0
+  index: -1
+scientistHammerRunHammer1
+  rotate: false
+  xy: 150, 54
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1
+scientistHammerRunHammer2
+  rotate: false
+  xy: 199, 83
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1
+scientistHammerRunHammer3
+  rotate: false
+  xy: 197, 130
+  size: 15, 20
+  orig: 15, 20
+  offset: 0, 0
+  index: -1
+scientistHammerSwing0
+  rotate: false
+  xy: 130, 54
   size: 19, 18
   orig: 19, 18
   offset: 0, 0
   index: -1
-scientistRunGun2
+scientistHammerSwing1
   rotate: false
-  xy: 222, 73
+  xy: 179, 101
+  size: 18, 19
+  orig: 18, 19
+  offset: 0, 0
+  index: -1
+scientistHammerSwing2
+  rotate: false
+  xy: 222, 100
+  size: 18, 16
+  orig: 18, 16
+  offset: 0, 0
+  index: -1
+scientistPistolDeadBody0
+  rotate: false
+  xy: 224, 28
+  size: 24, 5
+  orig: 24, 5
+  offset: 0, 0
+  index: -1
+scientistPistolDeathBounce0
+  rotate: false
+  xy: 224, 8
+  size: 24, 6
+  orig: 24, 6
+  offset: 0, 0
+  index: -1
+scientistPistolDeathFall0
+  rotate: false
+  xy: 178, 162
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
+scientistPistolDeathFall1
+  rotate: false
+  xy: 222, 133
+  size: 18, 15
+  orig: 18, 15
+  offset: 0, 0
+  index: -1
+scientistPistolGunDraw0
+  rotate: false
+  xy: 147, 145
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
+scientistPistolHit0
+  rotate: false
+  xy: 129, 201
+  size: 15, 18
+  orig: 15, 18
+  offset: 0, 0
+  index: -1
+scientistPistolIdle0
+  rotate: false
+  xy: 213, 124
+  size: 8, 18
+  orig: 8, 18
+  offset: 0, 0
+  index: -1
+scientistPistolIdle1
+  rotate: false
+  xy: 243, 72
+  size: 8, 19
+  orig: 8, 19
+  offset: 0, 0
+  index: -1
+scientistPistolIdleGunDown0
+  rotate: false
+  xy: 147, 145
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
+scientistPistolIdleGunDown1
+  rotate: false
+  xy: 150, 74
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1
+scientistPistolIdleGunUp0
+  rotate: false
+  xy: 129, 146
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
+scientistPistolIdleGunUp1
+  rotate: false
+  xy: 196, 151
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+scientistPistolRunGun0
+  rotate: false
+  xy: 224, 40
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+scientistPistolRunGun1
+  rotate: false
+  xy: 130, 73
+  size: 19, 18
+  orig: 19, 18
+  offset: 0, 0
+  index: -1
+scientistPistolRunGun2
+  rotate: false
+  xy: 222, 149
   size: 17, 18
   orig: 17, 18
   offset: 0, 0
   index: -1
-scientistRunGun3
+scientistPistolRunGun3
   rotate: false
-  xy: 224, 34
+  xy: 179, 62
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: -1
-scientistStandShoot0
+scientistPistolStandShoot0
   rotate: false
-  xy: 239, 105
+  xy: 129, 146
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
+scientistStunDeadBody0
+  rotate: false
+  xy: 224, 34
+  size: 24, 5
+  orig: 24, 5
+  offset: 0, 0
+  index: -1
+scientistStunDeathBounce0
+  rotate: false
+  xy: 224, 15
+  size: 24, 6
+  orig: 24, 6
+  offset: 0, 0
+  index: -1
+scientistStunDeathFall0
+  rotate: false
+  xy: 129, 165
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
+scientistStunDeathFall1
+  rotate: false
+  xy: 130, 92
+  size: 18, 15
+  orig: 18, 15
+  offset: 0, 0
+  index: -1
+scientistStunGunDraw0
+  rotate: false
+  xy: 146, 164
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
+scientistStunHit0
+  rotate: false
+  xy: 194, 188
+  size: 15, 18
+  orig: 15, 18
+  offset: 0, 0
+  index: -1
+scientistStunIdle0
+  rotate: false
+  xy: 213, 143
+  size: 8, 18
+  orig: 8, 18
+  offset: 0, 0
+  index: -1
+scientistStunIdle1
+  rotate: false
+  xy: 213, 66
+  size: 8, 19
+  orig: 8, 19
+  offset: 0, 0
+  index: -1
+scientistStunIdleGunDown0
+  rotate: false
+  xy: 146, 164
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
+scientistStunIdleGunDown1
+  rotate: false
+  xy: 149, 106
+  size: 13, 19
+  orig: 13, 19
+  offset: 0, 0
+  index: -1
+scientistStunIdleGunUp0
+  rotate: false
+  xy: 160, 168
+  size: 16, 18
+  orig: 16, 18
+  offset: 0, 0
+  index: -1
+scientistStunIdleGunUp1
+  rotate: false
+  xy: 222, 168
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+scientistStunRunGun0
+  rotate: false
+  xy: 222, 60
+  size: 20, 19
+  orig: 20, 19
+  offset: 0, 0
+  index: -1
+scientistStunRunGun1
+  rotate: false
+  xy: 179, 82
+  size: 19, 18
+  orig: 19, 18
+  offset: 0, 0
+  index: -1
+scientistStunRunGun2
+  rotate: false
+  xy: 130, 108
+  size: 17, 18
+  orig: 17, 18
+  offset: 0, 0
+  index: -1
+scientistStunRunGun3
+  rotate: false
+  xy: 222, 80
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+scientistStunStandShoot0
+  rotate: false
+  xy: 160, 168
   size: 16, 18
   orig: 16, 18
   offset: 0, 0
@@ -391,14 +629,14 @@ splitShotIcon
   index: -1
 uiBar
   rotate: false
-  xy: 212, 105
+  xy: 249, 20
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 213, 93
+  xy: 212, 171
   size: 8, 5
   orig: 8, 5
   offset: 0, 0
@@ -412,7 +650,7 @@ uiButton
   index: -1
 uiDownArrow
   rotate: false
-  xy: 213, 84
+  xy: 213, 162
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
