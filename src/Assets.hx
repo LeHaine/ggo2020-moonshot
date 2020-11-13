@@ -46,5 +46,7 @@ class Assets {
 		tiles.defineAnim("scientistHammerIdle", "0(10), 1(15)");
 		tiles.defineAnim("scientistHammerIdleHammer", "0(10), 1(15)");
 		tiles.defineAnim("scientistHammerSwing", "0(2), 1, 2(8)");
+
+		tiles.defineAnim("stunEffectIcon", "0-1(8)");
 	}
 }

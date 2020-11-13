@@ -35,6 +35,7 @@ class Character extends ScaledEntity {
 			return;
 		}
 		var icon = Assets.tiles.h_get(affectToIcon[k], affectIcons);
+		icon.anim.playAndLoop(affectToIcon[k]);
 		currentAffectIcons[k] = icon;
 	}
 
