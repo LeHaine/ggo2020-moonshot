@@ -67,6 +67,10 @@ class Hero extends Character {
 			cd.setS("airControl", 10);
 		}
 
+		if (!isConscious()) {
+			return;
+		}
+
 		performInteraction();
 		performCrouch();
 		performShot();

@@ -110,6 +110,9 @@ class Mob extends Character {
 			cd.setS("airControl", 0.5);
 		}
 
+		if (!isConscious()) {
+			return;
+		}
 		checkIfAggroLost();
 		checkToAggroHero();
 
