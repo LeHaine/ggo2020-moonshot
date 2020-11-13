@@ -54,6 +54,9 @@ class Bullet extends ScaledEntity {
 
 	override function onTouch(from:Entity) {
 		super.onTouch(from);
+		if (from.is(CinematicTrigger) || from.is(EndLevel)) {
+			return;
+		}
 
 		if (from != owner && !from.is(Bullet) && !targetsPierced.contains(from)) {
 			if (from.is(Mob) && owner.is(Mob)) {
