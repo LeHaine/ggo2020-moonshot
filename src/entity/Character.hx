@@ -96,7 +96,7 @@ class Character extends ScaledEntity {
 
 		affectIcons.x = Std.int(spr.x - affectIcons.outerWidth * 0.5);
 		if (healthBar != null) {
-			affectIcons.y = Std.int(healthBar.y - 5 - affectIcons.outerHeight);
+			affectIcons.y = Std.int(healthBar.y - 2 - affectIcons.outerHeight);
 		} else {
 			affectIcons.y = Std.int(spr.y - hei * 1.35 - affectIcons.outerHeight);
 		}
