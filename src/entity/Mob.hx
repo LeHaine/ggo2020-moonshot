@@ -217,17 +217,7 @@ class Mob extends Character {
 	override function onTouchGround(fallHeight:Float) {
 		super.onTouchGround(fallHeight);
 
-		var impact = M.fmin(1, fallHeight / 6);
-		dx *= (1 - impact) * 0.5;
-		setSquashY(1 - impact * 0.7);
-
-		if (fallHeight >= 9) {
-			fallDamage(Std.int(fallHeight));
-			lockControlS(0.3);
-			cd.setS("heavyLand", 0.3);
-		} else if (fallHeight >= 3) {
-			lockControlS(0.03 * impact);
-		}
+		fallDamage(Std.int(fallHeight));
 	}
 
 	override function onFallDamage(dmg:Int) {
