@@ -70,7 +70,7 @@ class Game extends Process {
 		startLevel(0);
 	}
 
-	function startLevel(idx:Int) {
+	public function startLevel(idx:Int) {
 		// Cleanup
 		if (level != null)
 			level.destroy();
@@ -83,6 +83,10 @@ class Game extends Process {
 		level = new Level(idx, world.levels[idx]);
 
 		// Create entities here
+
+		for (endLevel in level.data.l_Entities.all_EndLevel) {
+			new entity.EndLevel(endLevel);
+		}
 
 		for (station in level.data.l_Entities.all_ModStation) {
 			new entity.ModStation(station);
@@ -106,6 +110,10 @@ class Game extends Process {
 		fx.clear();
 		hud.invalidate();
 		Process.resizeAll();
+	}
+
+	public function startNextLevel() {
+		startLevel(level.idx + 1);
 	}
 
 	function restartLevel() {

@@ -17,6 +17,11 @@ class ModStation extends ScaledEntity {
 		interactable.follow(this, 0, -2);
 	}
 
+	override function dispose() {
+		super.dispose();
+		interactable.destroy();
+	}
+
 	private function onItemBought() {
 		#if !debug
 		destroy();

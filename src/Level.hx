@@ -19,6 +19,7 @@ class Level extends dn.Process {
 	inline function get_hei()
 		return data.l_Collisions.cHei;
 
+	public var collisionLayers = [0, 3]; // walls, prison walls
 	public var data:World.World_Level;
 	public var idx:Int;
 
@@ -85,7 +86,7 @@ class Level extends dn.Process {
 
 	/** Return TRUE if "Collisions" layer contains a collision value **/
 	public inline function hasCollision(cx, cy):Bool {
-		return !isValid(cx, cy) ? true : data.l_Collisions.getInt(cx, cy) == 0;
+		return !isValid(cx, cy) ? true : collisionLayers.contains(data.l_Collisions.getInt(cx, cy));
 	}
 
 	public inline function hasLadder(cx, cy):Bool {
@@ -106,6 +107,7 @@ class Level extends dn.Process {
 		data.l_Background.renderInTileGroup(tg, false);
 		data.l_Details.renderInTileGroup(tg, false);
 		data.l_Details_tiles.renderInTileGroup(tg, false);
+		data.l_Extra_details.renderInTileGroup(tg, false);
 		data.l_Collisions.renderInTileGroup(tg, false);
 		data.l_CollisionDetails.renderInTileGroup(tg, false);
 	}
