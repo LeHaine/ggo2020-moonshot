@@ -220,7 +220,9 @@ class Mob extends Character {
 	override function onTouchGround(fallHeight:Float) {
 		super.onTouchGround(fallHeight);
 
-		fallDamage(Std.int(fallHeight));
+		if (fallHeight > 5) {
+			fallDamage(Std.int(fallHeight * 10));
+		}
 	}
 
 	override function onFallDamage(dmg:Int) {
