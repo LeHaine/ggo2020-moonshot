@@ -2,6 +2,7 @@ import entity.NoScaleEntity;
 
 class Camera extends dn.Process {
 	public var target:Null<Entity>;
+	public var targetPoint:Null<CPoint>;
 	public var x:Float;
 	public var y:Float;
 	public var dx:Float;
@@ -34,18 +35,44 @@ class Camera extends dn.Process {
 		targetTrackOffX = xOff;
 		targetTrackOffY = yOff;
 		target = e;
+		targetPoint = new CPoint(target.cx, target.cy, target.xr, target.yr);
+		if (immediate)
+			recenter();
+	}
+
+	public function trackPoint(point:CPoint, immediate:Bool, xOff = 0., yOff = 0.) {
+		targetTrackOffX = xOff;
+		targetTrackOffY = yOff;
+		target = null;
+		targetPoint = point;
 		if (immediate)
 			recenter();
 	}
 
 	public inline function stopTracking() {
 		target = null;
+		targetPoint = null;
 	}
 
 	public function recenter() {
+		calcTargetPoint();
+
+		if (targetPoint != null) {
+			x = targetPoint.centerX + targetTrackOffX;
+			y = targetPoint.centerY + targetTrackOffY;
+		}
+	}
+
+	private function calcTargetPoint() {
 		if (target != null) {
-			x = target.centerX + targetTrackOffX;
-			y = target.centerY + targetTrackOffY;
+			if (targetPoint == null) {
+				targetPoint = new CPoint(target.cx, target.cy, target.xr, target.yr);
+			} else {
+				targetPoint.cx = target.cx;
+				targetPoint.xr = target.xr;
+				targetPoint.cy = target.cy;
+				targetPoint.yr = target.yr;
+			}
 		}
 	}
 
@@ -64,13 +91,13 @@ class Camera extends dn.Process {
 
 	override function update() {
 		super.update();
-
-		// Follow target entity
-		if (target != null) {
+		calcTargetPoint();
+		// Follow target point
+		if (targetPoint != null) {
 			var s = 0.006;
 			var deadZone = 5;
-			var tx = target.footX + targetTrackOffX;
-			var ty = target.footY + targetTrackOffY;
+			var tx = targetPoint.footX + targetTrackOffX;
+			var ty = targetPoint.footY + targetTrackOffY;
 
 			var d = M.dist(x, y, tx, ty);
 			if (d >= deadZone) {

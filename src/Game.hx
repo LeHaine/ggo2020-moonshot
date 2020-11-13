@@ -84,6 +84,10 @@ class Game extends Process {
 
 		// Create entities here
 
+		for (e in level.data.l_Entities.all_CinematicTrigger) {
+			new entity.CinematicTrigger(e);
+		}
+
 		for (endLevel in level.data.l_Entities.all_EndLevel) {
 			new entity.EndLevel(endLevel);
 		}
@@ -105,11 +109,15 @@ class Game extends Process {
 
 		hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
 
-		camera.trackTarget(hero, true, 0, -Const.GRID * 2);
+		trackHero();
 
 		fx.clear();
 		hud.invalidate();
 		Process.resizeAll();
+	}
+
+	public function trackHero(immediate:Bool = true) {
+		camera.trackTarget(hero, immediate, 0, -Const.GRID * 2);
 	}
 
 	public function startNextLevel() {

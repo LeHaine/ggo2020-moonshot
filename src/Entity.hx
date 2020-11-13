@@ -1,3 +1,4 @@
+import dn.Cinematic;
 import entity.Bullet;
 
 class Entity {
@@ -862,7 +863,7 @@ class Entity {
 	}
 
 	public inline function controlsLocked() {
-		return destroyed || cd.has("ctrlLocked");
+		return destroyed || cd.has("ctrlLocked") || !CinematicControl.isEmpty();
 	}
 
 	public inline function lockControlS(t:Float) {

@@ -20,10 +20,15 @@ enum LevelMark {
 	PlatformEnd;
 	PlatformEndLeft;
 	PlatformEndRight;
+	CameraCinematicTarget;
 }
 
 enum PatrolTypes {
 	AutoPatrol;
 	FixedPatrol;
 	BusyWork;
+}
+
+enum CinematicId {
+	PrisonWakeup;
 }
