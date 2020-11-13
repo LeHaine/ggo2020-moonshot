@@ -134,7 +134,9 @@ class Fx extends dn.Process {
 	}
 
 	inline function collides(p:HParticle, offX = 0., offY = 0.) {
-		return level.hasCollision(Std.int((p.x + offX) / Const.GRID), Std.int((p.y + offY) / Const.GRID));
+		var x = Std.int((p.x + offX) / Const.GRID);
+		var y = Std.int((p.y + offY) / Const.GRID);
+		return level.hasCollision(x, y) || level.hasOneWayPlatform(x, y);
 	}
 
 	public function flashBangS(c:UInt, a:Float, ?t = 0.1) {
