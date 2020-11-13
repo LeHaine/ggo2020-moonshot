@@ -46,11 +46,13 @@ class Hero extends Character {
 	}
 
 	private function registerHeroAnimations() {
-		spr.anim.registerStateAnim('heroRunGun', 5, 2.5, () -> hasGun && !crouching && M.fabs(dx) >= 0.04 * tmod);
+		spr.anim.registerStateAnim('heroRunGun', 6, 2.5, () -> hasGun && !crouching && M.fabs(dx) >= 0.04 * tmod);
+		spr.anim.registerStateAnim('heroRun', 5, 2.5, () -> !hasGun && !crouching && M.fabs(dx) >= 0.04 * tmod);
 		spr.anim.registerStateAnim('heroIdle', 0, () -> !hasGun && !crouching);
 		spr.anim.registerStateAnim('heroIdleGun', 1, () -> hasGun && !crouching);
 		spr.anim.registerStateAnim('heroCrouchIdleGun', 1, () -> hasGun && crouching);
-		spr.anim.registerStateAnim('heroCrouchRun', 5, 2.5, () -> hasGun && crouching && M.fabs(dx) >= 0.04 * tmod);
+		spr.anim.registerStateAnim('heroCrouchRun', 5, 2.5, () -> !hasGun && crouching && M.fabs(dx) >= 0.04 * tmod);
+		spr.anim.registerStateAnim('heroCrouchRunGun', 6, 2.5, () -> hasGun && crouching && M.fabs(dx) >= 0.04 * tmod);
 	}
 
 	override function performGravityCheck():Bool {

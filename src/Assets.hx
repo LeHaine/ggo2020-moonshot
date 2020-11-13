@@ -23,10 +23,13 @@ class Assets {
 		tiles = dn.heaps.assets.Atlas.load("atlas/tiles.atlas");
 
 		tiles.defineAnim("heroRunGun", "0-3(3)");
+		tiles.defineAnim("heroRun", "0-3(3)");
 		tiles.defineAnim("heroIdle", "0(10), 1(15)");
 		tiles.defineAnim("heroIdleGun", "0(10), 1(15)");
 		tiles.defineAnim("heroCrouchRun", "0-3(3)");
+		tiles.defineAnim("heroCrouchRunGun", "0-3(3)");
 		tiles.defineAnim("heroCrouchIdleGun", "0(10), 1(15)");
+		tiles.defineAnim("heroCrouchIdle", "0(10), 1(15)");
 		tiles.defineAnim("heroLedgeClimb", "0(1), 1(2)");
 
 		tiles.defineAnim("scientistPistolDeathFall", "0(30), 1(9999)");
