@@ -37,13 +37,71 @@ class CinematicControl extends dn.Process {
 		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
 		cm.create({
 			game.camera.trackPoint(targetPoint, false);
+			displayText("They left the door open?");
 			end;
 			game.trackHero(false);
 			complete();
 		});
 	}
 
+	private function displayText(str:String, ?c = 0x589bd1) {
+		clearText();
+		var f = new h2d.Flow();
+		game.root.add(f, Const.DP_UI);
+		f.setScale(Const.SCALE);
+		curText = f;
+		f.borderWidth = 4;
+		f.borderHeight = 4;
+		f.layout = Vertical;
+		f.padding = 8;
+
+		var bg = new h2d.ScaleGrid(Assets.tiles.getTile("uiDialogBox"), 4, 4, f);
+		f.getProperties(bg).isAbsolute = true;
+		bg.colorMatrix = dn.Color.getColorizeMatrixH2d(c);
+
+		f.onAfterReflow = function() {
+			bg.width = f.outerWidth;
+			bg.height = f.outerHeight;
+		}
+
+		var tf = new h2d.Text(Assets.fontSmall, f);
+		tf.text = str;
+		tf.maxWidth = 250;
+		tf.textColor = 0xffffff;
+
+		f.addSpacing(16);
+		var tf = new h2d.Text(Assets.fontTiny, f);
+		if (game.ca.isGamePad()) {
+			tf.text = "[B] to continue";
+		} else {
+			tf.text = "F to continue";
+		}
+		tf.text = "F to continue";
+		tf.textColor = 0x656f93;
+		f.getProperties(tf).align(Top, Right);
+
+		f.x = Std.int(w() / Const.SCALE * 0.5 - f.outerWidth * 0.5 + rnd(0, 30, true));
+		f.y = rnd(20, 40);
+
+		tw.createS(f.x, f.x - 20 > f.x, 0.2);
+		cd.setS("skipLock", 0.2);
+	}
+
+	var curText:Null<h2d.Flow>;
+
+	private function clearText() {
+		if (curText != null) {
+			var f = curText;
+			curText = null;
+			tw.createS(f.x, f.x + 20, 0.2);
+			tw.createS(f.alpha, 0, 0.2).end(() -> {
+				f.remove();
+			});
+		}
+	}
+
 	private function complete() {
+		clearText();
 		delayer.addS(destroy, 0.3);
 	}
 
@@ -55,6 +113,13 @@ class CinematicControl extends dn.Process {
 			if (!cd.has("skipLock")) {
 				cm.signal();
 			}
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+		if (curText != null) {
+			curText.setScale(Const.SCALE);
+		}
 	}
 
 	override function onDispose() {
