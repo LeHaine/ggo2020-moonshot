@@ -7,6 +7,7 @@ class ScientistStun extends Mob {
 		super(data);
 
 		attackRange = 5;
+		attackCd = 5;
 		spr.anim.registerStateAnim("scientistStunIdle", 0);
 		spr.anim.registerStateAnim("scientistStunIdleGunDown", 1, () -> targetAggroed && aggroTarget == null);
 		spr.anim.registerStateAnim("scientistStunIdleGunUp", 2, () -> targetAggroed && aggroTarget != null);
@@ -35,6 +36,7 @@ class ScientistStun extends Mob {
 		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, distPx(aggroTarget));
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget + rnd(-5, 5) * M.DEG_RAD, damage);
 		bullet.damageRadiusMul = 0.15;
+		bullet.affectsToApply.push({affect: Stun, t: 2});
 		return bullet;
 	}
 

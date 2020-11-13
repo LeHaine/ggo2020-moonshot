@@ -1019,7 +1019,7 @@
 					] },
 					{ "__identifier": "ModStation", "__grid": [41,19], "__tile": null, "defUid": 69, "px": [664,320], "fieldInstances": [] },
 					{ "__identifier": "Hero", "__grid": [18,19], "__tile": null, "defUid": 20, "px": [296,320], "fieldInstances": [] },
-					{ "__identifier": "Mob", "__grid": [28,19], "__tile": null, "defUid": 24, "px": [456,320], "fieldInstances": [
+					{ "__identifier": "Mob", "__grid": [40,19], "__tile": null, "defUid": 24, "px": [648,320], "fieldInstances": [
 						{
 							"__identifier": "type",
 							"__value": "Scientist_Pistol",
@@ -1039,12 +1039,12 @@
 						},
 						{
 							"__identifier": "patrol",
-							"__value": { "cx": 34, "cy": 19 },
+							"__value": { "cx": 36, "cy": 19 },
 							"__type": "Point",
 							"defUid": 83,
 							"realEditorValues": [{
 								"id": "V_String",
-								"params": ["34,19"]
+								"params": ["36,19"]
 							}]
 						},
 						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
@@ -1059,7 +1059,7 @@
 							}]
 						}
 					] },
-					{ "__identifier": "Mob", "__grid": [25,19], "__tile": null, "defUid": 24, "px": [408,320], "fieldInstances": [
+					{ "__identifier": "Mob", "__grid": [31,19], "__tile": null, "defUid": 24, "px": [504,320], "fieldInstances": [
 						{
 							"__identifier": "type",
 							"__value": "Scientist_Hammer",
@@ -1149,6 +1149,31 @@
 							"realEditorValues": [{
 								"id": "V_String",
 								"params": ["BusyWork"]
+							}]
+						}
+					] },
+					{ "__identifier": "Mob", "__grid": [23,19], "__tile": null, "defUid": 24, "px": [376,320], "fieldInstances": [
+						{
+							"__identifier": "type",
+							"__value": "Scientist_Stun",
+							"__type": "ExternEnum.MobTypes",
+							"defUid": 26,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Scientist_Stun"]
+							}]
+						},
+						{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
+						{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
+						{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+						{
+							"__identifier": "patrolType",
+							"__value": "FixedPatrol",
+							"__type": "ExternEnum.PatrolTypes",
+							"defUid": 86,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["FixedPatrol"]
 							}]
 						}
 					] }

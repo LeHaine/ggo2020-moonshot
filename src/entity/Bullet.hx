@@ -7,6 +7,7 @@ class Bullet extends ScaledEntity {
 	public var pierceChance = 0.;
 	public var targetsToPierce = 0;
 	public var targetsPierced:Array<Entity> = [];
+	public var affectsToApply:Array<{affect:Affect, t:Float}> = [];
 
 	public var damage:Int;
 	public var damageMul = 1.;
@@ -59,6 +60,9 @@ class Bullet extends ScaledEntity {
 				return;
 			}
 			from.hit(damage, this);
+			for (affectToApply in affectsToApply) {
+				from.setAffectS(affectToApply.affect, affectToApply.t);
+			}
 			var didPierce = rnd(0, 1) < pierceChance;
 			if (targetsToPierce <= 0 && !didPierce) {
 				fx.moonShotExplosion(centerX, centerY, damageRadiusMul);
