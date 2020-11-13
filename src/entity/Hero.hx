@@ -28,6 +28,7 @@ class Hero extends Character {
 
 	public function new(e:World.Entity_Hero) {
 		super(e.cx, e.cy);
+		usesHealthBar = false;
 		ca = Main.ME.controller.createAccess("hero");
 		ca.setLeftDeadZone(0.2);
 
