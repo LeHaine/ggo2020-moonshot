@@ -31,12 +31,10 @@ class CinematicControl extends dn.Process {
 	}
 
 	private function performPrisonWakeupCinematic(trigger:World.Entity_CinematicTrigger) {
-		trace("prison cinematic");
 		if (trigger == null) {
 			return;
 		}
 		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
-		trace(targetPoint);
 		cm.create({
 			game.camera.trackPoint(targetPoint, false);
 			end;
