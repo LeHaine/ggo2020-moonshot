@@ -22,6 +22,7 @@ class DeadBody extends ScaledEntity {
 		spr.anim.registerStateAnim(sid + "DeathFall", 1, () -> !onGround);
 		spr.anim.registerStateAnim(sid + "DeadBody", 0);
 		spr.colorize(e.spr.color.toColor());
+		cd.setS("gravityMul", 0.25);
 		cd.setS("bleeding", 2);
 		cd.setS("decay", rnd(20, 25));
 	}
@@ -50,6 +51,9 @@ class DeadBody extends ScaledEntity {
 
 	override public function update() {
 		super.update();
+		if (!cd.has("gravityMul")) {
+			gravityMul = 1;
+		}
 		if (cd.has("bleeding") && !cd.hasSetS("bleedFx", 0.03)) {
 			var range = dir * 8;
 			fx.woundBleed(centerX - rnd(range, -range), footY);
