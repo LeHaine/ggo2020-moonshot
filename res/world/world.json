@@ -1155,18 +1155,18 @@
 							},
 							{
 								"__identifier": "cameraTarget",
-								"__value": { "cx": 29, "cy": 19 },
+								"__value": { "cx": 41, "cy": 19 },
 								"__type": "Point",
 								"defUid": 107,
 								"realEditorValues": [{
 									"id": "V_String",
-									"params": ["29,19"]
+									"params": ["41,19"]
 								}]
 							}
 						] },
 						{ "__identifier": "Hero", "__grid": [9,19], "__tile": null, "defUid": 20, "px": [152,320], "fieldInstances": [] },
-						{ "__identifier": "Gun", "__grid": [29,19], "__tile": null, "defUid": 108, "px": [472,320], "fieldInstances": [] },
-						{ "__identifier": "Mob", "__grid": [28,19], "__tile": null, "defUid": 24, "px": [456,320], "fieldInstances": [
+						{ "__identifier": "Gun", "__grid": [41,19], "__tile": null, "defUid": 108, "px": [664,320], "fieldInstances": [] },
+						{ "__identifier": "Mob", "__grid": [40,19], "__tile": null, "defUid": 24, "px": [648,320], "fieldInstances": [
 							{
 								"__identifier": "type",
 								"__value": "Scientist_Pistol",
@@ -1210,7 +1210,7 @@
 								}]
 							}
 						] },
-						{ "__identifier": "Mob", "__grid": [30,19], "__tile": null, "defUid": 24, "px": [488,320], "fieldInstances": [
+						{ "__identifier": "Mob", "__grid": [42,19], "__tile": null, "defUid": 24, "px": [680,320], "fieldInstances": [
 							{
 								"__identifier": "type",
 								"__value": "Scientist_Pistol",
@@ -3998,9 +3998,9 @@
 						{ "px": [192,304], "src": [144,32], "f": 0, "d": [1152,73] },
 						{ "px": [208,304], "src": [144,32], "f": 0, "d": [1153,73] },
 						{ "px": [224,304], "src": [192,64], "f": 0, "d": [1154,140] },
-						{ "px": [448,304], "src": [256,64], "f": 0, "d": [1168,144] },
-						{ "px": [464,304], "src": [272,64], "f": 0, "d": [1169,145] },
-						{ "px": [480,304], "src": [288,64], "f": 0, "d": [1170,146] }
+						{ "px": [640,304], "src": [256,64], "f": 0, "d": [1180,144] },
+						{ "px": [656,304], "src": [272,64], "f": 0, "d": [1181,145] },
+						{ "px": [672,304], "src": [288,64], "f": 0, "d": [1182,146] }
 					],
 					"entityInstances": []
 				},
@@ -5001,10 +5001,6 @@
 						{ "coordId": 1044, "v": 0 },
 						{ "coordId": 1045, "v": 0 },
 						{ "coordId": 1046, "v": 0 },
-						{ "coordId": 1047, "v": 0 },
-						{ "coordId": 1048, "v": 0 },
-						{ "coordId": 1049, "v": 0 },
-						{ "coordId": 1050, "v": 0 },
 						{ "coordId": 1051, "v": 0 },
 						{ "coordId": 1052, "v": 0 },
 						{ "coordId": 1053, "v": 0 },
@@ -6011,9 +6007,6 @@
 						{ "px": [384,272], "src": [176,0], "f": 0, "d": [57,1044,11] },
 						{ "px": [400,272], "src": [176,0], "f": 0, "d": [57,1045,11] },
 						{ "px": [416,272], "src": [176,0], "f": 0, "d": [57,1046,11] },
-						{ "px": [432,272], "src": [176,0], "f": 0, "d": [57,1047,11] },
-						{ "px": [448,272], "src": [176,0], "f": 0, "d": [57,1048,11] },
-						{ "px": [480,272], "src": [176,0], "f": 0, "d": [57,1050,11] },
 						{ "px": [496,272], "src": [176,0], "f": 0, "d": [57,1051,11] },
 						{ "px": [512,272], "src": [176,0], "f": 0, "d": [57,1052,11] },
 						{ "px": [528,272], "src": [176,0], "f": 0, "d": [57,1053,11] },
@@ -6140,7 +6133,6 @@
 						{ "px": [896,272], "src": [240,0], "f": 0, "d": [58,1076,15] },
 						{ "px": [240,272], "src": [208,0], "f": 0, "d": [59,1035,13] },
 						{ "px": [272,272], "src": [208,0], "f": 0, "d": [59,1037,13] },
-						{ "px": [464,272], "src": [208,0], "f": 0, "d": [59,1049,13] },
 						{ "px": [624,272], "src": [208,0], "f": 0, "d": [59,1059,13] },
 						{ "px": [944,272], "src": [208,0], "f": 0, "d": [59,1079,13] },
 						{ "px": [128,208], "src": [208,16], "f": 1, "d": [61,788,45] },
@@ -7174,7 +7166,8 @@
 									"id": "V_String",
 									"params": ["AutoPatrol"]
 								}]
-							}
+							},
+							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
 						] },
 						{ "__identifier": "Mob", "__grid": [53,19], "__tile": null, "defUid": 24, "px": [856,320], "fieldInstances": [
 							{
@@ -7205,7 +7198,8 @@
 									"id": "V_String",
 									"params": ["BusyWork"]
 								}]
-							}
+							},
+							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
 						] },
 						{ "__identifier": "ModStation", "__grid": [41,19], "__tile": null, "defUid": 69, "px": [664,320], "fieldInstances": [] },
 						{ "__identifier": "Hero", "__grid": [18,19], "__tile": null, "defUid": 20, "px": [296,320], "fieldInstances": [] },
@@ -7238,7 +7232,8 @@
 									"id": "V_String",
 									"params": ["AutoPatrol"]
 								}]
-							}
+							},
+							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
 						] },
 						{ "__identifier": "Mob", "__grid": [30,9], "__tile": null, "defUid": 24, "px": [488,160], "fieldInstances": [
 							{
@@ -7269,7 +7264,8 @@
 									"id": "V_String",
 									"params": ["BusyWork"]
 								}]
-							}
+							},
+							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
 						] },
 						{ "__identifier": "Mob", "__grid": [23,19], "__tile": null, "defUid": 24, "px": [376,320], "fieldInstances": [
 							{
@@ -7294,7 +7290,8 @@
 									"id": "V_String",
 									"params": ["FixedPatrol"]
 								}]
-							}
+							},
+							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
 						] }
 					]
 				},
@@ -13001,6 +12998,7 @@
 						{ "coordId": 1382, "v": 0 },
 						{ "coordId": 1383, "v": 0 },
 						{ "coordId": 1384, "v": 0 },
+						{ "coordId": 1676, "v": 0 },
 						{ "coordId": 2012, "v": 0 },
 						{ "coordId": 2013, "v": 0 },
 						{ "coordId": 2014, "v": 0 },
@@ -14555,6 +14553,7 @@
 						{ "px": [1232,240], "src": [176,0], "f": 0, "d": [57,1382,11] },
 						{ "px": [1248,240], "src": [176,0], "f": 0, "d": [57,1383,11] },
 						{ "px": [1264,240], "src": [176,0], "f": 0, "d": [57,1384,11] },
+						{ "px": [368,304], "src": [176,0], "f": 0, "d": [57,1676,11] },
 						{ "px": [176,368], "src": [176,0], "f": 0, "d": [57,2012,11] },
 						{ "px": [192,368], "src": [176,0], "f": 0, "d": [57,2013,11] },
 						{ "px": [208,368], "src": [176,0], "f": 0, "d": [57,2014,11] },
@@ -15194,6 +15193,7 @@
 						{ "px": [768,240], "src": [224,0], "f": 0, "d": [58,1353,14] },
 						{ "px": [944,240], "src": [288,0], "f": 0, "d": [58,1364,18] },
 						{ "px": [960,240], "src": [224,16], "f": 0, "d": [58,1365,46] },
+						{ "px": [368,304], "src": [224,0], "f": 0, "d": [58,1676,14] },
 						{ "px": [416,368], "src": [224,0], "f": 0, "d": [58,2027,14] },
 						{ "px": [1008,368], "src": [256,0], "f": 0, "d": [58,2064,16] },
 						{ "px": [1072,368], "src": [224,16], "f": 0, "d": [58,2068,46] },

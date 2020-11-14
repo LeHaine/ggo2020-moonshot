@@ -253,7 +253,7 @@ class Hero extends Character {
 	}
 
 	private function performKick() {
-		if (controlsLocked() || hasAffect(Stun)) {
+		if (controlsLocked() || hasAffect(Stun) || !hasGun) {
 			return;
 		}
 
@@ -428,7 +428,7 @@ class Hero extends Character {
 	}
 
 	private function performDash() {
-		if (controlsLocked() || hasAffect(Stun)) {
+		if (controlsLocked() || hasAffect(Stun) || !hasGun) {
 			return;
 		}
 
