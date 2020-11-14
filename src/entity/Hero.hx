@@ -319,7 +319,10 @@ class Hero extends Character {
 	}
 
 	private function performLadderClimb(spd:Float) {
-		if (!climbing && !cd.has("climbLock") && !controlsLocked() && ca.leftDist() > 0) {
+		if (controlsLocked() || hasAffect(Stun)) {
+			return;
+		}
+		if (!climbing && !cd.has("climbLock") && ca.leftDist() > 0) {
 			// start climbing up
 			if (isLeftJoystickUp() && level.hasLadder(cx, cy)) {
 				startClimbing();

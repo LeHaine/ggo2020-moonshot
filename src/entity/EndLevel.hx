@@ -26,7 +26,7 @@ class EndLevel extends ScaledEntity {
 
 	function onEndLevel() {
 		if (data.f_moveToNextLevel) {
-			game.startNextLevel();
+			game.markNextLevelReady();
 		}
 	}
 }

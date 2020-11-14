@@ -48,6 +48,8 @@ class Game extends Process {
 
 	public var money(default, set):Int = 0;
 
+	var nextLevelReady = false;
+
 	inline function set_money(v) {
 		hud.invalidate();
 		return money = v;
@@ -136,6 +138,10 @@ class Game extends Process {
 
 	public function trackHero(immediate:Bool = true) {
 		camera.trackTarget(hero, immediate, 0, -Const.GRID * 2);
+	}
+
+	public function markNextLevelReady() {
+		nextLevelReady = true;
 	}
 
 	public function startNextLevel() {
@@ -275,6 +281,11 @@ class Game extends Process {
 			// Restart
 			if (ca.selectPressed())
 				Main.ME.startGame();
+		}
+
+		if (nextLevelReady) {
+			nextLevelReady = false;
+			startNextLevel();
 		}
 	}
 }
