@@ -37,16 +37,20 @@ class CinematicControl extends dn.Process {
 		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
 		var scientistColor = 0xbf2242;
 		cm.create({
-			game.camera.trackPoint(targetPoint, false);
 			displayText("They left the door open?");
 			end;
+			clearText();
+			game.camera.trackPoint(targetPoint, false);
+			500;
 			displayText("We finally did it! We shrunk the moon and harnessed its power within this new weapon.", scientistColor);
 			end;
 			displayText("I shall call it, the Moon...inator? ...the Lunarinator? ...Moon shotinator? It shoots the moon, OK!", scientistColor);
 			end;
 			displayText("When we get time, we should blast our test subject with it to see what happens.", scientistColor);
 			end;
+			clearText();
 			game.trackHero(false);
+			500;
 			displayText("Yikes.");
 			end;
 			complete();
