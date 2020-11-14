@@ -54,7 +54,7 @@ class Bullet extends ScaledEntity {
 
 	override function onTouch(from:Entity) {
 		super.onTouch(from);
-		if (from.is(CinematicTrigger) || from.is(EndLevel)) {
+		if (from.ignoreBullets) {
 			return;
 		}
 

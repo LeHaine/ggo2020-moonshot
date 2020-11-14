@@ -83,27 +83,30 @@ class Game extends Process {
 		level = new Level(idx, world.levels[idx]);
 
 		// Create entities here
+		for (e in level.data.l_Entities.all_Gun) {
+			new entity.Gun(e);
+		}
 
 		for (e in level.data.l_Entities.all_CinematicTrigger) {
 			new entity.CinematicTrigger(e);
 		}
 
-		for (endLevel in level.data.l_Entities.all_EndLevel) {
-			new entity.EndLevel(endLevel);
+		for (e in level.data.l_Entities.all_EndLevel) {
+			new entity.EndLevel(e);
 		}
 
-		for (station in level.data.l_Entities.all_ModStation) {
-			new entity.ModStation(station);
+		for (e in level.data.l_Entities.all_ModStation) {
+			new entity.ModStation(e);
 		}
 
-		for (mob in level.data.l_Entities.all_Mob) {
-			switch mob.f_type {
+		for (e in level.data.l_Entities.all_Mob) {
+			switch e.f_type {
 				case Scientist_Pistol:
-					new entity.mob.scientist.ScientistPistol(mob);
+					new entity.mob.scientist.ScientistPistol(e);
 				case Scientist_Stun:
-					new entity.mob.scientist.ScientistStun(mob);
+					new entity.mob.scientist.ScientistStun(e);
 				case Scientist_Hammer:
-					new entity.mob.scientist.ScientistHammer(mob);
+					new entity.mob.scientist.ScientistHammer(e);
 			}
 		}
 

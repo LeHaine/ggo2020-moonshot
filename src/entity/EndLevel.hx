@@ -1,11 +1,11 @@
 package entity;
 
-import entity.interactable.EndLevelInteracble;
+import entity.interactable.DialogInteracble;
 
 class EndLevel extends ScaledEntity {
 	private var data:World.Entity_EndLevel;
 
-	var interactable:EndLevelInteracble;
+	var interactable:DialogInteracble;
 
 	public function new(data:World.Entity_EndLevel) {
 		super(data.cx, data.cy);
@@ -14,7 +14,8 @@ class EndLevel extends ScaledEntity {
 		spr.set("empty");
 		hasGravity = false;
 		isCollidable = false;
-		interactable = new EndLevelInteracble(cx, cy, onEndLevel);
+		ignoreBullets = true;
+		interactable = new DialogInteracble(cx, cy, "Proceed", onEndLevel);
 		interactable.follow(this, 0, -2);
 	}
 

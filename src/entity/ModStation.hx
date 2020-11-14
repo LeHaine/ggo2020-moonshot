@@ -1,10 +1,11 @@
 package entity;
 
-import entity.interactable.ModStationInteractable;
+import ui.ModStationWindow;
+import entity.interactable.DialogInteracble;
 
 class ModStation extends ScaledEntity {
 	var data:World.Entity_ModStation;
-	var interactable:ModStationInteractable;
+	var interactable:DialogInteracble;
 
 	public function new(data:World.Entity_ModStation) {
 		super(data.cx, data.cy);
@@ -13,7 +14,7 @@ class ModStation extends ScaledEntity {
 
 		hasGravity = false;
 		isCollidable = false;
-		interactable = new ModStationInteractable(cx, cy, onItemBought);
+		interactable = new DialogInteracble(cx, cy, "Modify Traits", () -> new ModStationWindow(0, onItemBought));
 		interactable.follow(this, 0, -2);
 	}
 

@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 108,
+	"nextUid": 110,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -883,6 +883,25 @@
 						"min": null,
 						"max": null,
 						"defaultOverride": null
+					},
+					{
+						"identifier": "canAttack",
+						"__type": "Bool",
+						"uid": 109,
+						"type": "F_Bool",
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "Hidden",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": false,
+						"min": null,
+						"max": null,
+						"defaultOverride": {
+							"id": "V_Bool",
+							"params": [ true ]
+						}
 					}
 				]
 			},
@@ -1023,6 +1042,23 @@
 						"defaultOverride": null
 					}
 				]
+			},
+			{
+				"identifier": "Gun",
+				"uid": 108,
+				"width": 16,
+				"height": 16,
+				"color": "#C494D9",
+				"renderMode": "Rectangle",
+				"showName": true,
+				"tilesetId": null,
+				"tileId": null,
+				"tileRenderMode": "Stretch",
+				"maxPerLevel": 0,
+				"limitBehavior": "DiscardOldOnes",
+				"pivotX": 0.5,
+				"pivotY": 1,
+				"fieldDefs": []
 			}
 		],
 		"tilesets": [
@@ -1128,7 +1164,96 @@
 								}]
 							}
 						] },
-						{ "__identifier": "Hero", "__grid": [9,19], "__tile": null, "defUid": 20, "px": [152,320], "fieldInstances": [] }
+						{ "__identifier": "Hero", "__grid": [9,19], "__tile": null, "defUid": 20, "px": [152,320], "fieldInstances": [] },
+						{ "__identifier": "Gun", "__grid": [29,19], "__tile": null, "defUid": 108, "px": [472,320], "fieldInstances": [] },
+						{ "__identifier": "Mob", "__grid": [28,19], "__tile": null, "defUid": 24, "px": [456,320], "fieldInstances": [
+							{
+								"__identifier": "type",
+								"__value": "Scientist_Pistol",
+								"__type": "ExternEnum.MobTypes",
+								"defUid": 26,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["Scientist_Pistol"]
+								}]
+							},
+							{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
+							{
+								"__identifier": "patrol",
+								"__value": { "cx": 56, "cy": 19 },
+								"__type": "Point",
+								"defUid": 83,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["56,19"]
+								}]
+							},
+							{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+							{
+								"__identifier": "patrolType",
+								"__value": "BusyWork",
+								"__type": "ExternEnum.PatrolTypes",
+								"defUid": 86,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["BusyWork"]
+								}]
+							},
+							{
+								"__identifier": "canAttack",
+								"__value": false,
+								"__type": "Bool",
+								"defUid": 109,
+								"realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ false ]
+								}]
+							}
+						] },
+						{ "__identifier": "Mob", "__grid": [30,19], "__tile": null, "defUid": 24, "px": [488,320], "fieldInstances": [
+							{
+								"__identifier": "type",
+								"__value": "Scientist_Pistol",
+								"__type": "ExternEnum.MobTypes",
+								"defUid": 26,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["Scientist_Pistol"]
+								}]
+							},
+							{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
+							{
+								"__identifier": "patrol",
+								"__value": { "cx": 56, "cy": 19 },
+								"__type": "Point",
+								"defUid": 83,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["56,19"]
+								}]
+							},
+							{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+							{
+								"__identifier": "patrolType",
+								"__value": "BusyWork",
+								"__type": "ExternEnum.PatrolTypes",
+								"defUid": 86,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["BusyWork"]
+								}]
+							},
+							{
+								"__identifier": "canAttack",
+								"__value": false,
+								"__type": "Bool",
+								"defUid": 109,
+								"realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ false ]
+								}]
+							}
+						] }
 					]
 				},
 				{
@@ -3872,7 +3997,10 @@
 						{ "px": [176,304], "src": [144,32], "f": 0, "d": [1151,73] },
 						{ "px": [192,304], "src": [144,32], "f": 0, "d": [1152,73] },
 						{ "px": [208,304], "src": [144,32], "f": 0, "d": [1153,73] },
-						{ "px": [224,304], "src": [192,64], "f": 0, "d": [1154,140] }
+						{ "px": [224,304], "src": [192,64], "f": 0, "d": [1154,140] },
+						{ "px": [448,304], "src": [256,64], "f": 0, "d": [1168,144] },
+						{ "px": [464,304], "src": [272,64], "f": 0, "d": [1169,145] },
+						{ "px": [480,304], "src": [288,64], "f": 0, "d": [1170,146] }
 					],
 					"entityInstances": []
 				},

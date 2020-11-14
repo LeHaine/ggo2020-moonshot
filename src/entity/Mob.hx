@@ -113,13 +113,15 @@ class Mob extends Character {
 		if (!isConscious()) {
 			return;
 		}
-		checkIfAggroLost();
-		checkToAggroHero();
+		if (data.f_canAttack) {
+			checkIfAggroLost();
+			checkToAggroHero();
+		}
 
 		if (!controlsLocked() && !hasAffect(Stun)) {
 			var spd = baseSpd * (0.2 + 0.8 * cd.getRatio("airControl"));
 
-			if (aggroTarget != null) {
+			if (aggroTarget != null && data.f_canAttack) {
 				handleAggroTarget(spd);
 			} else if (data.f_patrol == null && data.f_patrolType == AutoPatrol) {
 				autoPatrol(spd);

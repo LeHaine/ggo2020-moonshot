@@ -18,7 +18,7 @@ class Hero extends Character {
 
 	var ca:ControllerAccess;
 
-	var hasGun = true;
+	var hasGun = false;
 	var crouching = false;
 
 	var chargeStrongShotBarWrapper:UIEntity;
@@ -53,6 +53,10 @@ class Hero extends Character {
 		spr.anim.registerStateAnim('heroCrouchIdleGun', 1, () -> hasGun && crouching);
 		spr.anim.registerStateAnim('heroCrouchRun', 5, 2.5, () -> !hasGun && crouching && M.fabs(dx) >= 0.04 * tmod);
 		spr.anim.registerStateAnim('heroCrouchRunGun', 6, 2.5, () -> hasGun && crouching && M.fabs(dx) >= 0.04 * tmod);
+	}
+
+	public function equipGun() {
+		hasGun = true;
 	}
 
 	override function performGravityCheck():Bool {
@@ -133,7 +137,7 @@ class Hero extends Character {
 	}
 
 	private function performShot() {
-		if (controlsLocked() || hasAffect(Stun)) {
+		if (controlsLocked() || hasAffect(Stun) || !hasGun) {
 			return;
 		}
 		if (ca.xDown() && !cd.hasSetS("shoot", 1 / shotsPerSecond)) {
@@ -154,7 +158,7 @@ class Hero extends Character {
 	}
 
 	private function performStrongShot() {
-		if (controlsLocked()) {
+		if (controlsLocked() || hasAffect(Stun) || !hasGun) {
 			return;
 		}
 

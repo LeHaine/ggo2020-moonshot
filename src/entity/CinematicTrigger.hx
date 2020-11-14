@@ -10,6 +10,7 @@ class CinematicTrigger extends ScaledEntity {
 		hei = Const.GRID * 2;
 		spr.set("empty");
 		hasGravity = false;
+		ignoreBullets = true;
 	}
 
 	override function onTouch(from:Entity) {

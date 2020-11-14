@@ -218,6 +218,8 @@ class Entity {
 
 	var actions:Array<{id:String, cb:Void->Void, t:Float}> = [];
 
+	var ignoreBullets = false;
+
 	private var entityUpdatedListeners:Array<(e:Entity) -> Void> = [];
 
 	public function new(x:Int, y:Int) {
