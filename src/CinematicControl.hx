@@ -35,11 +35,20 @@ class CinematicControl extends dn.Process {
 			return;
 		}
 		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
+		var scientistColor = 0xbf2242;
 		cm.create({
 			game.camera.trackPoint(targetPoint, false);
 			displayText("They left the door open?");
 			end;
+			displayText("We finally did it! We shrunk the moon and harnessed its power within this new weapon.", scientistColor);
+			end;
+			displayText("I shall call it, the Moon...inator? ...the Lunarinator? ...Moon shotinator? It shoots the moon, OK!", scientistColor);
+			end;
+			displayText("When we get time, we should blast our test subject with it to see what happens.", scientistColor);
+			end;
 			game.trackHero(false);
+			displayText("Yikes.");
+			end;
 			complete();
 		});
 	}
@@ -77,7 +86,7 @@ class CinematicControl extends dn.Process {
 			tf.text = "F to continue";
 		}
 		tf.text = "F to continue";
-		tf.textColor = 0x656f93;
+		tf.textColor = 0xffffff;
 		f.getProperties(tf).align(Top, Right);
 
 		f.x = Std.int(w() / Const.SCALE * 0.5 - f.outerWidth * 0.5 + rnd(0, 30, true));
