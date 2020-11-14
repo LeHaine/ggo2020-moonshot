@@ -1,3 +1,4 @@
+import dn.LocalStorage;
 import data.Trait;
 import hxd.Key;
 import dn.Process;
@@ -43,6 +44,8 @@ class Game extends Process {
 
 	public var hero:entity.Hero;
 
+	public var storage:GameStorage;
+
 	public var money(default, set):Int = 0;
 
 	inline function set_money(v) {
@@ -67,6 +70,8 @@ class Game extends Process {
 		fx = new Fx();
 		hud = new ui.Hud();
 
+		storage = new GameStorage();
+
 		startLevel(0);
 	}
 
@@ -79,12 +84,16 @@ class Game extends Process {
 			e.destroy();
 		gc();
 
+		storage.loadSavedData();
 		// Init
 		level = new Level(idx, world.levels[idx]);
 
 		// Create entities here
-		for (e in level.data.l_Entities.all_Gun) {
-			new entity.Gun(e);
+
+		if (idx == 0 && !storage.heroData.hasGun) {
+			for (e in level.data.l_Entities.all_Gun) {
+				new entity.Gun(e);
+			}
 		}
 
 		for (e in level.data.l_Entities.all_CinematicTrigger) {
@@ -111,6 +120,7 @@ class Game extends Process {
 		}
 
 		hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
+		setHeroSavedData();
 
 		trackHero();
 
@@ -119,11 +129,17 @@ class Game extends Process {
 		Process.resizeAll();
 	}
 
+	private function setHeroSavedData() {
+		var data = storage.heroData;
+		hero.hasGun = data.hasGun;
+	}
+
 	public function trackHero(immediate:Bool = true) {
 		camera.trackTarget(hero, immediate, 0, -Const.GRID * 2);
 	}
 
 	public function startNextLevel() {
+		storage.save();
 		startLevel(level.idx + 1);
 	}
 

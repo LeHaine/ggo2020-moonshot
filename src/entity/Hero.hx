@@ -14,11 +14,11 @@ class Hero extends Character {
 	public var chargeTime = 1.5; // secondary strong shot charge time
 	public var maxCharge = 2; // secondary strong shot max charge
 
+	public var hasGun = false;
 	public var traits:Array<Trait> = [];
 
 	var ca:ControllerAccess;
 
-	var hasGun = false;
 	var crouching = false;
 
 	var chargeStrongShotBarWrapper:UIEntity;

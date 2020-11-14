@@ -36,6 +36,10 @@ class Console extends h2d.Console {
 			for (k in flags.keys())
 				log(k, 0x80ff00);
 		});
+		this.addCommand("clrstorage", "Clear local storage", [], function() {
+			Game.ME.storage.clear();
+			log("Storage cleared", 0xFF80000);
+		});
 		this.addAlias("+", "set");
 		this.addAlias("-", "unset");
 		#end

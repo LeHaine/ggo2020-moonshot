@@ -1,3 +1,5 @@
+import dn.LocalStorage;
+
 class CinematicControl extends dn.Process {
 	public static var ALL:Array<CinematicControl> = [];
 
@@ -26,7 +28,11 @@ class CinematicControl extends dn.Process {
 
 		switch id {
 			case PrisonWakeup:
-				performPrisonWakeupCinematic(trigger);
+				if (game.storage.settings.finishedTutorial) {
+					destroy();
+				} else {
+					performPrisonWakeupCinematic(trigger);
+				}
 		}
 	}
 
@@ -54,6 +60,8 @@ class CinematicControl extends dn.Process {
 			displayText("Yikes.");
 			end;
 			complete();
+			game.storage.settings.finishedTutorial = true;
+			game.storage.save();
 		});
 	}
 
