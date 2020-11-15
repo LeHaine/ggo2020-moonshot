@@ -31,4 +31,8 @@ enum PatrolTypes {
 
 enum CinematicId {
 	PrisonWakeup;
+	PrisonKickTutorial;
+	PrisonPrimaryAttackTutorial;
+	PrisonDashTutorial;
+	PrisonSecondaryAttackTutorial;
 }

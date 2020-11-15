@@ -1,3 +1,4 @@
+import entity.Mob;
 import dn.LocalStorage;
 
 class CinematicControl extends dn.Process {
@@ -20,6 +21,8 @@ class CinematicControl extends dn.Process {
 
 	var cm:dn.Cinematic;
 
+	var controlColor = 0x736680;
+
 	public function new(id:CinematicId, ?trigger:World.Entity_CinematicTrigger) {
 		super(game);
 
@@ -33,6 +36,34 @@ class CinematicControl extends dn.Process {
 				} else {
 					performPrisonWakeupCinematic(trigger);
 				}
+
+			case PrisonKickTutorial:
+				if (game.storage.settings.finishedTutorial) {
+					destroy();
+				} else {
+					performKickTutorialCinematic(trigger);
+				}
+
+			case PrisonPrimaryAttackTutorial:
+				if (game.storage.settings.finishedTutorial) {
+					destroy();
+				} else {
+					performPrimaryAttackTutorialCinematic(trigger);
+				}
+
+			case PrisonDashTutorial:
+				if (game.storage.settings.finishedTutorial) {
+					destroy();
+				} else {
+					performDashTutorialCinematic(trigger);
+				}
+
+			case PrisonSecondaryAttackTutorial:
+				if (game.storage.settings.finishedTutorial) {
+					destroy();
+				} else {
+					performSecondaryAttackTutorialCinematic(trigger);
+				}
 		}
 	}
 
@@ -42,6 +73,7 @@ class CinematicControl extends dn.Process {
 		}
 		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
 		var scientistColor = 0xbf2242;
+
 		cm.create({
 			displayText("They left the door open?");
 			end;
@@ -55,15 +87,42 @@ class CinematicControl extends dn.Process {
 			displayText("When we get time, we should blast our test subject with it to see what happens.", scientistColor);
 			end;
 			clearText();
+			for (mob in entity.Mob.ALL) {
+				if (mob.patrolTarget != null) {
+					mob.moveTo(mob.patrolTarget.cx);
+				}
+			}
+			1500;
 			game.trackHero(false);
 			500;
 			displayText("Yikes.");
 			end;
 			complete();
-			game.storage.settings.finishedTutorial = true;
-			game.storage.save();
 		});
 	}
+
+	private function performKickTutorialCinematic(trigger:World.Entity_CinematicTrigger) {
+		if (trigger == null) {
+			return;
+		}
+		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
+		cm.create({
+			displayText("That scientist is just standing there by that ledge. What if I kick him off it?", controlColor);
+			game.camera.trackPoint(targetPoint, false);
+			end;
+			displayText("To kick hit the 'F' key when near an enenmy. This will temporarily stun them as well as slightly damaging them.");
+			end;
+			game.trackHero(false);
+			500;
+			complete();
+		});
+	}
+
+	private function performPrimaryAttackTutorialCinematic(trigger:World.Entity_CinematicTrigger) {}
+
+	private function performDashTutorialCinematic(trigger:World.Entity_CinematicTrigger) {}
+
+	private function performSecondaryAttackTutorialCinematic(trigger:World.Entity_CinematicTrigger) {}
 
 	private function displayText(str:String, ?c = 0x589bd1) {
 		clearText();

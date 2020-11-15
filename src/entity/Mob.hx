@@ -11,11 +11,12 @@ enum Body {
 class Mob extends Character {
 	public static var ALL:Array<Mob> = [];
 
+	public var patrolTarget:Null<CPoint>;
+
 	var lastBodyPartShot:Null<Body>;
 	var data:World.Entity_Mob;
 
 	var origin:CPoint;
-	var patrolTarget:Null<CPoint>;
 	var aggroTarget:Null<Entity>;
 
 	var initialAttackCooldown = rnd(1, 2);
@@ -43,6 +44,8 @@ class Mob extends Character {
 
 	public var defense = 0;
 	public var damage = 1;
+
+	var tx:Int = -1;
 
 	public function new(data:World.Entity_Mob) {
 		super(data.cx, data.cy);
@@ -118,16 +121,18 @@ class Mob extends Character {
 			checkToAggroHero();
 		}
 
+		var spd = baseSpd * (0.2 + 0.8 * cd.getRatio("airControl"));
+		if (tx > 0) {
+			moveToTarget(spd);
+		}
 		if (!controlsLocked() && !hasAffect(Stun)) {
-			var spd = baseSpd * (0.2 + 0.8 * cd.getRatio("airControl"));
-
 			if (aggroTarget != null && data.f_canAttack) {
 				handleAggroTarget(spd);
 			} else if (data.f_patrol == null && data.f_patrolType == AutoPatrol) {
 				autoPatrol(spd);
 			} else if (patrolTarget != null && data.f_patrolType == FixedPatrol) {
 				fixedPatrol(spd);
-			} else { // Busy work
+			} else {
 				performBusyWork();
 			}
 
@@ -209,6 +214,17 @@ class Mob extends Character {
 		}
 	}
 
+	private function moveToTarget(spd:Float) {
+		if (tx > cx) {
+			dir = 1;
+			dx += spd * tmod;
+		}
+		if (tx < cx) {
+			dir = -1;
+			dx -= spd * tmod;
+		}
+	}
+
 	private function performBusyWork() {}
 
 	private function hopSmallStep(dir:Int) {
@@ -218,6 +234,10 @@ class Mob extends Character {
 	}
 
 	private function attack() {}
+
+	public function moveTo(x:Int) {
+		tx = x;
+	}
 
 	override function onTouchGround(fallHeight:Float) {
 		super.onTouchGround(fallHeight);
