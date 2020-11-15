@@ -223,6 +223,10 @@ class Mob extends Character {
 			dir = -1;
 			dx -= spd * tmod;
 		}
+
+		if (tx == cx) {
+			tx = -1;
+		}
 	}
 
 	private function performBusyWork() {}
