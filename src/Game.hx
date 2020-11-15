@@ -115,6 +115,10 @@ class Game extends Process {
 			new entity.ModStation(e);
 		}
 
+		for (e in level.data.l_Entities.all_Laser) {
+			new entity.Laser(e);
+		}
+
 		for (e in level.data.l_Entities.all_Mob) {
 			switch e.f_type {
 				case Scientist_Pistol:

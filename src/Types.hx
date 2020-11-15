@@ -37,3 +37,8 @@ enum CinematicId {
 	PrisonSecondaryAttackTutorial;
 	PrisonNewCell;
 }
+
+enum Orientation {
+	Vertical;
+	Horizontal;
+}
