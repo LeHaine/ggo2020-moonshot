@@ -455,6 +455,39 @@ class Fx extends dn.Process {
 		}
 	}
 
+	public function laserSparks(x:Float, y:Float, endX:Float, endY:Float) {
+		var dx = endX - x;
+		var dy = endY - y;
+		for (i in 0...20) {
+			var p = allocBgAdd(getTile("pixel"), x + rnd(0, dx), y + rnd(0, dy));
+			p.colorize(0xff9200);
+			p.colorAnimS(0xcfd6d8, 0xabb7ba, rnd(2, 4));
+			p.setFadeS(rnd(0.2, 0.4), 0, rnd(0.5, 1));
+
+			p.setScale(rnd(1, 1.25, true));
+			p.scaleMul = rnd(0.998, 0.999);
+
+			p.dx = rnd(0, 0.7, true);
+			p.dy = rnd(-1, 1);
+			p.frict = rnd(0.93, 0.96);
+			p.gy = rnd(-0.005, 0.005);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.02, true);
+
+			p.lifeS = rnd(0.25, 0.35);
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+			p.onUpdate = _killOnCollision;
+		}
+	}
+
+	function _killOnCollision(p:HParticle) {
+		if (collides(p) && Math.isNaN(p.data0)) {
+			p.data0 = 1;
+			p.kill();
+		}
+	}
+
 	override function update() {
 		super.update();
 

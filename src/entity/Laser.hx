@@ -75,7 +75,11 @@ class Laser extends ScaledEntity {
 				level.hasCollision(cx + i, cy);
 			}
 			if (hasCollision) {
-				endPoint = new CPoint(cx, cy);
+				if (orientation == Vertical) {
+					endPoint = new CPoint(cx, cy + i);
+				} else {
+					endPoint = new CPoint(cx + i, cy);
+				}
 			}
 		}
 		if (orientation == Vertical) {
@@ -132,5 +136,13 @@ class Laser extends ScaledEntity {
 	override function update() {
 		super.update();
 		delayer.update(tmod);
+
+		if (isCollidable && !cd.hasSetS("fx", 0.25)) {
+			if (orientation == Vertical) {
+				fx.laserSparks(footX, footY + (5 * laserDir), endPoint.footX, endPoint.footY - (5 * laserDir));
+			} else {
+				fx.laserSparks(footX + (5 * laserDir), footY, endPoint.footX - (5 * laserDir), endPoint.footY);
+			}
+		}
 	}
 }
