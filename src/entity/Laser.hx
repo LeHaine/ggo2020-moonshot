@@ -13,12 +13,16 @@ class Laser extends ScaledEntity {
 	var laserEndBase:HSprite;
 	var endPoint:CPoint;
 
+	var delayer:dn.Delayer;
+
 	public function new(data:World.Entity_Laser) {
 		super(data.cx, data.cy);
 		orientation = data.f_orientation;
 		laserDir = data.f_dir;
 		activeTime = data.f_activeTime;
 		inactiveTime = data.f_inactiveTime;
+
+		delayer = new dn.Delayer(Const.FPS);
 
 		var orientationId = if (orientation == Vertical) {
 			"Vert";
@@ -54,6 +58,9 @@ class Laser extends ScaledEntity {
 			laserEnd.scaleX *= -1;
 		}
 
+		if (activeTime > 0) {
+			delayedActivate();
+		}
 		findEndPoint();
 	}
 
@@ -92,6 +99,27 @@ class Laser extends ScaledEntity {
 		}
 	}
 
+	private function setActivate(isActive:Bool) {
+		isCollidable = isActive;
+		laserStart.visible = isActive;
+		laserMid.visible = isActive;
+		laserEnd.visible = isActive;
+	}
+
+	private function delayedActivate() {
+		delayer.addS("activeTimer", () -> {
+			setActivate(false);
+			delayedDeactivate();
+		}, activeTime);
+	}
+
+	private function delayedDeactivate() {
+		delayer.addS("activeTimer", () -> {
+			setActivate(true);
+			delayedActivate();
+		}, inactiveTime);
+	}
+
 	override function onTouch(from:Entity) {
 		super.onTouch(from);
 
@@ -99,5 +127,10 @@ class Laser extends ScaledEntity {
 			from.hit(10, this);
 			from.bump(dirTo(from) * 0.3, -0.1);
 		}
+	}
+
+	override function update() {
+		super.update();
+		delayer.update(tmod);
 	}
 }

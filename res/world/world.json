@@ -20823,7 +20823,7 @@
 							},
 							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
 						] },
-						{ "__identifier": "Laser", "__grid": [33,19], "__tile": null, "defUid": 113, "px": [536,320], "fieldInstances": [
+						{ "__identifier": "Laser", "__grid": [35,19], "__tile": null, "defUid": 113, "px": [568,320], "fieldInstances": [
 							{
 								"__identifier": "orientation",
 								"__value": "Vertical",
@@ -20843,12 +20843,18 @@
 							},
 							{
 								"__identifier": "activeTime",
-								"__value": 0,
+								"__value": 5,
 								"__type": "Float",
 								"defUid": 117,
-								"realEditorValues": [{ "id": "V_Float", "params": [0] }]
+								"realEditorValues": [{ "id": "V_Float", "params": [5] }]
 							},
-							{ "__identifier": "inactiveTime", "__value": 0, "__type": "Float", "defUid": 118, "realEditorValues": [] }
+							{
+								"__identifier": "inactiveTime",
+								"__value": 2,
+								"__type": "Float",
+								"defUid": 118,
+								"realEditorValues": [{ "id": "V_Float", "params": [2] }]
+							}
 						] }
 					]
 				},
