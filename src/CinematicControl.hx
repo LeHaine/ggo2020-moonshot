@@ -110,7 +110,7 @@ class CinematicControl extends dn.Process {
 			displayText("That scientist is just standing there by that ledge. What if I kick him off it?");
 			game.camera.trackPoint(targetPoint, false);
 			end;
-			displayText("To kick hit the 'F' key when near an enenmy. This will temporarily stun them as well as slightly damaging them.", controlColor);
+			displayText("To kick hit the [F] key when near an enenmy. This will temporarily stun them as well as slightly damaging them.", controlColor);
 			end;
 			game.trackHero(false);
 			500;
@@ -118,11 +118,53 @@ class CinematicControl extends dn.Process {
 		});
 	}
 
-	private function performPrimaryAttackTutorialCinematic(trigger:World.Entity_CinematicTrigger) {}
+	private function performPrimaryAttackTutorialCinematic(trigger:World.Entity_CinematicTrigger) {
+		if (trigger == null) {
+			return;
+		}
+		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
+		cm.create({
+			displayText("He is just standing there as well. What is with these guys? Maybe I should just end him?");
+			game.camera.trackPoint(targetPoint, false);
+			end;
+			displayText("Pressing [Mouse-Left] button will fire the weapons primary attack.", controlColor);
+			end;
+			game.trackHero(false);
+			500;
+			complete();
+		});
+	}
 
-	private function performDashTutorialCinematic(trigger:World.Entity_CinematicTrigger) {}
+	private function performDashTutorialCinematic(trigger:World.Entity_CinematicTrigger) {
+		cm.create({
+			displayText("A random hole in the floor? This is an odd place. I think I can jump it.");
+			end;
+			displayText("Press [SPACE] to jump and then [SHIFT + SPACE] while in the air to dash further than you can jump.", controlColor);
+			end;
+			150;
+			complete();
+		});
+	}
 
-	private function performSecondaryAttackTutorialCinematic(trigger:World.Entity_CinematicTrigger) {}
+	private function performSecondaryAttackTutorialCinematic(trigger:World.Entity_CinematicTrigger) {
+		if (trigger == null) {
+			return;
+		}
+		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
+		cm.create({
+			displayText("I'm no longer shocked at this point. I am just going to blast him.");
+			game.camera.trackPoint(targetPoint, false);
+			end;
+			displayText("Press and hold your [Mouse-Right] button to charge and fire your secondary attack. This can cause massive damage as well as AOE damage.",
+				controlColor);
+			end;
+			game.trackHero(false);
+			500;
+			complete();
+			game.storage.settings.finishedTutorial = true;
+			game.storage.save();
+		});
+	}
 
 	private function displayText(str:String, ?c = 0x589bd1) {
 		clearText();
