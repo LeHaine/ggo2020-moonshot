@@ -6,6 +6,7 @@ typedef HeroData = {
 
 typedef Settings = {
 	var finishedTutorial:Bool;
+	var sawNewPrisonCell:Bool;
 }
 
 class GameStorage {
@@ -21,7 +22,7 @@ class GameStorage {
 
 	public function loadSavedData() {
 		heroData = LocalStorage.readObject("hero", true, {hasGun: false});
-		settings = LocalStorage.readObject("settings", true, {finishedTutorial: false});
+		settings = LocalStorage.readObject("settings", true, {finishedTutorial: false, sawNewPrisonCell: false});
 	}
 
 	public function save() {

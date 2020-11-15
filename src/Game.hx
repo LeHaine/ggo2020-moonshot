@@ -73,8 +73,13 @@ class Game extends Process {
 		hud = new ui.Hud();
 
 		storage = new GameStorage();
+		storage.loadSavedData();
 
-		startLevel(0);
+		if (storage.settings.finishedTutorial) {
+			startLevel(1);
+		} else {
+			startLevel(0);
+		}
 	}
 
 	public function startLevel(idx:Int) {
@@ -146,7 +151,11 @@ class Game extends Process {
 
 	public function startNextLevel() {
 		storage.save();
-		startLevel(level.idx + 1);
+		if (level.idx == 0) {
+			startLevel(level.idx + 2);
+		} else {
+			startLevel(level.idx + 1);
+		}
 	}
 
 	function restartLevel() {

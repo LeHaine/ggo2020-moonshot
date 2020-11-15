@@ -35,4 +35,5 @@ enum CinematicId {
 	PrisonPrimaryAttackTutorial;
 	PrisonDashTutorial;
 	PrisonSecondaryAttackTutorial;
+	PrisonNewCell;
 }

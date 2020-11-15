@@ -55,7 +55,7 @@ class CinematicControl extends dn.Process {
 				if (game.storage.settings.finishedTutorial) {
 					destroy();
 				} else {
-					performDashTutorialCinematic(trigger);
+					performDashTutorialCinematic();
 				}
 
 			case PrisonSecondaryAttackTutorial:
@@ -63,6 +63,12 @@ class CinematicControl extends dn.Process {
 					destroy();
 				} else {
 					performSecondaryAttackTutorialCinematic(trigger);
+				}
+			case PrisonNewCell:
+				if (game.storage.settings.sawNewPrisonCell) {
+					destroy();
+				} else {
+					performNewPrisonCellCinematic();
 				}
 		}
 	}
@@ -135,7 +141,7 @@ class CinematicControl extends dn.Process {
 		});
 	}
 
-	private function performDashTutorialCinematic(trigger:World.Entity_CinematicTrigger) {
+	private function performDashTutorialCinematic() {
 		cm.create({
 			displayText("A random hole in the floor? This is an odd place. I think I can jump it.");
 			end;
@@ -160,9 +166,20 @@ class CinematicControl extends dn.Process {
 			end;
 			game.trackHero(false);
 			500;
-			complete();
 			game.storage.settings.finishedTutorial = true;
 			game.storage.save();
+			complete();
+		});
+	}
+
+	private function performNewPrisonCellCinematic() {
+		cm.create({
+			displayText("This looks different. Looks like they changed it up a bit.");
+			end;
+			150;
+			game.storage.settings.sawNewPrisonCell = true;
+			game.storage.save();
+			complete();
 		});
 	}
 
