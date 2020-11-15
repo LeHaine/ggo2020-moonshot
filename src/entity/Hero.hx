@@ -254,7 +254,7 @@ class Hero extends Character {
 	}
 
 	private function performKick() {
-		if (controlsLocked() || hasAffect(Stun) || !hasGun) {
+		if (controlsLocked() || hasAffect(Stun)) {
 			return;
 		}
 
@@ -266,7 +266,12 @@ class Hero extends Character {
 					mob.setAffectS(Stun, 0.2);
 				}
 			}
-			spr.anim.playOverlap("heroKick", 0.22);
+			var animName = if (hasGun) {
+				"heroKickGun";
+			} else {
+				"heroKick";
+			}
+			spr.anim.playOverlap(animName, 0.22);
 			lockControlS(0.2);
 		}
 	}

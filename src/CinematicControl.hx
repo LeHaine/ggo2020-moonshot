@@ -72,7 +72,7 @@ class CinematicControl extends dn.Process {
 			return;
 		}
 		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
-		var scientistColor = 0xbf2242;
+		var mobColor = 0xbf2242;
 
 		cm.create({
 			displayText("They left the door open?");
@@ -80,11 +80,11 @@ class CinematicControl extends dn.Process {
 			clearText();
 			game.camera.trackPoint(targetPoint, false);
 			500;
-			displayText("We finally did it! We shrunk the moon and harnessed its power within this new weapon.", scientistColor);
+			displayText("We finally did it! We shrunk the moon and harnessed its power within this new weapon.", mobColor);
 			end;
-			displayText("I shall call it, the Moon...inator? ...the Lunarinator? ...Moon shotinator? It shoots the moon, OK!", scientistColor);
+			displayText("I shall call it, the Moon...inator? ...the Lunarinator? ...Moon shotinator? It shoots the moon, OK!", mobColor);
 			end;
-			displayText("When we get time, we should blast our test subject with it to see what happens.", scientistColor);
+			displayText("When we get time, we should blast our test subject with it to see what happens.", mobColor);
 			end;
 			clearText();
 			for (mob in entity.Mob.ALL) {
@@ -107,10 +107,10 @@ class CinematicControl extends dn.Process {
 		}
 		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
 		cm.create({
-			displayText("That scientist is just standing there by that ledge. What if I kick him off it?", controlColor);
+			displayText("That scientist is just standing there by that ledge. What if I kick him off it?");
 			game.camera.trackPoint(targetPoint, false);
 			end;
-			displayText("To kick hit the 'F' key when near an enenmy. This will temporarily stun them as well as slightly damaging them.");
+			displayText("To kick hit the 'F' key when near an enenmy. This will temporarily stun them as well as slightly damaging them.", controlColor);
 			end;
 			game.trackHero(false);
 			500;

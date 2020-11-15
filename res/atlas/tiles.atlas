@@ -27,7 +27,7 @@ empty
   index: -1
 fireEffectIcon
   rotate: false
-  xy: 199, 225
+  xy: 200, 225
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -69,7 +69,7 @@ fxGib2
   index: -1
 fxImpact0
   rotate: false
-  xy: 234, 236
+  xy: 129, 169
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -132,21 +132,21 @@ heroCrouchIdle1
   index: -1
 heroCrouchIdleGun0
   rotate: false
-  xy: 129, 188
+  xy: 144, 188
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchIdleGun1
   rotate: false
-  xy: 159, 187
+  xy: 160, 187
   size: 14, 13
   orig: 14, 13
   offset: 0, 0
   index: -1
 heroCrouchRun0
   rotate: false
-  xy: 144, 188
+  xy: 129, 198
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
@@ -167,14 +167,14 @@ heroCrouchRun2
   index: -1
 heroCrouchRun3
   rotate: false
-  xy: 129, 201
+  xy: 144, 201
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchRunGun0
   rotate: false
-  xy: 144, 201
+  xy: 129, 211
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
@@ -195,7 +195,7 @@ heroCrouchRunGun2
   index: -1
 heroCrouchRunGun3
   rotate: false
-  xy: 218, 229
+  xy: 234, 236
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
@@ -230,7 +230,7 @@ heroIdle1
   index: -1
 heroIdleGun0
   rotate: false
-  xy: 129, 169
+  xy: 145, 169
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
@@ -249,16 +249,23 @@ heroKick0
   orig: 15, 18
   offset: 0, 0
   index: -1
+heroKickGun0
+  rotate: false
+  xy: 145, 150
+  size: 15, 18
+  orig: 15, 18
+  offset: 0, 0
+  index: -1
 heroLedgeClimb0
   rotate: false
-  xy: 231, 246
+  xy: 232, 249
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 heroLedgeClimb1
   rotate: false
-  xy: 157, 234
+  xy: 186, 245
   size: 13, 16
   orig: 13, 16
   offset: 0, 0
@@ -272,7 +279,7 @@ heroRun0
   index: -1
 heroRun1
   rotate: false
-  xy: 145, 150
+  xy: 161, 168
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -307,7 +314,7 @@ heroRunGun1
   index: -1
 heroRunGun2
   rotate: false
-  xy: 161, 168
+  xy: 177, 183
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -321,14 +328,14 @@ heroRunGun3
   index: -1
 heroStandShoot0
   rotate: false
-  xy: 129, 169
+  xy: 145, 169
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 heroStandShoot1
   rotate: false
-  xy: 144, 169
+  xy: 129, 179
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
@@ -419,14 +426,14 @@ scientistHammerIdle1
   index: -1
 scientistHammerIdleHammer0
   rotate: false
-  xy: 143, 214
+  xy: 129, 224
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
   index: -1
 scientistHammerIdleHammer1
   rotate: false
-  xy: 129, 214
+  xy: 144, 214
   size: 13, 20
   orig: 13, 20
   offset: 0, 0
@@ -440,14 +447,14 @@ scientistHammerRunHammer0
   index: -1
 scientistHammerRunHammer1
   rotate: false
-  xy: 157, 214
+  xy: 158, 214
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
   index: -1
 scientistHammerRunHammer2
   rotate: false
-  xy: 171, 214
+  xy: 172, 214
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
@@ -510,14 +517,14 @@ scientistPistolDeathFall1
   index: -1
 scientistPistolGunDraw0
   rotate: false
-  xy: 143, 234
+  xy: 158, 234
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 scientistPistolHit0
   rotate: false
-  xy: 177, 183
+  xy: 193, 194
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -538,14 +545,14 @@ scientistPistolIdle1
   index: -1
 scientistPistolIdleGunDown0
   rotate: false
-  xy: 143, 234
+  xy: 158, 234
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 scientistPistolIdleGunDown1
   rotate: false
-  xy: 185, 225
+  xy: 186, 225
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
@@ -629,14 +636,14 @@ scientistStunDeathFall1
   index: -1
 scientistStunGunDraw0
   rotate: false
-  xy: 129, 235
+  xy: 172, 234
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 scientistStunHit0
   rotate: false
-  xy: 193, 194
+  xy: 218, 229
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -657,14 +664,14 @@ scientistStunIdle1
   index: -1
 scientistStunIdleGunDown0
   rotate: false
-  xy: 129, 235
+  xy: 172, 234
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 scientistStunIdleGunDown1
   rotate: false
-  xy: 217, 242
+  xy: 218, 248
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
@@ -727,14 +734,14 @@ splitShotIcon
   index: -1
 stunEffectIcon0
   rotate: false
-  xy: 208, 231
+  xy: 209, 231
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 stunEffectIcon1
   rotate: false
-  xy: 199, 234
+  xy: 200, 234
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -748,7 +755,7 @@ uiBar
   index: -1
 uiBarBg
   rotate: false
-  xy: 199, 243
+  xy: 200, 243
   size: 8, 5
   orig: 8, 5
   offset: 0, 0
@@ -769,7 +776,7 @@ uiDialogBox
   index: -1
 uiDownArrow
   rotate: false
-  xy: 208, 240
+  xy: 209, 240
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
