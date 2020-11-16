@@ -1522,7 +1522,7 @@
 							},
 							{ "__identifier": "cameraTarget", "__value": null, "__type": "Point", "defUid": 107, "realEditorValues": [] }
 						] },
-						{ "__identifier": "Hero", "__grid": [40,9], "__tile": null, "defUid": 20, "px": [648,160], "fieldInstances": [] }
+						{ "__identifier": "Hero", "__grid": [9,19], "__tile": null, "defUid": 20, "px": [152,320], "fieldInstances": [] }
 					]
 				},
 				{
