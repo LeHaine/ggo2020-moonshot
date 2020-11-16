@@ -16,7 +16,7 @@ class EndLevel extends ScaledEntity {
 		isCollidable = false;
 		ignoreBullets = true;
 		interactable = new DialogInteracble(cx, cy, "Proceed", onEndLevel);
-		interactable.follow(this, 0, -2);
+		interactable.follow(this);
 	}
 
 	override function dispose() {

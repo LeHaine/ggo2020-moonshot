@@ -35,7 +35,7 @@ class Elevator extends ScaledEntity {
 				targetPoint = origin;
 			}
 		});
-		interactable.follow(this, 0, -1.5);
+		interactable.follow(this);
 	}
 
 	private function moveToPoint(spd:Float, point:CPoint) {

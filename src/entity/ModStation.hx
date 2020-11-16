@@ -15,7 +15,7 @@ class ModStation extends ScaledEntity {
 		hasGravity = false;
 		isCollidable = false;
 		interactable = new DialogInteracble(cx, cy, "Modify Traits", () -> new ModStationWindow(0, onItemBought));
-		interactable.follow(this, 0, -2);
+		interactable.follow(this);
 	}
 
 	override function dispose() {

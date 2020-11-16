@@ -1,6 +1,6 @@
 package entity;
 
-class UIEntity extends NoScaleEntity {
+class UIEntity extends ScaledEntity {
 	private var entityUpdatedListener:(e:Entity) -> Void;
 	private var offsetXr:Float = 0;
 	private var offsetYr:Float = 0;

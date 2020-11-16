@@ -203,13 +203,13 @@ class CinematicControl extends dn.Process {
 			bg.height = f.outerHeight;
 		}
 
-		var tf = new h2d.Text(Assets.fontSmall, f);
+		var tf = new h2d.Text(Assets.fontPixel, f);
 		tf.text = str;
 		tf.maxWidth = 250;
 		tf.textColor = 0xffffff;
 
 		f.addSpacing(16);
-		var tf = new h2d.Text(Assets.fontTiny, f);
+		var tf = new h2d.Text(Assets.fontPixel, f);
 		if (game.ca.isGamePad()) {
 			tf.text = "[B] to continue";
 		} else {
