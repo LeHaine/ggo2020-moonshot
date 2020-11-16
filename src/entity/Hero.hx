@@ -196,8 +196,8 @@ class Hero extends Character {
 
 	private function renderChargeBar(v:Float) {
 		if (chargeStrongShotBar == null) {
-			chargeStrongShotBar = new ui.Bar(50, 5, 0xFF0000, chargeStrongShotBarWrapper.spr);
-			chargeStrongShotBar.x -= 25;
+			chargeStrongShotBar = new ui.Bar(18, 3, 0xFF0000, chargeStrongShotBarWrapper.spr);
+			chargeStrongShotBar.x -= 9;
 			chargeStrongShotBar.enableOldValue(0xFF0000, 4);
 		}
 
