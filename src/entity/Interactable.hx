@@ -16,6 +16,7 @@ class Interactable extends UIEntity {
 	public var secondaryDelayActionTimer:Float;
 	public var canInteract:Bool;
 	public var focusRange:Float = 2.;
+	public var active:Bool;
 
 	public function new(x, y) {
 		super(x, y);
@@ -42,6 +43,8 @@ class Interactable extends UIEntity {
 		downArrow = new HSprite(Assets.tiles, "uiDownArrow", wrapper);
 		downArrow.setCenterRatio(0.5, 0);
 		downArrow.alpha = 0.85;
+
+		active = true;
 	}
 
 	override public function dispose() {
@@ -70,12 +73,18 @@ class Interactable extends UIEntity {
 	}
 
 	public function focus() {
+		if (!active) {
+			return;
+		}
 		wrapper.visible = true;
 		canInteract = true;
 		game.tw.createS(wrapper.alpha, 0 > 1, 0.2);
 	}
 
 	public function unfocus() {
+		if (!active) {
+			return;
+		}
 		canInteract = false;
 		resetSecondaryInteractionTimer();
 		game.tw.createS(wrapper.alpha, 0, 0.3).end(() -> {

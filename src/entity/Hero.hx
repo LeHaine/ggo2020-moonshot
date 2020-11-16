@@ -293,6 +293,7 @@ class Hero extends Character {
 			return;
 		}
 		if (ca.aPressed() && !ca.ltDown() && canJump()) {
+			elevator = null;
 			if (climbing) {
 				climbing = false;
 				cd.setS("climbLock", 0.2);
@@ -386,7 +387,7 @@ class Hero extends Character {
 		if (onGround || dy < 0) {
 			cd.setS("fallSquash", 1);
 			var jumpThruPlatformDown = ca.isKeyboardDown(K.SPACE);
-			if (jumpThruPlatformDown && crouching && level.hasOneWayPlatform(cx, cy + 1)) {
+			if (jumpThruPlatformDown && crouching && (level.hasOneWayPlatform(cx, cy + 1))) {
 				cy += 1;
 				yr = 0;
 				cd.setS("hopLimit", 0.5);

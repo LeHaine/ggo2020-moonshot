@@ -17,6 +17,7 @@ class Laser extends ScaledEntity {
 
 	public function new(data:World.Entity_Laser) {
 		super(data.cx, data.cy);
+		this.data = data;
 		orientation = data.f_orientation;
 		laserDir = data.f_dir;
 		activeTime = data.f_activeTime;

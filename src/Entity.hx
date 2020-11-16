@@ -54,7 +54,7 @@ class Entity {
 
 	public var onGround(get, never):Bool;
 
-	inline function get_onGround() {
+	function get_onGround() {
 		return dy == 0 && (level.hasCollision(cx, cy + 1) || level.hasOneWayPlatform(cx, cy + 1)) && yr == 1;
 	}
 
@@ -156,6 +156,8 @@ class Entity {
 
 	inline function get_fallHeight()
 		return cy + yr - fallHighestCy;
+
+	public var entitiesTouching:Array<Entity> = [];
 
 	// Visual components
 	public var spr:HSprite;
@@ -617,6 +619,7 @@ class Entity {
 	public function fixedUpdate() {} // runs at a "guaranteed" 30 fps
 
 	public function update() { // runs at an unknown fps
+		checkEntitiesNoLongerTouching();
 		performEntityCollisions();
 		performXSteps();
 		performYSteps();
@@ -637,32 +640,33 @@ class Entity {
 		#end
 	}
 
+	private function checkEntitiesNoLongerTouching() {
+		for (e in entitiesTouching) {
+			var isColliding = isCollidingWith(e);
+			if (e.destroyed || !isColliding) {
+				if (!e.destroyed) {
+					onTouchStop(e);
+					e.onTouchStop(this);
+					entitiesTouching.remove(e);
+					e.entitiesTouching.remove(this);
+				}
+			}
+		}
+	}
+
 	private function performEntityCollisions() {
 		if (!isCollidable) {
 			return;
 		}
 		for (e in ALL) {
 			if (e != this && e.isCollidable && !destroyed && !e.destroyed && isCollidingWith(e)) {
-				// var repel = 0.05 * tmod;
-				// var a = Math.atan2(e.footY - footY, e.footX - footX);
-
-				// if (!imovable) {
-				// 	var r = e.weight == weight ? 0.5 : e.weight / (weight + e.weight);
-				// 	if (r <= 0.1)
-				// 		r = 0;
-				// 	dx -= Math.cos(a) * repel * r;
-				// 	dy -= Math.sin(a) * repel * r;
-				// }
-				// if (!e.imovable) {
-				// 	var r = e.weight == weight ? 0.5 : weight / (weight + e.weight);
-				// 	if (r <= 0.1)
-				// 		r = 0;
-				// 	e.dx += Math.cos(a) * repel * r;
-				// 	e.dy += Math.sin(a) * repel * r;
-				// }
-
-				onTouch(e);
-				e.onTouch(this);
+				if (isAlreadyTouching(e)) {
+					onTouching(e);
+					e.onTouching(this);
+				} else {
+					onTouch(e);
+					e.onTouch(this);
+				}
 			}
 		}
 	}
@@ -689,7 +693,21 @@ class Entity {
 		return true;
 	}
 
-	public function onTouch(from:Entity) {}
+	public function isAlreadyTouching(from:Entity) {
+		return entitiesTouching.contains(from);
+	}
+
+	public function onTouch(from:Entity) {
+		if (!entitiesTouching.contains(from)) {
+			entitiesTouching.push(from);
+		}
+	}
+
+	public function onTouching(from:Entity) {}
+
+	public function onTouchStop(from:Entity) {
+		entitiesTouching.remove(from);
+	}
 
 	private function performXSteps() {
 		var steps = M.ceil(M.fabs(dxTotal * tmod));

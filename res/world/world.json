@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 119,
+	"nextUid": 121,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -1155,6 +1155,40 @@
 						"min": 0,
 						"max": null,
 						"defaultOverride": { "id": "V_Float", "params": [0] }
+					}
+				]
+			},
+			{
+				"identifier": "Elevator",
+				"uid": 119,
+				"width": 32,
+				"height": 8,
+				"color": "#7464B0",
+				"renderMode": "Rectangle",
+				"showName": true,
+				"tilesetId": null,
+				"tileId": null,
+				"tileRenderMode": "Stretch",
+				"maxPerLevel": 0,
+				"limitBehavior": "DiscardOldOnes",
+				"pivotX": 0.5,
+				"pivotY": 1,
+				"fieldDefs": [
+					{
+						"identifier": "end",
+						"__type": "Point",
+						"uid": 120,
+						"type": "F_Point",
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "PointStar",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": true,
+						"min": null,
+						"max": null,
+						"defaultOverride": null
 					}
 				]
 			}
@@ -20855,7 +20889,17 @@
 								"defUid": 118,
 								"realEditorValues": [{ "id": "V_Float", "params": [2] }]
 							}
-						] }
+						] },
+						{ "__identifier": "Elevator", "__grid": [27,19], "__tile": null, "defUid": 119, "px": [440,320], "fieldInstances": [{
+							"__identifier": "end",
+							"__value": { "cx": 27, "cy": 14 },
+							"__type": "Point",
+							"defUid": 120,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["27,14"]
+							}]
+						}] }
 					]
 				},
 				{
@@ -21481,13 +21525,6 @@
 						{ "coordId": 1325, "v": 0 },
 						{ "coordId": 1326, "v": 0 },
 						{ "coordId": 1327, "v": 0 },
-						{ "coordId": 1328, "v": 2 },
-						{ "coordId": 1329, "v": 2 },
-						{ "coordId": 1330, "v": 2 },
-						{ "coordId": 1331, "v": 2 },
-						{ "coordId": 1332, "v": 2 },
-						{ "coordId": 1333, "v": 2 },
-						{ "coordId": 1334, "v": 2 },
 						{ "coordId": 1335, "v": 0 },
 						{ "coordId": 1336, "v": 0 },
 						{ "coordId": 1337, "v": 0 },
@@ -25386,17 +25423,10 @@
 						{ "px": [800,192], "src": [32,0], "f": 0, "d": [80,1094,2] },
 						{ "px": [816,192], "src": [32,0], "f": 0, "d": [80,1095,2] },
 						{ "px": [832,192], "src": [32,0], "f": 0, "d": [80,1096,2] },
-						{ "px": [384,240], "src": [32,0], "f": 0, "d": [80,1329,2] },
-						{ "px": [400,240], "src": [32,0], "f": 0, "d": [80,1330,2] },
-						{ "px": [416,240], "src": [32,0], "f": 0, "d": [80,1331,2] },
-						{ "px": [432,240], "src": [32,0], "f": 0, "d": [80,1332,2] },
-						{ "px": [448,240], "src": [32,0], "f": 0, "d": [80,1333,2] },
 						{ "px": [704,144], "src": [16,0], "f": 0, "d": [82,827,1] },
 						{ "px": [736,144], "src": [16,0], "f": 1, "d": [82,829,1] },
 						{ "px": [720,192], "src": [16,0], "f": 0, "d": [82,1089,1] },
-						{ "px": [848,192], "src": [16,0], "f": 1, "d": [82,1097,1] },
-						{ "px": [368,240], "src": [16,0], "f": 0, "d": [82,1328,1] },
-						{ "px": [464,240], "src": [16,0], "f": 1, "d": [82,1334,1] }
+						{ "px": [848,192], "src": [16,0], "f": 1, "d": [82,1097,1] }
 					],
 					"seed": 9319627,
 					"gridTiles": [],

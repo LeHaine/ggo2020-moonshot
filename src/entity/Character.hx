@@ -18,10 +18,24 @@ class Character extends ScaledEntity {
 	var healthBar:Bar;
 	var usesHealthBar:Bool = true;
 
+	var elevator:Null<Elevator>;
+
+	override function get_onGround():Bool {
+		return super.get_onGround() || elevator != null;
+	}
+
 	public function new(x:Int, y:Int) {
 		super(x, y);
 		affectIcons = new h2d.Flow();
 		game.scroller.add(affectIcons, Const.DP_FRONT);
+	}
+
+	override function onTouch(from:Entity) {
+		super.onTouch(from);
+
+		if (from.is(Elevator)) {
+			elevator = cast(from, Elevator);
+		}
 	}
 
 	override function hit(dmg:Int, from:Null<Entity>) {
@@ -97,6 +111,30 @@ class Character extends ScaledEntity {
 		}
 
 		healthBar.set(life / maxLife, 1);
+	}
+
+	public function isOnElevator() {
+		if (elevator == null) {
+			return false;
+		}
+		return distCaseY(elevator) <= 1 && distCaseX(elevator) <= 1.2;
+	}
+
+	public function stickToElevator() {
+		if (elevator != null) {
+			cy = elevator.cy;
+			yr = elevator.yr - 0.3;
+		}
+	}
+
+	override function update() {
+		super.update();
+
+		if (isOnElevator()) {
+			stickToElevator();
+		} else {
+			elevator = null;
+		}
 	}
 
 	override function postUpdate() {
