@@ -56,7 +56,7 @@ class Hud extends dn.Process {
 		lifeBox.maxWidth = lifeBox.minWidth = M.ceil(lifeBar.outerWidth);
 		lifeBox.maxHeight = lifeBox.minHeight = M.ceil(lifeBar.outerHeight);
 		lifeBox.y -= 1;
-		lifeText = new Text(Assets.fontTiny, lifeBox);
+		lifeText = new Text(Assets.fontPixelSmall, lifeBox);
 
 		var moneyBox = new h2d.Flow(flow);
 		moneyBox.horizontalSpacing = 4;
@@ -65,7 +65,7 @@ class Hud extends dn.Process {
 		moneyBoxProps.align(FlowAlign.Bottom, FlowAlign.Right);
 
 		Assets.tiles.h_get("coin", moneyBox).scale(0.25);
-		moneyText = new Text(Assets.fontSmall, moneyBox);
+		moneyText = new Text(Assets.fontPixelSmall, moneyBox);
 		moneyText.text = Std.string(game.money);
 	}
 

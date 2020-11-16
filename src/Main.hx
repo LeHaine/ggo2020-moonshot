@@ -88,7 +88,7 @@ class Main extends dn.Process {
 		controller.bind(START, Key.N);
 
 		// Start
-		new dn.heaps.GameFocusHelper(Boot.ME.s2d, Assets.fontMedium);
+		new dn.heaps.GameFocusHelper(Boot.ME.s2d, Assets.fontPixelMedium);
 		delayer.addF(startGame, 1);
 	}
 

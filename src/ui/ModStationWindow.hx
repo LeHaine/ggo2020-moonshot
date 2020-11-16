@@ -52,10 +52,10 @@ class ModStationWindow extends dn.Process {
 		masterFlow.backgroundTile = Assets.tiles.getTile("uiWindow");
 		masterFlow.borderHeight = masterFlow.borderWidth = 32;
 
-		var titleTf = new h2d.Text(Assets.fontLarge, masterFlow);
+		var titleTf = new h2d.Text(Assets.fontPixelLarge, masterFlow);
 		titleTf.text = "Modification Station";
 
-		var subTitleTf = new h2d.Text(Assets.fontSmall, masterFlow);
+		var subTitleTf = new h2d.Text(Assets.fontPixelMedium, masterFlow);
 		subTitleTf.text = "Choose one trait to upgrade";
 
 		var moneyBox = new h2d.Flow(masterFlow);
@@ -63,7 +63,7 @@ class ModStationWindow extends dn.Process {
 		moneyBox.horizontalSpacing = 4;
 		moneyBox.padding = 16;
 
-		money = new h2d.Text(Assets.fontMedium, moneyBox);
+		money = new h2d.Text(Assets.fontPixelMedium, moneyBox);
 		money.textColor = 0xFF3333;
 		var coinIcon = Assets.tiles.h_get("coin", moneyBox);
 		coinIcon.scale(0.5);
@@ -73,7 +73,7 @@ class ModStationWindow extends dn.Process {
 		itemFlow.verticalSpacing = 1;
 
 		masterFlow.addSpacing(8);
-		var tf = new h2d.Text(Assets.fontMedium, masterFlow);
+		var tf = new h2d.Text(Assets.fontPixelMedium, masterFlow);
 		if (Game.ME.ca.isGamePad()) {
 			tf.text = "[B] to cancel";
 		} else {
@@ -130,12 +130,12 @@ class ModStationWindow extends dn.Process {
 		infoBox.verticalSpacing = 8;
 		infoBox.layout = Vertical;
 
-		var nameTf = new h2d.Text(Assets.fontMedium, infoBox);
+		var nameTf = new h2d.Text(Assets.fontPixelMedium, infoBox);
 		nameTf.text = trait.name;
 		nameTf.maxWidth = 300;
 		nameTf.textColor = price <= money ? 0xFFFFFF : 0xE77272;
 
-		var desc = new h2d.Text(Assets.fontSmall, infoBox);
+		var desc = new h2d.Text(Assets.fontPixelSmall, infoBox);
 		desc.text = trait.desc;
 		desc.maxWidth = 300;
 		desc.textColor = 0xBBBBBB;
@@ -145,11 +145,11 @@ class ModStationWindow extends dn.Process {
 			attrBox.horizontalSpacing = 8;
 			attrBox.maxWidth = attrBox.minWidth = 250;
 
-			var attrTf = new h2d.Text(Assets.fontMedium, attrBox);
+			var attrTf = new h2d.Text(Assets.fontPixelMedium, attrBox);
 			attrTf.text = '${attr.name}:';
 			attrTf.textColor = 0xBBBBBB;
 
-			var attrValueTf = new h2d.Text(Assets.fontMedium, attrBox);
+			var attrValueTf = new h2d.Text(Assets.fontPixelMedium, attrBox);
 			attrBox.getProperties(attrValueTf).horizontalAlign = FlowAlign.Right;
 			var value = attr.isPercentage ? '${M.pretty(attr.value * 100)}%' : Std.string(attr.value);
 			var sign = attr.value >= 0 ? "+" : "";
@@ -165,7 +165,7 @@ class ModStationWindow extends dn.Process {
 
 		flow.addSpacing(8);
 
-		var priceTf = new h2d.Text(Assets.fontMedium, priceBox);
+		var priceTf = new h2d.Text(Assets.fontPixelMedium, priceBox);
 		if (price > 0) {
 			priceTf.text = Std.string(price);
 			priceTf.textColor = price <= money ? 0xFF9900 : 0xD20000;
