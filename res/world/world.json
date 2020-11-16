@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 121,
+	"nextUid": 122,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -1191,6 +1191,23 @@
 						"defaultOverride": null
 					}
 				]
+			},
+			{
+				"identifier": "ExplosiveBarrel",
+				"uid": 121,
+				"width": 16,
+				"height": 16,
+				"color": "#C02F0D",
+				"renderMode": "Rectangle",
+				"showName": true,
+				"tilesetId": null,
+				"tileId": null,
+				"tileRenderMode": "Stretch",
+				"maxPerLevel": 0,
+				"limitBehavior": "DiscardOldOnes",
+				"pivotX": 0.5,
+				"pivotY": 1,
+				"fieldDefs": []
 			}
 		],
 		"tilesets": [
@@ -17098,7 +17115,8 @@
 						{ "__identifier": "EndLevel", "__grid": [18,18], "__tile": null, "defUid": 94, "px": [296,304], "fieldInstances": [
 							{ "__identifier": "moveToNextLevel", "__value": true, "__type": "Bool", "defUid": 98, "realEditorValues": [] },
 							{ "__identifier": "name", "__value": null, "__type": "String", "defUid": 111, "realEditorValues": [] }
-						] }
+						] },
+						{ "__identifier": "ExplosiveBarrel", "__grid": [23,19], "__tile": null, "defUid": 121, "px": [376,320], "fieldInstances": [] }
 					]
 				},
 				{
@@ -20899,7 +20917,9 @@
 								"id": "V_String",
 								"params": ["27,14"]
 							}]
-						}] }
+						}] },
+						{ "__identifier": "ExplosiveBarrel", "__grid": [52,19], "__tile": null, "defUid": 121, "px": [840,320], "fieldInstances": [] },
+						{ "__identifier": "ExplosiveBarrel", "__grid": [47,19], "__tile": null, "defUid": 121, "px": [760,320], "fieldInstances": [] }
 					]
 				},
 				{

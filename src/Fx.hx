@@ -339,22 +339,6 @@ class Fx extends dn.Process {
 		}
 	}
 
-	public function bulletCase(x:Float, y:Float, dir:Int) {
-		var p = allocTopNormal(getTile("fxDot"), x, y);
-		p.colorize(0x0);
-		p.scaleX = 2;
-		p.scaleY = 1;
-		p.setFadeS(1, 0, rnd(7, 10));
-		p.dr = dir * rnd(0.18, 0.20);
-		p.dx = dir * rnd(0.1, 0.2);
-		p.dy = rnd(-0.2, 0.1);
-		p.gy = 0.04;
-		p.frict = 0.99;
-
-		p.onUpdate = _hardPhysics;
-		p.lifeS = rnd(5, 10);
-	}
-
 	public function moonShotExplosion(x:Float, y:Float, mul:Float) {
 		var dustColor = 0xa9c2d8;
 
@@ -440,7 +424,6 @@ class Fx extends dn.Process {
 	}
 
 	public function woundBleed(x:Float, y:Float) {
-		// Dots
 		var n = 2;
 		for (i in 0...n) {
 			var p = allocTopNormal(getTile("fxDot"), x + rnd(0, 3, true), y + rnd(0, 4, true));
@@ -478,6 +461,114 @@ class Fx extends dn.Process {
 			p.lifeS = rnd(0.25, 0.35);
 			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
 			p.onUpdate = _killOnCollision;
+		}
+	}
+
+	public function explosion(x:Float, y:Float, r:Float) {
+		var c = 0x8493b0;
+
+		var p = allocTopAdd(getTile("fxSmallCircle"), x, y);
+		p.colorize(0xFF0000);
+		p.setFadeS(0.5, 0, 0.1);
+		p.setScale(2 * r / p.t.width);
+		p.lifeS = 0;
+		p.ds = 0.1;
+		p.dsFrict = 0.8;
+
+		var p = allocTopAdd(getTile("fxSmallCircle"), x, y);
+		p.colorize(0xFF0000);
+		p.setFadeS(0.5, 0, 0.1);
+		p.setScale(2 * r / p.t.width);
+		p.lifeS = 0;
+		p.ds = 0.02;
+		p.dsFrict = 0.8;
+
+		// Dots
+		var n = 100;
+		for (i in 0...n) {
+			var p = allocTopNormal(getTile("fxSmallCircle"), x + rnd(0, 3, true), y + rnd(0, 4, true));
+			p.setFadeS(rnd(0.7, 1), 0, rnd(3, 7));
+			p.colorize(Color.interpolateInt(c, 0x0, rnd(0, 0.1)));
+
+			p.setScale(rnd(0.3, 0.7, true));
+			p.scaleMul = rnd(0.98, 0.99);
+
+			p.dx = rnd(0, 9, true);
+			p.dy = i <= n * 0.25 ? -rnd(6, 12) : -rnd(1, 7);
+			p.gy = rnd(0.1, 0.3);
+			p.frict = rnd(0.85, 0.96);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.3, true);
+
+			p.lifeS = rnd(5, 10);
+			p.onUpdate = _hardPhysics;
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+
+		// Big dirt
+		var n = 20;
+		for (i in 0...n) {
+			var p = allocBgNormal(getTile("fxSmallCircle"), x + rnd(0, 3, true), y + rnd(0, 4, true));
+			p.colorize(Color.interpolateInt(c, 0x0, rnd(0, 0.1)));
+			p.setFadeS(rnd(0.7, 1), 0, rnd(3, 7));
+
+			p.setScale(rnd(1, 2, true));
+			p.scaleMul = rnd(0.98, 0.99);
+
+			p.dx = rnd(0, 5, true);
+			p.dy = rnd(-5, 0);
+			p.gy = rnd(0.1, 0.2);
+			p.frict = rnd(0.85, 0.96);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.3, true);
+
+			p.lifeS = rnd(5, 10);
+			p.onUpdate = _hardPhysics;
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+
+		// Smoke
+		var n = 40;
+		for (i in 0...n) {
+			var p = allocBgNormal(getTile("fxSmoke"), x + rnd(0, 5, true), y + rnd(0, 7, true));
+			p.colorAnimS(0xE1451E, 0x222035, rnd(2, 4));
+			p.setFadeS(rnd(0.2, 0.4), 0, rnd(0.5, 1));
+
+			p.setScale(rnd(1.5, 2, true));
+			p.scaleMul = rnd(0.998, 0.999);
+
+			p.dx = rnd(0, 1.3, true);
+			p.dy = rnd(-2, 0);
+			p.frict = rnd(0.93, 0.96);
+			p.gy = -rnd(0.005, 0.008);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.02, true);
+
+			p.lifeS = rnd(4, 5);
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+
+		// Fire
+		var n = 40;
+		for (i in 0...n) {
+			var p = allocTopAdd(getTile("fxSmoke"), x + rnd(0, 3, true), y - rnd(0, 6));
+			p.colorAnimS(0xE78F0C, 0x5A5F98, rnd(1, 3));
+			p.setFadeS(rnd(0.7, 1), 0, rnd(0.5, 1));
+
+			p.setScale(rnd(0.8, 1.5, true));
+			p.scaleMul = rnd(0.97, 0.99);
+
+			p.moveAwayFrom(x, y, rnd(0, 2));
+			p.frict = rnd(0.85, 0.96);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.03, true);
+
+			p.lifeS = rnd(1, 3);
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
 		}
 	}
 

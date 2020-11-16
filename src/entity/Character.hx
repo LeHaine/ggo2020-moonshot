@@ -3,6 +3,8 @@ package entity;
 import ui.Bar;
 
 class Character extends Entity {
+	public static var ALL:Array<Character> = [];
+
 	var climbing = false;
 
 	var affectToIcon = [
@@ -26,6 +28,7 @@ class Character extends Entity {
 
 	public function new(x:Int, y:Int) {
 		super(x, y);
+		ALL.push(this);
 		affectIcons = new h2d.Flow();
 		game.scroller.add(affectIcons, Const.DP_FRONT);
 	}
@@ -158,6 +161,8 @@ class Character extends Entity {
 
 	override function dispose() {
 		super.dispose();
+
+		ALL.remove(this);
 
 		if (healthBar != null) {
 			healthBar.remove();
