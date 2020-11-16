@@ -2,7 +2,7 @@ package entity;
 
 import ui.Bar;
 
-class Character extends ScaledEntity {
+class Character extends Entity {
 	var climbing = false;
 
 	var affectToIcon = [

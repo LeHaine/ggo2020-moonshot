@@ -1,6 +1,6 @@
 package entity;
 
-class DeadBody extends ScaledEntity {
+class DeadBody extends Entity {
 	public static var ALL:Array<DeadBody> = [];
 
 	public function new(e:Entity, sid:String, ?xMult:Float = 1, ?yMult:Float = 1) {

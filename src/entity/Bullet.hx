@@ -1,6 +1,6 @@
 package entity;
 
-class Bullet extends ScaledEntity {
+class Bullet extends Entity {
 	public var ALL:Array<Bullet> = [];
 
 	public var owner:Entity;

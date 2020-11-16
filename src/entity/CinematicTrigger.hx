@@ -1,6 +1,6 @@
 package entity;
 
-class CinematicTrigger extends ScaledEntity {
+class CinematicTrigger extends Entity {
 	var data:World.Entity_CinematicTrigger;
 
 	public function new(data:World.Entity_CinematicTrigger) {

@@ -2,7 +2,7 @@ package entity;
 
 import entity.interactable.DialogInteracble;
 
-class EndLevel extends ScaledEntity {
+class EndLevel extends Entity {
 	private var data:World.Entity_EndLevel;
 
 	var interactable:DialogInteracble;

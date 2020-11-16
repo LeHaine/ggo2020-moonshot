@@ -2,7 +2,7 @@ package entity;
 
 import entity.interactable.DialogInteracble;
 
-class Gun extends ScaledEntity {
+class Gun extends Entity {
 	var data:World.Entity_Gun;
 
 	var interactable:DialogInteracble;

@@ -2,7 +2,7 @@ package entity;
 
 import entity.interactable.DialogInteracble;
 
-class Elevator extends ScaledEntity {
+class Elevator extends Entity {
 	var data:World.Entity_Elevator;
 	var interactable:DialogInteracble;
 

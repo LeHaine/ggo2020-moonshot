@@ -1,5 +1,3 @@
-import entity.NoScaleEntity;
-
 class Camera extends dn.Process {
 	public var target:Null<Entity>;
 	public var targetPoint:Null<CPoint>;
@@ -174,10 +172,6 @@ class Camera extends dn.Process {
 
 			// Zoom
 			scroller.setScale(Const.SCALE * zoom);
-		}
-
-		for (entity in NoScaleEntity.ALL) {
-			entity.syncPosition();
 		}
 	}
 }

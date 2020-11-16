@@ -3,7 +3,7 @@ package entity;
 import ui.ModStationWindow;
 import entity.interactable.DialogInteracble;
 
-class ModStation extends ScaledEntity {
+class ModStation extends Entity {
 	var data:World.Entity_ModStation;
 	var interactable:DialogInteracble;
 

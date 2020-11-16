@@ -239,6 +239,8 @@ class Entity {
 		spr.colorMatrix = colorMatrix = h3d.Matrix.I();
 		spr.setCenterRatio(0.5, 1);
 
+		Game.ME.scroller.add(spr, Const.DP_MAIN);
+
 		if (ui.Console.ME.hasFlag("bounds"))
 			enableBounds();
 	}

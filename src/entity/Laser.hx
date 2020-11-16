@@ -1,6 +1,6 @@
 package entity;
 
-class Laser extends ScaledEntity {
+class Laser extends Entity {
 	var data:World.Entity_Laser;
 
 	var laserDir:Int;
