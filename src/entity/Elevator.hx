@@ -50,7 +50,7 @@ class Elevator extends ScaledEntity {
 	override function update() {
 		super.update();
 
-		moveToPoint(0.1, targetPoint);
+		moveToPoint(0.05, targetPoint);
 
 		if (cy == targetPoint.cy && !interactable.active) {
 			interactable.active = true;
