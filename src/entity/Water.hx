@@ -6,6 +6,7 @@ class Water extends Entity {
 	public function new(data:World.Entity_Water) {
 		super(data.cx, data.cy, false);
 		hasGravity = false;
+		ignoreBullets = true;
 		Game.ME.scroller.add(spr, Const.DP_FRONT_DETAILS);
 		spr.set("water");
 		spr.blendMode = Add;
