@@ -20,6 +20,7 @@ class Hero extends Character {
 	var ca:ControllerAccess;
 
 	var crouching = false;
+	var doubleJump = false;
 
 	var chargeStrongShotBarWrapper:UIEntity;
 	var chargeStrongShotBar:ui.Bar;
@@ -72,6 +73,7 @@ class Hero extends Character {
 		if (onGround) {
 			cd.setS("onGroundRecently", 0.15);
 			cd.setS("airControl", 10);
+			doubleJump = false;
 		}
 
 		if (!isConscious()) {
@@ -292,6 +294,12 @@ class Hero extends Character {
 		if (controlsLocked() || hasAffect(Stun)) {
 			return;
 		}
+		// Double jump
+		if (ca.aPressed() && !ca.ltDown() && !onGround && !cd.has("onGroundRecently") && !doubleJump) {
+			dy = -0.5 * tmod;
+			doubleJump = true;
+		}
+
 		if (ca.aPressed() && !ca.ltDown() && canJump()) {
 			elevator = null;
 			if (climbing) {
