@@ -6,6 +6,7 @@ class Rat extends Mob {
 
 		initLife(20);
 		damage = 10;
+		hei = 8;
 		attackCd = 1;
 		attackRange = 1.5;
 		spr.anim.registerStateAnim("ratIdle", 0);
