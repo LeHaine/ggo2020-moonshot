@@ -294,7 +294,6 @@ class Hero extends Character {
 		if (controlsLocked() || hasAffect(Stun)) {
 			return;
 		}
-		// Double jump
 		if (ca.aPressed() && !ca.ltDown() && !onGround && !cd.has("onGroundRecently") && !doubleJump) {
 			dy = -0.5 * tmod;
 			doubleJump = true;
