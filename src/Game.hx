@@ -127,6 +127,10 @@ class Game extends Process {
 			new entity.ExplosiveBarrel(e);
 		}
 
+		for (e in level.data.l_Entities.all_Water) {
+			new entity.Water(e);
+		}
+
 		for (e in level.data.l_Entities.all_Mob) {
 			switch e.f_type {
 				case Scientist_Pistol:

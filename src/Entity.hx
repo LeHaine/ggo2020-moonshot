@@ -224,7 +224,7 @@ class Entity {
 
 	private var entityUpdatedListeners:Array<(e:Entity) -> Void> = [];
 
-	public function new(x:Int, y:Int) {
+	public function new(x:Int, y:Int, ?addToMain:Bool = true) {
 		uid = Const.NEXT_UNIQ;
 		ALL.push(this);
 
@@ -239,7 +239,9 @@ class Entity {
 		spr.colorMatrix = colorMatrix = h3d.Matrix.I();
 		spr.setCenterRatio(0.5, 1);
 
-		Game.ME.scroller.add(spr, Const.DP_MAIN);
+		if (addToMain) {
+			Game.ME.scroller.add(spr, Const.DP_MAIN);
+		}
 
 		if (ui.Console.ME.hasFlag("bounds"))
 			enableBounds();

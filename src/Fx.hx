@@ -579,6 +579,20 @@ class Fx extends dn.Process {
 		}
 	}
 
+	public function water(x, y) {
+		var p = allocBgAdd(getTile("fxDot"), x + rnd(0, 3, true), y + rnd(0, 2));
+		p.dy = -rnd(0.1, 0.5);
+		p.dx = rnd(0, 0.5, true);
+		p.gy = 0.05;
+		p.groundY = p.y;
+		p.bounceMul = 0.95;
+		p.frictX = 0.7;
+		p.frictY = rnd(0.85, 0.99);
+		p.lifeS = rnd(5, 10);
+		p.colorize(0x6c76e1);
+		//	p.batch.filter = new h2d.filter.Glow(0x6c76e1, 0.9, 0.5, 1);
+	}
+
 	override function update() {
 		super.update();
 
