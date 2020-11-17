@@ -5,6 +5,13 @@ import ui.Bar;
 class Character extends Entity {
 	public static var ALL:Array<Character> = [];
 
+	public var inWater(get, never):Bool;
+
+	inline function get_inWater()
+		return touchingWaterEntites > 0;
+
+	public var touchingWaterEntites = 0;
+
 	var climbing = false;
 
 	var affectToIcon = [
@@ -19,7 +26,6 @@ class Character extends Entity {
 
 	var healthBar:Bar;
 	var usesHealthBar:Bool = true;
-
 	var elevator:Null<Elevator>;
 
 	override function get_onGround():Bool {
@@ -38,6 +44,17 @@ class Character extends Entity {
 
 		if (from.is(Elevator)) {
 			elevator = cast(from, Elevator);
+		}
+
+		if (from.is(Water)) {
+			touchingWaterEntites++;
+		}
+	}
+
+	override function onTouchStop(from:Entity) {
+		super.onTouchStop(from);
+		if (from.is(Water)) {
+			touchingWaterEntites--;
 		}
 	}
 

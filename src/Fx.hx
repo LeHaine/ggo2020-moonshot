@@ -588,9 +588,22 @@ class Fx extends dn.Process {
 		p.bounceMul = 0.95;
 		p.frictX = 0.7;
 		p.frictY = rnd(0.85, 0.99);
-		p.lifeS = rnd(5, 10);
+		p.lifeS = rnd(0.25, 0.5);
 		p.colorize(0x6c76e1);
-		//	p.batch.filter = new h2d.filter.Glow(0x6c76e1, 0.9, 0.5, 1);
+	}
+
+	public function waterSplash(x, y) {
+		for (i in 0...50) {
+			var p = allocBgAdd(getTile("fxDot"), x + rnd(0, 5, true), y + rnd(0, 3));
+			p.dy = -rnd(0.75, 1);
+			p.dx = rnd(0, 0.75, true);
+			p.gy = 0.035;
+			p.frictX = 0.7;
+			p.groundY = p.y;
+			p.frictY = rnd(0.85, 0.99);
+			p.lifeS = rnd(0.45, 0.65);
+			p.colorize(0x6c76e1);
+		}
 	}
 
 	override function update() {
