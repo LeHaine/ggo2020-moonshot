@@ -6,6 +6,7 @@ class ScientistPistol extends Mob {
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
+		initLife(30);
 		damage = 10;
 		attackRange = 10;
 		spr.anim.registerStateAnim("scientistPistolIdle", 0);

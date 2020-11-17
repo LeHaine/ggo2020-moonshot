@@ -19,7 +19,7 @@ class Mob extends Character {
 	var origin:CPoint;
 	var aggroTarget:Null<Entity>;
 
-	var initialAttackCooldown = rnd(1, 2);
+	var initialAttackCooldown = rnd(0.25, 0.5);
 	var attackCdVariance = 0.25;
 	var attackCd:Float;
 	var baseAttackCooldown(default, set):Float;

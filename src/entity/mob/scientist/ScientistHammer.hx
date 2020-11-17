@@ -6,6 +6,7 @@ class ScientistHammer extends Mob {
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
+		initLife(40);
 		damage = 13;
 		attackRange = 2.5;
 		attackCd = 3;
