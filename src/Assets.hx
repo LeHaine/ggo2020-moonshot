@@ -51,5 +51,9 @@ class Assets {
 		tiles.defineAnim("scientistHammerSwing", "0(2), 1, 2(8)");
 
 		tiles.defineAnim("stunEffectIcon", "0-1(8)");
+
+		tiles.defineAnim("ratRun", "0-3(3)");
+		tiles.defineAnim("ratIdle", "0(10), 1(15)");
+		tiles.defineAnim("ratBite", "0(3), 1-2(1)");
 	}
 }

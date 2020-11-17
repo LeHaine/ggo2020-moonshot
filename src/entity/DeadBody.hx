@@ -3,7 +3,7 @@ package entity;
 class DeadBody extends Entity {
 	public static var ALL:Array<DeadBody> = [];
 
-	public function new(e:Entity, sid:String, ?xMult:Float = 1, ?yMult:Float = 1) {
+	public function new(e:Entity, sid:String, ?deathBounce:Bool = true, ?deathFall:Bool = true, ?xMult:Float = 1, ?yMult:Float = 1) {
 		super(e.cx, e.cy);
 		ALL.push(this);
 		xr = e.xr;
@@ -18,8 +18,12 @@ class DeadBody extends Entity {
 		frictY = 0.97;
 		dy = -0.05 * yMult;
 		spr.set(e.spr.groupName);
-		spr.anim.registerStateAnim(sid + "DeathBounce", 2, () -> !onGround && cd.has("hitGround"));
-		spr.anim.registerStateAnim(sid + "DeathFall", 1, () -> !onGround);
+		if (deathBounce) {
+			spr.anim.registerStateAnim(sid + "DeathBounce", 2, () -> !onGround && cd.has("hitGround"));
+		}
+		if (deathFall) {
+			spr.anim.registerStateAnim(sid + "DeathFall", 1, () -> !onGround);
+		}
 		spr.anim.registerStateAnim(sid + "DeadBody", 0);
 		spr.colorize(e.spr.color.toColor());
 		cd.setS("gravityMul", 0.25);

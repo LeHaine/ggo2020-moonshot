@@ -1249,7 +1249,7 @@
 				{ "id": "Freeze", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Poison", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "89e313e23872d4a373a60bf7b34dfb84" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
 			{ "identifier": "LevelMark", "uid": 22, "values": [
 				{ "id": "CameraCinematicTarget", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Grab", "tileId": null, "__tileSrcRect": null },
@@ -1259,17 +1259,18 @@
 				{ "id": "PlatformEndLeft", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PlatformEndRight", "tileId": null, "__tileSrcRect": null },
 				{ "id": "SmallStep", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "89e313e23872d4a373a60bf7b34dfb84" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
 			{ "identifier": "MobTypes", "uid": 25, "values": [
+				{ "id": "Rat", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Hammer", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Pistol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "89e313e23872d4a373a60bf7b34dfb84" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
 			{ "identifier": "PatrolTypes", "uid": 85, "values": [
 				{ "id": "AutoPatrol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "BusyWork", "tileId": null, "__tileSrcRect": null },
 				{ "id": "FixedPatrol", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "89e313e23872d4a373a60bf7b34dfb84" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
 			{ "identifier": "CinematicId", "uid": 99, "values": [
 				{ "id": "PrisonDashTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonKickTutorial", "tileId": null, "__tileSrcRect": null },
@@ -1277,8 +1278,8 @@
 				{ "id": "PrisonPrimaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonSecondaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonWakeup", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "89e313e23872d4a373a60bf7b34dfb84" },
-			{ "identifier": "Orientation", "uid": 114, "values": [ { "id": "Horizontal", "tileId": null, "__tileSrcRect": null }, { "id": "Vertical", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "89e313e23872d4a373a60bf7b34dfb84" }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
+			{ "identifier": "Orientation", "uid": 114, "values": [ { "id": "Horizontal", "tileId": null, "__tileSrcRect": null }, { "id": "Vertical", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" }
 		]
 	},
 	"levels": [
@@ -21093,6 +21094,38 @@
 								"realEditorValues": [{
 									"id": "V_String",
 									"params": ["BusyWork"]
+								}]
+							},
+							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
+						] },
+						{ "__identifier": "Mob", "__grid": [11,83], "__tile": null, "defUid": 24, "px": [184,1344], "fieldInstances": [
+							{
+								"__identifier": "type",
+								"__value": "Rat",
+								"__type": "ExternEnum.MobTypes",
+								"defUid": 26,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["Rat"]
+								}]
+							},
+							{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
+							{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
+							{
+								"__identifier": "initialDir",
+								"__value": -1,
+								"__type": "Int",
+								"defUid": 84,
+								"realEditorValues": [{ "id": "V_Int", "params": [-1] }]
+							},
+							{
+								"__identifier": "patrolType",
+								"__value": "AutoPatrol",
+								"__type": "ExternEnum.PatrolTypes",
+								"defUid": 86,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["AutoPatrol"]
 								}]
 							},
 							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
