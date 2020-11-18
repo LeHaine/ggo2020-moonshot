@@ -10,7 +10,12 @@ class Minimap extends dn.Process {
 	inline function get_level()
 		return Game.ME.level;
 
-	var tileGroup:h2d.TileGroup;
+	var clearedPoints:Array<Int> = [];
+
+	var fog:hxd.BitmapData;
+	var fogTexture:h3d.mat.Texture;
+	var fogTextureBmp:h2d.Bitmap;
+	var mapTiles:h2d.TileGroup;
 	var background:h2d.Bitmap;
 	var mask:h2d.Mask;
 
@@ -27,9 +32,9 @@ class Minimap extends dn.Process {
 		background.setPosition(-2, -2);
 
 		mask = new h2d.Mask(maskSize, maskSize, root);
-		refresh();
+		mapTiles = new h2d.TileGroup(Assets.tiles.tile, mask);
 
-		tileGroup = new h2d.TileGroup(Assets.tiles.tile, mask);
+		refresh();
 
 		onResize();
 	}
@@ -42,9 +47,11 @@ class Minimap extends dn.Process {
 	override function update() {
 		super.update();
 
-		if (!cd.hasSetF("refresh", 10)) {
-			tileGroup.clear();
+		var hero = Game.ME.hero;
+		addClearFogPoint(hero.cx, hero.cy);
 
+		if (!cd.hasSetF("refresh", 10)) {
+			mapTiles.clear();
 			for (cx in 0...level.wid) {
 				for (cy in 0...level.hei) {
 					if (!level.hasCollision(cx, cy)) {
@@ -72,26 +79,60 @@ class Minimap extends dn.Process {
 
 			if (hero != null) {
 				dotCase(hero.cx, hero.cy, 0x00FF00, "fxVertLine", -2);
+				addClearFogPoint(hero.cx, hero.cy);
 				centerMaskTo(hero.cx, hero.cy);
 			}
+			fogTexture.uploadBitmap(fog);
 		}
 	}
 
 	override function onDispose() {
 		super.onDispose();
+		fog.dispose();
+		fogTexture.dispose();
 		ME = null;
 	}
 
 	public function refresh() {
 		cd.unset("refresh");
-		var width = level.wid * Const.SCALE;
-		var height = level.hei * Const.SCALE;
+		var width = Std.int(level.wid * Const.SCALE);
+		var height = Std.int(level.hei * Const.SCALE);
 
 		mask.scrollBounds = h2d.col.Bounds.fromValues(-width / 2, -height / 2, width * 2, height * 2);
+		if (fogTextureBmp != null) {
+			mask.removeChild(fogTextureBmp);
+		}
+		if (fogTexture != null) {
+			fogTexture.dispose();
+		}
+		if (fog != null) {
+			fog.dispose();
+		}
+
+		fog = new hxd.BitmapData(width, height);
+		fog.fill(0, 0, fog.width, fog.height, addAlpha(0x0));
+		fogTexture = h3d.mat.Texture.fromBitmap(fog);
+		fogTextureBmp = new h2d.Bitmap(h2d.Tile.fromTexture(fogTexture), mask);
+	}
+
+	inline function addClearFogPoint(cx, cy) {
+		var radius = 7;
+		var startX = Std.int(Math.max(cx - radius, 0));
+		var startY = Std.int(Math.max(cy + radius, 0));
+		var diameter = radius * 2;
+		var endX = diameter + startX;
+		var endY = startY - diameter;
+		fog.lock();
+		for (x in startX...endX) {
+			for (y in endY...startY) {
+				fog.setPixel(Std.int(x * Const.GRID * scale), Std.int(y * Const.GRID * scale), addAlpha(0x0, 0));
+			}
+		}
+		fog.unlock();
 	}
 
 	inline function dotCase(cx:Int, cy:Int, col:UInt, tile:String = "pixel", offsetY = 0) {
-		tileGroup.addColor(Std.int(cx * Const.GRID * scale), Std.int(cy * Const.GRID * scale) + offsetY, Color.getR(col), Color.getG(col), Color.getB(col),
+		mapTiles.addColor(Std.int(cx * Const.GRID * scale), Std.int(cy * Const.GRID * scale) + offsetY, Color.getR(col), Color.getG(col), Color.getB(col),
 			1.0, Assets.tiles.h_get(tile).tile);
 	}
 

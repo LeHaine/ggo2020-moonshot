@@ -1266,28 +1266,31 @@
 				{ "id": "Freeze", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Poison", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "21feed385e3adc2f8a8707f8c3ce544b" },
 			{ "identifier": "LevelMark", "uid": 22, "values": [
 				{ "id": "CameraCinematicTarget", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Grab", "tileId": null, "__tileSrcRect": null },
 				{ "id": "GrabLeft", "tileId": null, "__tileSrcRect": null },
 				{ "id": "GrabRight", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Ladder", "tileId": null, "__tileSrcRect": null },
+				{ "id": "OneWayPlatform", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PlatformEnd", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PlatformEndLeft", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PlatformEndRight", "tileId": null, "__tileSrcRect": null },
-				{ "id": "SmallStep", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
+				{ "id": "SmallStep", "tileId": null, "__tileSrcRect": null },
+				{ "id": "Walls", "tileId": null, "__tileSrcRect": null }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "21feed385e3adc2f8a8707f8c3ce544b" },
 			{ "identifier": "MobTypes", "uid": 25, "values": [
 				{ "id": "Rat", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Hammer", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Pistol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "21feed385e3adc2f8a8707f8c3ce544b" },
 			{ "identifier": "PatrolTypes", "uid": 85, "values": [
 				{ "id": "AutoPatrol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "BusyWork", "tileId": null, "__tileSrcRect": null },
 				{ "id": "FixedPatrol", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "21feed385e3adc2f8a8707f8c3ce544b" },
 			{ "identifier": "CinematicId", "uid": 99, "values": [
 				{ "id": "PrisonDashTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonKickTutorial", "tileId": null, "__tileSrcRect": null },
@@ -1295,8 +1298,8 @@
 				{ "id": "PrisonPrimaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonSecondaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonWakeup", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" },
-			{ "identifier": "Orientation", "uid": 114, "values": [ { "id": "Horizontal", "tileId": null, "__tileSrcRect": null }, { "id": "Vertical", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "9e024c129d2a279de634a8caf5191373" }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "21feed385e3adc2f8a8707f8c3ce544b" },
+			{ "identifier": "Orientation", "uid": 114, "values": [ { "id": "Horizontal", "tileId": null, "__tileSrcRect": null }, { "id": "Vertical", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "21feed385e3adc2f8a8707f8c3ce544b" }
 		]
 	},
 	"levels": [
