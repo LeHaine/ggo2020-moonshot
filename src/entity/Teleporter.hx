@@ -19,7 +19,7 @@ class Teleporter extends Entity {
 		hasGravity = false;
 		isCollidable = false;
 		interactable = new DialogInteracble(cx, cy, "Teleport", () -> {
-			game.minimap.navigate();
+			game.minimap.enlargeAndNavigate();
 		});
 		interactable.follow(this);
 

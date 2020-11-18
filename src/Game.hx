@@ -211,15 +211,6 @@ class Game extends Process {
 		Entity.GC = [];
 	}
 
-	override function onDispose() {
-		super.onDispose();
-
-		fx.destroy();
-		for (e in Entity.ALL)
-			e.destroy();
-		gc();
-	}
-
 	/**
 		Start a cumulative slow-motion effect that will affect `tmod` value in this Process
 		and its children.
@@ -275,31 +266,6 @@ class Game extends Process {
 				e.preUpdate();
 	}
 
-	override function postUpdate() {
-		super.postUpdate();
-
-		for (e in Entity.ALL)
-			if (!e.destroyed)
-				e.postUpdate();
-		for (e in Entity.ALL)
-			if (!e.destroyed)
-				e.finalUpdate();
-		gc();
-
-		// Update slow-motions
-		updateSlowMos();
-		baseTimeMul = (0.2 + 0.8 * curGameSpeed) * (ucd.has("stopFrame") ? 0.3 : 1);
-		Assets.tiles.tmod = tmod;
-	}
-
-	override function fixedUpdate() {
-		super.fixedUpdate();
-
-		for (e in Entity.ALL)
-			if (!e.destroyed)
-				e.fixedUpdate();
-	}
-
 	override function update() {
 		super.update();
 
@@ -318,13 +284,52 @@ class Game extends Process {
 			#end
 
 			// Restart
-			if (ca.selectPressed())
+			if (ca.selectPressed()) {
 				Main.ME.startGame();
+			}
+
+			if (ca.dpadUpPressed() && minimap != null) {
+				minimap.enlarge();
+			}
 		}
 
 		if (nextLevelReady) {
 			nextLevelReady = false;
 			startNextLevel();
 		}
+	}
+
+	override function fixedUpdate() {
+		super.fixedUpdate();
+
+		for (e in Entity.ALL)
+			if (!e.destroyed)
+				e.fixedUpdate();
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+
+		for (e in Entity.ALL)
+			if (!e.destroyed)
+				e.postUpdate();
+		for (e in Entity.ALL)
+			if (!e.destroyed)
+				e.finalUpdate();
+		gc();
+
+		// Update slow-motions
+		updateSlowMos();
+		baseTimeMul = (0.2 + 0.8 * curGameSpeed) * (ucd.has("stopFrame") ? 0.3 : 1);
+		Assets.tiles.tmod = tmod;
+	}
+
+	override function onDispose() {
+		super.onDispose();
+
+		fx.destroy();
+		for (e in Entity.ALL)
+			e.destroy();
+		gc();
 	}
 }

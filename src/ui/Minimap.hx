@@ -25,6 +25,7 @@ class Minimap extends dn.Process {
 
 	var scale = 0.062;
 
+	var enlarged = false;
 	var navigating = false;
 	var ca:dn.heaps.Controller.ControllerAccess;
 
@@ -56,7 +57,7 @@ class Minimap extends dn.Process {
 	override function onResize() {
 		super.onResize();
 		if (navigating) {
-			navigate();
+			enlargeAndNavigate();
 		} else {
 			mapRoot.setScale(Const.SCALE);
 		}
@@ -102,23 +103,25 @@ class Minimap extends dn.Process {
 			if (hero != null) {
 				dotCase(hero.cx, hero.cy, 0x00FF00, "fxVertLine", -2);
 				addClearFogPoint(hero.cx, hero.cy);
-				if (!navigating) {
+				if (!enlarged) {
 					centerMaskTo(hero.cx, hero.cy);
 				}
 			}
 			fogTexture.uploadBitmap(fog);
 		}
 
-		if (navigating) {
+		if (enlarged) {
 			if (ca.bPressed() || ca.isKeyboardPressed(hxd.Key.ESCAPE)) {
-				closeNavigation();
+				minimize();
 			}
 			if (ca.leftDist() > 0) {
 				var x = Math.cos(ca.leftAngle());
 				var y = Math.sin(ca.leftAngle());
 
-				mask.scrollX += x * 10 * tmod;
-				mask.scrollY += y * 10 * tmod;
+				if (navigating) {} else {
+					mask.scrollX += x * 10 * tmod;
+					mask.scrollY += y * 10 * tmod;
+				}
 			}
 		}
 	}
@@ -152,7 +155,7 @@ class Minimap extends dn.Process {
 		fogTextureBmp = new h2d.Bitmap(h2d.Tile.fromTexture(fogTexture), mask);
 	}
 
-	public function navigate() {
+	public function enlarge() {
 		ca.unlock();
 		ca.takeExclusivity();
 		mapRoot.setScale(Const.SCALE * 3);
@@ -166,15 +169,21 @@ class Minimap extends dn.Process {
 		bgMask.beginFill(0x000000, 0.75);
 		bgMask.drawRect(0, 0, Main.ME.w(), Main.ME.h());
 		tw.createS(bgMask.alpha, 0 > 1, 0.3);
-		navigating = true;
 		Game.ME.pause();
+		enlarged = true;
 	}
 
-	public function closeNavigation() {
+	public function enlargeAndNavigate() {
+		enlarge();
+		navigating = true;
+	}
+
+	public function minimize() {
 		Game.ME.resume();
 		bgMask.alpha = 0;
 		ca.releaseExclusivity();
 		ca.lock();
+		enlarged = false;
 		navigating = false;
 		mapRoot.setPosition(1, 1);
 		onResize();
