@@ -34,6 +34,8 @@ class Game extends Process {
 	/** UI **/
 	public var hud:ui.Hud;
 
+	public var minimap:ui.Minimap;
+
 	/** Slow mo internal values**/
 	var curGameSpeed = 1.0;
 
@@ -145,6 +147,12 @@ class Game extends Process {
 		}
 
 		hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
+
+		if (minimap == null) {
+			minimap = new ui.Minimap();
+		} else {
+			minimap.refresh();
+		}
 		setHeroSavedData();
 
 		trackHero();

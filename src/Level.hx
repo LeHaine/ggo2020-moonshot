@@ -57,6 +57,10 @@ class Level extends dn.Process {
 	public inline function coordId(cx, cy)
 		return cx + cy * wid;
 
+	public inline function idToCoords(id) {
+		return {cx: id % wid, cy: M.floor(id / wid)};
+	}
+
 	/** Return TRUE if mark is present at coordinates **/
 	public inline function hasMark(mark:LevelMark, cx:Int, cy:Int, dir:Int = 0) {
 		return !isValid(cx, cy) || !marks.exists(mark) ? false : marks.get(mark).get(coordId(cx, cy)) == (dir == 0 ? 0 : dir > 0 ? 1 : -1);
@@ -74,8 +78,12 @@ class Level extends dn.Process {
 			if (!marks.exists(mark)) {
 				marks.set(mark, new Map());
 			}
-			marks.get(mark).set(coordId(cx, cy), dir == 0 ? 0 : dir > 0 ? 1 : -1);
+			marks[mark].set(coordId(cx, cy), dir == 0 ? 0 : dir > 0 ? 1 : -1);
 		}
+	}
+
+	public inline function getMarks(mark:LevelMark):Map<Int, Int> {
+		return marks.exists(mark) ? marks[mark] : [];
 	}
 
 	/** Remove mark at coordinates **/
@@ -157,7 +165,35 @@ class Level extends dn.Process {
 						setMarks(cx, cy, [PlatformEnd, PlatformEndLeft]);
 					}
 				}
+
+				if (hasCollision(cx, cy) && isOuterWall(cx, cy)) {
+					setMarks(cx, cy, [Walls]);
+				}
+
+				if (hasOneWayPlatform(cx, cy)) {
+					setMarks(cx, cy, [OneWayPlatform]);
+				}
+
+				if (hasLadder(cx, cy)) {
+					setMarks(cx, cy, [Ladder]);
+				}
 			}
 		}
+	}
+
+	private inline function isOuterWall(cx, cy) {
+		return !hasCollisionAboveOrBelow(cx, cy) || !hasCollisionLeftOrRight(cx, cy) || missingDiagonalCollision(cx, cy);
+	}
+
+	private inline function hasCollisionAboveOrBelow(cx, cy) {
+		return hasCollision(cx, cy - 1) || hasCollision(cx, cy + 1);
+	}
+
+	private inline function hasCollisionLeftOrRight(cx, cy) {
+		return hasCollision(cx - 1, cy) || hasCollision(cx + 1, cy);
+	}
+
+	private inline function missingDiagonalCollision(cx, cy) {
+		return !hasCollision(cx + 1, cy - 1) || !hasCollision(cx - 1, cy - 1) || !hasCollision(cx + 1, cy + 1) || !hasCollision(cx - 1, cy + 1);
 	}
 }

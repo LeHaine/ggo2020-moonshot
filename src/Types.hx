@@ -22,6 +22,9 @@ enum LevelMark {
 	PlatformEndLeft;
 	PlatformEndRight;
 	CameraCinematicTarget;
+	Walls;
+	OneWayPlatform;
+	Ladder;
 }
 
 enum PatrolTypes {
