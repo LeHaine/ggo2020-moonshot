@@ -13,6 +13,9 @@ class Minimap extends dn.Process {
 
 	var clearedPoints:Array<Int> = [];
 
+	var bgMask:h2d.Graphics;
+
+	var mapRoot:h2d.Layers;
 	var fog:hxd.BitmapData;
 	var fogTexture:h3d.mat.Texture;
 	var fogTextureBmp:h2d.Bitmap;
@@ -22,17 +25,27 @@ class Minimap extends dn.Process {
 
 	var scale = 0.062;
 
+	var navigating = false;
+	var ca:dn.heaps.Controller.ControllerAccess;
+
 	public function new() {
-		super(Game.ME);
+		super(Main.ME);
 		ME = this;
 
+		ca = Main.ME.controller.createAccess("minimap");
+		ca.lock();
+
 		createRootInLayers(Game.ME.root, Const.DP_UI);
-		root.setPosition(1, 1);
+		bgMask = new h2d.Graphics(root);
+
+		mapRoot = new h2d.Layers(root);
+		mapRoot.setPosition(1, 1);
+
 		var maskSize = 75;
-		background = new h2d.Bitmap(h2d.Tile.fromColor(addAlpha(0x0), maskSize + 2, maskSize + 2), root);
+		background = new h2d.Bitmap(h2d.Tile.fromColor(addAlpha(0x0), maskSize + 2, maskSize + 2), mapRoot);
 		background.setPosition(-2, -2);
 
-		mask = new h2d.Mask(maskSize, maskSize, root);
+		mask = new h2d.Mask(maskSize, maskSize, mapRoot);
 		mapTiles = new h2d.TileGroup(Assets.tiles.tile, mask);
 
 		refresh();
@@ -42,7 +55,11 @@ class Minimap extends dn.Process {
 
 	override function onResize() {
 		super.onResize();
-		root.setScale(Const.SCALE);
+		if (navigating) {
+			navigate();
+		} else {
+			mapRoot.setScale(Const.SCALE);
+		}
 	}
 
 	override function update() {
@@ -85,9 +102,24 @@ class Minimap extends dn.Process {
 			if (hero != null) {
 				dotCase(hero.cx, hero.cy, 0x00FF00, "fxVertLine", -2);
 				addClearFogPoint(hero.cx, hero.cy);
-				centerMaskTo(hero.cx, hero.cy);
+				if (!navigating) {
+					centerMaskTo(hero.cx, hero.cy);
+				}
 			}
 			fogTexture.uploadBitmap(fog);
+		}
+
+		if (navigating) {
+			if (ca.bPressed() || ca.isKeyboardPressed(hxd.Key.ESCAPE)) {
+				closeNavigation();
+			}
+			if (ca.leftDist() > 0) {
+				var x = Math.cos(ca.leftAngle());
+				var y = Math.sin(ca.leftAngle());
+
+				mask.scrollX += x * 10 * tmod;
+				mask.scrollY += y * 10 * tmod;
+			}
 		}
 	}
 
@@ -120,6 +152,34 @@ class Minimap extends dn.Process {
 		fogTextureBmp = new h2d.Bitmap(h2d.Tile.fromTexture(fogTexture), mask);
 	}
 
+	public function navigate() {
+		ca.unlock();
+		ca.takeExclusivity();
+		mapRoot.setScale(Const.SCALE * 3);
+		var gameW = M.ceil(w());
+		var gameH = M.ceil(h());
+		var maskW = mask.getBounds().width;
+		var maskH = mask.getBounds().height;
+		mapRoot.setPosition((gameW - maskW) / 2, (gameH - maskH) / 2);
+
+		bgMask.clear();
+		bgMask.beginFill(0x000000, 0.75);
+		bgMask.drawRect(0, 0, Main.ME.w(), Main.ME.h());
+		tw.createS(bgMask.alpha, 0 > 1, 0.3);
+		navigating = true;
+		Game.ME.pause();
+	}
+
+	public function closeNavigation() {
+		Game.ME.resume();
+		bgMask.alpha = 0;
+		ca.releaseExclusivity();
+		ca.lock();
+		navigating = false;
+		mapRoot.setPosition(1, 1);
+		onResize();
+	}
+
 	inline function addClearFogPoint(cx, cy) {
 		var radius = 7;
 		var startX = Std.int(Math.max(cx - radius, 0));
@@ -143,5 +203,13 @@ class Minimap extends dn.Process {
 
 	inline function centerMaskTo(cx, cy) {
 		mask.scrollTo(cx * Const.GRID * scale * Const.SCALE / 2, cy * Const.GRID * scale * Const.SCALE / 2);
+	}
+
+	private function isLeftJoystickDown() {
+		return M.radDistance(ca.leftAngle(), M.PIHALF) <= M.PIHALF * 0.5;
+	}
+
+	private function isLeftJoystickUp() {
+		return M.radDistance(ca.leftAngle(), -M.PIHALF) <= M.PIHALF * 0.5;
 	}
 }

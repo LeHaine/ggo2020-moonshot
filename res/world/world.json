@@ -17158,7 +17158,8 @@
 						{ "__identifier": "Water", "__grid": [22,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [360,336], "fieldInstances": [] },
 						{ "__identifier": "Water", "__grid": [24,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [392,336], "fieldInstances": [] },
 						{ "__identifier": "Water", "__grid": [23,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [376,336], "fieldInstances": [] },
-						{ "__identifier": "Water", "__grid": [21,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [344,336], "fieldInstances": [] }
+						{ "__identifier": "Water", "__grid": [21,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [344,336], "fieldInstances": [] },
+						{ "__identifier": "Checkpoint", "__grid": [16,19], "__tile": null, "defUid": 125, "px": [264,320], "fieldInstances": [] }
 					]
 				},
 				{
