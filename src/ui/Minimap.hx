@@ -1,5 +1,6 @@
 package ui;
 
+import entity.Teleporter;
 import dn.Process;
 
 class Minimap extends dn.Process {
@@ -73,6 +74,10 @@ class Minimap extends dn.Process {
 			for (cid in level.getMarks(Ladder).keys()) {
 				var coords = level.idToCoords(cid);
 				dotCase(coords.cx, coords.cy, 0x995d29);
+			}
+
+			for (e in Teleporter.ALL) {
+				dotCase(e.cx, e.cy, 0x502999, "fxVertLine", -2);
 			}
 
 			var hero = Game.ME.hero;

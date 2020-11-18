@@ -133,6 +133,10 @@ class Game extends Process {
 			new entity.Water(e);
 		}
 
+		for (e in level.data.l_Entities.all_Checkpoint) {
+			new entity.Teleporter(e);
+		}
+
 		for (e in level.data.l_Entities.all_Mob) {
 			switch e.f_type {
 				case Scientist_Pistol:

@@ -55,5 +55,7 @@ class Assets {
 		tiles.defineAnim("ratRun", "0-3(3)");
 		tiles.defineAnim("ratIdle", "0(10), 1(15)");
 		tiles.defineAnim("ratBite", "0(3), 1-2(1)");
+
+		tiles.defineAnim("teleporterActive", "0-1(3)");
 	}
 }
