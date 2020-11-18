@@ -12,6 +12,7 @@ class Minimap extends dn.Process {
 
 	var tileGroup:h2d.TileGroup;
 	var background:h2d.Bitmap;
+	var mask:h2d.Mask;
 
 	var scale = 0.062;
 
@@ -21,14 +22,14 @@ class Minimap extends dn.Process {
 
 		createRootInLayers(Game.ME.root, Const.DP_UI);
 		root.setPosition(1, 1);
-
-		var width = Std.int(level.wid * Const.GRID * scale);
-		var height = Std.int(level.hei * Const.GRID * scale);
-
-		background = new h2d.Bitmap(h2d.Tile.fromColor(addAlpha(0x0), width + 2, height + 2), root);
+		var maskSize = 75;
+		background = new h2d.Bitmap(h2d.Tile.fromColor(addAlpha(0x0), maskSize + 2, maskSize + 2), root);
 		background.setPosition(-2, -2);
 
-		tileGroup = new h2d.TileGroup(Assets.tiles.tile, root);
+		mask = new h2d.Mask(maskSize, maskSize, root);
+		refresh();
+
+		tileGroup = new h2d.TileGroup(Assets.tiles.tile, mask);
 
 		onResize();
 	}
@@ -71,6 +72,7 @@ class Minimap extends dn.Process {
 
 			if (hero != null) {
 				dotCase(hero.cx, hero.cy, 0x00FF00, "fxVertLine", -2);
+				centerMaskTo(hero.cx, hero.cy);
 			}
 		}
 	}
@@ -82,13 +84,18 @@ class Minimap extends dn.Process {
 
 	public function refresh() {
 		cd.unset("refresh");
-		var width = Std.int(level.wid * Const.GRID * scale);
-		var height = Std.int(level.hei * Const.GRID * scale);
-		background.tile.setSize(width + 2, height + 2);
+		var width = level.wid * Const.SCALE;
+		var height = level.hei * Const.SCALE;
+
+		mask.scrollBounds = h2d.col.Bounds.fromValues(-width / 2, -height / 2, width * 2, height * 2);
 	}
 
 	inline function dotCase(cx:Int, cy:Int, col:UInt, tile:String = "pixel", offsetY = 0) {
 		tileGroup.addColor(Std.int(cx * Const.GRID * scale), Std.int(cy * Const.GRID * scale) + offsetY, Color.getR(col), Color.getG(col), Color.getB(col),
 			1.0, Assets.tiles.h_get(tile).tile);
+	}
+
+	inline function centerMaskTo(cx, cy) {
+		mask.scrollTo(cx * Const.GRID * scale * Const.SCALE / 2, cy * Const.GRID * scale * Const.SCALE / 2);
 	}
 }
