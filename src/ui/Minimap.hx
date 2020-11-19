@@ -1,5 +1,6 @@
 package ui;
 
+import dn.DecisionHelper;
 import hxd.BitmapData;
 import hxd.Timer;
 import entity.Teleporter;
@@ -31,12 +32,15 @@ class Minimap extends dn.Process {
 	var fogTextureBmp:h2d.Bitmap;
 	var mapTiles:h2d.TileGroup;
 	var background:h2d.Bitmap;
+	var gfx:h2d.Graphics;
 	var mask:h2d.Mask;
 
 	var scale = 0.062;
 	var zoom = 1;
 	var enlarged = false;
 	var navigating = false;
+	var targetTeleporter:Null<Teleporter>;
+	var currentTeleporter:Null<Teleporter>;
 	var ca:dn.heaps.Controller.ControllerAccess;
 
 	public function new() {
@@ -59,6 +63,7 @@ class Minimap extends dn.Process {
 
 		mask = new h2d.Mask(maskSize, maskSize, mapRoot);
 		mapTiles = new h2d.TileGroup(Assets.tiles.tile, mask);
+		gfx = new h2d.Graphics(mask);
 
 		refresh();
 
@@ -82,10 +87,43 @@ class Minimap extends dn.Process {
 				minimize();
 			}
 			if (ca.leftDist() > 0) {
-				var x = Math.cos(ca.leftAngle());
-				var y = Math.sin(ca.leftAngle());
+				var x = Std.int(Math.cos(ca.leftAngle()));
+				var y = Std.int(Math.sin(ca.leftAngle()));
 
-				if (navigating) {} else {
+				if (navigating && !cd.hasSetS("teleporterFocus", 0.2)) {
+					var dh = new DecisionHelper(Teleporter.ALL);
+					dh.remove((e) -> !e.found);
+					if (targetTeleporter == currentTeleporter) {
+						dh.remove((e) -> e == currentTeleporter);
+					}
+					dh.remove((e) -> e == targetTeleporter);
+
+					if (x > 0) {
+						dh.remove((e) -> targetTeleporter.cx > e.cx);
+						dh.score((e) -> -targetTeleporter.distCaseX(e));
+						dh.score((e) -> -targetTeleporter.distCaseY(e) * 3);
+					} else if (x < 0) {
+						dh.remove((e) -> targetTeleporter.cx < e.cx);
+						dh.score((e) -> -targetTeleporter.distCaseX(e));
+						dh.score((e) -> -targetTeleporter.distCaseY(e) * 3);
+					}
+
+					if (y < 0) {
+						dh.remove((e) -> targetTeleporter.cy < e.cy);
+						dh.score((e) -> -targetTeleporter.distCaseX(e) * 3);
+						dh.score((e) -> -targetTeleporter.distCaseY(e));
+					} else if (y > 0) {
+						dh.remove((e) -> targetTeleporter.cy > e.cy);
+						dh.score((e) -> -targetTeleporter.distCaseX(e) * 3);
+						dh.score((e) -> -targetTeleporter.distCaseY(e));
+					}
+
+					var best = dh.getBest();
+					if (best != null) {
+						targetTeleporter = best;
+						centerMaskTo(targetTeleporter.cx, targetTeleporter.cy);
+					}
+				} else if (!navigating) {
 					mask.scrollX += x * 10 * tmod;
 					mask.scrollY += y * 10 * tmod;
 				}
@@ -131,6 +169,14 @@ class Minimap extends dn.Process {
 					centerMaskTo(hero.cx, hero.cy);
 				}
 			}
+		}
+
+		if (currentTeleporter != null && targetTeleporter != null) {
+			gfx.clear();
+			gfx.setPosition(Std.int(currentTeleporter.cx * Const.GRID * scale), Std.int(currentTeleporter.cy * Const.GRID * scale));
+			gfx.beginFill(0xFF0000);
+			gfx.lineTo(Std.int(targetTeleporter.cx * Const.GRID * scale), Std.int(targetTeleporter.cy * Const.GRID * scale));
+			gfx.endFill();
 		}
 	}
 
@@ -191,6 +237,14 @@ class Minimap extends dn.Process {
 	public function enlargeAndNavigate() {
 		enlarge();
 		navigating = true;
+
+		var dh = new DecisionHelper(Teleporter.ALL);
+		var hero = Game.ME.hero;
+		dh.remove((e) -> !e.found);
+		dh.score((e) -> -hero.distCase(e));
+		currentTeleporter = dh.getBest();
+		targetTeleporter = currentTeleporter;
+		centerMaskTo(targetTeleporter.cx, targetTeleporter.cy);
 	}
 
 	public function minimize() {
