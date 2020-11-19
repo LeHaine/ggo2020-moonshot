@@ -50,6 +50,7 @@ class Minimap extends dn.Process {
 		bgMask = new h2d.Graphics(root);
 
 		mapRoot = new h2d.Layers(root);
+		mapRoot.filter = new h2d.filter.ColorMatrix(); // force rendering for pixel perfect
 		mapRoot.setPosition(1, 1);
 
 		var maskSize = 75;
