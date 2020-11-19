@@ -172,10 +172,10 @@ class Level extends dn.Process {
 
 				if (hasOneWayPlatform(cx, cy)) {
 					setMarks(cx, cy, [OneWayPlatform]);
-				}
-
-				if (hasLadder(cx, cy)) {
+				} else if (hasLadder(cx, cy)) {
 					setMarks(cx, cy, [Ladder]);
+				} else if (!hasCollision(cx, cy)) {
+					setMarks(cx, cy, [Bg]);
 				}
 			}
 		}

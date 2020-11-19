@@ -25,6 +25,7 @@ enum LevelMark {
 	Walls;
 	OneWayPlatform;
 	Ladder;
+	Bg;
 }
 
 enum PatrolTypes {

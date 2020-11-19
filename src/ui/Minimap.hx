@@ -1,8 +1,17 @@
 package ui;
 
+import hxd.BitmapData;
 import hxd.Timer;
 import entity.Teleporter;
 import dn.Process;
+
+class CustomBitmapData extends BitmapData {
+	public function clearRect(x, y, width, height) {
+		#if js
+		ctx.clearRect(x, y, width, height);
+		#end
+	}
+}
 
 class Minimap extends dn.Process {
 	public static var ME:Minimap;
@@ -17,7 +26,7 @@ class Minimap extends dn.Process {
 	var bgMask:h2d.Graphics;
 
 	var mapRoot:h2d.Layers;
-	var fog:hxd.BitmapData;
+	var fog:CustomBitmapData;
 	var fogTexture:h3d.mat.Texture;
 	var fogTextureBmp:h2d.Bitmap;
 	var mapTiles:h2d.TileGroup;
@@ -67,16 +76,30 @@ class Minimap extends dn.Process {
 	override function update() {
 		super.update();
 
-		var hero = Game.ME.hero;
-		addClearFogPoint(hero.cx, hero.cy);
+		if (enlarged) {
+			if (ca.bPressed() || ca.isKeyboardPressed(hxd.Key.ESCAPE)) {
+				minimize();
+			}
+			if (ca.leftDist() > 0) {
+				var x = Math.cos(ca.leftAngle());
+				var y = Math.sin(ca.leftAngle());
+
+				if (navigating) {} else {
+					mask.scrollX += x * 10 * tmod;
+					mask.scrollY += y * 10 * tmod;
+				}
+			}
+		}
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
 		if (!cd.hasSetF("refresh", 10)) {
 			mapTiles.clear();
-			for (cx in 0...level.wid) {
-				for (cy in 0...level.hei) {
-					if (!level.hasCollision(cx, cy)) {
-						dotCase(cx, cy, 0x3f80d4);
-					}
-				}
+
+			for (cid in level.getMarks(Bg).keys()) {
+				var coords = level.idToCoords(cid);
+				dotCase(coords.cx, coords.cy, 0x3f80d4);
 			}
 
 			for (cid in level.getMarks(Walls).keys()) {
@@ -107,22 +130,6 @@ class Minimap extends dn.Process {
 					centerMaskTo(hero.cx, hero.cy);
 				}
 			}
-			fogTexture.uploadBitmap(fog);
-		}
-
-		if (enlarged) {
-			if (ca.bPressed() || ca.isKeyboardPressed(hxd.Key.ESCAPE)) {
-				minimize();
-			}
-			if (ca.leftDist() > 0) {
-				var x = Math.cos(ca.leftAngle());
-				var y = Math.sin(ca.leftAngle());
-
-				if (navigating) {} else {
-					mask.scrollX += x * 10 * tmod;
-					mask.scrollY += y * 10 * tmod;
-				}
-			}
 		}
 	}
 
@@ -149,7 +156,7 @@ class Minimap extends dn.Process {
 			fog.dispose();
 		}
 
-		fog = new hxd.BitmapData(width, height);
+		fog = new CustomBitmapData(width, height);
 		fog.fill(0, 0, fog.width, fog.height, addAlpha(0x0));
 		fogTexture = h3d.mat.Texture.fromBitmap(fog);
 		fogTextureBmp = new h2d.Bitmap(h2d.Tile.fromTexture(fogTexture), mask);
@@ -204,18 +211,21 @@ class Minimap extends dn.Process {
 		var diameter = radius * 2;
 		var endX = diameter + startX;
 		var endY = startY - diameter;
-		fog.lock();
-		for (x in startX...endX) {
-			for (y in endY...startY) {
-				fog.setPixel(Std.int(x * Const.GRID * scale), Std.int(y * Const.GRID * scale), addAlpha(0x0, 0));
-			}
-		}
-		fog.unlock();
+
+		var width = endX - startX;
+		var height = startY - endY;
+
+		#if js
+		fog.clearRect(startX, endY, width, height);
+		#else
+		fog.fill(startX, endY, width, height, addAlpha(0x0, 0));
+		#end
+		fogTexture.uploadBitmap(fog);
 	}
 
 	inline function dotCase(cx:Int, cy:Int, col:UInt, tile:String = "pixel", offsetY = 0) {
 		mapTiles.addColor(Std.int(cx * Const.GRID * scale), Std.int(cy * Const.GRID * scale) + offsetY, Color.getR(col), Color.getG(col), Color.getB(col),
-			1.0, Assets.tiles.h_get(tile).tile);
+			1.0, Assets.tiles.getTile(tile));
 	}
 
 	inline function centerMaskTo(cx, cy) {
