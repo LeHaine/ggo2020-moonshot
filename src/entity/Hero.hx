@@ -76,6 +76,10 @@ class Hero extends Character {
 			doubleJump = false;
 		}
 
+		if (!cd.has("recentlyTeleported")) {
+			isCollidable = true;
+		}
+
 		if (!isConscious()) {
 			return;
 		}
@@ -96,6 +100,16 @@ class Hero extends Character {
 	override function postUpdate() {
 		super.postUpdate();
 		spr.anim.setGlobalSpeed(0.2);
+	}
+
+	public function teleport(teleporter:Teleporter) {
+		lockControlS(0.15);
+		isCollidable = false;
+		cd.setS("recentlyTeleported", 1);
+		cx = teleporter.cx;
+		cy = teleporter.cy;
+		xr = teleporter.xr;
+		yr = teleporter.yr;
 	}
 
 	private function performInteraction() {

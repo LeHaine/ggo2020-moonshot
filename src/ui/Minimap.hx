@@ -32,7 +32,6 @@ class Minimap extends dn.Process {
 	var fogTextureBmp:h2d.Bitmap;
 	var mapTiles:h2d.TileGroup;
 	var background:h2d.Bitmap;
-	var gfx:h2d.Graphics;
 	var mask:h2d.Mask;
 
 	var scale = 0.062;
@@ -41,6 +40,7 @@ class Minimap extends dn.Process {
 	var navigating = false;
 	var targetTeleporter:Null<Teleporter>;
 	var currentTeleporter:Null<Teleporter>;
+	var instructions:h2d.Flow;
 	var ca:dn.heaps.Controller.ControllerAccess;
 
 	public function new() {
@@ -63,7 +63,10 @@ class Minimap extends dn.Process {
 
 		mask = new h2d.Mask(maskSize, maskSize, mapRoot);
 		mapTiles = new h2d.TileGroup(Assets.tiles.tile, mask);
-		gfx = new h2d.Graphics(mask);
+
+		instructions = new h2d.Flow(root);
+		var tf = new h2d.Text(Assets.fontPixelMedium, instructions);
+		tf.text = "[E] to teleport";
 
 		refresh();
 
@@ -128,6 +131,15 @@ class Minimap extends dn.Process {
 					mask.scrollY += y * 10 * tmod;
 				}
 			}
+
+			if (ca.rbPressed() && navigating && targetTeleporter != null && targetTeleporter != currentTeleporter) {
+				var teleporter = targetTeleporter;
+				minimize();
+				delayer.addS("teleport", () -> {
+					var hero = Game.ME.hero;
+					hero.teleport(teleporter);
+				}, 0.25);
+			}
 		}
 	}
 
@@ -157,26 +169,22 @@ class Minimap extends dn.Process {
 			}
 
 			for (e in Teleporter.ALL) {
-				dotCase(e.cx, e.cy, 0x502999, "fxVertLine", -2);
+				if (targetTeleporter == e) {
+					dotCase(e.cx, e.cy, 0xc4ba2b, "fxVertLineGlow", -1, -3);
+				} else {
+					dotCase(e.cx, e.cy, 0x502999, "fxVertLine", 0, -2);
+				}
 			}
 
 			var hero = Game.ME.hero;
 
 			if (hero != null) {
-				dotCase(hero.cx, hero.cy, 0x00FF00, "fxVertLine", -2);
+				dotCase(hero.cx, hero.cy, 0x00FF00, "fxVertLine", 0, -2);
 				addClearFogPoint(hero.cx, hero.cy);
 				if (!enlarged) {
 					centerMaskTo(hero.cx, hero.cy);
 				}
 			}
-		}
-
-		if (currentTeleporter != null && targetTeleporter != null) {
-			gfx.clear();
-			gfx.setPosition(Std.int(currentTeleporter.cx * Const.GRID * scale), Std.int(currentTeleporter.cy * Const.GRID * scale));
-			gfx.beginFill(0xFF0000);
-			gfx.lineTo(Std.int(targetTeleporter.cx * Const.GRID * scale), Std.int(targetTeleporter.cy * Const.GRID * scale));
-			gfx.endFill();
 		}
 	}
 
@@ -223,7 +231,7 @@ class Minimap extends dn.Process {
 		bgMask.clear();
 		bgMask.beginFill(0x000000, 0.75);
 		bgMask.drawRect(0, 0, Main.ME.w(), Main.ME.h());
-		bgMask.alpha = 1;
+		bgMask.visible = true;
 		Game.ME.pause();
 		enlarged = true;
 
@@ -245,17 +253,23 @@ class Minimap extends dn.Process {
 		currentTeleporter = dh.getBest();
 		targetTeleporter = currentTeleporter;
 		centerMaskTo(targetTeleporter.cx, targetTeleporter.cy);
+
+		instructions.setPosition(mapRoot.x + background.getBounds().width / 2, mapRoot.y + background.getBounds().height - 60);
+		instructions.visible = true;
 	}
 
 	public function minimize() {
 		Game.ME.resume();
-		bgMask.alpha = 0;
+		bgMask.visible = false;
 		ca.releaseExclusivity();
 		ca.lock();
 		zoom = 1;
 		enlarged = false;
 		navigating = false;
 		mapRoot.setPosition(1, 1);
+		targetTeleporter = null;
+		currentTeleporter = null;
+		instructions.visible = false;
 		onResize();
 	}
 
@@ -278,9 +292,9 @@ class Minimap extends dn.Process {
 		fogTexture.uploadBitmap(fog);
 	}
 
-	inline function dotCase(cx:Int, cy:Int, col:UInt, tile:String = "pixel", offsetY = 0) {
-		mapTiles.addColor(Std.int(cx * Const.GRID * scale), Std.int(cy * Const.GRID * scale) + offsetY, Color.getR(col), Color.getG(col), Color.getB(col),
-			1.0, Assets.tiles.getTile(tile));
+	inline function dotCase(cx:Int, cy:Int, col:UInt, tile:String = "pixel", offsetX = 0, offsetY = 0) {
+		mapTiles.addColor(Std.int(cx * Const.GRID * scale) + offsetX, Std.int(cy * Const.GRID * scale) + offsetY, Color.getR(col), Color.getG(col),
+			Color.getB(col), 1.0, Assets.tiles.getTile(tile));
 	}
 
 	inline function centerMaskTo(cx, cy) {
