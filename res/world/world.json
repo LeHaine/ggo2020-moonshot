@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 126,
+	"nextUid": 127,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -911,6 +911,23 @@
 				"width": 16,
 				"height": 16,
 				"color": "#989C9A",
+				"renderMode": "Rectangle",
+				"showName": true,
+				"tilesetId": null,
+				"tileId": null,
+				"tileRenderMode": "Stretch",
+				"maxPerLevel": 0,
+				"limitBehavior": "DiscardOldOnes",
+				"pivotX": 0.5,
+				"pivotY": 1,
+				"fieldDefs": []
+			},
+			{
+				"identifier": "CrystalShardStation",
+				"uid": 126,
+				"width": 16,
+				"height": 16,
+				"color": "#6F87A1",
 				"renderMode": "Rectangle",
 				"showName": true,
 				"tilesetId": null,
@@ -17194,7 +17211,9 @@
 									"params": [ false ]
 								}]
 							}
-						] }
+						] },
+						{ "__identifier": "ModStation", "__grid": [16,19], "__tile": null, "defUid": 69, "px": [264,320], "fieldInstances": [] },
+						{ "__identifier": "CrystalShardStation", "__grid": [11,19], "__tile": null, "defUid": 126, "px": [184,320], "fieldInstances": [] }
 					]
 				},
 				{

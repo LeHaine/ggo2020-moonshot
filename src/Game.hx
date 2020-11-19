@@ -1,3 +1,4 @@
+import entity.CrystalShardStation;
 import hxd.Timer;
 import dn.LocalStorage;
 import data.Trait;
@@ -125,6 +126,10 @@ class Game extends Process {
 
 		for (e in level.data.l_Entities.all_ModStation) {
 			new entity.ModStation(e);
+		}
+
+		for (e in level.data.l_Entities.all_CrystalShardStation) {
+			new entity.CrystalShardStation(e);
 		}
 
 		for (e in level.data.l_Entities.all_Laser) {

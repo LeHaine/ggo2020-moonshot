@@ -5,14 +5,16 @@ import data.Trait;
 import dn.Rand;
 import hxd.Key;
 
-class ModStationWindow extends dn.Process {
-	public static var ME:ModStationWindow;
+class CrystalShardStationWindow extends dn.Process {
+	public static var ME:CrystalShardStationWindow;
 
 	public var ca:dn.heaps.Controller.ControllerAccess;
 
 	var mask:h2d.Graphics;
 	var masterBox:h2d.Flow;
 	var masterFlow:h2d.Flow;
+
+	var itemMask:h2d.Mask;
 	var itemFlow:h2d.Flow;
 
 	var money:h2d.Text;
@@ -54,10 +56,10 @@ class ModStationWindow extends dn.Process {
 		masterFlow.borderHeight = masterFlow.borderWidth = 32;
 
 		var titleTf = new h2d.Text(Assets.fontPixelLarge, masterFlow);
-		titleTf.text = "Modification Station";
+		titleTf.text = "Crystal Shard Station";
 
 		var subTitleTf = new h2d.Text(Assets.fontPixelMedium, masterFlow);
-		subTitleTf.text = "Choose one trait to upgrade";
+		subTitleTf.text = "Unlock permanent upgrades";
 
 		var moneyBox = new h2d.Flow(masterFlow);
 		moneyBox.verticalAlign = Middle;
@@ -69,9 +71,16 @@ class ModStationWindow extends dn.Process {
 		var coinIcon = Assets.tiles.h_get("coin", moneyBox);
 		coinIcon.scale(0.5);
 
-		itemFlow = new h2d.Flow(masterFlow);
+		itemMask = new h2d.Mask(masterFlow.innerWidth, 400, masterFlow);
+
+		itemFlow = new h2d.Flow(itemMask);
 		itemFlow.layout = Vertical;
 		itemFlow.verticalSpacing = 1;
+		itemFlow.enableInteractive = true;
+		itemFlow.interactive.onWheel = (e) -> {
+			var newY = itemFlow.y + 10 * -M.sign(e.wheelDelta);
+			itemFlow.y = hxd.Math.clamp(newY, -itemFlow.outerHeight / 2, 0);
+		}
 
 		masterFlow.addSpacing(8);
 		var tf = new h2d.Text(Assets.fontPixelMedium, masterFlow);
@@ -98,6 +107,13 @@ class ModStationWindow extends dn.Process {
 		addItem(new data.Traits.SplitShot(), 0);
 		addItem(new data.Traits.Rifle(), 1);
 		addItem(new data.Traits.PiercingShot(), 2);
+		addItem(new data.Traits.PiercingShot(), 3);
+		addItem(new data.Traits.PiercingShot(), 4);
+		addItem(new data.Traits.PiercingShot(), 5);
+		addItem(new data.Traits.PiercingShot(), 6);
+		addItem(new data.Traits.PiercingShot(), 7);
+		addItem(new data.Traits.PiercingShot(), 8);
+		addItem(new data.Traits.PiercingShot(), 9);
 
 		Game.ME.money = 500;
 		#end
@@ -112,15 +128,6 @@ class ModStationWindow extends dn.Process {
 		flow.maxWidth = flow.minWidth = 290;
 		flow.horizontalSpacing = 10;
 		flow.enableInteractive = true;
-
-		var iconBox = new h2d.Flow(flow);
-		iconBox.horizontalSpacing = 8;
-		iconBox.maxWidth = iconBox.minWidth = 75;
-		iconBox.maxHeight = iconBox.minHeight = 75;
-		iconBox.padding = 8;
-		iconBox.verticalAlign = Middle;
-
-		Assets.tiles.h_get(trait.icon, iconBox);
 
 		var price = trait.price;
 		var money = Game.ME.money;
@@ -141,23 +148,6 @@ class ModStationWindow extends dn.Process {
 		desc.maxWidth = 300;
 		desc.textColor = 0xBBBBBB;
 
-		for (attr in trait.attributes) {
-			var attrBox = new h2d.Flow(infoBox);
-			attrBox.horizontalSpacing = 8;
-			attrBox.maxWidth = attrBox.minWidth = 250;
-
-			var attrTf = new h2d.Text(Assets.fontPixelMedium, attrBox);
-			attrTf.text = '${attr.name}:';
-			attrTf.textColor = 0xBBBBBB;
-
-			var attrValueTf = new h2d.Text(Assets.fontPixelMedium, attrBox);
-			attrBox.getProperties(attrValueTf).horizontalAlign = FlowAlign.Right;
-			var value = attr.isPercentage ? '${M.pretty(attr.value * 100)}%' : Std.string(attr.value);
-			var sign = attr.value >= 0 ? "+" : "";
-			var textColor = attr.positive ? 0x00FF00 : 0xFF0000;
-			attrValueTf.text = '${sign}${value}';
-			attrValueTf.textColor = textColor;
-		}
 		var priceBox = new h2d.Flow(flow);
 		flow.getProperties(priceBox).verticalAlign = FlowAlign.Bottom;
 		priceBox.horizontalSpacing = 8;
@@ -189,6 +179,7 @@ class ModStationWindow extends dn.Process {
 			}
 		}
 
+		flow.interactive.propagateEvents = true;
 		flow.interactive.onOver = (e) -> {
 			cursorIdx = index;
 		}
@@ -200,6 +191,10 @@ class ModStationWindow extends dn.Process {
 			desc: trait.desc,
 			cb: interact,
 		});
+
+		itemMask.width = itemFlow.innerWidth;
+		itemMask.height = Std.int(Math.min(itemFlow.outerHeight, 400));
+		itemMask.scrollBounds = h2d.col.Bounds.fromValues(0, 0, itemFlow.innerWidth, itemFlow.outerHeight);
 	}
 
 	var closed:Bool;
