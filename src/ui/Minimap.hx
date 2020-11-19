@@ -1,5 +1,6 @@
 package ui;
 
+import hxd.Timer;
 import entity.Teleporter;
 import dn.Process;
 
@@ -68,7 +69,6 @@ class Minimap extends dn.Process {
 
 		var hero = Game.ME.hero;
 		addClearFogPoint(hero.cx, hero.cy);
-
 		if (!cd.hasSetF("refresh", 10)) {
 			mapTiles.clear();
 			for (cx in 0...level.wid) {

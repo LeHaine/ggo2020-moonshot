@@ -1,3 +1,4 @@
+import hxd.Timer;
 import dn.LocalStorage;
 import data.Trait;
 import hxd.Key;
@@ -50,6 +51,10 @@ class Game extends Process {
 
 	public var money(default, set):Int = 0;
 
+	#if debug
+	var fpsTf:h2d.Text;
+	#end
+
 	var nextLevelReady = false;
 
 	inline function set_money(v) {
@@ -82,6 +87,11 @@ class Game extends Process {
 		} else {
 			startLevel(0);
 		}
+		#if debug
+		fpsTf = new h2d.Text(Assets.fontTiny);
+		root.add(fpsTf, Const.DP_UI);
+		fpsTf.setPosition(2, 2);
+		#end
 	}
 
 	public function startLevel(idx:Int) {
@@ -273,6 +283,9 @@ class Game extends Process {
 			if (!e.destroyed)
 				e.update();
 
+		#if debug
+		fpsTf.text = Std.string(M.pretty(Timer.fps()));
+		#end
 		if (!ui.Console.ME.isActive() && !ui.Modal.hasAny()) {
 			#if hl
 			// Exit
