@@ -65,6 +65,7 @@ class Minimap extends dn.Process {
 		mapTiles = new h2d.TileGroup(Assets.tiles.tile, mask);
 
 		instructions = new h2d.Flow(root);
+		instructions.visible = false;
 		var tf = new h2d.Text(Assets.fontPixelMedium, instructions);
 		tf.text = "[E] to teleport";
 
