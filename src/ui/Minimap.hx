@@ -24,7 +24,7 @@ class Minimap extends dn.Process {
 	var mask:h2d.Mask;
 
 	var scale = 0.062;
-
+	var zoom = 1;
 	var enlarged = false;
 	var navigating = false;
 	var ca:dn.heaps.Controller.ControllerAccess;
@@ -158,7 +158,8 @@ class Minimap extends dn.Process {
 	public function enlarge() {
 		ca.unlock();
 		ca.takeExclusivity();
-		mapRoot.setScale(Const.SCALE * 3);
+		zoom = 3;
+		mapRoot.setScale(Const.SCALE * zoom);
 		var gameW = M.ceil(w());
 		var gameH = M.ceil(h());
 		var maskW = mask.getBounds().width;
@@ -171,6 +172,12 @@ class Minimap extends dn.Process {
 		bgMask.alpha = 1;
 		Game.ME.pause();
 		enlarged = true;
+
+		var hero = Game.ME.hero;
+
+		if (hero != null) {
+			centerMaskTo(hero.cx, hero.cy);
+		}
 	}
 
 	public function enlargeAndNavigate() {
@@ -183,6 +190,7 @@ class Minimap extends dn.Process {
 		bgMask.alpha = 0;
 		ca.releaseExclusivity();
 		ca.lock();
+		zoom = 1;
 		enlarged = false;
 		navigating = false;
 		mapRoot.setPosition(1, 1);
@@ -211,7 +219,7 @@ class Minimap extends dn.Process {
 	}
 
 	inline function centerMaskTo(cx, cy) {
-		mask.scrollTo(cx * Const.GRID * scale * Const.SCALE / 2, cy * Const.GRID * scale * Const.SCALE / 2);
+		mask.scrollTo(cx * zoom * Const.GRID * scale * Const.SCALE / 2, cy * zoom * Const.GRID * scale * Const.SCALE / 2);
 	}
 
 	private function isLeftJoystickDown() {
