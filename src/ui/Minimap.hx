@@ -168,7 +168,7 @@ class Minimap extends dn.Process {
 		bgMask.clear();
 		bgMask.beginFill(0x000000, 0.75);
 		bgMask.drawRect(0, 0, Main.ME.w(), Main.ME.h());
-		tw.createS(bgMask.alpha, 0 > 1, 0.3);
+		bgMask.alpha = 1;
 		Game.ME.pause();
 		enlarged = true;
 	}
