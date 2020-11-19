@@ -78,7 +78,7 @@ class CrystalShardStationWindow extends dn.Process {
 		itemFlow.verticalSpacing = 1;
 		itemFlow.enableInteractive = true;
 		itemFlow.interactive.onWheel = (e) -> {
-			var newY = itemFlow.y + 10 * -M.sign(e.wheelDelta);
+			var newY = itemFlow.y + 25 * -M.sign(e.wheelDelta);
 			itemFlow.y = hxd.Math.clamp(newY, -itemFlow.outerHeight / 2, 0);
 		}
 
