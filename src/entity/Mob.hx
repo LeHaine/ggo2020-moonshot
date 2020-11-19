@@ -106,8 +106,8 @@ class Mob extends Character {
 
 	function calculateDrop() {
 		var dropList = new dn.RandList();
-		dropList.add(None, 85);
-		dropList.add(Syringe, 15);
+		dropList.add(None, 95);
+		dropList.add(Syringe, 5);
 
 		var result = dropList.draw();
 		if (result != null) {

@@ -2,7 +2,7 @@ package entity.item;
 
 class Syringe extends Item {
 	public function new(cx, cy) {
-		super(cx, cy, "Heal");
+		super(cx, cy, "Heal 50%");
 
 		spr.set("syringe");
 	}
