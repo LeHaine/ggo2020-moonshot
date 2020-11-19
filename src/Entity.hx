@@ -251,6 +251,10 @@ class Entity {
 		life = maxLife = v;
 	}
 
+	public function addLife(v) {
+		life = M.iclamp(life + v, 0, maxLife);
+	}
+
 	public function hit(dmg:Int, from:Null<Entity>) {
 		if (!isAlive() || dmg <= 0)
 			return;

@@ -1,11 +1,17 @@
 package entity;
 
+import dn.RandList;
 import ui.Bar;
 
 enum Body {
 	Head;
 	Torso;
 	Legs;
+}
+
+enum Drop {
+	None;
+	Syringe;
 }
 
 class Mob extends Character {
@@ -88,6 +94,31 @@ class Mob extends Character {
 				aggro(hero);
 			} else {
 				bump(-dirTo(from) * rnd(0.03, 0.06), -rnd(0.02, 0.04));
+			}
+		}
+	}
+
+	override function onDie() {
+		super.onDie();
+
+		calculateDrop();
+	}
+
+	function calculateDrop() {
+		var dropList = new dn.RandList();
+		dropList.add(None, 85);
+		dropList.add(Syringe, 15);
+
+		var result = dropList.draw();
+		if (result != null) {
+			var drop = switch (result) {
+				case Syringe:
+					new entity.item.Syringe(cx, cy);
+				case _: null;
+			}
+			if (drop != null) {
+				drop.dx = -lastHitDirToSource * rnd(0.2, 0.4);
+				drop.dy = rnd(-0.4, -0.2);
 			}
 		}
 	}

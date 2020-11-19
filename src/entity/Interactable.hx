@@ -18,6 +18,9 @@ class Interactable extends UIEntity {
 	public var focusRange:Float = 2.;
 	public var active:Bool;
 
+	public var onFocus:Null<() -> Void>;
+	public var onUnfocus:Null<() -> Void>;
+
 	public function new(x, y) {
 		super(x, y);
 		ALL.push(this);
@@ -76,6 +79,9 @@ class Interactable extends UIEntity {
 		if (!active) {
 			return;
 		}
+		if (onFocus != null) {
+			onFocus();
+		}
 		wrapper.visible = true;
 		canInteract = true;
 		game.tw.createS(wrapper.alpha, 0 > 1, 0.2);
@@ -84,6 +90,9 @@ class Interactable extends UIEntity {
 	public function unfocus() {
 		if (!active) {
 			return;
+		}
+		if (onUnfocus != null) {
+			onUnfocus();
 		}
 		canInteract = false;
 		resetSecondaryInteractionTimer();

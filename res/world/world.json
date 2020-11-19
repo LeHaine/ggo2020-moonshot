@@ -17159,12 +17159,7 @@
 						{ "__identifier": "Water", "__grid": [22,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [360,336], "fieldInstances": [] },
 						{ "__identifier": "Water", "__grid": [24,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [392,336], "fieldInstances": [] },
 						{ "__identifier": "Water", "__grid": [23,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [376,336], "fieldInstances": [] },
-						{ "__identifier": "Water", "__grid": [21,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [344,336], "fieldInstances": [] },
-						{ "__identifier": "Checkpoint", "__grid": [16,19], "__tile": null, "defUid": 125, "px": [264,320], "fieldInstances": [] },
-						{ "__identifier": "Checkpoint", "__grid": [30,19], "__tile": null, "defUid": 125, "px": [488,320], "fieldInstances": [] },
-						{ "__identifier": "Checkpoint", "__grid": [21,10], "__tile": null, "defUid": 125, "px": [344,176], "fieldInstances": [] },
-						{ "__identifier": "Checkpoint", "__grid": [33,6], "__tile": null, "defUid": 125, "px": [536,112], "fieldInstances": [] },
-						{ "__identifier": "Checkpoint", "__grid": [7,8], "__tile": null, "defUid": 125, "px": [120,144], "fieldInstances": [] }
+						{ "__identifier": "Water", "__grid": [21,20], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [344,336], "fieldInstances": [] }
 					]
 				},
 				{
@@ -21479,7 +21474,8 @@
 						{ "__identifier": "ModStation", "__grid": [16,69], "__tile": null, "defUid": 69, "px": [264,1120], "fieldInstances": [] },
 						{ "__identifier": "ModStation", "__grid": [118,63], "__tile": null, "defUid": 69, "px": [1896,1024], "fieldInstances": [] },
 						{ "__identifier": "ModStation", "__grid": [129,89], "__tile": null, "defUid": 69, "px": [2072,1440], "fieldInstances": [] },
-						{ "__identifier": "ModStation", "__grid": [39,66], "__tile": null, "defUid": 69, "px": [632,1072], "fieldInstances": [] }
+						{ "__identifier": "ModStation", "__grid": [39,66], "__tile": null, "defUid": 69, "px": [632,1072], "fieldInstances": [] },
+						{ "__identifier": "ExplosiveBarrel", "__grid": [67,88], "__tile": null, "defUid": 121, "px": [1080,1424], "fieldInstances": [] }
 					]
 				},
 				{
