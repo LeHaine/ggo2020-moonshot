@@ -41,7 +41,7 @@ class Interactable extends UIEntity {
 		window.verticalSpacing = 3;
 
 		downArrow = new HSprite(Assets.tiles, "uiDownArrow", wrapper);
-		downArrow.x += downArrow.getBounds().width / 2;
+		downArrow.x += Std.int(downArrow.getBounds().width / 2);
 		downArrow.alpha = 0.85;
 
 		active = true;

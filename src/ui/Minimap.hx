@@ -255,7 +255,7 @@ class Minimap extends dn.Process {
 		targetTeleporter = currentTeleporter;
 		centerMaskTo(targetTeleporter.cx, targetTeleporter.cy);
 
-		instructions.setPosition(mapRoot.x + background.getBounds().width / 2, mapRoot.y + background.getBounds().height - 60);
+		instructions.setPosition(Std.int(mapRoot.x + background.getBounds().width / 2), Std.int(mapRoot.y + background.getBounds().height - 60));
 		instructions.visible = true;
 	}
 
