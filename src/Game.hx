@@ -340,6 +340,14 @@ class Game extends Process {
 	override function onDispose() {
 		super.onDispose();
 
+		if (minimap != null) {
+			minimap.destroy();
+		}
+
+		for (c in CinematicControl.ALL) {
+			c.destroy();
+		}
+
 		fx.destroy();
 		for (e in Entity.ALL)
 			e.destroy();
