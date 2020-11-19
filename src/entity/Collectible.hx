@@ -1,7 +1,7 @@
 package entity;
 
 class Collectible extends Entity {
-	var pickupRange:Float = 3;
+	var pickupRange:Float = 7;
 
 	public function new(cx, cy) {
 		super(cx, cy);
@@ -9,7 +9,7 @@ class Collectible extends Entity {
 		width = 2;
 		hei = 2;
 
-		cd.setS("cooldown", rnd(0.6, 0.85));
+		cd.setS("cooldown", rnd(0.45, 0.6));
 	}
 
 	override function update() {

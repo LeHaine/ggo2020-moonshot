@@ -130,13 +130,13 @@ class Mob extends Character {
 		var dropList = new dn.RandList();
 		dropList.add(None, 35);
 		dropList.add(Coin, 35);
-		dropList.add(CrystalShard, 35);
+		dropList.add(CrystalShard, 30);
 
 		var result = dropList.draw();
 		if (result != null) {
 			switch (result) {
 				case CrystalShard:
-					var max = irnd(5, 12);
+					var max = irnd(entity.collectible.CrystalShard.MIN_DROP, entity.collectible.CrystalShard.MAX_DROP);
 					for (i in 0...max) {
 						var drop = new entity.collectible.CrystalShard(cx, cy);
 						drop.dx = rnd(-0.5, 0.5);
