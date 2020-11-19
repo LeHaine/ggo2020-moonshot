@@ -12,6 +12,8 @@ enum Body {
 enum Drop {
 	None;
 	Syringe;
+	Coin;
+	CrystalShard;
 }
 
 class Mob extends Character {
@@ -102,6 +104,7 @@ class Mob extends Character {
 		super.onDie();
 
 		calculateDrop();
+		calculateCollectibles();
 	}
 
 	function calculateDrop() {
@@ -119,6 +122,28 @@ class Mob extends Character {
 			if (drop != null) {
 				drop.dx = -lastHitDirToSource * rnd(0.2, 0.4);
 				drop.dy = rnd(-0.4, -0.2);
+			}
+		}
+	}
+
+	function calculateCollectibles() {
+		var dropList = new dn.RandList();
+		dropList.add(None, 35);
+		dropList.add(Coin, 35);
+		dropList.add(CrystalShard, 35);
+
+		var result = dropList.draw();
+		if (result != null) {
+			switch (result) {
+				case CrystalShard:
+					var max = irnd(5, 12);
+					for (i in 0...max) {
+						var drop = new entity.collectible.CrystalShard(cx, cy);
+						drop.dx = rnd(-0.5, 0.5);
+						drop.dy = rnd(-0.5, 0.3);
+					}
+				case _:
+					null;
 			}
 		}
 	}
