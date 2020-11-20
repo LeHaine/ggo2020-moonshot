@@ -15,7 +15,7 @@ class ModStationWindow extends dn.Process {
 	var masterFlow:h2d.Flow;
 	var itemFlow:h2d.Flow;
 
-	var money:h2d.Text;
+	var coins:h2d.Text;
 
 	var cursorIdx = 0;
 
@@ -59,14 +59,14 @@ class ModStationWindow extends dn.Process {
 		var subTitleTf = new h2d.Text(Assets.fontPixelMedium, masterFlow);
 		subTitleTf.text = "Choose one trait to upgrade";
 
-		var moneyBox = new h2d.Flow(masterFlow);
-		moneyBox.verticalAlign = Middle;
-		moneyBox.horizontalSpacing = 4;
-		moneyBox.padding = 16;
+		var coinsBox = new h2d.Flow(masterFlow);
+		coinsBox.verticalAlign = Middle;
+		coinsBox.horizontalSpacing = 4;
+		coinsBox.padding = 16;
 
-		money = new h2d.Text(Assets.fontPixelMedium, moneyBox);
-		money.textColor = 0xFF3333;
-		var coinIcon = Assets.tiles.h_get("coin", moneyBox);
+		coins = new h2d.Text(Assets.fontPixelMedium, coinsBox);
+		coins.textColor = 0xFF3333;
+		var coinIcon = Assets.tiles.h_get("coin", coinsBox);
 		coinIcon.scale(0.5);
 
 		itemFlow = new h2d.Flow(masterFlow);
@@ -99,7 +99,7 @@ class ModStationWindow extends dn.Process {
 		addItem(new data.Traits.Rifle(), 1);
 		addItem(new data.Traits.PiercingShot(), 2);
 
-		Game.ME.money = 500;
+		Game.ME.coins = 500;
 		#end
 	}
 
@@ -123,7 +123,7 @@ class ModStationWindow extends dn.Process {
 		Assets.tiles.h_get(trait.icon, iconBox);
 
 		var price = trait.price;
-		var money = Game.ME.money;
+		var coins = Game.ME.coins;
 
 		var infoBox = new h2d.Flow(flow);
 		infoBox.maxWidth = infoBox.minWidth = 300;
@@ -134,7 +134,7 @@ class ModStationWindow extends dn.Process {
 		var nameTf = new h2d.Text(Assets.fontPixelMedium, infoBox);
 		nameTf.text = trait.name;
 		nameTf.maxWidth = 300;
-		nameTf.textColor = price <= money ? 0xFFFFFF : 0xE77272;
+		nameTf.textColor = price <= coins ? 0xFFFFFF : 0xE77272;
 
 		var desc = new h2d.Text(Assets.fontPixelSmall, infoBox);
 		desc.text = trait.desc;
@@ -169,7 +169,7 @@ class ModStationWindow extends dn.Process {
 		var priceTf = new h2d.Text(Assets.fontPixelMedium, priceBox);
 		if (price > 0) {
 			priceTf.text = Std.string(price);
-			priceTf.textColor = price <= money ? 0xFF9900 : 0xD20000;
+			priceTf.textColor = price <= coins ? 0xFF9900 : 0xD20000;
 		} else {
 			priceTf.text = "FREE";
 			priceTf.textColor = 0x8CD12E;
@@ -179,12 +179,12 @@ class ModStationWindow extends dn.Process {
 		coinIcon.scale(0.5);
 
 		var interact = () -> {
-			if (Game.ME.money >= trait.price) {
+			if (Game.ME.coins >= trait.price) {
 				if (onItemBought != null) {
 					onItemBought();
 				}
 				close();
-				Game.ME.money -= trait.price;
+				Game.ME.coins -= trait.price;
 				Game.ME.addTrait(trait);
 			}
 		}
@@ -218,7 +218,7 @@ class ModStationWindow extends dn.Process {
 	override function update() {
 		super.update();
 
-		money.text = Std.string(Game.ME.money);
+		coins.text = Std.string(Game.ME.coins);
 
 		for (item in items) {
 			item.flow.alpha = 0.7;

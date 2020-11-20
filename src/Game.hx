@@ -1,3 +1,5 @@
+import GameStorage.Settings;
+import GameStorage.PermaUpgrades;
 import entity.CrystalShardStation;
 import hxd.Timer;
 import dn.LocalStorage;
@@ -50,18 +52,45 @@ class Game extends Process {
 
 	public var storage:GameStorage;
 
-	public var money(default, set):Int = 0;
+	public var permaUpgrades(get, never):PermaUpgrades;
+
+	inline function get_permaUpgrades() {
+		return storage.permaUpgrades;
+	}
+
+	public var settings(get, never):Settings;
+
+	inline function get_settings() {
+		return storage.settings;
+	}
+
+	public var coins(get, set):Int;
+
+	inline function set_coins(v) {
+		hud.invalidate();
+		return storage.collectibles.coins = v;
+	}
+
+	inline function get_coins() {
+		return storage.collectibles.coins;
+	}
+
+	public var shards(get, set):Int;
+
+	inline function set_shards(v) {
+		hud.invalidate();
+		return storage.collectibles.shards = v;
+	}
+
+	inline function get_shards() {
+		return storage.collectibles.shards;
+	}
 
 	#if debug
 	var fpsTf:h2d.Text;
 	#end
 
 	var nextLevelReady = false;
-
-	inline function set_money(v) {
-		hud.invalidate();
-		return money = v;
-	}
 
 	public function new() {
 		super(Main.ME);
@@ -75,13 +104,13 @@ class Game extends Process {
 		root.add(scroller, Const.DP_MAIN);
 		scroller.filter = new h2d.filter.ColorMatrix(); // force rendering for pixel perfect
 
+		storage = new GameStorage();
+		storage.loadSavedData();
+
 		world = new World();
 		camera = new Camera();
 		fx = new Fx();
 		hud = new ui.Hud();
-
-		storage = new GameStorage();
-		storage.loadSavedData();
 
 		if (storage.settings.finishedTutorial) {
 			startLevel(1);

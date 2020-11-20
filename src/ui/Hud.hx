@@ -28,7 +28,7 @@ class Hud extends dn.Process {
 	var flow:h2d.Flow;
 	var lifeBar:Bar;
 	var lifeText:Text;
-	var moneyText:Text;
+	var coinsText:Text;
 
 	var invalidated = true;
 	var lastLifeRatio = 1.;
@@ -58,15 +58,15 @@ class Hud extends dn.Process {
 		lifeBox.y -= 1;
 		lifeText = new Text(Assets.fontPixelSmall, lifeBox);
 
-		var moneyBox = new h2d.Flow(flow);
-		moneyBox.horizontalSpacing = 4;
+		var coinsBox = new h2d.Flow(flow);
+		coinsBox.horizontalSpacing = 4;
 
-		var moneyBoxProps = flow.getProperties(moneyBox);
-		moneyBoxProps.align(FlowAlign.Bottom, FlowAlign.Right);
+		var coinsBoxProps = flow.getProperties(coinsBox);
+		coinsBoxProps.align(FlowAlign.Bottom, FlowAlign.Right);
 
-		Assets.tiles.h_get("coin", moneyBox).scale(0.25);
-		moneyText = new Text(Assets.fontPixelSmall, moneyBox);
-		moneyText.text = Std.string(game.money);
+		Assets.tiles.h_get("coin", coinsBox).scale(0.25);
+		coinsText = new Text(Assets.fontPixelSmall, coinsBox);
+		coinsText.text = Std.string(game.coins);
 	}
 
 	override function onResize() {
@@ -91,7 +91,7 @@ class Hud extends dn.Process {
 	function render() {
 		lifeBar.set(hero.life / hero.maxLife, 1);
 		lifeText.text = '${hero.life}/${hero.maxLife}';
-		moneyText.text = Std.string(game.money);
+		coinsText.text = Std.string(game.coins);
 	}
 
 	override function postUpdate() {

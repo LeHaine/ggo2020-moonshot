@@ -5,6 +5,151 @@ import data.Trait;
 import dn.Rand;
 import hxd.Key;
 
+class PermaUpgrade {
+	public var game(get, never):Game;
+
+	inline function get_game() {
+		return Game.ME;
+	}
+
+	public var name:String;
+	public var desc:String;
+	public var maxLevel:Int;
+	public var level(get, never):Int;
+
+	public function get_level():Int {
+		return 0;
+	}
+
+	public var price(get, never):Int;
+
+	inline function get_price() {
+		return calcPrice(level);
+	}
+
+	public function modify() {}
+
+	public function calcPrice(level:Int):Int {
+		return M.ceil((level * (level + 1)) / 2) * 10;
+	}
+}
+
+class BonusCoinsUpgrade extends PermaUpgrade {
+	public function new() {
+		name = "Bonus coins";
+		desc = "Increases the amount of coins that are dropped from an enemy by 1% each level";
+		maxLevel = 50;
+	}
+
+	public override function modify() {
+		game.permaUpgrades.bonusCoinsLvl++;
+	}
+
+	public override function get_level() {
+		return game.permaUpgrades.bonusCoinsLvl;
+	}
+}
+
+class IncreasedCoinsCarriedOverUpgrade extends PermaUpgrade {
+	public function new() {
+		name = "Coins kept on death";
+		desc = "Increases the amount of coins that are kept on death by 250 for each level";
+		maxLevel = 10;
+	}
+
+	public override function modify() {
+		game.permaUpgrades.coinsCarriedOverLvl++;
+	}
+
+	public override function get_level() {
+		return game.permaUpgrades.coinsCarriedOverLvl;
+	}
+
+	public override function calcPrice(level:Int):Int {
+		return super.calcPrice(level) * 10;
+	}
+}
+
+class BonusCrystalShardsUpgrade extends PermaUpgrade {
+	public function new() {
+		name = "Bonus Crystal Shards";
+		desc = "Increases the amount of crystal shards that are dropped from an enemy by 1% each level";
+		maxLevel = 50;
+	}
+
+	public override function modify() {
+		game.permaUpgrades.bonusShardsLvl++;
+	}
+
+	public override function get_level() {
+		return game.permaUpgrades.bonusShardsLvl;
+	}
+
+	public override function calcPrice(level:Int):Int {
+		return super.calcPrice(level) * 2;
+	}
+}
+
+class PersonalModStationUpgrade extends PermaUpgrade {
+	public function new() {
+		name = "Personal Modification Station";
+		desc = "Unlock your own personal modification station that can be used before each run";
+		maxLevel = 1;
+	}
+
+	public override function modify() {
+		game.permaUpgrades.personalModStation = true;
+	}
+
+	public override function get_level() {
+		return game.permaUpgrades.personalModStation ? 1 : 0;
+	}
+
+	public override function calcPrice(level:Int):Int {
+		return 1000;
+	}
+}
+
+class IncreasedHealthUpgrade extends PermaUpgrade {
+	public function new() {
+		name = "Your Life";
+		desc = "Increases your base health by 1% each level";
+		maxLevel = 50;
+	}
+
+	public override function modify() {
+		game.permaUpgrades.increaseHealthLvl++;
+	}
+
+	public override function get_level() {
+		return game.permaUpgrades.increaseHealthLvl;
+	}
+
+	public override function calcPrice(level:Int):Int {
+		return super.calcPrice(level);
+	}
+}
+
+class HigherTieredTraitsChanceUpgrade extends PermaUpgrade {
+	public function new() {
+		name = "Tiered Traits";
+		desc = "Increases the chance of receiving a higher tiered trait at modification stations for each slot";
+		maxLevel = 10;
+	}
+
+	public override function modify() {
+		game.permaUpgrades.higherTieredTraitsLvl++;
+	}
+
+	public override function get_level() {
+		return game.permaUpgrades.higherTieredTraitsLvl;
+	}
+
+	public override function calcPrice(level:Int):Int {
+		return super.calcPrice(level) * 5;
+	}
+}
+
 class CrystalShardStationWindow extends dn.Process {
 	public static var ME:CrystalShardStationWindow;
 
@@ -17,7 +162,7 @@ class CrystalShardStationWindow extends dn.Process {
 	var itemMask:h2d.Mask;
 	var itemFlow:h2d.Flow;
 
-	var money:h2d.Text;
+	var shards:h2d.Text;
 
 	var cursorIdx = 0;
 
@@ -61,14 +206,14 @@ class CrystalShardStationWindow extends dn.Process {
 		var subTitleTf = new h2d.Text(Assets.fontPixelMedium, masterFlow);
 		subTitleTf.text = "Unlock permanent upgrades";
 
-		var moneyBox = new h2d.Flow(masterFlow);
-		moneyBox.verticalAlign = Middle;
-		moneyBox.horizontalSpacing = 4;
-		moneyBox.padding = 16;
+		var shardsBox = new h2d.Flow(masterFlow);
+		shardsBox.verticalAlign = Middle;
+		shardsBox.horizontalSpacing = 4;
+		shardsBox.padding = 16;
 
-		money = new h2d.Text(Assets.fontPixelMedium, moneyBox);
-		money.textColor = 0xFF3333;
-		var coinIcon = Assets.tiles.h_get("coin", moneyBox);
+		shards = new h2d.Text(Assets.fontPixelMedium, shardsBox);
+		shards.textColor = 0xFF3333;
+		var coinIcon = Assets.tiles.h_get("coin", shardsBox);
 		coinIcon.scale(0.5);
 
 		itemMask = new h2d.Mask(masterFlow.innerWidth, 400, masterFlow);
@@ -76,11 +221,6 @@ class CrystalShardStationWindow extends dn.Process {
 		itemFlow = new h2d.Flow(itemMask);
 		itemFlow.layout = Vertical;
 		itemFlow.verticalSpacing = 1;
-		itemFlow.enableInteractive = true;
-		itemFlow.interactive.onWheel = (e) -> {
-			var newY = itemFlow.y + 25 * -M.sign(e.wheelDelta);
-			itemFlow.y = hxd.Math.clamp(newY, -itemFlow.outerHeight / 2, 0);
-		}
 
 		masterFlow.addSpacing(8);
 		var tf = new h2d.Text(Assets.fontPixelMedium, masterFlow);
@@ -92,45 +232,46 @@ class CrystalShardStationWindow extends dn.Process {
 		tf.textColor = 0xd95b52;
 
 		cd.setS("lock", 0.2);
-		generateTraits(seed);
+		addUpgrades();
+		itemMask.width = itemFlow.innerWidth;
+		itemMask.height = Std.int(Math.min(itemFlow.outerHeight, 400));
 		onResize();
 		Game.ME.pause();
 	}
 
-	function generateTraits(seed) {
+	function addUpgrades() {
+		itemFlow.enableInteractive = false;
+		itemFlow.y = 0;
 		items = [];
 		itemFlow.removeChildren();
 
-		var rnd = new Rand(seed);
+		addItem(new BonusCoinsUpgrade(), 0);
+		addItem(new BonusCrystalShardsUpgrade(), 1);
+		addItem(new IncreasedCoinsCarriedOverUpgrade(), 2);
+		addItem(new PersonalModStationUpgrade(), 3);
+		addItem(new HigherTieredTraitsChanceUpgrade(), 4);
+		addItem(new IncreasedHealthUpgrade(), 5);
 
-		#if debug
-		addItem(new data.Traits.SplitShot(), 0);
-		addItem(new data.Traits.Rifle(), 1);
-		addItem(new data.Traits.PiercingShot(), 2);
-		addItem(new data.Traits.PiercingShot(), 3);
-		addItem(new data.Traits.PiercingShot(), 4);
-		addItem(new data.Traits.PiercingShot(), 5);
-		addItem(new data.Traits.PiercingShot(), 6);
-		addItem(new data.Traits.PiercingShot(), 7);
-		addItem(new data.Traits.PiercingShot(), 8);
-		addItem(new data.Traits.PiercingShot(), 9);
-
-		Game.ME.money = 500;
-		#end
+		itemFlow.enableInteractive = true;
+		itemFlow.interactive.onWheel = (e) -> {
+			var newY = itemFlow.y + 25 * -M.sign(e.wheelDelta);
+			itemFlow.y = hxd.Math.clamp(newY, -itemFlow.outerHeight / 2, 0);
+		}
 	}
 
-	function addItem(trait:Trait, index:Int) {
+	function addItem(upgrade:PermaUpgrade, index:Int) {
 		var flow = new h2d.Flow(itemFlow);
 		flow.verticalAlign = Top;
 		flow.backgroundTile = Assets.tiles.getTile("uiButton");
 		flow.borderHeight = flow.borderWidth = 16;
 		flow.padding = 4;
 		flow.maxWidth = flow.minWidth = 290;
+		flow.minHeight = 100;
 		flow.horizontalSpacing = 10;
 		flow.enableInteractive = true;
 
-		var price = trait.price;
-		var money = Game.ME.money;
+		var price = upgrade.price;
+		var shards = Game.ME.shards;
 
 		var infoBox = new h2d.Flow(flow);
 		infoBox.maxWidth = infoBox.minWidth = 300;
@@ -139,27 +280,39 @@ class CrystalShardStationWindow extends dn.Process {
 		infoBox.layout = Vertical;
 
 		var nameTf = new h2d.Text(Assets.fontPixelMedium, infoBox);
-		nameTf.text = trait.name;
+		nameTf.text = upgrade.name;
 		nameTf.maxWidth = 300;
-		nameTf.textColor = price <= money ? 0xFFFFFF : 0xE77272;
+		nameTf.textColor = price <= shards ? 0xFFFFFF : 0xE77272;
 
 		var desc = new h2d.Text(Assets.fontPixelSmall, infoBox);
-		desc.text = trait.desc;
+		desc.text = upgrade.desc;
 		desc.maxWidth = 300;
 		desc.textColor = 0xBBBBBB;
 
-		var priceBox = new h2d.Flow(flow);
-		flow.getProperties(priceBox).verticalAlign = FlowAlign.Bottom;
+		var priceLevelBox = new h2d.Flow(flow);
+		priceLevelBox.minHeight = flow.innerHeight;
+		priceLevelBox.layout = Vertical;
+		priceLevelBox.maxWidth = priceLevelBox.minWidth = 90;
+		priceLevelBox.padding = 8;
+
+		var levelTf = new h2d.Text(Assets.fontPixelSmall, priceLevelBox);
+		levelTf.text = 'Level: ${upgrade.level} / ${upgrade.maxLevel}';
+		levelTf.textColor = 0x8CD12E;
+
+		var priceBox = new h2d.Flow(priceLevelBox);
+		priceLevelBox.getProperties(priceBox).verticalAlign = FlowAlign.Bottom;
 		priceBox.horizontalSpacing = 8;
-		priceBox.maxWidth = priceBox.minWidth = 90;
-		priceBox.padding = 8;
 
 		flow.addSpacing(8);
 
 		var priceTf = new h2d.Text(Assets.fontPixelMedium, priceBox);
-		if (price > 0) {
+		var maxed = upgrade.level == upgrade.maxLevel;
+		if (maxed) {
+			priceTf.text = "MAXED";
+			priceTf.textColor = 0xFF9900;
+		} else if (price > 0) {
 			priceTf.text = Std.string(price);
-			priceTf.textColor = price <= money ? 0xFF9900 : 0xD20000;
+			priceTf.textColor = price <= shards ? 0xFF9900 : 0xD20000;
 		} else {
 			priceTf.text = "FREE";
 			priceTf.textColor = 0x8CD12E;
@@ -167,15 +320,19 @@ class CrystalShardStationWindow extends dn.Process {
 
 		var coinIcon = Assets.tiles.h_get("coin", priceBox);
 		coinIcon.scale(0.5);
+		if (maxed) {
+			coinIcon.alpha = 0;
+		}
 
 		var interact = () -> {
-			if (Game.ME.money >= trait.price) {
+			if (Game.ME.shards >= upgrade.price && !maxed) {
 				if (onItemBought != null) {
 					onItemBought();
 				}
-				close();
-				Game.ME.money -= trait.price;
-				Game.ME.addTrait(trait);
+				Game.ME.shards -= upgrade.price;
+				upgrade.modify();
+				Game.ME.storage.save();
+				addUpgrades();
 			}
 		}
 
@@ -188,13 +345,9 @@ class CrystalShardStationWindow extends dn.Process {
 		items.push({
 			flow: flow,
 			price: price,
-			desc: trait.desc,
+			desc: upgrade.desc,
 			cb: interact,
 		});
-
-		itemMask.width = itemFlow.innerWidth;
-		itemMask.height = Std.int(Math.min(itemFlow.outerHeight, 400));
-		itemMask.scrollBounds = h2d.col.Bounds.fromValues(0, 0, itemFlow.innerWidth, itemFlow.outerHeight);
 	}
 
 	var closed:Bool;
@@ -213,7 +366,7 @@ class CrystalShardStationWindow extends dn.Process {
 	override function update() {
 		super.update();
 
-		money.text = Std.string(Game.ME.money);
+		shards.text = Std.string(Game.ME.shards);
 
 		for (item in items) {
 			item.flow.alpha = 0.7;

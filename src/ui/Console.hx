@@ -1,5 +1,7 @@
 package ui;
 
+import dn.LocalStorage;
+
 class Console extends h2d.Console {
 	public static var ME:Console;
 
@@ -39,6 +41,20 @@ class Console extends h2d.Console {
 		this.addCommand("clrstorage", "Clear local storage", [], function() {
 			Game.ME.storage.clear();
 			log("Storage cleared", 0xFF80000);
+		});
+		this.addCommand("shards", "Add 10,000 shards", [], function() {
+			Game.ME.shards += 10000;
+			Game.ME.storage.save();
+			log("Added 10,000 shards", 0xFF80000);
+		});
+		this.addCommand("coins", "Add 10,000 coins", [], function() {
+			Game.ME.coins += 10000;
+			Game.ME.storage.save();
+			log("Added 10,000 coins", 0xFF80000);
+		});
+		this.addCommand("clearUpgrades", "Remove all perma upgrades", [], function() {
+			LocalStorage.delete("perma_upgrades");
+			log("Perma upgrades removed", 0xFF80000);
 		});
 		this.addAlias("+", "set");
 		this.addAlias("-", "unset");
