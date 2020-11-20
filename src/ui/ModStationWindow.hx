@@ -98,31 +98,40 @@ class ModStationWindow extends dn.Process {
 	}
 
 	function drawFreeSlot() {
+		var tieredIncrease = Game.ME.permaUpgrades.higherTieredTraitsLvl * 0.1;
 		var traitList = new dn.RandList<Tier>();
 		traitList.add(Tier.C, 50);
 		traitList.add(Tier.B, 30);
-		traitList.add(Tier.A, 15);
-		traitList.add(Tier.S, 5);
+		var chance = 15 + Std.int(15 * tieredIncrease);
+		traitList.add(Tier.A, chance);
+		chance = 5 + Std.int(5 * tieredIncrease);
+		traitList.add(Tier.S, chance);
 
 		return drawTrait(traitList.draw());
 	}
 
 	function drawNormalPriceSlot() {
+		var tieredIncrease = Game.ME.permaUpgrades.higherTieredTraitsLvl * 0.1;
 		var traitList = new dn.RandList<Tier>();
 		traitList.add(Tier.C, 40);
 		traitList.add(Tier.B, 30);
-		traitList.add(Tier.A, 20);
-		traitList.add(Tier.S, 10);
+		var chance = 20 + Std.int(20 * tieredIncrease);
+		traitList.add(Tier.A, chance);
+		chance = 10 + Std.int(10 * tieredIncrease);
+		traitList.add(Tier.S, chance);
 
 		return drawTrait(traitList.draw());
 	}
 
 	function drawExpensiveSlot() {
+		var tieredIncrease = Game.ME.permaUpgrades.higherTieredTraitsLvl * 0.1;
 		var traitList = new dn.RandList<Tier>();
 		traitList.add(Tier.C, 10);
 		traitList.add(Tier.B, 20);
-		traitList.add(Tier.A, 40);
-		traitList.add(Tier.S, 30);
+		var chance = 40 + Std.int(40 * tieredIncrease);
+		traitList.add(Tier.A, chance);
+		chance = 30 + Std.int(30 * tieredIncrease);
+		traitList.add(Tier.S, chance);
 
 		return drawTrait(traitList.draw());
 	}
