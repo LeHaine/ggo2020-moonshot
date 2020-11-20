@@ -196,6 +196,8 @@ class Game extends Process {
 					new entity.mob.scientist.ScientistHammer(e);
 				case Rat:
 					new entity.mob.Rat(e);
+				case Boss:
+					new entity.mob.Boss(e);
 			}
 		}
 

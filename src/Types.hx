@@ -11,6 +11,7 @@ enum MobTypes {
 	Scientist_Stun;
 	Scientist_Hammer;
 	Rat;
+	Boss;
 }
 
 enum LevelMark {

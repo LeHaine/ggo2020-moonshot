@@ -50,6 +50,17 @@ class Assets {
 		tiles.defineAnim("scientistHammerIdleHammer", "0(10), 1(15)");
 		tiles.defineAnim("scientistHammerSwing", "0(2), 1, 2(8)");
 
+		tiles.defineAnim("bossDeathFall", "0(30), 1(9999)");
+		tiles.defineAnim("bossRunGun", "0-3(3)");
+		tiles.defineAnim("bossIdle", "0(10), 1(15)");
+		tiles.defineAnim("bossIdleGunDown", "0(10), 1(15)");
+		tiles.defineAnim("bossIdleGunUp", "0(10), 1(15)");
+		tiles.defineAnim("bossRunHammer", "0-3(3)");
+		tiles.defineAnim("bossIdleHammer", "0(10), 1(15)");
+		tiles.defineAnim("bossHammerSwing", "0(2), 1, 2(8)");
+		tiles.defineAnim("bossFloatUp", "0-2(2)");
+		tiles.defineAnim("bossMoonBlast", "0(5), 1(2)");
+
 		tiles.defineAnim("stunEffectIcon", "0-1(8)");
 
 		tiles.defineAnim("ratRun", "0-3(3)");
