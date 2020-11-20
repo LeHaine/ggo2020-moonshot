@@ -113,8 +113,8 @@ class PersonalModStationUpgrade extends PermaUpgrade {
 class IncreasedHealthUpgrade extends PermaUpgrade {
 	public function new() {
 		name = "Your Life";
-		desc = "Increases your base health by 1% each level";
-		maxLevel = 50;
+		desc = "Increases your health by 1% each level";
+		maxLevel = 10;
 	}
 
 	public override function modify() {

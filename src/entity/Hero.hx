@@ -33,7 +33,11 @@ class Hero extends Character {
 		ca = Main.ME.controller.createAccess("hero");
 		ca.setLeftDeadZone(0.2);
 
-		initLife(100);
+		var totalLife = 100;
+		for (i in 0...game.permaUpgrades.increaseHealthLvl) {
+			totalLife += Std.int(totalLife * 0.1);
+		}
+		initLife(totalLife);
 
 		createChargeStrongShotBar();
 		registerHeroAnimations();
