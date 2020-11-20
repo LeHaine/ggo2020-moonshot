@@ -154,7 +154,9 @@ class Game extends Process {
 		}
 
 		for (e in level.data.l_Entities.all_ModStation) {
-			new entity.ModStation(e);
+			if (!e.f_isPersonal || (e.f_isPersonal && permaUpgrades.personalModStation)) {
+				new entity.ModStation(e);
+			}
 		}
 
 		for (e in level.data.l_Entities.all_CrystalShardStation) {
@@ -255,6 +257,14 @@ class Game extends Process {
 	override function onResize() {
 		super.onResize();
 		scroller.setScale(Const.SCALE);
+	}
+
+	public function unlockPersonalModStation() {
+		for (e in level.data.l_Entities.all_ModStation) {
+			if (e.f_isPersonal && permaUpgrades.personalModStation) {
+				new entity.ModStation(e);
+			}
+		}
 	}
 
 	function gc() {

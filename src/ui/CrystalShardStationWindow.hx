@@ -99,6 +99,7 @@ class PersonalModStationUpgrade extends PermaUpgrade {
 
 	public override function modify() {
 		game.permaUpgrades.personalModStation = true;
+		game.unlockPersonalModStation();
 	}
 
 	public override function get_level() {
