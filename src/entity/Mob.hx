@@ -136,7 +136,10 @@ class Mob extends Character {
 		if (result != null) {
 			switch (result) {
 				case CrystalShard:
+					var bonus = game.permaUpgrades.bonusShardsLvl * 0.01;
 					var max = irnd(entity.collectible.CrystalShard.MIN_DROP, entity.collectible.CrystalShard.MAX_DROP);
+					max += M.ceil(max * bonus);
+					trace(max);
 					for (i in 0...max) {
 						var drop = new entity.collectible.CrystalShard(cx, cy);
 						drop.dx = rnd(-0.5, 0.5);
