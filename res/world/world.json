@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 127,
+	"nextUid": 130,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -920,7 +920,24 @@
 				"limitBehavior": "DiscardOldOnes",
 				"pivotX": 0.5,
 				"pivotY": 1,
-				"fieldDefs": []
+				"fieldDefs": [
+					{
+						"identifier": "isPersonal",
+						"__type": "Bool",
+						"uid": 129,
+						"type": "F_Bool",
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "ValueOnly",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": false,
+						"min": null,
+						"max": null,
+						"defaultOverride": null
+					}
+				]
 			},
 			{
 				"identifier": "CrystalShardStation",
@@ -17168,7 +17185,7 @@
 							},
 							{ "__identifier": "cameraTarget", "__value": null, "__type": "Point", "defUid": 107, "realEditorValues": [] }
 						] },
-						{ "__identifier": "EndLevel", "__grid": [18,18], "__tile": null, "defUid": 94, "px": [296,304], "fieldInstances": [
+						{ "__identifier": "EndLevel", "__grid": [19,18], "__tile": null, "defUid": 94, "px": [312,304], "fieldInstances": [
 							{ "__identifier": "moveToNextLevel", "__value": true, "__type": "Bool", "defUid": 98, "realEditorValues": [] },
 							{ "__identifier": "name", "__value": null, "__type": "String", "defUid": 111, "realEditorValues": [] }
 						] },
@@ -17212,7 +17229,16 @@
 								}]
 							}
 						] },
-						{ "__identifier": "ModStation", "__grid": [16,19], "__tile": null, "defUid": 69, "px": [264,320], "fieldInstances": [] },
+						{ "__identifier": "ModStation", "__grid": [16,19], "__tile": null, "defUid": 69, "px": [264,320], "fieldInstances": [{
+							"__identifier": "isPersonal",
+							"__value": true,
+							"__type": "Bool",
+							"defUid": 129,
+							"realEditorValues": [{
+								"id": "V_Bool",
+								"params": [ true ]
+							}]
+						}] },
 						{ "__identifier": "CrystalShardStation", "__grid": [11,19], "__tile": null, "defUid": 126, "px": [184,320], "fieldInstances": [] }
 					]
 				},
@@ -19311,7 +19337,7 @@
 						{ "px": [192,288], "src": [144,32], "f": 0, "d": [660,73] },
 						{ "px": [208,288], "src": [144,32], "f": 0, "d": [661,73] },
 						{ "px": [224,288], "src": [192,48], "f": 0, "d": [662,108] },
-						{ "px": [288,288], "src": [224,48], "f": 0, "d": [666,110] },
+						{ "px": [304,288], "src": [224,48], "f": 0, "d": [667,110] },
 						{ "px": [432,288], "src": [96,32], "f": 0, "d": [675,70] },
 						{ "px": [128,304], "src": [144,32], "f": 0, "d": [692,73] },
 						{ "px": [144,304], "src": [144,32], "f": 0, "d": [693,73] },
@@ -19320,7 +19346,7 @@
 						{ "px": [192,304], "src": [144,32], "f": 0, "d": [696,73] },
 						{ "px": [208,304], "src": [144,32], "f": 0, "d": [697,73] },
 						{ "px": [224,304], "src": [192,64], "f": 0, "d": [698,140] },
-						{ "px": [288,304], "src": [224,64], "f": 0, "d": [702,142] },
+						{ "px": [304,304], "src": [224,64], "f": 0, "d": [703,142] },
 						{ "px": [432,304], "src": [96,32], "f": 0, "d": [711,70] }
 					],
 					"entityInstances": []
@@ -21525,10 +21551,10 @@
 						{ "__identifier": "Water", "__grid": [126,64], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [2024,1040], "fieldInstances": [] },
 						{ "__identifier": "Water", "__grid": [124,64], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [1992,1040], "fieldInstances": [] },
 						{ "__identifier": "Checkpoint", "__grid": [13,57], "__tile": null, "defUid": 125, "px": [216,928], "fieldInstances": [] },
-						{ "__identifier": "ModStation", "__grid": [16,69], "__tile": null, "defUid": 69, "px": [264,1120], "fieldInstances": [] },
-						{ "__identifier": "ModStation", "__grid": [118,63], "__tile": null, "defUid": 69, "px": [1896,1024], "fieldInstances": [] },
-						{ "__identifier": "ModStation", "__grid": [129,89], "__tile": null, "defUid": 69, "px": [2072,1440], "fieldInstances": [] },
-						{ "__identifier": "ModStation", "__grid": [39,66], "__tile": null, "defUid": 69, "px": [632,1072], "fieldInstances": [] },
+						{ "__identifier": "ModStation", "__grid": [16,69], "__tile": null, "defUid": 69, "px": [264,1120], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [118,63], "__tile": null, "defUid": 69, "px": [1896,1024], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [129,89], "__tile": null, "defUid": 69, "px": [2072,1440], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [39,66], "__tile": null, "defUid": 69, "px": [632,1072], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [67,88], "__tile": null, "defUid": 121, "px": [1080,1424], "fieldInstances": [] }
 					]
 				},

@@ -223,6 +223,17 @@ class Game extends Process {
 		nextLevelReady = true;
 	}
 
+	public function resetRun() {
+		trace(permaUpgrades.coinsCarriedOverLvl);
+		var coinsToKeep = permaUpgrades.coinsCarriedOverLvl * 250;
+		if (coins > coinsToKeep) {
+			coins = coinsToKeep;
+		}
+
+		storage.save();
+		startLevel(1);
+	}
+
 	public function startNextLevel() {
 		storage.save();
 		if (level.idx == 0) {

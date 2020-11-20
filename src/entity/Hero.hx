@@ -481,6 +481,12 @@ class Hero extends Character {
 		}
 	}
 
+	override function onDie() {
+		super.onDie();
+
+		game.resetRun();
+	}
+
 	private function isLeftJoystickDown() {
 		return M.radDistance(ca.leftAngle(), M.PIHALF) <= M.PIHALF * 0.5;
 	}
