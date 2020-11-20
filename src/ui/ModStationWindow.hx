@@ -219,12 +219,12 @@ class ModStationWindow extends dn.Process {
 		coinIcon.scale(0.5);
 
 		var interact = () -> {
-			if (Game.ME.coins >= trait.price) {
+			if (Game.ME.coins >= price) {
 				if (onItemBought != null) {
 					onItemBought();
 				}
 				close();
-				Game.ME.coins -= trait.price;
+				Game.ME.coins -= price;
 				Game.ME.addTrait(trait);
 			}
 		}

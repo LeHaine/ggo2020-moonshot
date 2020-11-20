@@ -47,24 +47,30 @@ class Trait {
 
 enum SelectTrait {
 	// S
+	GlassCannon;
 	SplitShot;
-	// A
 	Rifle;
 	Shotgun;
+	Minigun;
+	// A
 	FasterCharge;
 	// B
 	PiercingShot;
 	Tank;
 	// C
 	Runner;
+	Damage;
+	ShotsPerSecond;
+    Armor;
+    Life;
 }
 
 class TraitSelector {
 	public static var tieredTraits = [
-		Tier.S => [SplitShot],
-		Tier.A => [Rifle, Shotgun, FasterCharge],
+		Tier.S => [GlassCannon, SplitShot, Rifle, Shotgun, Minigun],
+		Tier.A => [FasterCharge],
 		Tier.B => [PiercingShot, Tank],
-		Tier.C => [Runner]
+		Tier.C => [Runner, Damage, ShotsPerSecond, Armor, Life]
 	];
 
 	public static function chooseRandomTraitFromTier(tier:Tier) {
@@ -72,13 +78,19 @@ class TraitSelector {
 		var trait = tieredTraits[tier][idx];
 
 		return switch trait {
+			case GlassCannon: new data.Traits.GlassCannon();
 			case SplitShot: new data.Traits.SplitShot();
-			case PiercingShot: new data.Traits.PiercingShot();
-			case Rifle: new data.Traits.Rifle();
-			case FasterCharge: new data.Traits.FasterCharge();
-			case Runner: new data.Traits.Runner();
 			case Shotgun: new data.Traits.Shotgun();
+			case Rifle: new data.Traits.Rifle();
+			case Minigun: new data.Traits.Minigun();
+			case FasterCharge: new data.Traits.FasterCharge();
+			case PiercingShot: new data.Traits.PiercingShot();
 			case Tank: new data.Traits.Tank();
+			case Runner: new data.Traits.Runner();
+			case Damage: new data.Traits.Damage();
+			case ShotsPerSecond: new data.Traits.ShotsPerSecond();
+            case Armor: new data.Traits.Armor();
+            case Life: new data.Traits.Life();
 		}
 	}
 }

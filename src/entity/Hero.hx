@@ -9,6 +9,7 @@ class Hero extends Character {
 	public var targetsToPierce = 0;
 	public var projectiles = 1;
 	public var damageMul = 1.;
+	public var armorMul = 1.;
 	public var shotsPerSecond = 2.;
 	public var accuracy = 2.;
 	public var chargeTime = 1.5; // secondary strong shot charge time
@@ -24,7 +25,8 @@ class Hero extends Character {
 	var crouching = false;
 	var doubleJump = false;
 
-	var chargeStrongShotBarWrapper:UIEntity;
+	public var chargeStrongShotBarWrapper:UIEntity;
+
 	var chargeStrongShotBar:ui.Bar;
 
 	var interactableFocus:Null<Interactable>;
@@ -488,10 +490,19 @@ class Hero extends Character {
 		}
 	}
 
+	override function hit(dmg:Int, from:Null<Entity>) {
+		super.hit(Std.int(dmg * armorMul), from);
+	}
+
 	override function onDie() {
 		super.onDie();
 
 		game.resetRun();
+	}
+
+	override function dispose() {
+		super.dispose();
+		chargeStrongShotBarWrapper.destroy();
 	}
 
 	private function isLeftJoystickDown() {

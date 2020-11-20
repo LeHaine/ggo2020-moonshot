@@ -129,8 +129,11 @@ class Game extends Process {
 		if (level != null)
 			level.destroy();
 
-		for (e in Entity.ALL)
-			e.destroy();
+		for (e in Entity.ALL) {
+			if (hero == null || (hero != null && e != hero && e != hero.chargeStrongShotBarWrapper)) {
+				e.destroy();
+			}
+		}
 		gc();
 
 		storage.loadSavedData();
@@ -196,7 +199,15 @@ class Game extends Process {
 			}
 		}
 
-		hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
+		if (hero == null) {
+			hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
+		} else {
+			var data = level.data.l_Entities.all_Hero[0];
+			hero.cx = data.cx;
+			hero.cy = data.cy;
+			hero.yr = 0.5;
+			hero.xr = 0.5;
+		}
 
 		if (minimap == null) {
 			minimap = new ui.Minimap();
@@ -233,6 +244,8 @@ class Game extends Process {
 		}
 
 		storage.save();
+		hero.destroy();
+		hero = null;
 		startLevel(1);
 	}
 

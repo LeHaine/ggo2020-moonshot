@@ -2,13 +2,37 @@ package data;
 
 import entity.Hero;
 
+class GlassCannon extends Trait {
+	public function new() {
+		name = "Glass Cannon";
+		icon = "splitShotIcon";
+		desc = "Increases damage but lowers life";
+		addAttribute("Damage", 2, true, true);
+		addAttribute("Life", -0.75, false, true);
+		price = 100;
+		tier = S;
+	}
+
+	override public function modify(hero:Hero) {
+		super.modify(hero);
+		hero.damageMul *= 3;
+		hero.multiplyLife(0.25);
+	}
+
+	override public function unmodify(hero:Hero) {
+		super.unmodify(hero);
+		hero.damageMul /= 3;
+		hero.multiplyLife(1 / 0.25);
+	}
+}
+
 class SplitShot extends Trait {
 	public function new() {
 		name = "Split Shot";
 		icon = "splitShotIcon";
 		desc = "Add extra projectile to primary attack but decreases damage";
 		addAttribute("Projectiles shot", 1);
-		addAttribute("Damage", 0.3, false, true);
+		addAttribute("Damage", -0.3, false, true);
 		price = 100;
 		tier = S;
 	}
@@ -26,6 +50,30 @@ class SplitShot extends Trait {
 	}
 }
 
+class Minigun extends Trait {
+	public function new() {
+		name = "Minigun";
+		icon = "splitShotIcon";
+		desc = "Transforms the primary attack to act as a minigun.";
+		addAttribute("Shots per second", 1.5, true, true);
+		addAttribute("Accuracy", -0.75, false, true);
+		price = 100;
+		tier = S;
+	}
+
+	override public function modify(hero:Hero) {
+		super.modify(hero);
+		hero.shotsPerSecond *= 1.5;
+		hero.accuracy *= 0.5;
+	}
+
+	override public function unmodify(hero:Hero) {
+		super.unmodify(hero);
+		hero.shotsPerSecond /= 1.5;
+		hero.accuracy /= 0.5;
+	}
+}
+
 class Rifle extends Trait {
 	public function new() {
 		name = "Rifle";
@@ -33,17 +81,17 @@ class Rifle extends Trait {
 		desc = "Transforms the primary attack to act as a rifle";
 		addAttribute("Targets pierced", 1);
 		addAttribute("Accuracy", 1, true, true);
-		addAttribute("Shots per second", -0.75, false, true);
+		addAttribute("Shots per second", -0.5, false, true);
 		addAttribute("Damage", 1, true, true);
 		price = 100;
-		tier = A;
+		tier = S;
 	}
 
 	override public function modify(hero:Hero) {
 		super.modify(hero);
 		hero.damageMul *= 2;
 		hero.targetsToPierce++;
-		hero.shotsPerSecond *= 0.25;
+		hero.shotsPerSecond *= 0.5;
 		hero.accuracy *= 2;
 	}
 
@@ -51,7 +99,7 @@ class Rifle extends Trait {
 		super.unmodify(hero);
 		hero.damageMul /= 2;
 		hero.targetsToPierce--;
-		hero.shotsPerSecond /= 0.25;
+		hero.shotsPerSecond /= 0.5;
 		hero.accuracy /= 2;
 	}
 }
@@ -65,7 +113,7 @@ class Shotgun extends Trait {
 		addAttribute("Shots per second", -0.50, false, true);
 		addAttribute("Accuracy", -0.5, false, true);
 		price = 100;
-		tier = A;
+		tier = S;
 	}
 
 	override public function modify(hero:Hero) {
@@ -131,7 +179,7 @@ class Tank extends Trait {
 		icon = "splitShotIcon";
 		desc = "Run faster";
 		addAttribute("Decrease run speed", 0.05, false, true);
-		addAttribute("Increase health", 0.05, true, true);
+		addAttribute("Increase life", 0.05, true, true);
 		price = 100;
 		tier = B;
 	}
@@ -167,5 +215,89 @@ class Runner extends Trait {
 	override public function unmodify(hero:Hero) {
 		super.unmodify(hero);
 		hero.baseRunSpeed /= 1.05;
+	}
+}
+
+class Damage extends Trait {
+	public function new() {
+		name = "Damage";
+		icon = "splitShotIcon";
+		desc = "Increase bullet damage";
+		addAttribute("Increase damage", 0.05, true, true);
+		price = 100;
+		tier = C;
+	}
+
+	override public function modify(hero:Hero) {
+		super.modify(hero);
+		hero.damageMul *= 1.05;
+	}
+
+	override public function unmodify(hero:Hero) {
+		super.unmodify(hero);
+		hero.damageMul /= 1.05;
+	}
+}
+
+class ShotsPerSecond extends Trait {
+	public function new() {
+		name = "Shots Per Second";
+		icon = "splitShotIcon";
+		desc = "Increase primary attack speed";
+		addAttribute("Shots per second", 0.05, true, true);
+		price = 100;
+		tier = C;
+	}
+
+	override public function modify(hero:Hero) {
+		super.modify(hero);
+		hero.shotsPerSecond *= 1.05;
+	}
+
+	override public function unmodify(hero:Hero) {
+		super.unmodify(hero);
+		hero.shotsPerSecond /= 1.05;
+	}
+}
+
+class Armor extends Trait {
+	public function new() {
+		name = "Armor";
+		icon = "splitShotIcon";
+		desc = "Decrease damage taken";
+		addAttribute("Damage taken", -0.1, true, true);
+		price = 100;
+		tier = C;
+	}
+
+	override public function modify(hero:Hero) {
+		super.modify(hero);
+		hero.armorMul *= 0.9;
+	}
+
+	override public function unmodify(hero:Hero) {
+		super.unmodify(hero);
+		hero.armorMul /= 0.9;
+	}
+}
+
+class Life extends Trait {
+	public function new() {
+		name = "Life";
+		icon = "splitShotIcon";
+		desc = "Increase Life";
+		addAttribute("Life increase", 0.1, true, true);
+		price = 100;
+		tier = C;
+	}
+
+	override public function modify(hero:Hero) {
+		super.modify(hero);
+		hero.multiplyLife(1.1);
+	}
+
+	override public function unmodify(hero:Hero) {
+		super.unmodify(hero);
+		hero.multiplyLife(1 / 1.1);
 	}
 }

@@ -62,7 +62,7 @@ class Bullet extends Entity {
 			if (from.is(Mob) && owner.is(Mob)) {
 				return;
 			}
-			from.hit(damage, this);
+			from.hit(Std.int(damage * damageMul), this);
 			for (affectToApply in affectsToApply) {
 				from.setAffectS(affectToApply.affect, affectToApply.t);
 			}
