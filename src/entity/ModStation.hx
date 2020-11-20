@@ -14,7 +14,7 @@ class ModStation extends Entity {
 
 		hasGravity = false;
 		isCollidable = false;
-		interactable = new DialogInteracble(cx, cy, "Modify Traits", () -> new ModStationWindow(0, onItemBought));
+		interactable = new DialogInteracble(cx, cy, "Modify Traits", () -> new ModStationWindow(onItemBought));
 		interactable.follow(this);
 	}
 

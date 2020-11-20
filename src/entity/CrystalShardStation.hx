@@ -14,7 +14,7 @@ class CrystalShardStation extends Entity {
 
 		hasGravity = false;
 		isCollidable = false;
-		interactable = new DialogInteracble(cx, cy, "Use Crystal Shards", () -> new CrystalShardStationWindow(0, onItemBought));
+		interactable = new DialogInteracble(cx, cy, "Use Crystal Shards", () -> new CrystalShardStationWindow(onItemBought));
 		interactable.follow(this);
 	}
 

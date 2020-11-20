@@ -1,5 +1,6 @@
 package data;
 
+import data.Traits.SplitShot;
 import entity.Hero;
 
 enum Tier {
@@ -41,5 +42,43 @@ class Trait {
 
 	private function addAttribute(name:String, value:Float, positive:Bool = true, isPercentage:Bool = false) {
 		attributes.push(new Attribute(name, value, positive, isPercentage));
+	}
+}
+
+enum SelectTrait {
+	// S
+	SplitShot;
+	// A
+	Rifle;
+	Shotgun;
+	FasterCharge;
+	// B
+	PiercingShot;
+	Tank;
+	// C
+	Runner;
+}
+
+class TraitSelector {
+	public static var tieredTraits = [
+		Tier.S => [SplitShot],
+		Tier.A => [Rifle, Shotgun, FasterCharge],
+		Tier.B => [PiercingShot, Tank],
+		Tier.C => [Runner]
+	];
+
+	public static function chooseRandomTraitFromTier(tier:Tier) {
+		var idx = Lib.irnd(0, tieredTraits[tier].length - 1);
+		var trait = tieredTraits[tier][idx];
+
+		return switch trait {
+			case SplitShot: new data.Traits.SplitShot();
+			case PiercingShot: new data.Traits.PiercingShot();
+			case Rifle: new data.Traits.Rifle();
+			case FasterCharge: new data.Traits.FasterCharge();
+			case Runner: new data.Traits.Runner();
+			case Shotgun: new data.Traits.Shotgun();
+			case Tank: new data.Traits.Tank();
+		}
 	}
 }

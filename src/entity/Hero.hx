@@ -17,6 +17,8 @@ class Hero extends Character {
 	public var hasGun = false;
 	public var traits:Array<Trait> = [];
 
+	public var baseRunSpeed = 0.03;
+
 	var ca:ControllerAccess;
 
 	var crouching = false;
@@ -51,6 +53,11 @@ class Hero extends Character {
 		initLife(100);
 	}
 
+	public function multiplyLife(mul:Float) {
+		maxLife = Std.int(maxLife * mul);
+		life = Std.int(life * mul);
+	}
+
 	private function createChargeStrongShotBar() {
 		chargeStrongShotBarWrapper = new UIEntity(cx, cy);
 		chargeStrongShotBarWrapper.follow(this);
@@ -80,7 +87,7 @@ class Hero extends Character {
 	override function update() {
 		super.update();
 
-		var spd = crouching || isChargingAction("strongShot") ? 0.02 : 0.03;
+		var spd = crouching || isChargingAction("strongShot") ? baseRunSpeed - 0.01 : baseRunSpeed;
 
 		if (onGround) {
 			cd.setS("onGroundRecently", 0.15);

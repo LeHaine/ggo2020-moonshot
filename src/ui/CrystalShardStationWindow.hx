@@ -176,7 +176,7 @@ class CrystalShardStationWindow extends dn.Process {
 
 	var onItemBought:Null<() -> Void>;
 
-	public function new(seed:Int, ?itemBoughtCb:() -> Void) {
+	public function new(?itemBoughtCb:() -> Void) {
 		super(Main.ME);
 		ME = this;
 		onItemBought = itemBoughtCb;

@@ -28,7 +28,7 @@ class ModStationWindow extends dn.Process {
 
 	var onItemBought:Null<() -> Void>;
 
-	public function new(seed:Int, ?itemBoughtCb:() -> Void) {
+	public function new(?itemBoughtCb:() -> Void) {
 		super(Main.ME);
 		ME = this;
 		onItemBought = itemBoughtCb;
@@ -83,27 +83,58 @@ class ModStationWindow extends dn.Process {
 		tf.textColor = 0xd95b52;
 
 		cd.setS("lock", 0.2);
-		generateTraits(seed);
+		generateTraits();
 		onResize();
 		Game.ME.pause();
 	}
 
-	function generateTraits(seed) {
+	function generateTraits() {
 		items = [];
 		itemFlow.removeChildren();
 
-		var rnd = new Rand(seed);
-
-		#if debug
-		addItem(new data.Traits.SplitShot(), 0);
-		addItem(new data.Traits.Rifle(), 1);
-		addItem(new data.Traits.PiercingShot(), 2);
-
-		Game.ME.coins = 500;
-		#end
+		addItem(drawFreeSlot(), 0, 0);
+		addItem(drawNormalPriceSlot(), 1, 1);
+		addItem(drawExpensiveSlot(), 2, 2.5);
 	}
 
-	function addItem(trait:Trait, index:Int) {
+	function drawFreeSlot() {
+		var traitList = new dn.RandList<Tier>();
+		traitList.add(Tier.C, 50);
+		traitList.add(Tier.B, 30);
+		traitList.add(Tier.A, 15);
+		traitList.add(Tier.S, 5);
+
+		return drawTrait(traitList.draw());
+	}
+
+	function drawNormalPriceSlot() {
+		var traitList = new dn.RandList<Tier>();
+		traitList.add(Tier.C, 40);
+		traitList.add(Tier.B, 30);
+		traitList.add(Tier.A, 20);
+		traitList.add(Tier.S, 10);
+
+		return drawTrait(traitList.draw());
+	}
+
+	function drawExpensiveSlot() {
+		var traitList = new dn.RandList<Tier>();
+		traitList.add(Tier.C, 10);
+		traitList.add(Tier.B, 20);
+		traitList.add(Tier.A, 40);
+		traitList.add(Tier.S, 30);
+
+		return drawTrait(traitList.draw());
+	}
+
+	private function drawTrait(?tier:Tier) {
+		if (tier != null) {
+			return TraitSelector.chooseRandomTraitFromTier(tier);
+		}
+		return null;
+	}
+
+	function addItem(trait:Trait, index:Int, priceMul:Float = 1.) {
 		var flow = new h2d.Flow(itemFlow);
 		flow.verticalAlign = Top;
 		flow.backgroundTile = Assets.tiles.getTile("uiButton");
@@ -122,7 +153,7 @@ class ModStationWindow extends dn.Process {
 
 		Assets.tiles.h_get(trait.icon, iconBox);
 
-		var price = trait.price;
+		var price = Std.int(trait.price * priceMul);
 		var coins = Game.ME.coins;
 
 		var infoBox = new h2d.Flow(flow);
