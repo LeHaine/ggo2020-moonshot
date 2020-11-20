@@ -326,13 +326,13 @@ class CrystalShardStationWindow extends dn.Process {
 
 		var interact = () -> {
 			if (Game.ME.shards >= upgrade.price && !maxed) {
-				if (onItemBought != null) {
-					onItemBought();
-				}
 				Game.ME.shards -= upgrade.price;
 				upgrade.modify();
 				Game.ME.storage.save();
 				addUpgrades();
+				if (onItemBought != null) {
+					onItemBought();
+				}
 			}
 		}
 

@@ -24,9 +24,7 @@ class CrystalShardStation extends Entity {
 	}
 
 	private function onItemBought() {
-		#if !debug
-		destroy();
-		interactable.destroy();
-		#end
+		hero.reinitLife();
+		game.hud.invalidate();
 	}
 }
