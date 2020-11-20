@@ -152,6 +152,48 @@ class FasterCharge extends Trait {
 	}
 }
 
+class BigExplosion extends Trait {
+	public function new() {
+		name = "Bigger Explosion";
+		icon = "splitShotIcon";
+		desc = "Increase secondary attack projectile damage radius";
+		addAttribute("Increase damage radius", 0.25, true, true);
+		price = 100;
+		tier = A;
+	}
+
+	override public function modify(hero:Hero) {
+		super.modify(hero);
+		hero.secondaryRadius *= 1.25;
+	}
+
+	override public function unmodify(hero:Hero) {
+		super.unmodify(hero);
+		hero.chargeTime /= 1.25;
+	}
+}
+
+class SecondaryDamage extends Trait {
+	public function new() {
+		name = "Secondary Damage";
+		icon = "splitShotIcon";
+		desc = "Increase secondary attack damage";
+		addAttribute("Increase damage", 0.1, true, true);
+		price = 100;
+		tier = A;
+	}
+
+	override public function modify(hero:Hero) {
+		super.modify(hero);
+		hero.secondaryRadius *= 1.25;
+	}
+
+	override public function unmodify(hero:Hero) {
+		super.unmodify(hero);
+		hero.chargeTime /= 1.25;
+	}
+}
+
 class PiercingShot extends Trait {
 	public function new() {
 		name = "Piercing Shot";
@@ -222,7 +264,7 @@ class Damage extends Trait {
 	public function new() {
 		name = "Damage";
 		icon = "splitShotIcon";
-		desc = "Increase bullet damage";
+		desc = "Increase primary attack damage";
 		addAttribute("Increase damage", 0.05, true, true);
 		price = 100;
 		tier = C;

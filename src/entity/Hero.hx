@@ -9,6 +9,8 @@ class Hero extends Character {
 	public var targetsToPierce = 0;
 	public var projectiles = 1;
 	public var damageMul = 1.;
+	public var secondaryDamageMul = 1.;
+	public var secondaryRadius = 1.;
 	public var armorMul = 1.;
 	public var shotsPerSecond = 2.;
 	public var accuracy = 2.;
@@ -285,6 +287,8 @@ class Hero extends Character {
 		}
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-2, 2) * M.DEG_RAD, damage);
 		bullet.damageRadiusMul = 0.15;
+		bullet.damageRadius = secondaryRadius;
+		bullet.damageMul = secondaryDamageMul;
 		bullet.setSize(size);
 		bullet.doesAoeDamage = true;
 		return bullet;

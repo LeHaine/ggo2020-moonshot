@@ -54,6 +54,8 @@ enum SelectTrait {
 	Minigun;
 	// A
 	FasterCharge;
+	BigExplosion;
+	SecondaryDamage;
 	// B
 	PiercingShot;
 	Tank;
@@ -61,14 +63,14 @@ enum SelectTrait {
 	Runner;
 	Damage;
 	ShotsPerSecond;
-    Armor;
-    Life;
+	Armor;
+	Life;
 }
 
 class TraitSelector {
 	public static var tieredTraits = [
 		Tier.S => [GlassCannon, SplitShot, Rifle, Shotgun, Minigun],
-		Tier.A => [FasterCharge],
+		Tier.A => [FasterCharge, BigExplosion, SecondaryDamage],
 		Tier.B => [PiercingShot, Tank],
 		Tier.C => [Runner, Damage, ShotsPerSecond, Armor, Life]
 	];
@@ -84,13 +86,15 @@ class TraitSelector {
 			case Rifle: new data.Traits.Rifle();
 			case Minigun: new data.Traits.Minigun();
 			case FasterCharge: new data.Traits.FasterCharge();
+			case BigExplosion: new data.Traits.BigExplosion();
+			case SecondaryDamage: new data.Traits.SecondaryDamage();
 			case PiercingShot: new data.Traits.PiercingShot();
 			case Tank: new data.Traits.Tank();
 			case Runner: new data.Traits.Runner();
 			case Damage: new data.Traits.Damage();
 			case ShotsPerSecond: new data.Traits.ShotsPerSecond();
-            case Armor: new data.Traits.Armor();
-            case Life: new data.Traits.Life();
+			case Armor: new data.Traits.Armor();
+			case Life: new data.Traits.Life();
 		}
 	}
 }
