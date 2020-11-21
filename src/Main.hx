@@ -86,6 +86,7 @@ class Main extends dn.Process {
 		controller.bind(LT, Key.SHIFT);
 		controller.bind(SELECT, Key.R);
 		controller.bind(DPAD_UP, Key.TAB);
+		controller.bind(DPAD_DOWN, Key.B);
 		controller.bind(START, Key.N);
 
 		// Start

@@ -8,21 +8,32 @@ enum BossPhase {
 }
 
 class Boss extends Character {
-	var targetAggroed:Bool;
+	var data:World.Entity_Boss;
+
+	var phase:BossPhase;
+
 	var floating:Bool;
 	var firingMoonBlast:Bool;
 	var usingHammer:Bool;
 	var usingGun:Bool;
-	var phase:BossPhase;
-	var data:World.Entity_Boss;
-	var damage = 10;
-	var attackRange = 10;
+
+	var gunDamage = 10;
+	var gunRange = 15;
+	var gunCd = 5;
+	var gunSpeed = 0.02;
+
+	var meleeSpeed = 0.027;
+	var meleeDamage = 20;
+	var meleeRange = 2;
+	var meleeCd = 3;
 
 	public function new(data:World.Entity_Boss) {
 		super(data.cx, data.cy);
 		this.data = data;
 
-		initLife(1000);
+		initLife(2000);
+		renderHealthBar();
+		healthBar.setSize(25, 2, 1);
 		registerAnims();
 
 		phase = INTRO;
@@ -47,9 +58,9 @@ class Boss extends Character {
 			}
 			camera.bump(0, rnd(0.1, 0.15));
 			camera.shakeS(0.2, 0.5);
-			if (distCase(hero) <= attackRange) {
-				var dmgVariance = M.ceil(damage * 0.15);
-				hero.hit(irnd(damage - dmgVariance, damage + dmgVariance), this);
+			if (distCase(hero) <= meleeRange) {
+				var dmgVariance = M.ceil(meleeDamage * 0.15);
+				hero.hit(irnd(meleeDamage - dmgVariance, meleeDamage + dmgVariance), this);
 				hero.bump(0, -rnd(0.15, 0.25));
 			}
 		};
@@ -71,15 +82,60 @@ class Boss extends Character {
 
 	override function update() {
 		super.update();
+
+		switch phase {
+			case INTRO:
+				phase = PHASE_1;
+			case PHASE_1:
+				var lifePercent = life / maxLife;
+				if (lifePercent <= 0.33) {
+					phase = PHASE_2;
+				}
+				if (!controlsLocked()) {
+					if (!cd.hasSetS("chooseAttack", 10)) {
+						var rnd = irnd(0, 1);
+						usingGun = rnd == 0;
+						usingHammer = rnd != 0;
+					}
+					var speed = usingGun ? gunSpeed : meleeSpeed;
+					moveToHero(speed);
+					attackIfInRange();
+				}
+			case PHASE_2:
+			case PHASE_3:
+		}
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+		spr.anim.setGlobalSpeed(0.2);
+	}
+
+	function moveToHero(speed:Float) {
+		var attackRange = usingGun ? gunRange : meleeRange;
+		if (sightCheck(hero) && distCase(hero) > attackRange) {
+			dir = dirTo(hero);
+			dx += speed * 1.2 * dir * tmod;
+		}
+	}
+
+	function attackIfInRange() {
+		var attackRange = usingGun ? gunRange : meleeRange;
+		var attackCd = usingGun ? gunCd : meleeCd;
+		if (sightCheck(hero) && distCase(hero) <= attackRange) {
+			dir = dirTo(hero);
+			if (!cd.hasSetS("attackCooldown", attackCd) && !cd.has("initialAttackCooldown")) {
+				attack();
+			}
+		}
 	}
 
 	function attack() {
 		if (usingHammer) {
-			lockControlS(1);
+			lockControlS(rnd(1, 1.5));
 			spr.anim.play("bossHammerSwing");
-		}
-
-		if (usingGun) {
+		} else if (usingGun) {
+			lockControlS(1);
 			spawnPrimaryBullet();
 		}
 	}
@@ -89,10 +145,10 @@ class Boss extends Character {
 		var bulletX = centerX + (dir * 3);
 		var bulletY = centerY - 6;
 		var angToTarget = angTo(hero);
-		var dmgVariance = M.ceil(damage * 0.15);
+		var dmgVariance = M.ceil(gunDamage * 0.15);
 		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, distPx(hero));
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget + rnd(-5, 5) * M.DEG_RAD,
-			irnd(damage - dmgVariance, damage + dmgVariance));
+			irnd(gunDamage - dmgVariance, gunDamage + dmgVariance));
 		bullet.damageRadiusMul = 0.15;
 		return bullet;
 	}

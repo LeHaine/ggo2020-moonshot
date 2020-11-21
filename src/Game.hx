@@ -376,6 +376,10 @@ class Game extends Process {
 			if (ca.dpadUpPressed() && minimap != null) {
 				minimap.enlarge();
 			}
+
+			if (ca.dpadDownDown()) {
+				startLevel(3); // boss room
+			}
 		}
 
 		if (nextLevelReady) {
