@@ -237,7 +237,7 @@ class Boss extends Character {
 		var bulletY = centerY - 6;
 		var angToTarget = dirToAng();
 		var dmgVariance = M.ceil(gunDamage * 0.15);
-		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, distPx(hero));
+		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, 10);
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget, irnd(gunDamage - dmgVariance, gunDamage + dmgVariance));
 		bullet.damageRadiusMul = 0.15;
 		return bullet;
@@ -249,7 +249,7 @@ class Boss extends Character {
 		var bulletY = centerY + 4;
 		var angToTarget = M.PIHALF;
 		var dmgVariance = M.ceil(moonBlastDamge * 0.15);
-		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, distPxY(hero));
+		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, 10);
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget, irnd(moonBlastDamge - dmgVariance, moonBlastDamge + dmgVariance));
 		bullet.damageRadiusMul = 0.45;
 		bullet.damageRadius = 3;

@@ -16,8 +16,13 @@ class Bullet extends Entity {
 	public var damageRadius = 1.;
 	public var damageRadiusMul = 1.;
 
-	var speed = 0.5;
+	public var trailColor = 0xFFFFFF;
+
+	var speed = 0.75;
 	var angle:Float;
+
+	var lastX:Float;
+	var lastY:Float;
 
 	public function new(x:Int, y:Int, owner:Entity, angle:Float, damage:Int = 1) {
 		super(0, 0);
@@ -37,6 +42,9 @@ class Bullet extends Entity {
 		hasGravity = false;
 		frictX = 1;
 		frictY = 1;
+
+		lastX = centerX;
+		lastY = centerY;
 	}
 
 	public function setSpeed(newSpeed:Float) {
@@ -81,6 +89,13 @@ class Bullet extends Entity {
 				targetsPierced.push(from);
 			}
 		}
+	}
+
+	override function update() {
+		super.update();
+		fx.trail(lastX, lastY, centerX, centerY, trailColor, radius * 2);
+		lastX = centerX;
+		lastY = centerY;
 	}
 
 	override function dispose() {

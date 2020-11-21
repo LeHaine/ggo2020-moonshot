@@ -464,6 +464,36 @@ class Fx extends dn.Process {
 		}
 	}
 
+	public function beam(fx:Float, fy:Float, ang:Float, c:UInt, dist:Float) {
+		var n = 30;
+		for (i in 0...n) {
+			var d = 0.8 * dist * i / (n - 1) + rnd(0, 6);
+			var p = allocTopAdd(getTile("fxDot"), fx + Math.cos(ang) * d, fy + Math.sin(ang) * d);
+			p.setFadeS(rnd(0.4, 0.6), 0, rnd(0.1, 0.12));
+			p.colorize(c);
+
+			p.scaleX = rnd(3, 5);
+			p.moveAng(ang, rnd(2, 10));
+			p.frict = 0.8;
+			p.gy = rnd(0, 0.1);
+			p.scaleXMul = rnd(0.9, 0.97);
+
+			p.rotation = ang;
+			p.lifeS = 5;
+		}
+	}
+
+	public function trail(fx:Float, fy:Float, x:Float, y:Float, c:UInt, mul:Float = 1) {
+		var p = allocTopAdd(getTile("fxLineDir"), fx, fy);
+		p.colorize(c);
+		p.setFadeS(rnd(0.1, 0.2), 0.1, rnd(0.2, 0.4));
+		p.rotation = Math.atan2(y - fy, x - fx);
+		p.scaleX = M.dist(fx, fy, x, y) / p.t.width;
+		p.scaleY = rnd(1, 2) * mul;
+		p.scaleYMul = rnd(0.97, 0.99);
+		p.lifeS = rnd(0.1, 0.2);
+	}
+
 	public function explosion(x:Float, y:Float, r:Float) {
 		var c = 0x8493b0;
 

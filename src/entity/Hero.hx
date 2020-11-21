@@ -263,6 +263,7 @@ class Hero extends Character {
 		bullet.targetsToPierce = targetsToPierce;
 		bullet.damageMul = damageMul;
 		bullet.pierceChance = pierceChance;
+		bullet.trailColor = 0x2780D8;
 		return bullet;
 	}
 
@@ -290,6 +291,7 @@ class Hero extends Character {
 		bullet.damageRadius = secondaryRadius;
 		bullet.damageMul = secondaryDamageMul;
 		bullet.setSize(size);
+		bullet.trailColor = 0x2780D8;
 		bullet.doesAoeDamage = true;
 		return bullet;
 	}
