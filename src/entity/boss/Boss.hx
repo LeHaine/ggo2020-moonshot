@@ -31,6 +31,8 @@ class Boss extends Character {
 	var meleeRange = 2;
 	var meleeCd = 3;
 
+	var floatSpeed = 0.03;
+
 	var tx = -1;
 	var ty = -1;
 
@@ -146,13 +148,13 @@ class Boss extends Character {
 				phase = PHASE_3_FLY_UP;
 			case PHASE_3_FLY_UP:
 				floating = true;
-				moveToTarget(gunSpeed);
+				moveToTarget(floatSpeed);
 				if (tx == -1 && ty == -1) {
 					isCollidable = true;
 					phase = PHASE_3;
-					trace('${cx},${cy}');
 				}
 			case PHASE_3:
+				dx += dir * floatSpeed * tmod;
 		}
 	}
 
@@ -166,6 +168,16 @@ class Boss extends Character {
 		#if debug
 		debugUi.destroy();
 		#end
+	}
+
+	override function onTouchWall(wallDir:Int) {
+		super.onTouchWall(wallDir);
+		dir = wallDir == 1 ? -1 : 1;
+	}
+
+	override function onDie() {
+		super.onDie();
+		new DeadBody(this, "boss", false, false);
 	}
 
 	function moveToHero(speed:Float) {

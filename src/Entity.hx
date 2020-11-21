@@ -835,7 +835,7 @@ class Entity {
 
 	public function onTouchGround(fallHeight:Float) {}
 
-	public function onTouchWall(dir:Int) {}
+	public function onTouchWall(wallDir:Int) {}
 
 	public function postUpdate() {
 		syncPosition();
