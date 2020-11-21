@@ -92,6 +92,8 @@ class Game extends Process {
 
 	var nextLevelReady = false;
 
+	static var BOSS_ROOM = 3;
+
 	public function new() {
 		super(Main.ME);
 		ME = this;
@@ -213,10 +215,17 @@ class Game extends Process {
 			hero.xr = 0.5;
 		}
 
-		if (minimap == null) {
-			minimap = new ui.Minimap();
+		if (idx != BOSS_ROOM) {
+			if (minimap == null) {
+				minimap = new ui.Minimap();
+			} else {
+				minimap.refresh();
+			}
 		} else {
-			minimap.refresh();
+			if (minimap != null) {
+				minimap.destroy();
+				minimap = null;
+			}
 		}
 		setHeroSavedData();
 
