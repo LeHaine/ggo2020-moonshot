@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 133,
+	"nextUid": 135,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -1292,7 +1292,40 @@
 				"limitBehavior": "DiscardOldOnes",
 				"pivotX": 0.5,
 				"pivotY": 1,
-				"fieldDefs": []
+				"fieldDefs": [
+					{
+						"identifier": "phase_3_point",
+						"__type": "Point",
+						"uid": 133,
+						"type": "F_Point",
+						"isArray": false,
+						"canBeNull": true,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "PointStar",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": false,
+						"min": null,
+						"max": null,
+						"defaultOverride": null
+					},
+					{
+						"identifier": "phase_3_fly_point",
+						"__type": "Point",
+						"uid": 134,
+						"type": "F_Point",
+						"isArray": false,
+						"canBeNull": true,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "PointStar",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": false,
+						"min": null,
+						"max": null,
+						"defaultOverride": null
+					}
+				]
 			}
 		],
 		"tilesets": [
@@ -46032,7 +46065,28 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{ "__identifier": "Hero", "__grid": [6,16], "__tile": null, "defUid": 20, "px": [104,272], "fieldInstances": [] },
-						{ "__identifier": "Boss", "__grid": [35,16], "__tile": null, "defUid": 132, "px": [568,272], "fieldInstances": [] }
+						{ "__identifier": "Boss", "__grid": [35,16], "__tile": null, "defUid": 132, "px": [568,272], "fieldInstances": [
+							{
+								"__identifier": "phase_3_point",
+								"__value": { "cx": 19, "cy": 16 },
+								"__type": "Point",
+								"defUid": 133,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["19,16"]
+								}]
+							},
+							{
+								"__identifier": "phase_3_fly_point",
+								"__value": { "cx": 19, "cy": 7 },
+								"__type": "Point",
+								"defUid": 134,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["19,7"]
+								}]
+							}
+						] }
 					]
 				},
 				{

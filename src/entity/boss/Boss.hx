@@ -4,6 +4,10 @@ enum BossPhase {
 	INTRO;
 	PHASE_1;
 	PHASE_2;
+	PHASE_3_TARGET_WALK;
+	PHASE_3_WALK;
+	PHASE_3_TARGET_FLY_UP;
+	PHASE_3_FLY_UP;
 	PHASE_3;
 }
 
@@ -27,16 +31,30 @@ class Boss extends Character {
 	var meleeRange = 2;
 	var meleeCd = 3;
 
+	var tx = -1;
+	var ty = -1;
+
+	#if debug
+	var debugUi:UIEntity;
+	var phaseDebugTf:h2d.Text;
+	#end
+
 	public function new(data:World.Entity_Boss) {
 		super(data.cx, data.cy);
 		this.data = data;
 
-		initLife(2000);
+		initLife(100);
 		renderHealthBar();
 		healthBar.setSize(25, 2, 1);
 		registerAnims();
 
 		phase = INTRO;
+
+		#if debug
+		debugUi = new UIEntity(0, -5);
+		debugUi.follow(this);
+		phaseDebugTf = new h2d.Text(Assets.fontPixelSmall, debugUi.spr);
+		#end
 	}
 
 	function registerAnims() {
@@ -48,8 +66,10 @@ class Boss extends Character {
 		spr.anim.registerStateAnim("bossRunGun", 5, 2.5, () -> phase == PHASE_1 && usingGun && M.fabs(dx) >= 0.04 * tmod);
 		spr.anim.registerStateAnim("bossIdleHammer", 1, () -> phase == PHASE_1 && usingHammer);
 		spr.anim.registerStateAnim("bossRunHammer", 5, 2.5, () -> phase == PHASE_1 && usingHammer && M.fabs(dx) >= 0.04 * tmod);
-		spr.anim.registerStateAnim("bossFloatUp", 5, 2.5, () -> phase == PHASE_3 && floating);
-		spr.anim.registerStateAnim("bossMoonBlast", 5, 2.5, () -> phase == PHASE_3 && floating && firingMoonBlast);
+		spr.anim.registerStateAnim("bossFloatUp", 5, 2.5, () -> (phase == PHASE_3_FLY_UP || phase == PHASE_3) && floating);
+		spr.anim.registerStateAnim("bossMoonBlast", 5, 2.5, () -> (phase == PHASE_3_FLY_UP || phase == PHASE_3)
+			&& floating
+			&& firingMoonBlast);
 
 		spr.anim.onEnterFrame = (frame) -> {
 			if (!spr.anim.isPlaying("bossHammerSwing")) {
@@ -85,6 +105,10 @@ class Boss extends Character {
 	override function update() {
 		super.update();
 
+		#if debug
+		phaseDebugTf.text = Std.string(phase);
+		#end
+
 		switch phase {
 			case INTRO:
 				phase = PHASE_1;
@@ -104,6 +128,30 @@ class Boss extends Character {
 					attackIfInRange();
 				}
 			case PHASE_2:
+				phase = PHASE_3_TARGET_WALK;
+			case PHASE_3_TARGET_WALK:
+				isCollidable = false;
+				var target = new CPoint(data.f_phase_3_point.cx, data.f_phase_3_point.cy);
+				moveTo(target.cx, target.cy);
+				phase = PHASE_3_WALK;
+			case PHASE_3_WALK:
+				moveToTarget(gunSpeed);
+				if (tx == -1 && ty == -1) {
+					phase = PHASE_3_TARGET_FLY_UP;
+				}
+			case PHASE_3_TARGET_FLY_UP:
+				hasGravity = false;
+				var target = new CPoint(data.f_phase_3_fly_point.cx, data.f_phase_3_fly_point.cy);
+				moveTo(target.cx, target.cy);
+				phase = PHASE_3_FLY_UP;
+			case PHASE_3_FLY_UP:
+				floating = true;
+				moveToTarget(gunSpeed);
+				if (tx == -1 && ty == -1) {
+					isCollidable = true;
+					phase = PHASE_3;
+					trace('${cx},${cy}');
+				}
 			case PHASE_3:
 		}
 	}
@@ -111,6 +159,13 @@ class Boss extends Character {
 	override function postUpdate() {
 		super.postUpdate();
 		spr.anim.setGlobalSpeed(0.2);
+	}
+
+	override function dispose() {
+		super.dispose();
+		#if debug
+		debugUi.destroy();
+		#end
 	}
 
 	function moveToHero(speed:Float) {
@@ -153,5 +208,40 @@ class Boss extends Character {
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget, irnd(gunDamage - dmgVariance, gunDamage + dmgVariance));
 		bullet.damageRadiusMul = 0.15;
 		return bullet;
+	}
+
+	function moveToTarget(spd:Float) {
+		if (tx != -1) {
+			if (tx > cx) {
+				dir = 1;
+				dx += spd * tmod;
+			}
+			if (tx < cx) {
+				dir = -1;
+				dx -= spd * tmod;
+			}
+
+			if (tx == cx) {
+				tx = -1;
+			}
+		}
+
+		if (ty != -1) {
+			if (ty > cy) {
+				dy += spd * tmod;
+			}
+			if (ty < cy) {
+				dy -= spd * tmod;
+			}
+
+			if (ty == cy) {
+				ty = -1;
+			}
+		}
+	}
+
+	function moveTo(x:Int, y:Int) {
+		tx = x;
+		ty = y;
 	}
 }
