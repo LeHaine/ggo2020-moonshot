@@ -157,6 +157,12 @@ class Boss extends Character {
 					phase = PHASE_3;
 				}
 			case PHASE_3:
+				if (!cd.hasSetS("dirChange", 5) && irnd(0, 1) == 0) {
+					var dirToHero = dirTo(hero);
+					if (dir != dirToHero) {
+						dir = dir == 1 ? -1 : 1;
+					}
+				}
 				dx += dir * floatSpeed * tmod;
 				if (!cd.hasSetS("attackCooldown", rnd(moonBlastCdMin, moonBlastCdMax))) {
 					attack();
