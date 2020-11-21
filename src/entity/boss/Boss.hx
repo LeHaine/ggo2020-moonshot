@@ -41,8 +41,10 @@ class Boss extends Character {
 
 	function registerAnims() {
 		spr.anim.registerStateAnim("bossIdle", 0);
-		spr.anim.registerStateAnim("bossIdleGunDown", 1, () -> phase == PHASE_1 && usingGun);
-		spr.anim.registerStateAnim("bossIdleGunUp", 2, () -> phase == PHASE_1 && usingGun);
+		spr.anim.registerStateAnim("bossIdleGunDown", 1,
+			() -> phase == PHASE_1 && usingGun && cd.getRatio("attackCooldown") > 0.25 && !cd.has("gunDownDelay"));
+		spr.anim.registerStateAnim("bossIdleGunUp", 2,
+			() -> phase == PHASE_1 && usingGun && (cd.getRatio("attackCooldown") <= 0.25 || cd.has("gunDownDelay")));
 		spr.anim.registerStateAnim("bossRunGun", 5, 2.5, () -> phase == PHASE_1 && usingGun && M.fabs(dx) >= 0.04 * tmod);
 		spr.anim.registerStateAnim("bossIdleHammer", 1, () -> phase == PHASE_1 && usingHammer);
 		spr.anim.registerStateAnim("bossRunHammer", 5, 2.5, () -> phase == PHASE_1 && usingHammer && M.fabs(dx) >= 0.04 * tmod);
@@ -124,7 +126,7 @@ class Boss extends Character {
 		var attackCd = usingGun ? gunCd : meleeCd;
 		if (sightCheck(hero) && distCase(hero) <= attackRange) {
 			dir = dirTo(hero);
-			if (!cd.hasSetS("attackCooldown", attackCd) && !cd.has("initialAttackCooldown")) {
+			if (!cd.hasSetS("attackCooldown", attackCd)) {
 				attack();
 			}
 		}
@@ -137,6 +139,7 @@ class Boss extends Character {
 		} else if (usingGun) {
 			lockControlS(1);
 			spawnPrimaryBullet();
+			cd.setS("gunDownDelay", 0.5);
 		}
 	}
 
@@ -144,11 +147,10 @@ class Boss extends Character {
 		setSquashX(0.85);
 		var bulletX = centerX + (dir * 3);
 		var bulletY = centerY - 6;
-		var angToTarget = angTo(hero);
+		var angToTarget = dirToAng();
 		var dmgVariance = M.ceil(gunDamage * 0.15);
 		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, distPx(hero));
-		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget + rnd(-5, 5) * M.DEG_RAD,
-			irnd(gunDamage - dmgVariance, gunDamage + dmgVariance));
+		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget, irnd(gunDamage - dmgVariance, gunDamage + dmgVariance));
 		bullet.damageRadiusMul = 0.15;
 		return bullet;
 	}
