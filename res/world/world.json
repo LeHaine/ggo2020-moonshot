@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 132,
+	"nextUid": 133,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -1266,6 +1266,23 @@
 				"width": 16,
 				"height": 16,
 				"color": "#C600DE",
+				"renderMode": "Rectangle",
+				"showName": true,
+				"tilesetId": null,
+				"tileId": null,
+				"tileRenderMode": "Stretch",
+				"maxPerLevel": 0,
+				"limitBehavior": "DiscardOldOnes",
+				"pivotX": 0.5,
+				"pivotY": 1,
+				"fieldDefs": []
+			},
+			{
+				"identifier": "Boss",
+				"uid": 132,
+				"width": 16,
+				"height": 32,
+				"color": "#FBFBFB",
 				"renderMode": "Rectangle",
 				"showName": true,
 				"tilesetId": null,
@@ -46016,32 +46033,7 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{ "__identifier": "Hero", "__grid": [6,16], "__tile": null, "defUid": 20, "px": [104,272], "fieldInstances": [] },
-						{ "__identifier": "Mob", "__grid": [35,16], "__tile": null, "defUid": 24, "px": [568,272], "fieldInstances": [
-							{
-								"__identifier": "type",
-								"__value": "Boss",
-								"__type": "ExternEnum.MobTypes",
-								"defUid": 26,
-								"realEditorValues": [{
-									"id": "V_String",
-									"params": ["Boss"]
-								}]
-							},
-							{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
-							{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
-							{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
-							{
-								"__identifier": "patrolType",
-								"__value": "BusyWork",
-								"__type": "ExternEnum.PatrolTypes",
-								"defUid": 86,
-								"realEditorValues": [{
-									"id": "V_String",
-									"params": ["BusyWork"]
-								}]
-							},
-							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
-						] }
+						{ "__identifier": "Boss", "__grid": [35,16], "__tile": null, "defUid": 132, "px": [568,272], "fieldInstances": [] }
 					]
 				},
 				{
