@@ -12,6 +12,7 @@ class Bullet extends Entity {
 	public var damage:Int;
 	public var damageMul = 1.;
 	public var doesAoeDamage = false;
+	public var shouldBump = false;
 	public var damageRadius = 1.;
 	public var damageRadiusMul = 1.;
 
@@ -99,12 +100,22 @@ class Bullet extends Entity {
 		if (!doesAoeDamage) {
 			return;
 		}
-		for (entity in Mob.ALL) {
+		for (entity in Character.ALL) {
+			if (owner == entity) {
+				continue;
+			}
 			var dist = distCase(entity);
 			if (dist <= damageRadius) {
 				var damageRatio = 1 - (dist / damageRadius);
 				var aoeDamage = Std.int(Math.max(1, M.floor(damage * damageRatio)));
 				entity.hit(aoeDamage, this);
+
+				if (shouldBump) {
+					var bmpAng = angTo(entity);
+					var bmpX = Math.cos(bmpAng) * 0.2;
+					var bmpY = Math.cos(bmpAng) * 0.2;
+					entity.bump(bmpX, bmpY);
+				}
 			}
 		}
 	}

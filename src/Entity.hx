@@ -373,6 +373,9 @@ class Entity {
 	public inline function distPx(e:Entity)
 		return M.dist(footX, footY, e.footX, e.footY);
 
+	public inline function distPxY(e:Entity)
+		return M.fabs(footY - e.footY);
+
 	public inline function distPxFree(x:Float, y:Float)
 		return M.dist(footX, footY, x, y);
 

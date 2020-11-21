@@ -32,6 +32,9 @@ class Boss extends Character {
 	var meleeCd = 3;
 
 	var floatSpeed = 0.03;
+	var moonBlastCdMin = 0.5;
+	var moonBlastCdMax = 1.25;
+	var moonBlastDamge = 50;
 
 	var tx = -1;
 	var ty = -1;
@@ -155,6 +158,9 @@ class Boss extends Character {
 				}
 			case PHASE_3:
 				dx += dir * floatSpeed * tmod;
+				if (!cd.hasSetS("attackCooldown", rnd(moonBlastCdMin, moonBlastCdMax))) {
+					attack();
+				}
 		}
 	}
 
@@ -172,7 +178,10 @@ class Boss extends Character {
 
 	override function onTouchWall(wallDir:Int) {
 		super.onTouchWall(wallDir);
-		dir = wallDir == 1 ? -1 : 1;
+		if (phase == PHASE_3) {
+			dir = wallDir == 1 ? -1 : 1;
+			setSquashX(0.95);
+		}
 	}
 
 	override function onDie() {
@@ -200,13 +209,19 @@ class Boss extends Character {
 	}
 
 	function attack() {
-		if (usingHammer) {
-			lockControlS(rnd(1, 1.5));
-			spr.anim.play("bossHammerSwing");
-		} else if (usingGun) {
-			lockControlS(1);
-			spawnPrimaryBullet();
-			cd.setS("gunDownDelay", 0.5);
+		if (phase == PHASE_1) {
+			if (usingHammer) {
+				lockControlS(rnd(1, 1.5));
+				spr.anim.play("bossHammerSwing");
+			} else if (usingGun) {
+				lockControlS(1);
+				spawnPrimaryBullet();
+				cd.setS("gunDownDelay", 0.5);
+			}
+		} else if (phase == PHASE_3) {
+			performMoonBlast();
+			camera.shakeS(0.3, 0.1);
+			spr.anim.play("bossMoonBlast");
 		}
 	}
 
@@ -219,6 +234,22 @@ class Boss extends Character {
 		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, distPx(hero));
 		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget, irnd(gunDamage - dmgVariance, gunDamage + dmgVariance));
 		bullet.damageRadiusMul = 0.15;
+		return bullet;
+	}
+
+	function performMoonBlast() {
+		setSquashX(0.85);
+		var bulletX = centerX + (dir * 4);
+		var bulletY = centerY + 4;
+		var angToTarget = M.PIHALF;
+		var dmgVariance = M.ceil(moonBlastDamge * 0.15);
+		fx.normalShot(bulletX, bulletY, angToTarget, 0x292929, distPxY(hero));
+		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToTarget, irnd(moonBlastDamge - dmgVariance, moonBlastDamge + dmgVariance));
+		bullet.damageRadiusMul = 0.45;
+		bullet.damageRadius = 3;
+		bullet.setSize(10);
+		bullet.doesAoeDamage = true;
+		bullet.shouldBump = true;
 		return bullet;
 	}
 
