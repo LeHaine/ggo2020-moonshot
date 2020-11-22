@@ -22,6 +22,7 @@ class Assets {
 		fontPixelLarge = hxd.Res.fonts.m5x7_48.toFont();
 		tiles = dn.heaps.assets.Atlas.load("atlas/tiles.atlas");
 
+		tiles.defineAnim("heroDeathFall", "0(30), 1(9999)");
 		tiles.defineAnim("heroRunGun", "0-3(3)");
 		tiles.defineAnim("heroRun", "0-3(3)");
 		tiles.defineAnim("heroIdle", "0(10), 1(15)");
