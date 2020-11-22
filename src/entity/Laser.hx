@@ -19,7 +19,7 @@ class Laser extends Entity {
 		super(data.cx, data.cy);
 		this.data = data;
 		orientation = data.f_orientation;
-		laserDir = data.f_dir;
+		laserDir = orientation == Vertical ? -1 : 1;
 		activeTime = data.f_activeTime;
 		inactiveTime = data.f_inactiveTime;
 
@@ -30,33 +30,39 @@ class Laser extends Entity {
 		} else {
 			"Horiz";
 		}
+		hasGravity = false;
 
 		spr.set('laserBase${orientationId}');
 		laserStart = new HSprite(Assets.tiles, 'laserStart${orientationId}', spr);
-		laserStart.setCenterRatio(0.5, 1);
 		laserMid = new HSprite(Assets.tiles, 'laserMid${orientationId}', spr);
-		laserMid.setCenterRatio(0.5, 1);
 		laserEnd = new HSprite(Assets.tiles, 'laserStart${orientationId}', spr);
-		laserEnd.setCenterRatio(0.5, 1);
 		laserEndBase = new HSprite(Assets.tiles, 'laserBase${orientationId}', spr);
+
+		laserStart.setCenterRatio(0.5, 1);
+		laserMid.setCenterRatio(0.5, 1);
+		laserEnd.setCenterRatio(0.5, 1);
 		laserEndBase.setCenterRatio(0.5, 1);
 
-		if (orientation == Vertical && laserDir == -1) {
+		if (orientation == Vertical) {
 			laserEndBase.scaleY *= -1;
 			laserEnd.scaleY *= -1;
-		} else if (orientation == Vertical && laserDir == 1) {
-			spr.scaleY *= -1;
-			laserStart.scaleY *= -1;
-		}
-		laserStart.y += 2 * laserDir;
-		laserEnd.y -= 2 * laserDir;
-
-		if (orientation == Horizontal && laserDir == -1) {
-			spr.scaleX *= -1;
-			laserStart.scaleX *= -1;
-		} else if (orientation == Horizontal && laserDir == 1) {
+			laserStart.y -= 2;
+			laserEnd.y += 2;
+		} else {
+			widthAlign = LEFT;
+			laserStart.x += 2;
+			laserEnd.x -= 2;
+			laserStart.y -= 2;
+			laserEnd.y -= 2;
+			laserMid.y -= 2;
+			xr = 0;
 			laserEndBase.scaleX *= -1;
 			laserEnd.scaleX *= -1;
+			laserStart.setCenterRatio(0, 1);
+			laserMid.setCenterRatio(0, 1);
+			laserEnd.setCenterRatio(0, 1);
+			laserEndBase.setCenterRatio(0, 1);
+			spr.setCenterRatio(0, 1);
 		}
 
 		if (activeTime > 0) {
@@ -81,6 +87,7 @@ class Laser extends Entity {
 				} else {
 					endPoint = new CPoint(cx + i, cy);
 				}
+				trace('${orientation} - ${endPoint}');
 			}
 		}
 		if (orientation == Vertical) {
@@ -96,11 +103,11 @@ class Laser extends Entity {
 			var endX = i * Const.GRID;
 			laserEndBase.x += endX;
 			laserEnd.x += endX;
-			laserMid.x += Const.GRID * laserDir;
-			width = i * Const.GRID * laserDir;
+			laserMid.x += Const.GRID;
+			width = i * Const.GRID;
 			hei = 8;
 
-			laserMid.scaleX = i * laserDir + laserDir;
+			laserMid.scaleX = i - 2;
 		}
 	}
 

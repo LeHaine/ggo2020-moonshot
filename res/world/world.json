@@ -17294,7 +17294,49 @@
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
-						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] }
+						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
+						{ "__identifier": "Laser", "__grid": [12,19], "__tile": null, "defUid": 113, "px": [200,320], "fieldInstances": [
+							{
+								"__identifier": "orientation",
+								"__value": "Vertical",
+								"__type": "ExternEnum.Orientation",
+								"defUid": 115,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["Vertical"]
+								}]
+							},
+							{
+								"__identifier": "dir",
+								"__value": -1,
+								"__type": "Int",
+								"defUid": 116,
+								"realEditorValues": [{ "id": "V_Int", "params": [-1] }]
+							},
+							{ "__identifier": "activeTime", "__value": 0, "__type": "Float", "defUid": 117, "realEditorValues": [] },
+							{ "__identifier": "inactiveTime", "__value": 0, "__type": "Float", "defUid": 118, "realEditorValues": [] }
+						] },
+						{ "__identifier": "Laser", "__grid": [14,15], "__tile": null, "defUid": 113, "px": [232,256], "fieldInstances": [
+							{
+								"__identifier": "orientation",
+								"__value": "Horizontal",
+								"__type": "ExternEnum.Orientation",
+								"defUid": 115,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["Horizontal"]
+								}]
+							},
+							{
+								"__identifier": "dir",
+								"__value": 1,
+								"__type": "Int",
+								"defUid": 116,
+								"realEditorValues": [{ "id": "V_Int", "params": [1] }]
+							},
+							{ "__identifier": "activeTime", "__value": 0, "__type": "Float", "defUid": 117, "realEditorValues": [] },
+							{ "__identifier": "inactiveTime", "__value": 0, "__type": "Float", "defUid": 118, "realEditorValues": [] }
+						] }
 					]
 				},
 				{

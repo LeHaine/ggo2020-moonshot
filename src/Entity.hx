@@ -1,6 +1,11 @@
 import dn.Cinematic;
 import entity.Bullet;
 
+enum HitBoxAlign {
+	LEFT;
+	CENTER;
+}
+
 class Entity {
 	public static var ALL:Array<Entity> = [];
 	public static var GC:Array<Entity> = [];
@@ -203,17 +208,27 @@ class Entity {
 
 	public var handLeft(get, never):Float;
 
-	inline function get_handLeft()
+	inline function get_handLeft() {
+		if (widthAlign == LEFT) {
+			return footX;
+		}
+
 		return footX - width * 0.5;
+	}
 
 	public var handRight(get, never):Float;
 
-	inline function get_handRight()
+	inline function get_handRight() {
+		if (widthAlign == LEFT) {
+			return footX + width;
+		}
 		return footX + width * 0.5;
+	}
 
 	public var prevFrameFootX:Float = -Const.INFINITE;
 	public var prevFrameFootY:Float = -Const.INFINITE;
 
+	public var widthAlign = HitBoxAlign.CENTER;
 	public var isCollidable = true;
 
 	var fallHighestCy = 0.0;
@@ -475,7 +490,11 @@ class Entity {
 
 		// Hei
 		debugBounds.lineStyle(1, c, 0.5);
-		debugBounds.drawRect(-width * 0.5, -hei, width, hei);
+		if (widthAlign == CENTER) {
+			debugBounds.drawRect(-width * 0.5, -hei, width, hei);
+		} else {
+			debugBounds.drawRect(0, -hei, width, hei);
+		}
 
 		// Feet
 		debugBounds.lineStyle(1, 0xffffff, 1);
