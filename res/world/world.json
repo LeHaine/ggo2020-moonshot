@@ -17278,35 +17278,7 @@
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
-						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
-						{ "__identifier": "Laser", "__grid": [12,19], "__tile": null, "defUid": 113, "px": [200,320], "fieldInstances": [
-							{ "__identifier": "activeTime", "__value": 0, "__type": "Float", "defUid": 117, "realEditorValues": [] },
-							{ "__identifier": "inactiveTime", "__value": 0, "__type": "Float", "defUid": 118, "realEditorValues": [] },
-							{
-								"__identifier": "type",
-								"__value": "BottomToTop",
-								"__type": "ExternEnum.LaserOrientation",
-								"defUid": 136,
-								"realEditorValues": [{
-									"id": "V_String",
-									"params": ["BottomToTop"]
-								}]
-							}
-						] },
-						{ "__identifier": "Laser", "__grid": [14,15], "__tile": null, "defUid": 113, "px": [232,256], "fieldInstances": [
-							{ "__identifier": "activeTime", "__value": 0, "__type": "Float", "defUid": 117, "realEditorValues": [] },
-							{ "__identifier": "inactiveTime", "__value": 0, "__type": "Float", "defUid": 118, "realEditorValues": [] },
-							{
-								"__identifier": "type",
-								"__value": "LeftToRight",
-								"__type": "ExternEnum.LaserOrientation",
-								"defUid": 136,
-								"realEditorValues": [{
-									"id": "V_String",
-									"params": ["LeftToRight"]
-								}]
-							}
-						] }
+						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] }
 					]
 				},
 				{
