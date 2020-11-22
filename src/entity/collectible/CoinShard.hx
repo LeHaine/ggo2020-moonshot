@@ -13,6 +13,6 @@ class CoinShard extends Collectible {
 
 	override function onCollect() {
 		super.onCollect();
-		game.coins += 2;
+		game.coins += 4;
 	}
 }
