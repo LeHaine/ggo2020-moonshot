@@ -214,8 +214,8 @@ class CrystalShardStationWindow extends dn.Process {
 
 		shards = new h2d.Text(Assets.fontPixelMedium, shardsBox);
 		shards.textColor = 0xFF3333;
-		var coinIcon = Assets.tiles.h_get("coin", shardsBox);
-		coinIcon.scale(0.5);
+		var crystalIcon = Assets.tiles.h_get("crystal", shardsBox);
+		crystalIcon.scale(0.5);
 
 		itemMask = new h2d.Mask(masterFlow.innerWidth, 400, masterFlow);
 
@@ -319,10 +319,10 @@ class CrystalShardStationWindow extends dn.Process {
 			priceTf.textColor = 0x8CD12E;
 		}
 
-		var coinIcon = Assets.tiles.h_get("coin", priceBox);
-		coinIcon.scale(0.5);
+		var crystalIcon = Assets.tiles.h_get("crystal", priceBox);
+		crystalIcon.scale(0.5);
 		if (maxed) {
-			coinIcon.alpha = 0;
+			crystalIcon.alpha = 0;
 		}
 
 		var interact = () -> {
