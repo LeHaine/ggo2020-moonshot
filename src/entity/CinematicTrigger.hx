@@ -17,9 +17,9 @@ class CinematicTrigger extends Entity {
 		super.onTouch(from);
 
 		if (from.is(Hero)) {
-			//	#if !debug
+			#if !debug
 			new CinematicControl(data.f_id, data);
-			//	#end
+			#end
 			destroy();
 		}
 	}
