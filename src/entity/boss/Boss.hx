@@ -3,6 +3,8 @@ package entity.boss;
 enum BossPhase {
 	INTRO;
 	PHASE_1;
+	PHASE_1_END;
+	PHASE_2_INIT;
 	PHASE_2;
 	PHASE_3_TARGET_WALK;
 	PHASE_3_WALK;
@@ -48,7 +50,7 @@ class Boss extends Character {
 		super(data.cx, data.cy);
 		this.data = data;
 
-		initLife(100);
+		initLife(1000 + (hero.traits.length * 100));
 		renderHealthBar();
 		healthBar.setSize(25, 2, 1);
 		registerAnims();
@@ -69,8 +71,10 @@ class Boss extends Character {
 		spr.anim.registerStateAnim("bossIdleGunUp", 2,
 			() -> phase == PHASE_1 && usingGun && (cd.getRatio("attackCooldown") <= 0.25 || cd.has("gunDownDelay")));
 		spr.anim.registerStateAnim("bossRunGun", 5, 2.5, () -> phase == PHASE_1 && usingGun && M.fabs(dx) >= 0.04 * tmod);
-		spr.anim.registerStateAnim("bossIdleHammer", 1, () -> phase == PHASE_1 && usingHammer);
-		spr.anim.registerStateAnim("bossRunHammer", 5, 2.5, () -> phase == PHASE_1 && usingHammer && M.fabs(dx) >= 0.04 * tmod);
+		spr.anim.registerStateAnim("bossIdleHammer", 1, () -> (phase == PHASE_1 || phase == PHASE_2) && usingHammer);
+		spr.anim.registerStateAnim("bossRunHammer", 5, 2.5, () -> (phase == PHASE_1 || phase == PHASE_2)
+			&& usingHammer
+			&& M.fabs(dx) >= 0.04 * tmod);
 		spr.anim.registerStateAnim("bossFloatUp", 5, 2.5, () -> (phase == PHASE_3_FLY_UP || phase == PHASE_3) && floating);
 		spr.anim.registerStateAnim("bossMoonBlast", 5, 2.5, () -> (phase == PHASE_3_FLY_UP || phase == PHASE_3)
 			&& floating
@@ -117,12 +121,17 @@ class Boss extends Character {
 		switch phase {
 			case INTRO:
 				phase = PHASE_1;
+			// todo cinematic
 			case PHASE_1:
 				var lifePercent = life / maxLife;
-				if (lifePercent <= 0.33) {
-					phase = PHASE_2;
-				}
-				if (!controlsLocked()) {
+				if (lifePercent <= 0.50) {
+					hero.setAffectS(Stun, 3);
+					cd.setS("scream", 3);
+					camera.shakeS(3, 0.05);
+					spr.anim.playAndLoop("bossScream");
+					isCollidable = false;
+					phase = PHASE_1_END;
+				} else if (!controlsLocked()) {
 					if (!cd.hasSetS("chooseAttack", 10)) {
 						var rnd = irnd(0, 1);
 						usingGun = rnd == 0;
@@ -132,8 +141,29 @@ class Boss extends Character {
 					moveToHero(speed);
 					attackIfInRange();
 				}
+			case PHASE_1_END:
+				if (!cd.has("scream")) {
+					phase = PHASE_2_INIT;
+					spr.anim.stopWithStateAnims();
+				}
+			case PHASE_2_INIT:
+				isCollidable = true;
+				usingGun = false;
+				usingHammer = true;
+
+				sprScaleX = 1.5;
+				sprScaleY = 1.5;
+
+				meleeSpeed *= 1.25;
+				phase = PHASE_2;
 			case PHASE_2:
-				phase = PHASE_3_TARGET_WALK;
+				var lifePercent = life / maxLife;
+				if (lifePercent <= 0.30) {
+					phase = PHASE_3_TARGET_WALK;
+				} else if (!controlsLocked()) {
+					moveToHero(meleeSpeed);
+					attackIfInRange();
+				}
 			case PHASE_3_TARGET_WALK:
 				isCollidable = false;
 				var target = new CPoint(data.f_phase_3_point.cx, data.f_phase_3_point.cy);
@@ -215,7 +245,7 @@ class Boss extends Character {
 	}
 
 	function attack() {
-		if (phase == PHASE_1) {
+		if (phase == PHASE_1 || phase == PHASE_2) {
 			if (usingHammer) {
 				lockControlS(rnd(1, 1.5));
 				spr.anim.play("bossHammerSwing");

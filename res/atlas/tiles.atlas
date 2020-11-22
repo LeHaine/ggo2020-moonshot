@@ -235,6 +235,13 @@ bossRunHammer3
   orig: 15, 20
   offset: 0, 0
   index: -1
+bossScream0
+  rotate: false
+  xy: 254, 155
+  size: 13, 18
+  orig: 13, 18
+  offset: 0, 0
+  index: -1
 bossStandShoot0
   rotate: false
   xy: 492, 1
@@ -314,7 +321,7 @@ fastReload
   index: -1
 fireEffectIcon
   rotate: false
-  xy: 154, 360
+  xy: 149, 388
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -419,7 +426,7 @@ gun
   index: -1
 heroCrouchIdle0
   rotate: false
-  xy: 159, 303
+  xy: 163, 354
   size: 12, 12
   orig: 12, 12
   offset: 0, 0
@@ -433,7 +440,7 @@ heroCrouchIdle1
   index: -1
 heroCrouchIdleGun0
   rotate: false
-  xy: 142, 322
+  xy: 144, 303
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
@@ -447,14 +454,14 @@ heroCrouchIdleGun1
   index: -1
 heroCrouchRun0
   rotate: false
-  xy: 144, 303
+  xy: 144, 316
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchRun1
   rotate: false
-  xy: 134, 388
+  xy: 163, 367
   size: 10, 11
   orig: 10, 11
   offset: 0, 0
@@ -468,14 +475,14 @@ heroCrouchRun2
   index: -1
 heroCrouchRun3
   rotate: false
-  xy: 139, 360
+  xy: 134, 388
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchRunGun0
   rotate: false
-  xy: 148, 335
+  xy: 148, 360
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
@@ -489,7 +496,7 @@ heroCrouchRunGun1
   index: -1
 heroCrouchRunGun2
   rotate: false
-  xy: 148, 348
+  xy: 144, 329
   size: 14, 11
   orig: 14, 11
   offset: 0, 0
@@ -503,7 +510,7 @@ heroCrouchRunGun3
   index: -1
 heroCrouchShoot0
   rotate: false
-  xy: 157, 316
+  xy: 151, 341
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
@@ -559,7 +566,7 @@ heroKickGun0
   index: -1
 heroLedgeClimb0
   rotate: false
-  xy: 254, 155
+  xy: 267, 136
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
@@ -587,7 +594,7 @@ heroRun1
   index: -1
 heroRun2
   rotate: false
-  xy: 130, 322
+  xy: 130, 341
   size: 11, 18
   orig: 11, 18
   offset: 0, 0
@@ -643,7 +650,7 @@ heroStandShoot1
   index: -1
 keyE
   rotate: false
-  xy: 134, 400
+  xy: 134, 401
   size: 10, 11
   orig: 10, 11
   offset: 0, 0
@@ -678,7 +685,7 @@ laserMidVert0
   index: -1
 laserStartHoriz0
   rotate: false
-  xy: 147, 373
+  xy: 145, 401
   size: 14, 8
   orig: 14, 8
   offset: 0, 0
@@ -748,7 +755,7 @@ ratDeadBody0
   index: -1
 ratHit0
   rotate: false
-  xy: 134, 412
+  xy: 134, 413
   size: 14, 9
   orig: 14, 9
   offset: 0, 0
@@ -783,7 +790,7 @@ ratRun1
   index: -1
 ratRun2
   rotate: false
-  xy: 145, 388
+  xy: 147, 379
   size: 16, 8
   orig: 16, 8
   offset: 0, 0
@@ -846,7 +853,7 @@ scientistHammerHit0
   index: -1
 scientistHammerIdle0
   rotate: false
-  xy: 130, 341
+  xy: 130, 360
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
@@ -951,7 +958,7 @@ scientistPistolDeathFall1
   index: -1
 scientistPistolGunDraw0
   rotate: false
-  xy: 267, 136
+  xy: 130, 303
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
@@ -965,7 +972,7 @@ scientistPistolHit0
   index: -1
 scientistPistolIdle0
   rotate: false
-  xy: 130, 360
+  xy: 139, 360
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
@@ -979,7 +986,7 @@ scientistPistolIdle1
   index: -1
 scientistPistolIdleGunDown0
   rotate: false
-  xy: 267, 136
+  xy: 130, 303
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
@@ -1070,7 +1077,7 @@ scientistStunDeathFall1
   index: -1
 scientistStunGunDraw0
   rotate: false
-  xy: 130, 303
+  xy: 130, 322
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
@@ -1084,7 +1091,7 @@ scientistStunHit0
   index: -1
 scientistStunIdle0
   rotate: false
-  xy: 139, 341
+  xy: 142, 341
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
@@ -1098,7 +1105,7 @@ scientistStunIdle1
   index: -1
 scientistStunIdleGunDown0
   rotate: false
-  xy: 130, 303
+  xy: 130, 322
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
@@ -1168,14 +1175,14 @@ splitShotIcon
   index: -1
 stunEffectIcon0
   rotate: false
-  xy: 145, 397
+  xy: 158, 388
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 stunEffectIcon1
   rotate: false
-  xy: 149, 406
+  xy: 164, 379
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -1238,7 +1245,7 @@ uiDialogBox
   index: -1
 uiDownArrow
   rotate: false
-  xy: 154, 397
+  xy: 149, 410
   size: 8, 8
   orig: 8, 8
   offset: 0, 0

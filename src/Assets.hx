@@ -60,6 +60,7 @@ class Assets {
 		tiles.defineAnim("bossHammerSwing", "0(2), 1, 2(8)");
 		tiles.defineAnim("bossFloatUp", "0-2(2)");
 		tiles.defineAnim("bossMoonBlast", "0(5), 1(2)");
+		tiles.defineAnim("bossScream", "0(5)");
 
 		tiles.defineAnim("stunEffectIcon", "0-1(8)");
 
