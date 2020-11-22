@@ -21610,7 +21610,15 @@
 						{ "__identifier": "ModStation", "__grid": [118,63], "__tile": null, "defUid": 69, "px": [1896,1024], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
 						{ "__identifier": "ModStation", "__grid": [129,89], "__tile": null, "defUid": 69, "px": [2072,1440], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
 						{ "__identifier": "ModStation", "__grid": [39,66], "__tile": null, "defUid": 69, "px": [632,1072], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
-						{ "__identifier": "ExplosiveBarrel", "__grid": [67,88], "__tile": null, "defUid": 121, "px": [1080,1424], "fieldInstances": [] }
+						{ "__identifier": "ExplosiveBarrel", "__grid": [67,88], "__tile": null, "defUid": 121, "px": [1080,1424], "fieldInstances": [] },
+						{ "__identifier": "ModStation", "__grid": [82,81], "__tile": null, "defUid": 69, "px": [1320,1312], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [62,88], "__tile": null, "defUid": 69, "px": [1000,1424], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [101,80], "__tile": null, "defUid": 69, "px": [1624,1296], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [92,80], "__tile": null, "defUid": 69, "px": [1480,1296], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [129,72], "__tile": null, "defUid": 69, "px": [2072,1168], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [77,74], "__tile": null, "defUid": 69, "px": [1240,1200], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [87,63], "__tile": null, "defUid": 69, "px": [1400,1024], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] },
+						{ "__identifier": "ModStation", "__grid": [61,62], "__tile": null, "defUid": 69, "px": [984,1008], "fieldInstances": [{ "__identifier": "isPersonal", "__value": false, "__type": "Bool", "defUid": 129, "realEditorValues": [] }] }
 					]
 				},
 				{

@@ -91,6 +91,7 @@ class Game extends Process {
 	#end
 
 	var nextLevelReady = false;
+	var lastSpawn = 0;
 
 	static var BOSS_ROOM = 3;
 
@@ -160,8 +161,16 @@ class Game extends Process {
 		}
 
 		for (e in level.data.l_Entities.all_ModStation) {
-			if (!e.f_isPersonal || (e.f_isPersonal && permaUpgrades.personalModStation)) {
+			if (e.f_isPersonal && permaUpgrades.personalModStation) {
 				new entity.ModStation(e);
+			} else {
+				var shouldSpawn = Lib.rnd(0, 1);
+				if (shouldSpawn <= 0.25 || lastSpawn >= 5) {
+					new entity.ModStation(e);
+					lastSpawn = 0;
+				} else {
+					lastSpawn++;
+				}
 			}
 		}
 
