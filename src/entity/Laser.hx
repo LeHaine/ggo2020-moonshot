@@ -6,7 +6,7 @@ class Laser extends Entity {
 	var laserDir:Int;
 	var activeTime:Float;
 	var inactiveTime:Float;
-	var orientation:Orientation;
+	var orientation:LaserOrientation;
 	var laserStart:HSprite;
 	var laserMid:HSprite;
 	var laserEnd:HSprite;
@@ -18,14 +18,14 @@ class Laser extends Entity {
 	public function new(data:World.Entity_Laser) {
 		super(data.cx, data.cy);
 		this.data = data;
-		orientation = data.f_orientation;
-		laserDir = orientation == Vertical ? -1 : 1;
+		orientation = data.f_type;
+		laserDir = orientation == BottomToTop ? -1 : 1;
 		activeTime = data.f_activeTime;
 		inactiveTime = data.f_inactiveTime;
 
 		delayer = new dn.Delayer(Const.FPS);
 
-		var orientationId = if (orientation == Vertical) {
+		var orientationId = if (orientation == BottomToTop) {
 			"Vert";
 		} else {
 			"Horiz";
@@ -43,7 +43,7 @@ class Laser extends Entity {
 		laserEnd.setCenterRatio(0.5, 1);
 		laserEndBase.setCenterRatio(0.5, 1);
 
-		if (orientation == Vertical) {
+		if (orientation == BottomToTop) {
 			laserEndBase.scaleY *= -1;
 			laserEnd.scaleY *= -1;
 			laserStart.y -= 2;
@@ -76,13 +76,13 @@ class Laser extends Entity {
 		var i = 0;
 		while (!hasCollision) {
 			i += laserDir;
-			hasCollision = if (orientation == Vertical) {
+			hasCollision = if (orientation == BottomToTop) {
 				level.hasCollision(cx, cy + i);
 			} else {
 				level.hasCollision(cx + i, cy);
 			}
 			if (hasCollision) {
-				if (orientation == Vertical) {
+				if (orientation == BottomToTop) {
 					endPoint = new CPoint(cx, cy + i);
 				} else {
 					endPoint = new CPoint(cx + i, cy);
@@ -90,7 +90,7 @@ class Laser extends Entity {
 				trace('${orientation} - ${endPoint}');
 			}
 		}
-		if (orientation == Vertical) {
+		if (orientation == BottomToTop) {
 			hei = i * Const.GRID * laserDir;
 			width = 8;
 			var endY = i * Const.GRID;
@@ -146,7 +146,7 @@ class Laser extends Entity {
 		delayer.update(tmod);
 
 		if (isCollidable && !cd.hasSetS("fx", 0.25)) {
-			if (orientation == Vertical) {
+			if (orientation == BottomToTop) {
 				fx.laserSparks(footX, footY + (5 * laserDir), endPoint.footX, endPoint.footY - (5 * laserDir));
 			} else {
 				fx.laserSparks(footX + (5 * laserDir), footY, endPoint.footX - (5 * laserDir), endPoint.footY);

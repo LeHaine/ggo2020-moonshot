@@ -43,7 +43,7 @@ enum CinematicId {
 	PrisonNewCell;
 }
 
-enum Orientation {
-	Vertical;
-	Horizontal;
+enum LaserOrientation {
+	LeftToRight;
+	BottomToTop;
 }

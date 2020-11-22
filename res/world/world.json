@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 135,
+	"nextUid": 137,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -940,6 +940,72 @@
 				]
 			},
 			{
+				"identifier": "Laser",
+				"uid": 113,
+				"width": 8,
+				"height": 8,
+				"color": "#FF4500",
+				"renderMode": "Rectangle",
+				"showName": true,
+				"tilesetId": null,
+				"tileId": null,
+				"tileRenderMode": "Stretch",
+				"maxPerLevel": 0,
+				"limitBehavior": "DiscardOldOnes",
+				"pivotX": 0.5,
+				"pivotY": 1,
+				"fieldDefs": [
+					{
+						"identifier": "activeTime",
+						"__type": "Float",
+						"uid": 117,
+						"type": "F_Float",
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "NameAndValue",
+						"editorDisplayPos": "Beneath",
+						"editorAlwaysShow": false,
+						"min": 0,
+						"max": null,
+						"defaultOverride": { "id": "V_Float", "params": [0] }
+					},
+					{
+						"identifier": "inactiveTime",
+						"__type": "Float",
+						"uid": 118,
+						"type": "F_Float",
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "NameAndValue",
+						"editorDisplayPos": "Beneath",
+						"editorAlwaysShow": false,
+						"min": 0,
+						"max": null,
+						"defaultOverride": { "id": "V_Float", "params": [0] }
+					},
+					{
+						"identifier": "type",
+						"__type": "ExternEnum.LaserOrientation",
+						"uid": 136,
+						"type": { "id": "F_Enum", "params": [135] },
+						"isArray": false,
+						"canBeNull": false,
+						"arrayMinLength": null,
+						"arrayMaxLength": null,
+						"editorDisplayMode": "Hidden",
+						"editorDisplayPos": "Above",
+						"editorAlwaysShow": false,
+						"min": null,
+						"max": null,
+						"defaultOverride": null
+					}
+				]
+			},
+			{
 				"identifier": "CrystalShardStation",
 				"uid": 126,
 				"width": 16,
@@ -1111,88 +1177,6 @@
 				"fieldDefs": []
 			},
 			{
-				"identifier": "Laser",
-				"uid": 113,
-				"width": 8,
-				"height": 8,
-				"color": "#FF4500",
-				"renderMode": "Rectangle",
-				"showName": true,
-				"tilesetId": null,
-				"tileId": null,
-				"tileRenderMode": "Stretch",
-				"maxPerLevel": 0,
-				"limitBehavior": "DiscardOldOnes",
-				"pivotX": 0.5,
-				"pivotY": 1,
-				"fieldDefs": [
-					{
-						"identifier": "orientation",
-						"__type": "ExternEnum.Orientation",
-						"uid": 115,
-						"type": { "id": "F_Enum", "params": [114] },
-						"isArray": false,
-						"canBeNull": false,
-						"arrayMinLength": null,
-						"arrayMaxLength": null,
-						"editorDisplayMode": "ValueOnly",
-						"editorDisplayPos": "Above",
-						"editorAlwaysShow": false,
-						"min": null,
-						"max": null,
-						"defaultOverride": null
-					},
-					{
-						"identifier": "dir",
-						"__type": "Int",
-						"uid": 116,
-						"type": "F_Int",
-						"isArray": false,
-						"canBeNull": false,
-						"arrayMinLength": null,
-						"arrayMaxLength": null,
-						"editorDisplayMode": "Hidden",
-						"editorDisplayPos": "Above",
-						"editorAlwaysShow": false,
-						"min": -1,
-						"max": 1,
-						"defaultOverride": { "id": "V_Int", "params": [1] }
-					},
-					{
-						"identifier": "activeTime",
-						"__type": "Float",
-						"uid": 117,
-						"type": "F_Float",
-						"isArray": false,
-						"canBeNull": false,
-						"arrayMinLength": null,
-						"arrayMaxLength": null,
-						"editorDisplayMode": "NameAndValue",
-						"editorDisplayPos": "Beneath",
-						"editorAlwaysShow": false,
-						"min": 0,
-						"max": null,
-						"defaultOverride": { "id": "V_Float", "params": [0] }
-					},
-					{
-						"identifier": "inactiveTime",
-						"__type": "Float",
-						"uid": 118,
-						"type": "F_Float",
-						"isArray": false,
-						"canBeNull": false,
-						"arrayMinLength": null,
-						"arrayMaxLength": null,
-						"editorDisplayMode": "NameAndValue",
-						"editorDisplayPos": "Beneath",
-						"editorAlwaysShow": false,
-						"min": 0,
-						"max": null,
-						"defaultOverride": { "id": "V_Float", "params": [0] }
-					}
-				]
-			},
-			{
 				"identifier": "Elevator",
 				"uid": 119,
 				"width": 32,
@@ -1350,7 +1334,7 @@
 				{ "id": "Freeze", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Poison", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5e96cd37bc8b234ebdff7c728fd1a215" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "6c89e2316be8501e27f8ebb00389c0f4" },
 			{ "identifier": "LevelMark", "uid": 22, "values": [
 				{ "id": "Bg", "tileId": null, "__tileSrcRect": null },
 				{ "id": "CameraCinematicTarget", "tileId": null, "__tileSrcRect": null },
@@ -1364,18 +1348,18 @@
 				{ "id": "PlatformEndRight", "tileId": null, "__tileSrcRect": null },
 				{ "id": "SmallStep", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Walls", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5e96cd37bc8b234ebdff7c728fd1a215" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "6c89e2316be8501e27f8ebb00389c0f4" },
 			{ "identifier": "MobTypes", "uid": 25, "values": [
 				{ "id": "Rat", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Hammer", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Pistol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5e96cd37bc8b234ebdff7c728fd1a215" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "6c89e2316be8501e27f8ebb00389c0f4" },
 			{ "identifier": "PatrolTypes", "uid": 85, "values": [
 				{ "id": "AutoPatrol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "BusyWork", "tileId": null, "__tileSrcRect": null },
 				{ "id": "FixedPatrol", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5e96cd37bc8b234ebdff7c728fd1a215" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "6c89e2316be8501e27f8ebb00389c0f4" },
 			{ "identifier": "CinematicId", "uid": 99, "values": [
 				{ "id": "PrisonDashTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonKickTutorial", "tileId": null, "__tileSrcRect": null },
@@ -1383,8 +1367,8 @@
 				{ "id": "PrisonPrimaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonSecondaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonWakeup", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5e96cd37bc8b234ebdff7c728fd1a215" },
-			{ "identifier": "Orientation", "uid": 114, "values": [ { "id": "Horizontal", "tileId": null, "__tileSrcRect": null }, { "id": "Vertical", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5e96cd37bc8b234ebdff7c728fd1a215" }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "6c89e2316be8501e27f8ebb00389c0f4" },
+			{ "identifier": "LaserOrientation", "uid": 135, "values": [ { "id": "BottomToTop", "tileId": null, "__tileSrcRect": null }, { "id": "LeftToRight", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "6c89e2316be8501e27f8ebb00389c0f4" }
 		]
 	},
 	"levels": [
@@ -17296,46 +17280,32 @@
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "Laser", "__grid": [12,19], "__tile": null, "defUid": 113, "px": [200,320], "fieldInstances": [
+							{ "__identifier": "activeTime", "__value": 0, "__type": "Float", "defUid": 117, "realEditorValues": [] },
+							{ "__identifier": "inactiveTime", "__value": 0, "__type": "Float", "defUid": 118, "realEditorValues": [] },
 							{
-								"__identifier": "orientation",
-								"__value": "Vertical",
-								"__type": "ExternEnum.Orientation",
-								"defUid": 115,
+								"__identifier": "type",
+								"__value": "BottomToTop",
+								"__type": "ExternEnum.LaserOrientation",
+								"defUid": 136,
 								"realEditorValues": [{
 									"id": "V_String",
-									"params": ["Vertical"]
+									"params": ["BottomToTop"]
 								}]
-							},
-							{
-								"__identifier": "dir",
-								"__value": -1,
-								"__type": "Int",
-								"defUid": 116,
-								"realEditorValues": [{ "id": "V_Int", "params": [-1] }]
-							},
-							{ "__identifier": "activeTime", "__value": 0, "__type": "Float", "defUid": 117, "realEditorValues": [] },
-							{ "__identifier": "inactiveTime", "__value": 0, "__type": "Float", "defUid": 118, "realEditorValues": [] }
+							}
 						] },
 						{ "__identifier": "Laser", "__grid": [14,15], "__tile": null, "defUid": 113, "px": [232,256], "fieldInstances": [
+							{ "__identifier": "activeTime", "__value": 0, "__type": "Float", "defUid": 117, "realEditorValues": [] },
+							{ "__identifier": "inactiveTime", "__value": 0, "__type": "Float", "defUid": 118, "realEditorValues": [] },
 							{
-								"__identifier": "orientation",
-								"__value": "Horizontal",
-								"__type": "ExternEnum.Orientation",
-								"defUid": 115,
+								"__identifier": "type",
+								"__value": "LeftToRight",
+								"__type": "ExternEnum.LaserOrientation",
+								"defUid": 136,
 								"realEditorValues": [{
 									"id": "V_String",
-									"params": ["Horizontal"]
+									"params": ["LeftToRight"]
 								}]
-							},
-							{
-								"__identifier": "dir",
-								"__value": 1,
-								"__type": "Int",
-								"defUid": 116,
-								"realEditorValues": [{ "id": "V_Int", "params": [1] }]
-							},
-							{ "__identifier": "activeTime", "__value": 0, "__type": "Float", "defUid": 117, "realEditorValues": [] },
-							{ "__identifier": "inactiveTime", "__value": 0, "__type": "Float", "defUid": 118, "realEditorValues": [] }
+							}
 						] }
 					]
 				},
