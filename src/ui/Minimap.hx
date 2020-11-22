@@ -67,7 +67,7 @@ class Minimap extends dn.Process {
 		instructions = new h2d.Flow(root);
 		instructions.visible = false;
 		var tf = new h2d.Text(Assets.fontPixelMedium, instructions);
-		tf.text = "[E] to teleport";
+		tf.text = "[E] to teleport, [W,A,S,D] to navigate";
 
 		refresh();
 
