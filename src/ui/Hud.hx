@@ -28,6 +28,8 @@ class Hud extends dn.Process {
 	var flow:h2d.Flow;
 	var lifeBar:Bar;
 	var lifeText:Text;
+
+	var crystalsText:Text;
 	var coinsText:Text;
 
 	var invalidated = true;
@@ -58,14 +60,18 @@ class Hud extends dn.Process {
 		lifeBox.y -= 1;
 		lifeText = new Text(Assets.fontPixelSmall, lifeBox);
 
-		var coinsBox = new h2d.Flow(flow);
-		coinsBox.horizontalSpacing = 4;
+		var collectiblesBox = new h2d.Flow(flow);
+		collectiblesBox.horizontalSpacing = 4;
 
-		var coinsBoxProps = flow.getProperties(coinsBox);
-		coinsBoxProps.align(FlowAlign.Bottom, FlowAlign.Right);
+		var collectiblesBoxProps = flow.getProperties(collectiblesBox);
+		collectiblesBoxProps.align(FlowAlign.Bottom, FlowAlign.Right);
 
-		Assets.tiles.h_get("coin", coinsBox).scale(0.25);
-		coinsText = new Text(Assets.fontPixelSmall, coinsBox);
+		Assets.tiles.h_get("crystal", collectiblesBox).scale(0.25);
+		crystalsText = new Text(Assets.fontPixelSmall, collectiblesBox);
+		crystalsText.text = Std.string(game.shards);
+
+		Assets.tiles.h_get("coin", collectiblesBox).scale(0.25);
+		coinsText = new Text(Assets.fontPixelSmall, collectiblesBox);
 		coinsText.text = Std.string(game.coins);
 	}
 
@@ -92,6 +98,7 @@ class Hud extends dn.Process {
 		lifeBar.set(hero.life / hero.maxLife, 1);
 		lifeText.text = '${hero.life}/${hero.maxLife}';
 		coinsText.text = Std.string(game.coins);
+		crystalsText.text = Std.string(game.shards);
 	}
 
 	override function postUpdate() {
