@@ -2,7 +2,6 @@ import GameStorage.Settings;
 import GameStorage.PermaUpgrades;
 import entity.CrystalShardStation;
 import hxd.Timer;
-import dn.LocalStorage;
 import data.Trait;
 import hxd.Key;
 import dn.Process;
