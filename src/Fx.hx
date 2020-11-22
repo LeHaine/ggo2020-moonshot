@@ -150,6 +150,22 @@ class Fx extends dn.Process {
 		});
 	}
 
+	public function deathScreen(c:UInt, a:Float, ?fadeInTime = 1., ?displayTime = 3., ?fadeOutTime = 1) {
+		var e = new h2d.Bitmap(h2d.Tile.fromColor(c, 1, 1, a));
+		e.alpha = 0;
+		game.scroller.add(e, Const.DP_FX_FRONT);
+		e.x = game.hero.footX - game.w() / 2;
+		e.y = game.hero.footY - game.h() / 2;
+		e.scaleX = game.w();
+		e.scaleY = game.h();
+		game.tw.createS(e.alpha, 1, fadeInTime);
+		game.delayer.addS("show", () -> {
+			game.tw.createS(e.alpha, 0, fadeOutTime).end(() -> {
+				e.remove();
+			});
+		}, displayTime);
+	}
+
 	function _bloodPhysics(p:HParticle) {
 		if (collides(p) && p.data0 != 1) {
 			p.data0 = 1;

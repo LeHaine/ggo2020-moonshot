@@ -17289,7 +17289,12 @@
 								"params": [ true ]
 							}]
 						}] },
-						{ "__identifier": "CrystalShardStation", "__grid": [11,19], "__tile": null, "defUid": 126, "px": [184,320], "fieldInstances": [] }
+						{ "__identifier": "CrystalShardStation", "__grid": [11,19], "__tile": null, "defUid": 126, "px": [184,320], "fieldInstances": [] },
+						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
+						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
+						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
+						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
+						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] }
 					]
 				},
 				{

@@ -3,8 +3,13 @@ package entity;
 class DeadBody extends Entity {
 	public static var ALL:Array<DeadBody> = [];
 
-	public function new(e:Entity, sid:String, ?deathBounce:Bool = true, ?deathFall:Bool = true, ?xMult:Float = 1, ?yMult:Float = 1) {
-		super(e.cx, e.cy);
+	public function new(e:Entity, sid:String, ?deathBounce:Bool = true, ?deathFall:Bool = true, ?xMult:Float = 1, ?yMult:Float = 1, ?layer:Int) {
+		if (layer == null) {
+			super(e.cx, e.cy);
+		} else {
+			super(e.cx, e.cy, false);
+			game.scroller.add(spr, layer);
+		}
 		ALL.push(this);
 		xr = e.xr;
 		yr = e.yr;

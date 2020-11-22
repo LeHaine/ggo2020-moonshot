@@ -104,6 +104,7 @@ class Game extends Process {
 
 		scroller = new h2d.Layers();
 		root.add(scroller, Const.DP_MAIN);
+
 		scroller.filter = new h2d.filter.ColorMatrix(); // force rendering for pixel perfect
 
 		storage = new GameStorage();
@@ -250,7 +251,6 @@ class Game extends Process {
 	}
 
 	public function resetRun() {
-		trace(permaUpgrades.coinsCarriedOverLvl);
 		var coinsToKeep = permaUpgrades.coinsCarriedOverLvl * 250;
 		if (coins > coinsToKeep) {
 			coins = coinsToKeep;
