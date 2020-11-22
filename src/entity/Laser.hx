@@ -137,7 +137,11 @@ class Laser extends Entity {
 
 		if (from.is(Hero) && !cd.hasSetS("damage", 0.2)) {
 			from.hit(10, this);
-			from.bump(dirTo(from) * 0.3, -0.1);
+			if (orientation == LeftToRight) {
+				from.bump(rnd(-0.1, 0.1), 0.3 * M.sign(-from.dy));
+			} else {
+				from.bump(dirTo(from) * 0.3, -0.1);
+			}
 		}
 	}
 
