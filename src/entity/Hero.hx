@@ -34,7 +34,8 @@ class Hero extends Character {
 	var interactableFocus:Null<Interactable>;
 
 	public function new(e:World.Entity_Hero) {
-		super(e.cx, e.cy);
+		super(e.cx, e.cy, false);
+		game.scroller.add(spr, Const.DP_FRONT);
 		usesHealthBar = false;
 		ca = Main.ME.controller.createAccess("hero");
 		ca.setLeftDeadZone(0.2);

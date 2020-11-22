@@ -32,8 +32,8 @@ class Character extends Entity {
 		return super.get_onGround() || elevator != null;
 	}
 
-	public function new(x:Int, y:Int) {
-		super(x, y);
+	public function new(x:Int, y:Int, ?addToMain:Bool = true) {
+		super(x, y, addToMain);
 		ALL.push(this);
 		affectIcons = new h2d.Flow();
 		game.scroller.add(affectIcons, Const.DP_FRONT);
