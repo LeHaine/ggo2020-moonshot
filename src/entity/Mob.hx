@@ -144,6 +144,15 @@ class Mob extends Character {
 						drop.dx = rnd(-0.5, 0.5);
 						drop.dy = rnd(-0.5, 0.3);
 					}
+				case Coin:
+					var bonus = game.permaUpgrades.bonusCoinsLvl * 0.01;
+					var max = irnd(entity.collectible.CoinShard.MIN_DROP, entity.collectible.CoinShard.MAX_DROP);
+					max += M.ceil(max * bonus);
+					for (i in 0...max) {
+						var drop = new entity.collectible.CoinShard(cx, cy);
+						drop.dx = rnd(-0.75, 0.75);
+						drop.dy = rnd(-0.75, 0.75);
+					}
 				case _:
 					null;
 			}
