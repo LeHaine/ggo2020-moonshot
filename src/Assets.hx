@@ -9,7 +9,8 @@ class Assets {
 	public static var fontPixelLarge:h2d.Font;
 	public static var tiles:SpriteLib;
 
-	public static var music:Sfx;
+	public static var runMusic:Sfx;
+	public static var restMusic:Sfx;
 
 	static var initDone = false;
 
@@ -25,12 +26,19 @@ class Assets {
 		fontPixelLarge = hxd.Res.fonts.m5x7_48.toFont();
 
 		#if hl
-		music = new Sfx(hxd.Res.music.bgm);
-		music.groupId = 1;
+		runMusic = new Sfx(hxd.Res.music.bgm_hl);
+		restMusic = new Sfx(hxd.Res.tut_rest_hl);
+		#else
+		runMusic = new Sfx(hxd.Res.music.bgm_js);
+		restMusic = new Sfx(hxd.Res.music.tut_rest_js);
 		#end
+
+		runMusic.groupId = 1;
+		restMusic.groupId = 1;
 
 		Sfx.setGroupVolume(0, 1);
 		Sfx.setGroupVolume(1, 0.3);
+
 		tiles = dn.heaps.assets.Atlas.load("atlas/tiles.atlas");
 
 		tiles.defineAnim("heroDeathFall", "0(30), 1(9999)");

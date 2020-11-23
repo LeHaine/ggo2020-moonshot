@@ -504,6 +504,7 @@ class Hero extends Character {
 	override function onDie() {
 		super.onDie();
 
+		Assets.runMusic.stop();
 		new DeadBody(this, "hero", true, true, 1, 1, Const.DP_TOP);
 		fx.deathScreen(0xb50000, 1, 0.5, 3, 2);
 		game.addSlowMo("death", 3, 0.1);

@@ -1,3 +1,4 @@
+import dn.heaps.Sfx;
 import GameStorage.Settings;
 import GameStorage.PermaUpgrades;
 import entity.CrystalShardStation;
@@ -240,6 +241,7 @@ class Game extends Process {
 
 		trackHero();
 
+		startMusic();
 		fx.clear();
 		hud.invalidate();
 		Process.resizeAll();
@@ -252,6 +254,16 @@ class Game extends Process {
 
 	public function trackHero(immediate:Bool = true) {
 		camera.trackTarget(hero, immediate, 0, -Const.GRID * 2);
+	}
+
+	function startMusic() {
+		if (level.idx > 1 && !Assets.runMusic.isPlaying()) {
+			Assets.restMusic.stop();
+			Assets.runMusic.play(true);
+		} else if (level.idx <= 1 && !Assets.restMusic.isPlaying()) {
+			Assets.runMusic.stop();
+			Assets.restMusic.play(true);
+		}
 	}
 
 	public function markNextLevelReady() {
@@ -275,9 +287,6 @@ class Game extends Process {
 		if (level.idx == 0) {
 			startLevel(level.idx + 2);
 		} else {
-			#if hl
-			Assets.music.play(true);
-			#end
 			startLevel(level.idx + 1);
 		}
 	}
@@ -402,9 +411,7 @@ class Game extends Process {
 			}
 
 			if (ca.isKeyboardPressed(Key.M)) {
-				#if hl
-				Assets.music.togglePlayPause();
-				#end
+				Sfx.toggleMuteGroup(1);
 			}
 		}
 
