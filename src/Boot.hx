@@ -29,9 +29,9 @@ class Boot extends hxd.App {
 		#if debug
 		// Debug time controls
 		if (Main.ME != null && !Main.ME.destroyed) {
-			// Manual debug slow-mo when pressing SUBSTRACT key, HOME key or DPAD-DOWN on a gamepad
+			// Manual debug slow-mo when pressing SUBSTRACT key, HOME key or DPAD-LEFT on a gamepad
 			var ca = Main.ME.ca;
-			if (ca.isKeyboardPressed(K.NUMPAD_SUB) || ca.isKeyboardPressed(K.HOME) || ca.dpadDownPressed())
+			if (ca.isKeyboardPressed(K.NUMPAD_SUB) || ca.isKeyboardPressed(K.HOME) || ca.dpadLeftPressed())
 				speed = speed >= 1 ? 0.25 : 1;
 
 			// Manual debug turbo when holding ADD key, END key or LEFT STICK on a gamepad
