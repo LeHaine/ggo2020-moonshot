@@ -1,5 +1,6 @@
 package ui;
 
+import dn.heaps.Sfx;
 import h2d.Flow;
 import h2d.Text;
 
@@ -24,6 +25,9 @@ class Hud extends dn.Process {
 	inline function get_hero() {
 		return Game.ME.hero;
 	}
+
+	var musicIconBox:h2d.Flow;
+	var musicIcon:HSprite;
 
 	var flow:h2d.Flow;
 	var lifeBar:Bar;
@@ -73,6 +77,22 @@ class Hud extends dn.Process {
 		Assets.tiles.h_get("coin", collectiblesBox).scale(0.25);
 		coinsText = new Text(Assets.fontPixelSmall, collectiblesBox);
 		coinsText.text = Std.string(game.coins);
+
+		musicIconBox = new h2d.Flow(root);
+		musicIconBox.x = M.ceil(w() / Const.UI_SCALE) - 29;
+		musicIconBox.y = 5;
+		musicIconBox.enableInteractive = true;
+		musicIconBox.interactive.cursor = hxd.Cursor.Button;
+		musicIconBox.interactive.onOver = (e) -> {
+			musicIconBox.alpha = 0.75;
+		}
+		musicIconBox.interactive.onOut = (e) -> {
+			musicIconBox.alpha = 1;
+		}
+		musicIconBox.interactive.onClick = (e) -> {
+			game.toggleMusic();
+		}
+		musicIcon = Assets.tiles.h_get("musicIconOn", musicIconBox);
 	}
 
 	override function onResize() {
@@ -80,6 +100,9 @@ class Hud extends dn.Process {
 		root.setScale(Const.UI_SCALE);
 		flow.maxWidth = flow.minWidth = M.ceil(w() / Const.UI_SCALE);
 		flow.maxHeight = flow.minHeight = M.ceil(h() / Const.UI_SCALE);
+
+		musicIconBox.x = M.ceil(w() / Const.UI_SCALE) - 29;
+		musicIconBox.y = 5;
 	}
 
 	public inline function invalidate()
@@ -99,6 +122,12 @@ class Hud extends dn.Process {
 		lifeText.text = '${hero.life}/${hero.maxLife}';
 		coinsText.text = Std.string(game.coins);
 		crystalsText.text = Std.string(game.shards);
+
+		if (Sfx.isMuted(1)) {
+			musicIcon.set("musicIconOff");
+		} else {
+			musicIcon.set("musicIconOn");
+		}
 	}
 
 	override function postUpdate() {

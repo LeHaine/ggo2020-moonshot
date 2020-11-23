@@ -16,6 +16,7 @@ typedef PermaUpgrades = {
 typedef Settings = {
 	var finishedTutorial:Bool;
 	var sawNewPrisonCell:Bool;
+	var musicMuted:Bool;
 }
 
 typedef Collectibles = {
@@ -40,7 +41,7 @@ class GameStorage {
 		heroData = LocalStorage.readObject("hero", true, {
 			hasGun: false
 		});
-		settings = LocalStorage.readObject("settings", true, {finishedTutorial: false, sawNewPrisonCell: false});
+		settings = LocalStorage.readObject("settings", true, {finishedTutorial: false, sawNewPrisonCell: false, musicMuted: false});
 		permaUpgrades = LocalStorage.readObject("perma_upgrades", true, {
 			bonusShardsLvl: 0,
 			bonusCoinsLvl: 0,

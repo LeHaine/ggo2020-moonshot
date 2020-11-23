@@ -264,6 +264,14 @@ class Game extends Process {
 			Assets.runMusic.stop();
 			Assets.restMusic.play(true);
 		}
+		if (settings.musicMuted) {
+			Sfx.muteGroup(1);
+			Assets.restMusic.stop();
+			Assets.runMusic.stop();
+		}
+		if (!settings.musicMuted) {
+			Sfx.unmuteGroup(1);
+		}
 	}
 
 	public function markNextLevelReady() {
@@ -369,6 +377,14 @@ class Game extends Process {
 		ucd.setS("stopFrame", 0.2);
 	}
 
+	public function toggleMusic() {
+		Sfx.toggleMuteGroup(1);
+		hud.invalidate();
+		settings.musicMuted = Sfx.isMuted(1);
+		storage.save();
+		startMusic();
+	}
+
 	override function preUpdate() {
 		super.preUpdate();
 
@@ -411,7 +427,7 @@ class Game extends Process {
 			}
 
 			if (ca.isKeyboardPressed(Key.M)) {
-				Sfx.toggleMuteGroup(1);
+				toggleMusic();
 			}
 		}
 
