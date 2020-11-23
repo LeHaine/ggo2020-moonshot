@@ -4,11 +4,14 @@ import ui.CrystalShardStationWindow;
 import entity.interactable.DialogInteracble;
 
 class CrystalShardStation extends Entity {
+	public static var ALL:Array<CrystalShardStation> = [];
+
 	var data:World.Entity_CrystalShardStation;
 	var interactable:DialogInteracble;
 
 	public function new(data:World.Entity_CrystalShardStation) {
 		super(data.cx, data.cy);
+		ALL.push(this);
 		this.data = data;
 		spr.set("modStation");
 
@@ -21,6 +24,7 @@ class CrystalShardStation extends Entity {
 	override function dispose() {
 		super.dispose();
 		interactable.destroy();
+		ALL.remove(this);
 	}
 
 	private function onItemBought() {

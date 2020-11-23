@@ -1,5 +1,7 @@
 package ui;
 
+import entity.CrystalShardStation;
+import entity.ModStation;
 import dn.DecisionHelper;
 import hxd.BitmapData;
 import hxd.Timer;
@@ -151,36 +153,44 @@ class Minimap extends dn.Process {
 
 			for (cid in level.getMarks(Bg).keys()) {
 				var coords = level.idToCoords(cid);
-				dotCase(coords.cx, coords.cy, 0x3f80d4);
+				pixel(coords.cx, coords.cy, 0x3f80d4);
 			}
 
 			for (cid in level.getMarks(Walls).keys()) {
 				var coords = level.idToCoords(cid);
-				dotCase(coords.cx, coords.cy, 0xFFFFFF);
+				pixel(coords.cx, coords.cy, 0xFFFFFF);
 			}
 
 			for (cid in level.getMarks(OneWayPlatform).keys()) {
 				var coords = level.idToCoords(cid);
-				dotCase(coords.cx, coords.cy, 0xa7a7a7);
+				pixel(coords.cx, coords.cy, 0xa7a7a7);
 			}
 
 			for (cid in level.getMarks(Ladder).keys()) {
 				var coords = level.idToCoords(cid);
-				dotCase(coords.cx, coords.cy, 0x995d29);
+				pixel(coords.cx, coords.cy, 0x995d29);
 			}
 
 			for (e in Teleporter.ALL) {
 				if (targetTeleporter == e) {
-					dotCase(e.cx, e.cy, 0xc4ba2b, "fxVertLineGlow", -1, -3);
+					icon(e.cx, e.cy, "minimapIconsTeleporterSelect");
 				} else {
-					dotCase(e.cx, e.cy, 0x502999, "fxVertLine", 0, -2);
+					icon(e.cx, e.cy, "minimapIconsTeleporter");
 				}
+			}
+
+			for (e in ModStation.ALL) {
+				icon(e.cx, e.cy, "minimapIconsCoin");
+			}
+
+			for (e in CrystalShardStation.ALL) {
+				icon(e.cx, e.cy, "minimapIconsShard");
 			}
 
 			var hero = Game.ME.hero;
 
 			if (hero != null) {
-				dotCase(hero.cx, hero.cy, 0x00FF00, "fxVertLine", 0, -2);
+				pixel(hero.cx, hero.cy, 0x00FF00, "fxVertLine", 0, -2);
 				addClearFogPoint(hero.cx, hero.cy);
 				if (!enlarged) {
 					centerMaskTo(hero.cx, hero.cy);
@@ -293,9 +303,13 @@ class Minimap extends dn.Process {
 		fogTexture.uploadBitmap(fog);
 	}
 
-	inline function dotCase(cx:Int, cy:Int, col:UInt, tile:String = "pixel", offsetX = 0, offsetY = 0) {
+	inline function pixel(cx:Int, cy:Int, col:UInt, tile:String = "pixel", offsetX = 0, offsetY = 0) {
 		mapTiles.addColor(Std.int(cx * Const.GRID * scale) + offsetX, Std.int(cy * Const.GRID * scale) + offsetY, Color.getR(col), Color.getG(col),
 			Color.getB(col), 1.0, Assets.tiles.getTile(tile));
+	}
+
+	inline function icon(x:Float, y:Float, tile:String) {
+		mapTiles.add(Std.int(x * Const.GRID * scale) - 2, Std.int(y * Const.GRID * scale) - 3, Assets.tiles.getTile(tile));
 	}
 
 	inline function centerMaskTo(cx, cy) {
