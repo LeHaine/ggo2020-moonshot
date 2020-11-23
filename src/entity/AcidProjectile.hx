@@ -7,6 +7,7 @@ class AcidProjectile extends Bullet {
 		width = 5;
 		hei = 3;
 
+		setSpeed(0.5);
 		trailColor = 0x6abe30;
 	}
 
