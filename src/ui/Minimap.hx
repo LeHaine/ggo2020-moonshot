@@ -45,6 +45,10 @@ class Minimap extends dn.Process {
 	var instructions:h2d.Flow;
 	var ca:dn.heaps.Controller.ControllerAccess;
 
+	var teleportInstructions = "[ESC] to close, [E] to teleport, [W,A,S,D] to navigate";
+	var minimapInstructions = "[ESC] to close, [W,A,S,D] to move";
+	var intrsuctionsTf:h2d.Text;
+
 	public function new() {
 		super(Main.ME);
 		ME = this;
@@ -68,8 +72,8 @@ class Minimap extends dn.Process {
 
 		instructions = new h2d.Flow(root);
 		instructions.visible = false;
-		var tf = new h2d.Text(Assets.fontPixelMedium, instructions);
-		tf.text = "[E] to teleport, [W,A,S,D] to navigate";
+		intrsuctionsTf = new h2d.Text(Assets.fontPixelMedium, instructions);
+		intrsuctionsTf.text = minimapInstructions;
 
 		refresh();
 
@@ -80,6 +84,8 @@ class Minimap extends dn.Process {
 		super.onResize();
 		if (navigating) {
 			enlargeAndNavigate();
+		} else if (enlarged) {
+			enlarge();
 		} else {
 			mapRoot.setScale(Const.SCALE);
 		}
@@ -251,10 +257,14 @@ class Minimap extends dn.Process {
 		if (hero != null) {
 			centerMaskTo(hero.cx, hero.cy);
 		}
+		intrsuctionsTf.text = minimapInstructions;
+		instructions.setPosition(Std.int(mapRoot.x), Std.int(mapRoot.y + background.getBounds().height - 60));
+		instructions.visible = true;
 	}
 
 	public function enlargeAndNavigate() {
 		enlarge();
+		intrsuctionsTf.text = teleportInstructions;
 		navigating = true;
 
 		var dh = new DecisionHelper(Teleporter.ALL);
@@ -264,9 +274,6 @@ class Minimap extends dn.Process {
 		currentTeleporter = dh.getBest();
 		targetTeleporter = currentTeleporter;
 		centerMaskTo(targetTeleporter.cx, targetTeleporter.cy);
-
-		instructions.setPosition(Std.int(mapRoot.x + background.getBounds().width / 2), Std.int(mapRoot.y + background.getBounds().height - 60));
-		instructions.visible = true;
 	}
 
 	public function minimize() {
