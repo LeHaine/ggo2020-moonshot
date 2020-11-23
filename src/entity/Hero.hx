@@ -103,7 +103,7 @@ class Hero extends Character {
 			doubleJump = false;
 		}
 
-		if (!cd.has("recentlyTeleported")) {
+		if (!cd.has("recentlyTeleported") && !cd.has("recentlyDashed")) {
 			isCollidable = true;
 		}
 
@@ -497,6 +497,8 @@ class Hero extends Character {
 		if (ca.aPressed() && ca.ltDown() && !cd.hasSetS("dash", 0.75)) {
 			dx = 1 * dir;
 			spr.anim.playOverlap("heroDash", 0.22);
+			isCollidable = false;
+			cd.setF("recentlyDashed", 20);
 		}
 	}
 
