@@ -1,3 +1,4 @@
+import dn.heaps.Sfx;
 import dn.heaps.slib.*;
 
 class Assets {
@@ -7,6 +8,8 @@ class Assets {
 	public static var fontPixelMedium:h2d.Font;
 	public static var fontPixelLarge:h2d.Font;
 	public static var tiles:SpriteLib;
+
+	public static var music:Sfx;
 
 	static var initDone = false;
 
@@ -20,6 +23,14 @@ class Assets {
 		fontPixelSmall = hxd.Res.fonts.m5x7_16.toFont();
 		fontPixelMedium = hxd.Res.fonts.m5x7_32.toFont();
 		fontPixelLarge = hxd.Res.fonts.m5x7_48.toFont();
+
+		#if hl
+		music = new Sfx(hxd.Res.music.bgm);
+		music.groupId = 1;
+		#end
+
+		Sfx.setGroupVolume(0, 1);
+		Sfx.setGroupVolume(1, 0.3);
 		tiles = dn.heaps.assets.Atlas.load("atlas/tiles.atlas");
 
 		tiles.defineAnim("heroDeathFall", "0(30), 1(9999)");

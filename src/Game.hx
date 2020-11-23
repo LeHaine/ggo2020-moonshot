@@ -275,6 +275,8 @@ class Game extends Process {
 		if (level.idx == 0) {
 			startLevel(level.idx + 2);
 		} else {
+			// Assets.SLIB.bgm(0.5);
+			Assets.music.play(true);
 			startLevel(level.idx + 1);
 		}
 	}
@@ -396,6 +398,10 @@ class Game extends Process {
 
 			if (ca.dpadDownDown()) {
 				startLevel(3); // boss room
+			}
+
+			if (ca.isKeyboardPressed(Key.M)) {
+				Assets.music.togglePlayPause();
 			}
 		}
 
