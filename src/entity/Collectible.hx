@@ -16,6 +16,7 @@ class Collectible extends Entity {
 		super.update();
 
 		if (!cd.has("cooldown")) {
+			hasGravity = false;
 			if ((distCase(game.hero) < pickupRange)) {
 				var a = angTo(game.hero);
 				dx = Math.cos(a) * 0.3;
@@ -25,6 +26,18 @@ class Collectible extends Entity {
 					onCollect();
 				}
 			}
+		}
+	}
+
+	override function performYCollisionCheck() {
+		if (cd.has("cooldown")) {
+			super.performYCollisionCheck();
+		}
+	}
+
+	override function performXCollisionCheck() {
+		if (cd.has("cooldown")) {
+			super.performXCollisionCheck();
 		}
 	}
 
