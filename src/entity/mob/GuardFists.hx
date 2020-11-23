@@ -1,8 +1,6 @@
 package entity.mob;
 
 class GuardFists extends Mob {
-	private var targetAggroed:Bool;
-
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
@@ -12,6 +10,7 @@ class GuardFists extends Mob {
 		attackCd = 0.25;
 		baseSpd = 0.025;
 		spr.anim.registerStateAnim("guardFistsIdle", 0);
+		spr.anim.registerStateAnim("guardFistsWalk", 3, 2.5, () -> !targetAggroed && M.fabs(dx) >= 0.04 * tmod);
 		spr.anim.registerStateAnim("guardFistsIdleFists", 1, () -> targetAggroed);
 		spr.anim.registerStateAnim("guardFistsRunFists", 5, 2.5, () -> targetAggroed && M.fabs(dx) >= 0.04 * tmod);
 	}
@@ -40,10 +39,6 @@ class GuardFists extends Mob {
 			hero.hit(irnd(damage - dmgVariance, damage + dmgVariance), this);
 			hero.bump(rnd(0.05, 0.15) * dirTo(hero), -rnd(0.05, 0.15));
 		}
-	}
-
-	override function onTargetAggroed() {
-		targetAggroed = true;
 	}
 
 	override function performBusyWork() {}

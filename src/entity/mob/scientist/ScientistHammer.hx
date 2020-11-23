@@ -1,8 +1,6 @@
 package entity.mob.scientist;
 
 class ScientistHammer extends Mob {
-	private var targetAggroed:Bool;
-
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
@@ -12,6 +10,7 @@ class ScientistHammer extends Mob {
 		attackCd = 3;
 		baseSpd = 0.02;
 		spr.anim.registerStateAnim("scientistHammerIdle", 0);
+		spr.anim.registerStateAnim("scientistHammerWalk", 3, 2.5, () -> !targetAggroed && M.fabs(dx) >= 0.02 * tmod);
 		spr.anim.registerStateAnim("scientistHammerIdleHammer", 1, () -> targetAggroed);
 		spr.anim.registerStateAnim("scientistHammerRunHammer", 5, 2.5, () -> targetAggroed && M.fabs(dx) >= 0.04 * tmod);
 
@@ -46,8 +45,8 @@ class ScientistHammer extends Mob {
 	}
 
 	override function onTargetAggroed() {
+		super.onTargetAggroed();
 		spr.anim.playOverlap("scientistHammerHammerDraw");
-		targetAggroed = true;
 	}
 
 	override function performBusyWork() {}

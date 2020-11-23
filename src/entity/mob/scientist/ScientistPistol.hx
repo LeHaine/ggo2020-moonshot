@@ -1,8 +1,6 @@
 package entity.mob.scientist;
 
 class ScientistPistol extends Mob {
-	private var targetAggroed:Bool;
-
 	public function new(data:World.Entity_Mob) {
 		super(data);
 
@@ -10,6 +8,7 @@ class ScientistPistol extends Mob {
 		damage = 10;
 		attackRange = 10;
 		spr.anim.registerStateAnim("scientistPistolIdle", 0);
+		spr.anim.registerStateAnim("scientistPistolWalk", 3, 2.5, () -> !targetAggroed && M.fabs(dx) >= 0.02 * tmod);
 		spr.anim.registerStateAnim("scientistPistolIdleGunDown", 1, () -> targetAggroed && aggroTarget == null);
 		spr.anim.registerStateAnim("scientistPistolIdleGunUp", 2, () -> targetAggroed && aggroTarget != null);
 		spr.anim.registerStateAnim("scientistPistolRunGun", 5, 2.5, () -> targetAggroed && M.fabs(dx) >= 0.04 * tmod);
@@ -41,8 +40,8 @@ class ScientistPistol extends Mob {
 	}
 
 	override function onTargetAggroed() {
+		super.onTargetAggroed();
 		spr.anim.playOverlap("scientistPistolGunDraw");
-		targetAggroed = true;
 	}
 
 	override function performBusyWork() {}

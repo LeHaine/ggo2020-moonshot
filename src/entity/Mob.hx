@@ -49,6 +49,7 @@ class Mob extends Character {
 
 	var aggroRange:Float;
 	var attackRange = 8.;
+	var targetAggroed:Bool;
 
 	public var defense = 0;
 	public var damage = 1;
@@ -189,6 +190,9 @@ class Mob extends Character {
 		}
 
 		var spd = baseSpd * (0.2 + 0.8 * cd.getRatio("airControl"));
+		if (!targetAggroed) {
+			spd *= 0.5;
+		}
 		if (tx > 0) {
 			moveToTarget(spd);
 		}
@@ -232,7 +236,9 @@ class Mob extends Character {
 		}
 	}
 
-	private function onTargetAggroed() {}
+	private function onTargetAggroed() {
+		targetAggroed = true;
+	}
 
 	private function handleAggroTarget(spd:Float) {
 		if (sightCheck(aggroTarget) && distCase(hero) <= aggroRange && distCase(hero) > attackRange) {
