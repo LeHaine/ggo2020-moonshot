@@ -427,6 +427,31 @@ class Fx extends dn.Process {
 		}
 	}
 
+	public function acidExplosion(x:Float, y:Float) {
+		var color = 0x6abe30;
+		var n = Std.int(M.ceil(40));
+		for (i in 0...n) {
+			var p = allocTopNormal(getTile("fxSmallCircle"), x + rnd(0, 3, true), y + rnd(0, 4, true));
+			p.setFadeS(rnd(0.7, 1), 0, rnd(3, 7));
+			p.colorize(Color.interpolateInt(color, 0x0, rnd(0, 0.1)));
+
+			p.setScale(rnd(0.3, 0.7, true));
+			p.scaleMul = rnd(0.98, 0.99);
+
+			p.dx = rnd(0, 9, true);
+			p.dy = i <= n * 0.25 ? -rnd(6, 12) : -rnd(1, 7);
+			p.gy = rnd(0.1, 0.3);
+			p.frict = rnd(0.85, 0.96);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.3, true);
+
+			p.lifeS = rnd(5, 10);
+			p.onUpdate = _hardPhysics;
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+	}
+
 	function _hardPhysics(p:HParticle) {
 		if (collides(p) && Math.isNaN(p.data0)) {
 			p.data0 = 1;

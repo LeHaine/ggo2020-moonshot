@@ -208,6 +208,10 @@ class Game extends Process {
 					new entity.mob.scientist.ScientistHammer(e);
 				case Guard_Fists:
 					new entity.mob.GuardFists(e);
+				case Mutant_Melee:
+					new entity.mob.MutantMelee(e);
+				case Mutant_Range:
+					new entity.mob.MutantRange(e);
 				case Rat:
 					new entity.mob.Rat(e);
 			}

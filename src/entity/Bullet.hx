@@ -93,6 +93,7 @@ class Bullet extends Entity {
 
 	override function update() {
 		super.update();
+
 		fx.trail(lastX, lastY, centerX, centerY, trailColor, radius * 2);
 		lastX = centerX;
 		lastY = centerY;
@@ -106,6 +107,10 @@ class Bullet extends Entity {
 	override function onCollision(fromX:Int, fromY:Int) {
 		super.onCollision(fromX, fromY);
 
+		onBulletCollision();
+	}
+
+	function onBulletCollision() {
 		fx.moonShotExplosion(centerX, centerY, damageRadiusMul);
 		performAoe();
 		destroy();

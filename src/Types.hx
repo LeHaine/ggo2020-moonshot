@@ -11,6 +11,8 @@ enum MobTypes {
 	Scientist_Stun;
 	Scientist_Hammer;
 	Guard_Fists;
+	Mutant_Melee;
+	Mutant_Range;
 	Rat;
 }
 

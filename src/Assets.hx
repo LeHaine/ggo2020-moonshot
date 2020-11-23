@@ -27,7 +27,7 @@ class Assets {
 
 		#if hl
 		runMusic = new Sfx(hxd.Res.music.bgm_hl);
-		restMusic = new Sfx(hxd.Res.tut_rest_hl);
+		restMusic = new Sfx(hxd.Res.music.tut_rest_hl);
 		#else
 		runMusic = new Sfx(hxd.Res.music.bgm_js);
 		restMusic = new Sfx(hxd.Res.music.tut_rest_js);
@@ -96,6 +96,12 @@ class Assets {
 		tiles.defineAnim("ratRun", "0-3(3)");
 		tiles.defineAnim("ratIdle", "0(10), 1(15)");
 		tiles.defineAnim("ratBite", "0(3), 1-2(1)");
+
+		tiles.defineAnim("mutantJumperIdle", "0(10), 1(15)");
+		tiles.defineAnim("mutantJumperRun", "0-3(3)");
+		tiles.defineAnim("mutantJumperAttack", "0(3), 1(1)");
+		tiles.defineAnim("mutantJumperRangeAttack", "0(4), 1(1)");
+		tiles.defineAnim("mutantJumperAir", "0-1(2)");
 
 		tiles.defineAnim("teleporterActive", "0-1(3)");
 	}
