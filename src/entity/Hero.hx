@@ -168,7 +168,7 @@ class Hero extends Character {
 	}
 
 	private function performCrouch() {
-		if (isLeftJoystickDown()) {
+		if (isLeftJoystickDown() && !climbing) {
 			crouching = true;
 			hei = 12;
 		} else if (crouching && !level.hasCollision(cx, cy - 1)) {
@@ -369,7 +369,7 @@ class Hero extends Character {
 	}
 
 	private function canJump() {
-		var jumpKeyboardDown = ca.isKeyboardDown(K.Z) || ca.isKeyboardDown(K.W) || ca.isKeyboardDown(K.UP);
+		var jumpKeyboardDown = ca.aDown();
 		return (!climbing && cd.has("onGroundRecently") || climbing && jumpKeyboardDown) && !crouching;
 	}
 
@@ -385,7 +385,7 @@ class Hero extends Character {
 				dy -= 0.2 * tmod;
 			}
 			// start climbing down
-			if (isLeftJoystickDown() && level.hasLadder(cx, cy + 1)) {
+			if (isLeftJoystickDown() && level.hasLadder(cx, cy + 1) && dy == 0) {
 				startClimbing();
 				cy++;
 				yr = 0.1;
@@ -435,7 +435,7 @@ class Hero extends Character {
 		}
 		if (onGround || dy < 0) {
 			cd.setS("fallSquash", 1);
-			var jumpThruPlatformDown = ca.isKeyboardDown(K.SPACE);
+			var jumpThruPlatformDown = ca.aDown();
 			if (jumpThruPlatformDown && crouching && (level.hasOneWayPlatform(cx, cy + 1))) {
 				cy += 1;
 				yr = 0;
