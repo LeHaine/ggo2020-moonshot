@@ -11,7 +11,6 @@ class AcidProjectile extends Bullet {
 	}
 
 	override function onBulletCollision() {
-		// todo acid particles here
 		fx.acidExplosion(centerX, centerY);
 		destroy();
 	}
