@@ -275,8 +275,9 @@ class Game extends Process {
 		if (level.idx == 0) {
 			startLevel(level.idx + 2);
 		} else {
-			// Assets.SLIB.bgm(0.5);
+			#if hl
 			Assets.music.play(true);
+			#end
 			startLevel(level.idx + 1);
 		}
 	}
@@ -401,7 +402,9 @@ class Game extends Process {
 			}
 
 			if (ca.isKeyboardPressed(Key.M)) {
+				#if hl
 				Assets.music.togglePlayPause();
+				#end
 			}
 		}
 
