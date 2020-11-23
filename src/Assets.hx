@@ -70,6 +70,11 @@ class Assets {
 		tiles.defineAnim("scientistHammerIdleHammer", "0(10), 1(15)");
 		tiles.defineAnim("scientistHammerSwing", "0(2), 1, 2(8)");
 
+		tiles.defineAnim("guardFistsDeathFall", "0(30), 1(9999)");
+		tiles.defineAnim("guardFistsRunFists", "0-3(3)");
+		tiles.defineAnim("guardFistsIdle", "0(10), 1(15)");
+		tiles.defineAnim("guardFistsIdleFists", "0(10), 1(15)");
+
 		tiles.defineAnim("bossDeathFall", "0(30), 1(9999)");
 		tiles.defineAnim("bossRunGun", "0-3(3)");
 		tiles.defineAnim("bossIdle", "0(10), 1(15)");

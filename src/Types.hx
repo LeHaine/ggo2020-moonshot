@@ -10,6 +10,7 @@ enum MobTypes {
 	Scientist_Pistol;
 	Scientist_Stun;
 	Scientist_Hammer;
+	Guard_Fists;
 	Rat;
 }
 
