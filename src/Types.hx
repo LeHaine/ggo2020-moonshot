@@ -13,6 +13,7 @@ enum MobTypes {
 	Guard_Fists;
 	Mutant_Melee;
 	Mutant_Range;
+	Blob;
 	Rat;
 }
 

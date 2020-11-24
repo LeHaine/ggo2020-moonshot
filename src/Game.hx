@@ -212,6 +212,8 @@ class Game extends Process {
 					new entity.mob.MutantMelee(e);
 				case Mutant_Range:
 					new entity.mob.MutantRange(e);
+				case Blob:
+					new entity.mob.Blob(e);
 				case Rat:
 					new entity.mob.Rat(e);
 			}

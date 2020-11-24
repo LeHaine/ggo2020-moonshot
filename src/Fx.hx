@@ -186,7 +186,7 @@ class Fx extends dn.Process {
 		}
 	}
 
-	public function gibs(x:Float, y:Float, dir:Int, amount:Int = 10, color:UInt = 0x951d1d) {
+	public function gibs(x:Float, y:Float, dir:Int, amount:Int = 10, color:UInt = 0x6F0000) {
 		for (i in 0...amount) {
 			var p = allocTopNormal(getTile("fxGib"), x + rnd(0, 4, true), y + rnd(0, 8, true));
 			p.colorize(color);
@@ -640,6 +640,87 @@ class Fx extends dn.Process {
 
 			p.lifeS = rnd(1, 3);
 			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+	}
+
+	public function blobExplosion(x:Float, y:Float, r:Float) {
+		var c = 0x6abe30;
+
+		var p = allocTopAdd(getTile("fxGib"), x, y);
+		p.colorize(0x00FF00);
+		p.setFadeS(0.5, 0, 0.1);
+		p.setScale(2 * r / p.t.width);
+		p.lifeS = 0;
+		p.ds = 0.1;
+		p.dsFrict = 0.8;
+
+		var p = allocTopAdd(getTile("fxGib"), x, y);
+		p.colorize(0x00FF00);
+		p.setFadeS(0.5, 0, 0.1);
+		p.setScale(2 * r / p.t.width);
+		p.lifeS = 0;
+		p.ds = 0.02;
+		p.dsFrict = 0.8;
+
+		// Dots
+		var n = 100;
+		for (i in 0...n) {
+			var p = allocTopNormal(getTile("fxGib"), x + rnd(0, 3, true), y + rnd(0, 4, true));
+			p.setFadeS(rnd(0.7, 1), 0, rnd(3, 7));
+			p.colorize(Color.interpolateInt(c, 0x0, rnd(0, 0.1)));
+
+			p.setScale(rnd(0.3, 0.7, true));
+			p.scaleMul = rnd(0.98, 0.99);
+
+			p.dx = rnd(0, 9, true);
+			p.dy = i <= n * 0.25 ? -rnd(6, 12) : -rnd(1, 7);
+			p.gy = rnd(0.1, 0.3);
+			p.frict = rnd(0.85, 0.96);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.3, true);
+
+			p.lifeS = rnd(5, 10);
+			p.onUpdate = _hardPhysics;
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+
+		// Big dirt
+		var n = 20;
+		for (i in 0...n) {
+			var p = allocBgNormal(getTile("fxGib"), x + rnd(0, 3, true), y + rnd(0, 4, true));
+			p.colorize(Color.interpolateInt(c, 0x0, rnd(0, 0.1)));
+			p.setFadeS(rnd(0.7, 1), 0, rnd(3, 7));
+
+			p.setScale(rnd(1, 2, true));
+			p.scaleMul = rnd(0.98, 0.99);
+
+			p.dx = rnd(0, 5, true);
+			p.dy = rnd(-5, 0);
+			p.gy = rnd(0.1, 0.2);
+			p.frict = rnd(0.85, 0.96);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.3, true);
+
+			p.lifeS = rnd(5, 10);
+			p.onUpdate = _hardPhysics;
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+
+		// blood
+		var n = 100;
+		for (i in 0...n) {
+			var p = allocTopNormal(getTile("fxGib"), x + rnd(0, 4, true), y + rnd(0, 8, true));
+			p.colorize(Color.interpolateInt(0xFF0000, 0x6F0000, rnd(0, 1)));
+			p.setFadeS(rnd(0.6, 1), 0, rnd(1, 3));
+			p.dx = rnd(-10, 10);
+			p.dy = rnd(-2, 0);
+			p.gy = rnd(0.07, 0.10);
+			p.rotation = rnd(0, M.PI2);
+			p.frict = rnd(0.92, 0.96);
+			p.lifeS = rnd(3, 10);
+			p.onUpdate = _bloodPhysics;
 		}
 	}
 

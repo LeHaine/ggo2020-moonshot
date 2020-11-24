@@ -1334,7 +1334,7 @@
 				{ "id": "Freeze", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Poison", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5f95d3718a291b15894927a31ce43050" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "11d030556e065a6707a325078a67ad1d" },
 			{ "identifier": "LevelMark", "uid": 22, "values": [
 				{ "id": "Bg", "tileId": null, "__tileSrcRect": null },
 				{ "id": "CameraCinematicTarget", "tileId": null, "__tileSrcRect": null },
@@ -1348,8 +1348,9 @@
 				{ "id": "PlatformEndRight", "tileId": null, "__tileSrcRect": null },
 				{ "id": "SmallStep", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Walls", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5f95d3718a291b15894927a31ce43050" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "11d030556e065a6707a325078a67ad1d" },
 			{ "identifier": "MobTypes", "uid": 25, "values": [
+				{ "id": "Blob", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Guard_Fists", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Mutant_Melee", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Mutant_Range", "tileId": null, "__tileSrcRect": null },
@@ -1357,12 +1358,12 @@
 				{ "id": "Scientist_Hammer", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Pistol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5f95d3718a291b15894927a31ce43050" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "11d030556e065a6707a325078a67ad1d" },
 			{ "identifier": "PatrolTypes", "uid": 85, "values": [
 				{ "id": "AutoPatrol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "BusyWork", "tileId": null, "__tileSrcRect": null },
 				{ "id": "FixedPatrol", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5f95d3718a291b15894927a31ce43050" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "11d030556e065a6707a325078a67ad1d" },
 			{ "identifier": "CinematicId", "uid": 99, "values": [
 				{ "id": "PrisonDashTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonKickTutorial", "tileId": null, "__tileSrcRect": null },
@@ -1370,8 +1371,8 @@
 				{ "id": "PrisonPrimaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonSecondaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonWakeup", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5f95d3718a291b15894927a31ce43050" },
-			{ "identifier": "LaserOrientation", "uid": 135, "values": [ { "id": "BottomToTop", "tileId": null, "__tileSrcRect": null }, { "id": "LeftToRight", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "5f95d3718a291b15894927a31ce43050" }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "11d030556e065a6707a325078a67ad1d" },
+			{ "identifier": "LaserOrientation", "uid": 135, "values": [ { "id": "BottomToTop", "tileId": null, "__tileSrcRect": null }, { "id": "LeftToRight", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "11d030556e065a6707a325078a67ad1d" }
 		]
 	},
 	"levels": [
@@ -21673,7 +21674,7 @@
 							},
 							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
 						] },
-						{ "__identifier": "Mob", "__grid": [22,78], "__tile": null, "defUid": 24, "px": [360,1264], "fieldInstances": [
+						{ "__identifier": "Mob", "__grid": [86,70], "__tile": null, "defUid": 24, "px": [1384,1136], "fieldInstances": [
 							{
 								"__identifier": "type",
 								"__value": "Mutant_Melee",
@@ -21699,7 +21700,7 @@
 							},
 							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
 						] },
-						{ "__identifier": "Mob", "__grid": [27,78], "__tile": null, "defUid": 24, "px": [440,1264], "fieldInstances": [
+						{ "__identifier": "Mob", "__grid": [57,70], "__tile": null, "defUid": 24, "px": [920,1136], "fieldInstances": [
 							{
 								"__identifier": "type",
 								"__value": "Mutant_Range",
@@ -21708,6 +21709,32 @@
 								"realEditorValues": [{
 									"id": "V_String",
 									"params": ["Mutant_Range"]
+								}]
+							},
+							{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
+							{ "__identifier": "patrol", "__value": null, "__type": "Point", "defUid": 83, "realEditorValues": [] },
+							{ "__identifier": "initialDir", "__value": 1, "__type": "Int", "defUid": 84, "realEditorValues": [] },
+							{
+								"__identifier": "patrolType",
+								"__value": "BusyWork",
+								"__type": "ExternEnum.PatrolTypes",
+								"defUid": 86,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["BusyWork"]
+								}]
+							},
+							{ "__identifier": "canAttack", "__value": true, "__type": "Bool", "defUid": 109, "realEditorValues": [] }
+						] },
+						{ "__identifier": "Mob", "__grid": [21,78], "__tile": null, "defUid": 24, "px": [344,1264], "fieldInstances": [
+							{
+								"__identifier": "type",
+								"__value": "Blob",
+								"__type": "ExternEnum.MobTypes",
+								"defUid": 26,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["Blob"]
 								}]
 							},
 							{ "__identifier": "health", "__value": 1, "__type": "Int", "defUid": 27, "realEditorValues": [] },
