@@ -20937,7 +20937,7 @@
 					"seed": 9094781,
 					"gridTiles": [],
 					"entityInstances": [
-						{ "__identifier": "Hero", "__grid": [61,35], "__tile": null, "defUid": 20, "px": [984,576], "fieldInstances": [] },
+						{ "__identifier": "Hero", "__grid": [62,57], "__tile": null, "defUid": 20, "px": [1000,928], "fieldInstances": [] },
 						{ "__identifier": "Checkpoint", "__grid": [75,89], "__tile": null, "defUid": 125, "px": [1208,1440], "fieldInstances": [] },
 						{ "__identifier": "Water", "__grid": [112,81], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [1800,1312], "fieldInstances": [] },
 						{ "__identifier": "Water", "__grid": [113,81], "__tile": { "tilesetUid": 4, "srcRect": [0,80,16,16] }, "defUid": 124, "px": [1816,1312], "fieldInstances": [] },

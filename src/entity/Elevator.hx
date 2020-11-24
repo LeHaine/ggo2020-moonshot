@@ -3,6 +3,8 @@ package entity;
 import entity.interactable.DialogInteracble;
 
 class Elevator extends Entity {
+	public var entitiesStanding:Array<Character> = [];
+
 	var data:World.Entity_Elevator;
 	var interactable:DialogInteracble;
 
@@ -19,7 +21,7 @@ class Elevator extends Entity {
 
 		spr.set("elevator");
 		hei = 6;
-		width = Const.GRID * 2;
+		width = Const.GRID * 3;
 
 		origin = new CPoint(cx, cy);
 		endPoint = new CPoint(data.f_end.cx, data.f_end.cy);
@@ -54,6 +56,11 @@ class Elevator extends Entity {
 
 		if (cy == targetPoint.cy && !interactable.active) {
 			interactable.active = true;
+			yr = 0;
+		}
+
+		for (e in entitiesStanding) {
+			e.stickToElevator();
 		}
 	}
 }

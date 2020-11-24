@@ -87,7 +87,6 @@ class Laser extends Entity {
 				} else {
 					endPoint = new CPoint(cx + i, cy);
 				}
-				trace('${orientation} - ${endPoint}');
 			}
 		}
 		if (orientation == BottomToTop) {

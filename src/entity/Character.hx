@@ -43,7 +43,11 @@ class Character extends Entity {
 		super.onTouch(from);
 
 		if (from.is(Elevator)) {
+			if (elevator != null) {
+				elevator.entitiesStanding.remove(this);
+			}
 			elevator = cast(from, Elevator);
+			elevator.entitiesStanding.push(this);
 		}
 
 		if (from.is(Water)) {
@@ -137,7 +141,7 @@ class Character extends Entity {
 		if (elevator == null) {
 			return false;
 		}
-		return distCaseY(elevator) <= 1 && distCaseX(elevator) <= 1.2;
+		return distCaseY(elevator) <= 1 && distCaseX(elevator) <= 1.8;
 	}
 
 	public function stickToElevator() {
@@ -150,9 +154,10 @@ class Character extends Entity {
 	override function update() {
 		super.update();
 
-		if (isOnElevator()) {
-			stickToElevator();
-		} else {
+		if (!isOnElevator()) {
+			if (elevator != null) {
+				elevator.entitiesStanding.remove(this);
+			}
 			elevator = null;
 		}
 	}
