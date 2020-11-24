@@ -77,6 +77,7 @@ class Mob extends Character {
 		if (!isAlive()) {
 			return;
 		}
+		blink(0xFF0000);
 		if (from != null) {
 			if (M.dist(from.centerX, from.centerY, headX, headY) < 1) {
 				lastBodyPartShot = Head;
