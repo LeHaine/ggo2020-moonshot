@@ -13,7 +13,7 @@ class CrystalShardStation extends Entity {
 		super(data.cx, data.cy);
 		ALL.push(this);
 		this.data = data;
-		spr.set("modStation");
+		spr.set("crystalStation");
 
 		hasGravity = false;
 		isCollidable = false;

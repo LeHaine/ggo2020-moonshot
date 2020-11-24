@@ -17299,8 +17299,7 @@
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
-						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
-						{ "__identifier": "CollectibleStash", "__grid": [17,19], "__tile": null, "defUid": 137, "px": [280,320], "fieldInstances": [] }
+						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] }
 					]
 				},
 				{
@@ -22082,7 +22081,8 @@
 								}]
 							}
 						] },
-						{ "__identifier": "Checkpoint", "__grid": [126,51], "__tile": null, "defUid": 125, "px": [2024,832], "fieldInstances": [] }
+						{ "__identifier": "Checkpoint", "__grid": [126,51], "__tile": null, "defUid": 125, "px": [2024,832], "fieldInstances": [] },
+						{ "__identifier": "CollectibleStash", "__grid": [127,51], "__tile": null, "defUid": 137, "px": [2040,832], "fieldInstances": [] }
 					]
 				},
 				{
