@@ -11,7 +11,7 @@
 	"defaultPivotY": 1,
 	"defaultGridSize": 16,
 	"bgColor": "#1A212E",
-	"nextUid": 137,
+	"nextUid": 138,
 	"minifyJson": false,
 	"exportTiled": false,
 	"defs": {
@@ -1310,6 +1310,23 @@
 						"defaultOverride": null
 					}
 				]
+			},
+			{
+				"identifier": "CollectibleStash",
+				"uid": 137,
+				"width": 16,
+				"height": 16,
+				"color": "#CDC502",
+				"renderMode": "Rectangle",
+				"showName": true,
+				"tilesetId": null,
+				"tileId": null,
+				"tileRenderMode": "Stretch",
+				"maxPerLevel": 0,
+				"limitBehavior": "DiscardOldOnes",
+				"pivotX": 0.5,
+				"pivotY": 1,
+				"fieldDefs": []
 			}
 		],
 		"tilesets": [
@@ -17282,7 +17299,8 @@
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
 						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
-						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] }
+						{ "__identifier": "ExplosiveBarrel", "__grid": [10,19], "__tile": null, "defUid": 121, "px": [168,320], "fieldInstances": [] },
+						{ "__identifier": "CollectibleStash", "__grid": [17,19], "__tile": null, "defUid": 137, "px": [280,320], "fieldInstances": [] }
 					]
 				},
 				{

@@ -1,3 +1,4 @@
+import entity.GoldMoonStatue;
 import dn.heaps.Sfx;
 import GameStorage.Settings;
 import GameStorage.PermaUpgrades;
@@ -176,6 +177,15 @@ class Game extends Process {
 
 		for (e in level.data.l_Entities.all_CrystalShardStation) {
 			new entity.CrystalShardStation(e);
+		}
+
+		for (e in level.data.l_Entities.all_CollectibleStash) {
+			var result = irnd(0, 1);
+			if (result == 0) {
+				new entity.CrystalCrop(e.cx, e.cy);
+			} else {
+				new entity.GoldMoonStatue(e.cx, e.cy);
+			}
 		}
 
 		for (e in level.data.l_Entities.all_Laser) {
