@@ -103,8 +103,12 @@ class Hero extends Character {
 			doubleJump = false;
 		}
 
-		if (!cd.has("recentlyTeleported") && !cd.has("recentlyDashed")) {
+		if (!cd.has("recentlyTeleported")) {
 			isCollidable = true;
+		}
+
+		if (!cd.has("recentlyDashed")) {
+			ignoreBullets = false;
 		}
 
 		if (!isConscious()) {
@@ -497,7 +501,7 @@ class Hero extends Character {
 		if (ca.aPressed() && ca.ltDown() && !cd.hasSetS("dash", 0.75)) {
 			dx = 1 * dir;
 			spr.anim.playOverlap("heroDash", 0.22);
-			isCollidable = false;
+			ignoreBullets = true;
 			cd.setF("recentlyDashed", 20);
 		}
 	}
