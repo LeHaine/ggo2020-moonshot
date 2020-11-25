@@ -460,26 +460,24 @@ class Game extends Process {
 			}
 			#end
 
-			// Restart
-			if (ca.selectPressed()) {
-				Main.ME.startGame();
-			}
-
 			if (ca.dpadUpPressed() && minimap != null) {
 				minimap.enlarge();
 			}
 
 			#if debug
+			// Restart
+			if (ca.startPressed()) {
+				Main.ME.startGame();
+			}
 			if (ca.dpadDownPressed()) {
 				startLevel(BOSS_ROOM); // boss room
 			}
 			#end
 
-			if (ca.isKeyboardPressed(Key.M)) {
+			if (ca.selectPressed()) {
 				toggleMusic();
 			}
 		}
-
 		if (nextLevelReady) {
 			nextLevelReady = false;
 			startNextLevel();
