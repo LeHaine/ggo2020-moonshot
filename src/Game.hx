@@ -94,7 +94,7 @@ class Game extends Process {
 	var nextLevelReady = false;
 	var lastSpawn = 0;
 
-	static var BOSS_ROOM = 6;
+	static var BOSS_ROOM = 7;
 
 	public function new() {
 		super(Main.ME);
@@ -150,6 +150,13 @@ class Game extends Process {
 		if (idx == 0 && !storage.heroData.hasGun) {
 			for (e in level.data.l_Entities.all_Gun) {
 				new entity.Gun(e);
+			}
+		}
+
+		for (e in level.data.l_Entities.all_Item) {
+			switch e.f_itemType {
+				case Syringe:
+					new entity.item.Syringe(e.cx, e.cy);
 			}
 		}
 
@@ -313,7 +320,8 @@ class Game extends Process {
 		if (level.idx == 0) {
 			startLevel(level.idx + 2);
 		} else {
-			startLevel(level.idx + 1);
+			// startLevel(level.idx + 1);
+			startLevel(6);
 		}
 	}
 

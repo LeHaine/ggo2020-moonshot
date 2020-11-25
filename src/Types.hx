@@ -17,6 +17,10 @@ enum MobTypes {
 	Rat;
 }
 
+enum ItemTypes {
+	Syringe;
+}
+
 enum LevelMark {
 	Grab;
 	GrabLeft;
