@@ -257,11 +257,11 @@ class ModStationWindow extends dn.Process {
 		if (item != null) {
 			item.flow.alpha = 1;
 
-			if (ca.upPressed() && cursorIdx < items.length - 1) {
+			if ((ca.downPressed() || ca.dpadDownPressed()) && cursorIdx < items.length - 1) {
 				cursorIdx++;
 			}
 
-			if (ca.downPressed() && cursorIdx > 0) {
+			if ((ca.upPressed() || ca.dpadUpPressed()) && cursorIdx > 0) {
 				cursorIdx--;
 			}
 			if (!cd.has("lock") && ca.aPressed()) {

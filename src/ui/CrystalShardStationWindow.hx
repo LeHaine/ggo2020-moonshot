@@ -261,7 +261,6 @@ class CrystalShardStationWindow extends dn.Process {
 	}
 
 	function addItem(upgrade:PermaUpgrade, index:Int) {
-		trace("add");
 		var flow = new h2d.Flow(itemFlow);
 		flow.verticalAlign = Top;
 		flow.backgroundTile = Assets.tiles.getTile("uiButton");
@@ -384,12 +383,14 @@ class CrystalShardStationWindow extends dn.Process {
 		if (item != null) {
 			item.flow.alpha = 1;
 
-			if (ca.upPressed() && cursorIdx < items.length - 1) {
+			if ((ca.downPressed() || ca.dpadDownPressed()) && cursorIdx < items.length - 1) {
 				cursorIdx++;
+				itemFlow.y -= item.flow.outerHeight;
 			}
 
-			if (ca.downPressed() && cursorIdx > 0) {
+			if ((ca.upPressed() || ca.dpadUpPressed()) && cursorIdx > 0) {
 				cursorIdx--;
+				itemFlow.y += item.flow.outerHeight;
 			}
 			if (!cd.has("lock") && ca.aPressed()) {
 				item.cb();

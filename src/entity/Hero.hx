@@ -40,6 +40,7 @@ class Hero extends Character {
 
 		ca = Main.ME.controller.createAccess("hero");
 		ca.setLeftDeadZone(0.2);
+		ca.setRightDeadZone(0.2);
 
 		bumpFrict = 0.82;
 
@@ -191,7 +192,7 @@ class Hero extends Character {
 		if (controlsLocked() || hasAffect(Stun) || !hasGun) {
 			return;
 		}
-		if (ca.xDown() && !cd.hasSetS("shoot", 1 / shotsPerSecond)) {
+		if ((ca.xDown() || ca.rightDist() > 0) && !ca.ltDown() && !ca.yDown() && !cd.hasSetS("shoot", 1 / shotsPerSecond)) {
 			if (ca.leftDist() == 0 && !crouching) {
 				spr.anim.play("heroStandShoot");
 			}
@@ -216,7 +217,8 @@ class Hero extends Character {
 		var isCharging = isChargingAction("strongShot");
 		var maxDamage = 50;
 		var maxSize = 5;
-		if (ca.yDown() && !isCharging && !cd.has("strongShot")) {
+		var chargingAction = ca.yDown() || (ca.ltDown() && ca.xDown()) || (ca.ltDown() && ca.rightDist() > 0);
+		if (chargingAction && !isCharging && !cd.has("strongShot")) {
 			chargeAction("strongShot", chargeTime, () -> {
 				var bullet = spawnSecondaryBullet(maxDamage, maxSize, maxCharge);
 				bullet.setSpeed(1);
@@ -224,7 +226,7 @@ class Hero extends Character {
 				resetAndHideChargeBar();
 				cd.setS("strongShot", 0.5);
 			});
-		} else if (!ca.yDown() && isCharging && !cd.has("strongShot")) {
+		} else if (!chargingAction && isCharging && !cd.has("strongShot")) {
 			var timeLeft = getActionTimeLeft("strongShot");
 			cancelAction("strongShot");
 			cd.setS("strongShot", 0.5);
@@ -236,7 +238,7 @@ class Hero extends Character {
 			bullet.setSpeed(Math.max(0.5, 1 * ratio));
 			bullet.damageRadiusMul = ratio;
 			resetAndHideChargeBar();
-		} else if (ca.yDown() && isCharging) {
+		} else if (chargingAction && isCharging) {
 			var timeLeft = getActionTimeLeft("strongShot");
 			var ratio = 1 - (timeLeft / chargeTime);
 			chargeStrongShotBar.visible = true;
@@ -263,12 +265,19 @@ class Hero extends Character {
 		setSquashX(0.85);
 		var bulletX = centerX + (dir * 2);
 		var bulletY = centerY - 3;
-		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(angToMouse());
-		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToMouse());
-		fx.moonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
-		camera.bumpAng(-angToMouse(), rnd(0.1, 0.15));
+		var ang = if (ca.isGamePad() && ca.rightDist() > 0) {
+			ca.rightAngle();
+		} else if (ca.isGamePad() && ca.rightDist() == 0) {
+			dir == 1 ? 0 : M.PI;
+		} else {
+			angToMouse();
+		}
+		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(ang);
+		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(ang);
+		fx.moonShot(bulletX, bulletY, ang, 0x2780D8, 10);
+		camera.bumpAng(-ang, rnd(0.1, 0.15));
 		camera.shakeS(0.3, 0.05);
-		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-5 + accuracy, 5 - accuracy) * M.DEG_RAD, damage);
+		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, ang + rnd(-5 + accuracy, 5 - accuracy) * M.DEG_RAD, damage);
 		bullet.damageRadiusMul = 0.15;
 		bullet.doesAoeDamage = doesAoeDamage;
 		bullet.targetsToPierce = targetsToPierce;
@@ -282,22 +291,30 @@ class Hero extends Character {
 		setSquashX(0.85);
 		var bulletX = centerX;
 		var bulletY = centerY - 3;
-		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(angToMouse());
-		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(angToMouse());
+		var ang = if (ca.isGamePad() && ca.rightDist() > 0) {
+			ca.rightAngle();
+		} else if (ca.isGamePad() && ca.rightDist() == 0) {
+			dir == 1 ? 0 : M.PI;
+		} else {
+			angToMouse();
+		}
+
+		bdx = rnd(0.1, 0.15) * bounceMul * -Math.cos(ang);
+		bdy = rnd(0.1, 0.15) * bounceMul * -Math.sin(ang);
 		if (bounceMul >= 2) {
-			fx.strongMoonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 75);
-			camera.bumpAng(-angToMouse(), rnd(1, 2));
+			fx.strongMoonShot(bulletX, bulletY, ang, 0x2780D8, 75);
+			camera.bumpAng(-ang, rnd(1, 2));
 			camera.shakeS(0.3, 0.1);
 		} else if (bounceMul >= 1) {
-			fx.moonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 15);
-			camera.bumpAng(-angToMouse(), rnd(0.75, 1));
+			fx.moonShot(bulletX, bulletY, ang, 0x2780D8, 15);
+			camera.bumpAng(-ang, rnd(0.75, 1));
 			camera.shakeS(0.3, 0.075);
 		} else {
-			fx.moonShot(bulletX, bulletY, angToMouse(), 0x2780D8, 10);
-			camera.bumpAng(-angToMouse(), rnd(0.1, 0.15));
+			fx.moonShot(bulletX, bulletY, ang, 0x2780D8, 10);
+			camera.bumpAng(-ang, rnd(0.1, 0.15));
 			camera.shakeS(0.3, 0.05);
 		}
-		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, angToMouse() + rnd(-2, 2) * M.DEG_RAD, damage);
+		var bullet = new Bullet(M.round(bulletX), M.round(bulletY), this, ang + rnd(-2, 2) * M.DEG_RAD, damage);
 		bullet.damageRadiusMul = 0.15;
 		bullet.damageRadius = secondaryRadius;
 		bullet.damageMul = secondaryDamageMul;
