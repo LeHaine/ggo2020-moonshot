@@ -467,7 +467,7 @@ class Game extends Process {
 			}
 
 			#if debug
-			if (ca.dpadDownDown()) {
+			if (ca.dpadDownPressed()) {
 				startLevel(BOSS_ROOM); // boss room
 			}
 			#end

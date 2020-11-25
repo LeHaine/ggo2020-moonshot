@@ -17,6 +17,7 @@ typedef Settings = {
 	var finishedTutorial:Bool;
 	var sawNewPrisonCell:Bool;
 	var musicMuted:Bool;
+	var visitedBoss:Bool;
 }
 
 typedef Collectibles = {
@@ -41,7 +42,12 @@ class GameStorage {
 		heroData = LocalStorage.readObject("hero", true, {
 			hasGun: false
 		});
-		settings = LocalStorage.readObject("settings", true, {finishedTutorial: false, sawNewPrisonCell: false, musicMuted: false});
+		settings = LocalStorage.readObject("settings", true, {
+			finishedTutorial: false,
+			sawNewPrisonCell: false,
+			musicMuted: false,
+			visitedBoss: false
+		});
 		permaUpgrades = LocalStorage.readObject("perma_upgrades", true, {
 			bonusShardsLvl: 0,
 			bonusCoinsLvl: 0,
@@ -63,6 +69,10 @@ class GameStorage {
 		LocalStorage.writeObject("settings", true, settings);
 		LocalStorage.writeObject("perma_upgrades", true, permaUpgrades);
 		LocalStorage.writeObject("collectibles", true, collectibles);
+	}
+
+	public function saveSettings() {
+		LocalStorage.writeObject("settings", true, settings);
 	}
 
 	public function clear() {

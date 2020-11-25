@@ -1385,7 +1385,7 @@
 				{ "id": "Freeze", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Poison", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "1e3d78de088611b8e138642e314de232" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "7f6f3cf3b353ffc200246ff4b00f6759" },
 			{ "identifier": "LevelMark", "uid": 22, "values": [
 				{ "id": "Bg", "tileId": null, "__tileSrcRect": null },
 				{ "id": "CameraCinematicTarget", "tileId": null, "__tileSrcRect": null },
@@ -1399,7 +1399,7 @@
 				{ "id": "PlatformEndRight", "tileId": null, "__tileSrcRect": null },
 				{ "id": "SmallStep", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Walls", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "1e3d78de088611b8e138642e314de232" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "7f6f3cf3b353ffc200246ff4b00f6759" },
 			{ "identifier": "MobTypes", "uid": 25, "values": [
 				{ "id": "Blob", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Guard_Fists", "tileId": null, "__tileSrcRect": null },
@@ -1409,13 +1409,15 @@
 				{ "id": "Scientist_Hammer", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Pistol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "Scientist_Stun", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "1e3d78de088611b8e138642e314de232" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "7f6f3cf3b353ffc200246ff4b00f6759" },
 			{ "identifier": "PatrolTypes", "uid": 85, "values": [
 				{ "id": "AutoPatrol", "tileId": null, "__tileSrcRect": null },
 				{ "id": "BusyWork", "tileId": null, "__tileSrcRect": null },
 				{ "id": "FixedPatrol", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "1e3d78de088611b8e138642e314de232" },
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "7f6f3cf3b353ffc200246ff4b00f6759" },
 			{ "identifier": "CinematicId", "uid": 99, "values": [
+				{ "id": "BossRoomEnter", "tileId": null, "__tileSrcRect": null },
+				{ "id": "BossRoomExit", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonDashTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonKickTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonModStationTutorial", "tileId": null, "__tileSrcRect": null },
@@ -1423,9 +1425,9 @@
 				{ "id": "PrisonPrimaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonSecondaryAttackTutorial", "tileId": null, "__tileSrcRect": null },
 				{ "id": "PrisonWakeup", "tileId": null, "__tileSrcRect": null }
-			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "1e3d78de088611b8e138642e314de232" },
-			{ "identifier": "LaserOrientation", "uid": 135, "values": [ { "id": "BottomToTop", "tileId": null, "__tileSrcRect": null }, { "id": "LeftToRight", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "1e3d78de088611b8e138642e314de232" },
-			{ "identifier": "ItemTypes", "uid": 142, "values": [{ "id": "Syringe", "tileId": null, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "1e3d78de088611b8e138642e314de232" }
+			], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "7f6f3cf3b353ffc200246ff4b00f6759" },
+			{ "identifier": "LaserOrientation", "uid": 135, "values": [ { "id": "BottomToTop", "tileId": null, "__tileSrcRect": null }, { "id": "LeftToRight", "tileId": null, "__tileSrcRect": null } ], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "7f6f3cf3b353ffc200246ff4b00f6759" },
+			{ "identifier": "ItemTypes", "uid": 142, "values": [{ "id": "Syringe", "tileId": null, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/Types.hx", "externalFileChecksum": "7f6f3cf3b353ffc200246ff4b00f6759" }
 		]
 	},
 	"levels": [
@@ -68339,7 +68341,7 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{ "__identifier": "Hero", "__grid": [6,16], "__tile": null, "defUid": 20, "px": [104,272], "fieldInstances": [] },
-						{ "__identifier": "Boss", "__grid": [35,16], "__tile": null, "defUid": 132, "px": [568,272], "fieldInstances": [
+						{ "__identifier": "Boss", "__grid": [31,16], "__tile": null, "defUid": 132, "px": [504,272], "fieldInstances": [
 							{
 								"__identifier": "phase_3_point",
 								"__value": { "cx": 19, "cy": 16 },

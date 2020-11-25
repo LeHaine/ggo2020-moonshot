@@ -20,13 +20,13 @@ class CinematicControl extends dn.Process {
 		return Game.ME.fx;
 
 	var cm:dn.Cinematic;
-
+	var endCb:Null<() -> Void>;
 	var controlColor = 0x736680;
 
-	public function new(id:CinematicId, ?trigger:World.Entity_CinematicTrigger) {
+	public function new(id:CinematicId, ?trigger:World.Entity_CinematicTrigger, ?target:CPoint, ?cb:() -> Void) {
 		super(game);
-
 		ALL.push(this);
+		endCb = cb;
 		cm = new dn.Cinematic(Const.FPS);
 
 		switch id {
@@ -76,6 +76,13 @@ class CinematicControl extends dn.Process {
 				} else {
 					performNewPrisonCellCinematic(trigger);
 				}
+			case FirstBossRoomEnter:
+				performFirstBossRoomEnterCinematic(target);
+			case BossRoomEnter:
+				trace("boss room enter");
+				performBossRoomEnterCinematic(target);
+			case BossRoomExit:
+				performBossRoomExitCinematic();
 		}
 	}
 
@@ -190,7 +197,7 @@ class CinematicControl extends dn.Process {
 			end;
 			150;
 			game.storage.settings.finishedTutorial = true;
-			game.storage.save();
+			game.storage.saveSettings();
 			complete();
 		});
 	}
@@ -211,7 +218,73 @@ class CinematicControl extends dn.Process {
 			game.trackHero(false);
 			150;
 			game.storage.settings.sawNewPrisonCell = true;
-			game.storage.save();
+			game.storage.saveSettings();
+			complete();
+		});
+	}
+
+	private function performFirstBossRoomEnterCinematic(targetPoint:CPoint) {
+		var bossColor = 0x6b0202;
+		cm.create({
+			500;
+			displayText("Just one guy left.");
+			end;
+			game.camera.trackPoint(targetPoint, false);
+			displayText("How did you get my invention!?", bossColor);
+			end;
+			displayText("Oh this is yours? It was just sitting on a table with no one around. So I.. uh.. took it.");
+			end;
+			displayText("Well you can give it back now. And you need to go back to your cell. We aren't done with you yet.", bossColor);
+			end;
+			displayText("I think I'll pass on that.");
+			end;
+			displayText("Ugh, fine. I'll just have to kill you then.", bossColor);
+			end;
+			game.trackHero(false);
+			500;
+			game.storage.settings.visitedBoss = true;
+			game.storage.saveSettings();
+			complete();
+		});
+	}
+
+	private function performBossRoomEnterCinematic(targetPoint:CPoint) {
+		var bossColor = 0x6b0202;
+
+		var texts = [
+			"Mmmmurder! Mmmmurder!!",
+			"How do you keep getting back here?",
+			"Time to die.",
+			"Can I just have my weapon back, please?"
+		];
+
+		var responses = ["Yikes", "Not really sure.", "For you maybe.", "No, no you can't."];
+		var rand = Lib.irnd(0, texts.length - 1);
+		var bossText = texts[rand];
+		var heroText = responses[rand];
+		cm.create({
+			500;
+			displayText(bossText, bossColor);
+			game.camera.trackPoint(targetPoint, false);
+			end;
+			displayText(heroText);
+			game.trackHero(false);
+			end;
+			500;
+			complete();
+		});
+	}
+
+	private function performBossRoomExitCinematic() {
+		cm.create({
+			displayText("This looks different. Looks like they changed it up a bit.");
+			end;
+			displayText("What? Another station?");
+			end;
+			displayText("This station will allow you to upgrade your stats permanently that persist through each death.", controlColor);
+			end;
+			game.trackHero(false);
+			150;
 			complete();
 		});
 	}
@@ -274,7 +347,12 @@ class CinematicControl extends dn.Process {
 
 	private function complete() {
 		clearText();
-		delayer.addS(destroy, 0.3);
+		delayer.addS(() -> {
+			if (endCb != null) {
+				endCb();
+			}
+			destroy();
+		}, 0.3);
 	}
 
 	override function update() {

@@ -41,6 +41,8 @@ class Boss extends Character {
 	var tx = -1;
 	var ty = -1;
 
+	var playingIntro = false;
+
 	#if debug
 	var debugUi:UIEntity;
 	var phaseDebugTf:h2d.Text;
@@ -50,6 +52,7 @@ class Boss extends Character {
 		super(data.cx, data.cy);
 		this.data = data;
 
+		dir = -1;
 		initLife(1000 + (hero.traits.length * 100));
 		renderHealthBar();
 		healthBar.setSize(25, 2, 1);
@@ -120,7 +123,13 @@ class Boss extends Character {
 
 		switch phase {
 			case INTRO:
-				phase = PHASE_1;
+				if (!playingIntro) {
+					playingIntro = true;
+					var id = game.settings.visitedBoss ? BossRoomEnter : FirstBossRoomEnter;
+					new CinematicControl(id, new CPoint(cx, cy, xr, yr), () -> {
+						phase = PHASE_1;
+					});
+				}
 			// todo cinematic
 			case PHASE_1:
 				var lifePercent = life / maxLife;
