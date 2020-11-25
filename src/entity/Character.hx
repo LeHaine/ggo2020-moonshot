@@ -28,6 +28,9 @@ class Character extends Entity {
 	var usesHealthBar:Bool = true;
 	var elevator:Null<Elevator>;
 
+	var tx:Int = -1;
+	var ty:Int = -1;
+
 	override function get_onGround():Bool {
 		return super.get_onGround() || elevator != null;
 	}
@@ -179,6 +182,41 @@ class Character extends Entity {
 		} else {
 			affectIcons.y = Std.int(spr.y - hei * 1.35 - affectIcons.outerHeight);
 		}
+	}
+
+	function moveToTarget(spd:Float) {
+		if (tx != -1) {
+			if (tx > cx) {
+				dir = 1;
+				dx += spd * tmod;
+			}
+			if (tx < cx) {
+				dir = -1;
+				dx -= spd * tmod;
+			}
+
+			if (tx == cx) {
+				tx = -1;
+			}
+		}
+
+		if (ty != -1) {
+			if (ty > cy) {
+				dy += spd * tmod;
+			}
+			if (ty < cy) {
+				dy -= spd * tmod;
+			}
+
+			if (ty == cy) {
+				ty = -1;
+			}
+		}
+	}
+
+	public function moveTo(x:Int, y:Int = -1) {
+		tx = x;
+		ty = y;
 	}
 
 	override function dispose() {

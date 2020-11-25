@@ -38,9 +38,6 @@ class Boss extends Character {
 	var moonBlastCdMax = 1.25;
 	var moonBlastDamge = 50;
 
-	var tx = -1;
-	var ty = -1;
-
 	var playingIntro = false;
 
 	#if debug
@@ -296,40 +293,5 @@ class Boss extends Character {
 		bullet.doesAoeDamage = true;
 		bullet.shouldBump = true;
 		return bullet;
-	}
-
-	function moveToTarget(spd:Float) {
-		if (tx != -1) {
-			if (tx > cx) {
-				dir = 1;
-				dx += spd * tmod;
-			}
-			if (tx < cx) {
-				dir = -1;
-				dx -= spd * tmod;
-			}
-
-			if (tx == cx) {
-				tx = -1;
-			}
-		}
-
-		if (ty != -1) {
-			if (ty > cy) {
-				dy += spd * tmod;
-			}
-			if (ty < cy) {
-				dy -= spd * tmod;
-			}
-
-			if (ty == cy) {
-				ty = -1;
-			}
-		}
-	}
-
-	function moveTo(x:Int, y:Int) {
-		tx = x;
-		ty = y;
 	}
 }

@@ -79,10 +79,9 @@ class CinematicControl extends dn.Process {
 			case FirstBossRoomEnter:
 				performFirstBossRoomEnterCinematic(target);
 			case BossRoomEnter:
-				trace("boss room enter");
 				performBossRoomEnterCinematic(target);
 			case BossRoomExit:
-				performBossRoomExitCinematic();
+				performBossRoomExitCinematic(trigger);
 		}
 	}
 
@@ -275,16 +274,28 @@ class CinematicControl extends dn.Process {
 		});
 	}
 
-	private function performBossRoomExitCinematic() {
+	private function performBossRoomExitCinematic(trigger:World.Entity_CinematicTrigger) {
+		if (trigger == null) {
+			return;
+		}
+		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
+		var hero = game.hero;
 		cm.create({
-			displayText("This looks different. Looks like they changed it up a bit.");
+			displayText("The exit! Yes!");
+			game.camera.trackPoint(targetPoint, false);
 			end;
-			displayText("What? Another station?");
-			end;
-			displayText("This station will allow you to upgrade your stats permanently that persist through each death.", controlColor);
-			end;
+			clearText();
+			cd.setS("skipLock", 50);
 			game.trackHero(false);
-			150;
+			1000;
+			hero.moveTo(20, 12);
+			1500;
+			displayText("Nooooooo!");
+			2000;
+			fx.deathScreen(0x0, 1, 0.5, 2, 2);
+			2000;
+			clearText();
+			game.resetRun();
 			complete();
 		});
 	}
@@ -315,16 +326,17 @@ class CinematicControl extends dn.Process {
 		tf.textColor = 0xffffff;
 
 		f.addSpacing(16);
-		var tf = new h2d.Text(Assets.fontPixel, f);
-		if (game.ca.isGamePad()) {
-			tf.text = "[B] to continue";
-		} else {
+		if (!cd.has("skipLock")) {
+			var tf = new h2d.Text(Assets.fontPixel, f);
+			if (game.ca.isGamePad()) {
+				tf.text = "[B] to continue";
+			} else {
+				tf.text = "F to continue";
+			}
 			tf.text = "F to continue";
+			tf.textColor = 0xffffff;
+			f.getProperties(tf).align(Top, Right);
 		}
-		tf.text = "F to continue";
-		tf.textColor = 0xffffff;
-		f.getProperties(tf).align(Top, Right);
-
 		f.x = Std.int(w() / Const.SCALE * 0.5 - f.outerWidth * 0.5 + rnd(0, 30, true));
 		f.y = rnd(20, 40);
 

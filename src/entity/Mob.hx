@@ -54,8 +54,6 @@ class Mob extends Character {
 	public var defense = 0;
 	public var damage = 1;
 
-	var tx:Int = -1;
-
 	public function new(data:World.Entity_Mob) {
 		super(data.cx, data.cy);
 		ALL.push(this);
@@ -288,21 +286,6 @@ class Mob extends Character {
 		}
 	}
 
-	private function moveToTarget(spd:Float) {
-		if (tx > cx) {
-			dir = 1;
-			dx += spd * tmod;
-		}
-		if (tx < cx) {
-			dir = -1;
-			dx -= spd * tmod;
-		}
-
-		if (tx == cx) {
-			tx = -1;
-		}
-	}
-
 	private function performBusyWork() {}
 
 	private function hopSmallStep(dir:Int) {
@@ -313,10 +296,6 @@ class Mob extends Character {
 	}
 
 	private function attack() {}
-
-	public function moveTo(x:Int) {
-		tx = x;
-	}
 
 	override function onTouchGround(fallHeight:Float) {
 		super.onTouchGround(fallHeight);

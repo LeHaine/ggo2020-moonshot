@@ -111,6 +111,9 @@ class Hero extends Character {
 			ignoreBullets = false;
 		}
 
+		if (tx != -1 || ty != -1) {
+			moveToTarget(spd);
+		}
 		if (!isConscious()) {
 			return;
 		}
