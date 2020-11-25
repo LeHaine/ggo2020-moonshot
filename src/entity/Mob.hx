@@ -308,6 +308,7 @@ class Mob extends Character {
 	private function hopSmallStep(dir:Int) {
 		bdy = 0;
 		dy = -0.25;
+		dx = dir * 0.1;
 		xr = dir == 1 ? 0.7 : 0.3;
 	}
 

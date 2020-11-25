@@ -117,15 +117,15 @@ class Fx extends dn.Process {
 		#end
 	}
 
-	public function markerText(cx:Int, cy:Int, txt:String, ?t = 1.0) {
+	public function markerText(cx:Int, cy:Int, txt:String, col:UInt, ?t = 1.0) {
 		#if debug
 		var tf = new h2d.Text(Assets.fontTiny, topNormalSb);
 		tf.text = txt;
 
 		var p = allocTopAdd(getTile("fxCircle"), (cx + 0.5) * Const.GRID, (cy + 0.5) * Const.GRID);
-		p.colorize(0x0080FF);
+		p.colorize(col);
 		p.alpha = 0.6;
-		p.lifeS = 0.3;
+		p.lifeS = t;
 		p.fadeOutSpeed = 0.4;
 		p.onKill = tf.remove;
 

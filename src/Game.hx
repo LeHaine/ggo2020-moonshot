@@ -438,6 +438,25 @@ class Game extends Process {
 					hxd.System.exit();
 			#end
 
+			#if debug
+			// Level marks
+			if (ca.isKeyboardPressed(Key.K)) {
+				var allMarks = LevelMark.getConstructors();
+				for (cx in 0...level.wid) {
+					for (cy in 0...level.hei) {
+						var i = 0;
+						for (id in allMarks) {
+							var m = LevelMark.createByName(id);
+							if (level.hasMark(m, cx, cy) && m != LevelMark.Walls && m != LevelMark.Bg) {
+								fx.markerText(cx, cy, id.substr(0, 2), Color.makeColorHsl(i / allMarks.length), 10);
+							}
+							i++;
+						}
+					}
+				}
+			}
+			#end
+
 			// Restart
 			if (ca.selectPressed()) {
 				Main.ME.startGame();
@@ -447,9 +466,11 @@ class Game extends Process {
 				minimap.enlarge();
 			}
 
+			#if debug
 			if (ca.dpadDownDown()) {
-				startLevel(3); // boss room
+				startLevel(BOSS_ROOM); // boss room
 			}
+			#end
 
 			if (ca.isKeyboardPressed(Key.M)) {
 				toggleMusic();
