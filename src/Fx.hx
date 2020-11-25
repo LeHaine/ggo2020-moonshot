@@ -505,6 +505,31 @@ class Fx extends dn.Process {
 		}
 	}
 
+	public function sparkBurst(x:Float, y:Float) {
+		var n = 40;
+		for (i in 0...n) {
+			var p = allocTopNormal(getTile("pixel"), x + rnd(0, 3, true), y + rnd(0, 4, true));
+			p.setFadeS(rnd(0.7, 1), 0, rnd(3, 7));
+			p.colorize(0xff9200);
+			p.colorAnimS(0xcfd6d8, 0xabb7ba, rnd(2, 4));
+
+			p.setScale(rnd(0.3, 0.7, true));
+			p.scaleMul = rnd(0.98, 0.99);
+
+			p.dx = rnd(0, 2, true);
+			p.dy = i <= n * 0.25 ? -rnd(4.5, 5.5) : -rnd(3, 4.5);
+			p.gy = rnd(0.1, 0.3);
+			p.frict = rnd(0.85, 0.96);
+
+			p.rotation = rnd(0, 6.28);
+			p.dr = rnd(0, 0.3, true);
+
+			p.lifeS = rnd(5, 10);
+			p.onUpdate = _hardPhysics;
+			p.delayS = i > 20 ? rnd(0, 0.1) : 0;
+		}
+	}
+
 	public function beam(fx:Float, fy:Float, ang:Float, c:UInt, dist:Float) {
 		var n = 30;
 		for (i in 0...n) {

@@ -177,6 +177,9 @@ class Game extends Process {
 					new entity.ModStation(e);
 					lastSpawn = 0;
 				} else {
+					var possibleSpawn = Assets.tiles.h_get("modStationPossibleSpawn", scroller);
+					possibleSpawn.x = e.pixelX - Const.GRID * 0.5;
+					possibleSpawn.y = e.pixelY - Const.GRID;
 					lastSpawn++;
 				}
 			}

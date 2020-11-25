@@ -13,7 +13,7 @@ class ModStation extends Entity {
 		super(data.cx, data.cy);
 		ALL.push(this);
 		this.data = data;
-		spr.set("modStation");
+		spr.set("modStationActive");
 
 		hasGravity = false;
 		isCollidable = false;
@@ -28,9 +28,8 @@ class ModStation extends Entity {
 	}
 
 	private function onItemBought() {
-		#if !debug
-		destroy();
+		spr.set("modStationInactive");
 		interactable.destroy();
-		#end
+		fx.sparkBurst(centerX, centerY);
 	}
 }

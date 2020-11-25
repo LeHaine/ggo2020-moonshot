@@ -146,14 +146,14 @@ bossFloatUp2
   index: -1
 bossGunDraw0
   rotate: false
-  xy: 430, 624
+  xy: 361, 606
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 bossGunHit0
   rotate: false
-  xy: 238, 539
+  xy: 205, 548
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -195,7 +195,7 @@ bossHammerSwing2
   index: -1
 bossIdle0
   rotate: false
-  xy: 472, 639
+  xy: 502, 648
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
@@ -209,7 +209,7 @@ bossIdle1
   index: -1
 bossIdleGunDown0
   rotate: false
-  xy: 430, 624
+  xy: 361, 606
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
@@ -237,7 +237,7 @@ bossIdleGunUp1
   index: -1
 bossIdleHammer0
   rotate: false
-  xy: 326, 569
+  xy: 282, 571
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
@@ -300,14 +300,14 @@ bossRunHammer0
   index: -1
 bossRunHammer1
   rotate: false
-  xy: 340, 569
+  xy: 267, 580
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
   index: -1
 bossRunHammer2
   rotate: false
-  xy: 354, 569
+  xy: 251, 583
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
@@ -321,7 +321,7 @@ bossRunHammer3
   index: -1
 bossScream0
   rotate: false
-  xy: 460, 619
+  xy: 384, 608
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
@@ -454,7 +454,7 @@ empty
   index: -1
 explosiveBarrel0
   rotate: false
-  xy: 277, 586
+  xy: 283, 602
   size: 8, 16
   orig: 8, 16
   offset: 0, 0
@@ -468,7 +468,7 @@ fastReload
   index: -1
 fireEffectIcon
   rotate: false
-  xy: 304, 598
+  xy: 292, 610
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -510,7 +510,7 @@ fxGib2
   index: -1
 fxImpact0
   rotate: false
-  xy: 270, 576
+  xy: 314, 569
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -608,7 +608,7 @@ guardFistsHit0
   index: -1
 guardFistsIdle0
   rotate: false
-  xy: 308, 579
+  xy: 265, 600
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
@@ -650,14 +650,14 @@ guardFistsLeftFist0
   index: -1
 guardFistsLeftFist1
   rotate: false
-  xy: 169, 548
+  xy: 385, 590
   size: 14, 17
   orig: 14, 17
   offset: 0, 0
   index: -1
 guardFistsLeftFist2
   rotate: false
-  xy: 483, 627
+  xy: 426, 617
   size: 13, 17
   orig: 13, 17
   offset: 0, 0
@@ -678,7 +678,7 @@ guardFistsRightFist0
   index: -1
 guardFistsRightFist1
   rotate: false
-  xy: 254, 563
+  xy: 220, 567
   size: 15, 17
   orig: 15, 17
   offset: 0, 0
@@ -706,7 +706,7 @@ guardFistsRunFists0
   index: -1
 guardFistsRunFists1
   rotate: false
-  xy: 254, 544
+  xy: 188, 549
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -720,7 +720,7 @@ guardFistsRunFists2
   index: -1
 guardFistsRunFists3
   rotate: false
-  xy: 222, 539
+  xy: 273, 551
   size: 15, 19
   orig: 15, 19
   offset: 0, 0
@@ -755,14 +755,14 @@ guardFistsWalk3
   index: -1
 gun
   rotate: false
-  xy: 494, 652
+  xy: 454, 632
   size: 12, 7
   orig: 12, 7
   offset: 0, 0
   index: -1
 heroCrouchIdle0
   rotate: false
-  xy: 481, 645
+  xy: 499, 635
   size: 12, 12
   orig: 12, 12
   offset: 0, 0
@@ -776,28 +776,28 @@ heroCrouchIdle1
   index: -1
 heroCrouchIdleGun0
   rotate: false
-  xy: 184, 562
+  xy: 415, 600
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchIdleGun1
   rotate: false
-  xy: 184, 548
+  xy: 400, 598
   size: 14, 13
   orig: 14, 13
   offset: 0, 0
   index: -1
 heroCrouchRun0
   rotate: false
-  xy: 169, 566
+  xy: 430, 604
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchRun1
   rotate: false
-  xy: 410, 598
+  xy: 480, 640
   size: 10, 11
   orig: 10, 11
   offset: 0, 0
@@ -811,49 +811,49 @@ heroCrouchRun2
   index: -1
 heroCrouchRun3
   rotate: false
-  xy: 199, 566
+  xy: 445, 608
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchRunGun0
   rotate: false
-  xy: 184, 575
+  xy: 460, 619
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroCrouchRunGun1
   rotate: false
-  xy: 199, 579
+  xy: 252, 571
   size: 14, 11
   orig: 14, 11
   offset: 0, 0
   index: -1
 heroCrouchRunGun2
   rotate: false
-  xy: 229, 587
+  xy: 236, 580
   size: 14, 11
   orig: 14, 11
   offset: 0, 0
   index: -1
 heroCrouchRunGun3
   rotate: false
-  xy: 270, 563
+  xy: 236, 567
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
   index: -1
 heroCrouchShoot0
   rotate: false
-  xy: 214, 578
+  xy: 484, 627
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
   index: -1
 heroDash0
   rotate: false
-  xy: 137, 530
+  xy: 171, 530
   size: 16, 15
   orig: 16, 15
   offset: 0, 0
@@ -888,7 +888,7 @@ heroDeathFall1
   index: -1
 heroIdle0
   rotate: false
-  xy: 317, 579
+  xy: 249, 603
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
@@ -930,14 +930,14 @@ heroKickGun0
   index: -1
 heroLedgeClimb0
   rotate: false
-  xy: 253, 581
+  xy: 346, 569
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 heroLedgeClimb1
   rotate: false
-  xy: 497, 635
+  xy: 440, 621
   size: 13, 16
   orig: 13, 16
   offset: 0, 0
@@ -951,7 +951,7 @@ heroRun0
   index: -1
 heroRun1
   rotate: false
-  xy: 238, 558
+  xy: 221, 548
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -965,7 +965,7 @@ heroRun2
   index: -1
 heroRun3
   rotate: false
-  xy: 205, 546
+  xy: 289, 551
   size: 15, 19
   orig: 15, 19
   offset: 0, 0
@@ -986,7 +986,7 @@ heroRunGun1
   index: -1
 heroRunGun2
   rotate: false
-  xy: 221, 559
+  xy: 237, 548
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
@@ -1007,14 +1007,14 @@ heroStandShoot0
   index: -1
 heroStandShoot1
   rotate: false
-  xy: 154, 548
+  xy: 361, 587
   size: 14, 18
   orig: 14, 18
   offset: 0, 0
   index: -1
 keyE
   rotate: false
-  xy: 421, 600
+  xy: 491, 648
   size: 10, 11
   orig: 10, 11
   offset: 0, 0
@@ -1028,35 +1028,35 @@ laserBaseHoriz0
   index: -1
 laserBaseVert0
   rotate: false
-  xy: 295, 579
+  xy: 467, 639
   size: 12, 4
   orig: 12, 4
   offset: 0, 0
   index: -1
 laserMidHoriz0
   rotate: false
-  xy: 188, 530
+  xy: 222, 530
   size: 16, 8
   orig: 16, 8
   offset: 0, 0
   index: -1
 laserMidVert0
   rotate: false
-  xy: 253, 600
+  xy: 258, 619
   size: 8, 16
   orig: 8, 16
   offset: 0, 0
   index: -1
 laserStartHoriz0
   rotate: false
-  xy: 295, 570
+  xy: 267, 571
   size: 14, 8
   orig: 14, 8
   offset: 0, 0
   index: -1
 laserStartVert0
   rotate: false
-  xy: 326, 589
+  xy: 310, 599
   size: 8, 14
   orig: 8, 14
   offset: 0, 0
@@ -1103,9 +1103,23 @@ minimapIconsTeleporterSelect0
   orig: 4, 4
   offset: 0, 0
   index: -1
-modStation
+modStationActive0
   rotate: false
   xy: 103, 530
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+modStationInactive0
+  rotate: false
+  xy: 120, 530
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+modStationPossibleSpawn0
+  rotate: false
+  xy: 137, 530
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -1280,84 +1294,84 @@ pixel
   index: -1
 poisionEffectIcon
   rotate: false
-  xy: 410, 610
+  xy: 281, 591
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 ratBite0
   rotate: false
-  xy: 237, 577
+  xy: 330, 569
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 ratBite1
   rotate: false
-  xy: 154, 530
+  xy: 188, 530
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
   index: -1
 ratBite2
   rotate: false
-  xy: 154, 540
+  xy: 171, 546
   size: 16, 7
   orig: 16, 7
   offset: 0, 0
   index: -1
 ratDeadBody0
   rotate: false
-  xy: 205, 539
+  xy: 273, 544
   size: 16, 6
   orig: 16, 6
   offset: 0, 0
   index: -1
 ratHit0
   rotate: false
-  xy: 311, 569
+  xy: 220, 585
   size: 14, 9
   orig: 14, 9
   offset: 0, 0
   index: -1
 ratIdle0
   rotate: false
-  xy: 137, 546
+  xy: 205, 540
   size: 16, 7
   orig: 16, 7
   offset: 0, 0
   index: -1
 ratIdle1
   rotate: false
-  xy: 205, 530
+  xy: 239, 530
   size: 16, 8
   orig: 16, 8
   offset: 0, 0
   index: -1
 ratRun0
   rotate: false
-  xy: 222, 530
+  xy: 222, 539
   size: 16, 8
   orig: 16, 8
   offset: 0, 0
   index: -1
 ratRun1
   rotate: false
-  xy: 239, 530
+  xy: 239, 539
   size: 16, 8
   orig: 16, 8
   offset: 0, 0
   index: -1
 ratRun2
   rotate: false
-  xy: 188, 539
+  xy: 188, 540
   size: 16, 8
   orig: 16, 8
   offset: 0, 0
   index: -1
 ratRun3
   rotate: false
-  xy: 171, 540
+  xy: 256, 544
   size: 16, 7
   orig: 16, 7
   offset: 0, 0
@@ -1413,7 +1427,7 @@ scientistHammerHit0
   index: -1
 scientistHammerIdle0
   rotate: false
-  xy: 286, 584
+  xy: 292, 591
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
@@ -1427,7 +1441,7 @@ scientistHammerIdle1
   index: -1
 scientistHammerIdleHammer0
   rotate: false
-  xy: 368, 587
+  xy: 235, 592
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
@@ -1448,14 +1462,14 @@ scientistHammerRunHammer0
   index: -1
 scientistHammerRunHammer1
   rotate: false
-  xy: 382, 590
+  xy: 296, 571
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
   index: -1
 scientistHammerRunHammer2
   rotate: false
-  xy: 396, 598
+  xy: 310, 579
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
@@ -1497,7 +1511,7 @@ scientistHammerWalk0
   index: -1
 scientistHammerWalk1
   rotate: false
-  xy: 286, 544
+  xy: 305, 551
   size: 8, 19
   orig: 8, 19
   offset: 0, 0
@@ -1511,7 +1525,7 @@ scientistHammerWalk2
   index: -1
 scientistHammerWalk3
   rotate: false
-  xy: 286, 544
+  xy: 305, 551
   size: 8, 19
   orig: 8, 19
   offset: 0, 0
@@ -1546,42 +1560,42 @@ scientistPistolDeathFall1
   index: -1
 scientistPistolGunDraw0
   rotate: false
-  xy: 444, 628
+  xy: 398, 612
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 scientistPistolHit0
   rotate: false
-  xy: 270, 544
+  xy: 253, 552
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
   index: -1
 scientistPistolIdle0
   rotate: false
-  xy: 295, 584
+  xy: 301, 591
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
   index: -1
 scientistPistolIdle1
   rotate: false
-  xy: 286, 564
+  xy: 376, 587
   size: 8, 19
   orig: 8, 19
   offset: 0, 0
   index: -1
 scientistPistolIdleGunDown0
   rotate: false
-  xy: 444, 628
+  xy: 398, 612
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 scientistPistolIdleGunDown1
   rotate: false
-  xy: 432, 604
+  xy: 324, 579
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
@@ -1644,7 +1658,7 @@ scientistPistolWalk0
   index: -1
 scientistPistolWalk1
   rotate: false
-  xy: 244, 587
+  xy: 475, 619
   size: 8, 19
   orig: 8, 19
   offset: 0, 0
@@ -1658,7 +1672,7 @@ scientistPistolWalk2
   index: -1
 scientistPistolWalk3
   rotate: false
-  xy: 244, 587
+  xy: 475, 619
   size: 8, 19
   orig: 8, 19
   offset: 0, 0
@@ -1693,42 +1707,42 @@ scientistStunDeathFall1
   index: -1
 scientistStunGunDraw0
   rotate: false
-  xy: 458, 638
+  xy: 412, 613
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 scientistStunHit0
   rotate: false
-  xy: 295, 551
+  xy: 204, 567
   size: 15, 18
   orig: 15, 18
   offset: 0, 0
   index: -1
 scientistStunIdle0
   rotate: false
-  xy: 268, 586
+  xy: 274, 602
   size: 8, 18
   orig: 8, 18
   offset: 0, 0
   index: -1
 scientistStunIdle1
   rotate: false
-  xy: 421, 612
+  xy: 352, 588
   size: 8, 19
   orig: 8, 19
   offset: 0, 0
   index: -1
 scientistStunIdleGunDown0
   rotate: false
-  xy: 458, 638
+  xy: 412, 613
   size: 13, 18
   orig: 13, 18
   offset: 0, 0
   index: -1
 scientistStunIdleGunDown1
   rotate: false
-  xy: 446, 608
+  xy: 338, 588
   size: 13, 19
   orig: 13, 19
   offset: 0, 0
@@ -1791,7 +1805,7 @@ scientistStunWalk0
   index: -1
 scientistStunWalk1
   rotate: false
-  xy: 474, 619
+  xy: 375, 607
   size: 8, 19
   orig: 8, 19
   offset: 0, 0
@@ -1805,7 +1819,7 @@ scientistStunWalk2
   index: -1
 scientistStunWalk3
   rotate: false
-  xy: 474, 619
+  xy: 375, 607
   size: 8, 19
   orig: 8, 19
   offset: 0, 0
@@ -1819,21 +1833,21 @@ splitShotIcon
   index: -1
 stunEffectIcon0
   rotate: false
-  xy: 313, 598
+  xy: 301, 610
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 stunEffectIcon1
   rotate: false
-  xy: 277, 603
+  xy: 319, 599
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 syringe0
   rotate: false
-  xy: 120, 530
+  xy: 154, 530
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -1868,7 +1882,7 @@ uiBar
   index: -1
 uiBarBg
   rotate: false
-  xy: 286, 603
+  xy: 319, 608
   size: 8, 5
   orig: 8, 5
   offset: 0, 0
@@ -1889,7 +1903,7 @@ uiDialogBox
   index: -1
 uiDownArrow
   rotate: false
-  xy: 262, 605
+  xy: 328, 599
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -1903,7 +1917,7 @@ uiWindow
   index: -1
 water0
   rotate: false
-  xy: 171, 530
+  xy: 205, 530
   size: 16, 9
   orig: 16, 9
   offset: 0, 0
