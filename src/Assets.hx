@@ -99,7 +99,7 @@ class Assets {
 
 		tiles.defineAnim("blobRoll", "0-3(2)");
 		tiles.defineAnim("blobIdle", "0(5), 1(10), 2(10)");
-		tiles.defineAnim("blobExplode", "0-3(2)");
+		tiles.defineAnim("blobExplode", "0-3(4)");
 
 		tiles.defineAnim("mutantJumperIdle", "0(10), 1(15)");
 		tiles.defineAnim("mutantJumperRun", "0-3(3)");
