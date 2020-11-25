@@ -148,37 +148,25 @@ class ModStationWindow extends dn.Process {
 		flow.verticalAlign = Top;
 		flow.backgroundTile = Assets.tiles.getTile("uiButton");
 		flow.borderHeight = flow.borderWidth = 16;
-		flow.padding = 4;
-		flow.maxWidth = flow.minWidth = 290;
+		flow.padding = 8;
+		flow.maxWidth = flow.minWidth = 300;
 		flow.horizontalSpacing = 10;
 		flow.enableInteractive = true;
-
-		var iconBox = new h2d.Flow(flow);
-		iconBox.horizontalSpacing = 8;
-		iconBox.maxWidth = iconBox.minWidth = 75;
-		iconBox.maxHeight = iconBox.minHeight = 75;
-		iconBox.padding = 8;
-		iconBox.verticalAlign = Middle;
-
-		Assets.tiles.h_get(trait.icon, iconBox);
 
 		var price = Std.int(trait.price * priceMul);
 		var coins = Game.ME.coins;
 
 		var infoBox = new h2d.Flow(flow);
-		infoBox.maxWidth = infoBox.minWidth = 300;
 		infoBox.padding = 8;
 		infoBox.verticalSpacing = 8;
 		infoBox.layout = Vertical;
 
 		var nameTf = new h2d.Text(Assets.fontPixelMedium, infoBox);
 		nameTf.text = trait.name;
-		nameTf.maxWidth = 300;
 		nameTf.textColor = price <= coins ? 0xFFFFFF : 0xE77272;
 
 		var desc = new h2d.Text(Assets.fontPixelSmall, infoBox);
 		desc.text = trait.desc;
-		desc.maxWidth = 300;
 		desc.textColor = 0xBBBBBB;
 
 		for (attr in trait.attributes) {
@@ -200,8 +188,9 @@ class ModStationWindow extends dn.Process {
 		}
 		var priceBox = new h2d.Flow(flow);
 		flow.getProperties(priceBox).verticalAlign = FlowAlign.Bottom;
+		priceBox.horizontalAlign = FlowAlign.Right;
 		priceBox.horizontalSpacing = 8;
-		priceBox.maxWidth = priceBox.minWidth = 90;
+		priceBox.maxWidth = priceBox.minWidth = 115;
 		priceBox.padding = 8;
 
 		flow.addSpacing(8);

@@ -301,7 +301,9 @@ class CrystalShardStationWindow extends dn.Process {
 		levelTf.textColor = 0x8CD12E;
 
 		var priceBox = new h2d.Flow(priceLevelBox);
+		priceBox.horizontalAlign = FlowAlign.Right;
 		priceLevelBox.getProperties(priceBox).verticalAlign = FlowAlign.Bottom;
+		priceBox.maxWidth = priceBox.minWidth = 115;
 		priceBox.horizontalSpacing = 8;
 
 		flow.addSpacing(8);
