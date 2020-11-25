@@ -49,6 +49,7 @@ enum CinematicId {
 	PrisonDashTutorial;
 	PrisonSecondaryAttackTutorial;
 	PrisonNewCell;
+	PrisonModStationTutorial;
 }
 
 enum LaserOrientation {

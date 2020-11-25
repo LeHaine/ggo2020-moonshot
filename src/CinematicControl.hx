@@ -64,11 +64,17 @@ class CinematicControl extends dn.Process {
 				} else {
 					performSecondaryAttackTutorialCinematic(trigger);
 				}
+			case PrisonModStationTutorial:
+				if (game.storage.settings.finishedTutorial) {
+					destroy();
+				} else {
+					performModStationTutorialCinematic();
+				}
 			case PrisonNewCell:
 				if (game.storage.settings.sawNewPrisonCell) {
 					destroy();
 				} else {
-					performNewPrisonCellCinematic();
+					performNewPrisonCellCinematic(trigger);
 				}
 		}
 	}
@@ -147,6 +153,8 @@ class CinematicControl extends dn.Process {
 			end;
 			displayText("Press [SPACE] to jump and then [SHIFT + SPACE] while in the air to dash further than you can jump.", controlColor);
 			end;
+			displayText("Press [SPACE] again while in the air will allow you to double jump as well.", controlColor);
+			end;
 			150;
 			complete();
 		});
@@ -166,16 +174,41 @@ class CinematicControl extends dn.Process {
 			end;
 			game.trackHero(false);
 			500;
+			complete();
+		});
+	}
+
+	private function performModStationTutorialCinematic() {
+		cm.create({
+			displayText("What is this machine?");
+			end;
+			displayText("This is a modification station that you will find randomly around the facility.", controlColor);
+			end;
+			displayText("This station will allow you to upgrade your stats and transform your weapon during an escape.", controlColor);
+			end;
+			displayText("Upgrades are reset on death.", controlColor);
+			end;
+			150;
 			game.storage.settings.finishedTutorial = true;
 			game.storage.save();
 			complete();
 		});
 	}
 
-	private function performNewPrisonCellCinematic() {
+	private function performNewPrisonCellCinematic(trigger:World.Entity_CinematicTrigger) {
+		if (trigger == null) {
+			return;
+		}
+		var targetPoint = new CPoint(trigger.f_cameraTarget.cx, trigger.f_cameraTarget.cy);
 		cm.create({
 			displayText("This looks different. Looks like they changed it up a bit.");
 			end;
+			game.camera.trackPoint(targetPoint, false);
+			displayText("What? Another station?");
+			end;
+			displayText("This station will allow you to upgrade your stats permanently that persist through each death.", controlColor);
+			end;
+			game.trackHero(false);
 			150;
 			game.storage.settings.sawNewPrisonCell = true;
 			game.storage.save();
