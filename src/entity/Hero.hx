@@ -10,7 +10,7 @@ class Hero extends Character {
 	public var projectiles = 1;
 	public var damageMul = 1.;
 	public var secondaryDamageMul = 1.;
-	public var secondaryRadius = 1.;
+	public var secondaryRadius = 2.;
 	public var armorMul = 1.;
 	public var shotsPerSecond = 2.;
 	public var accuracy = 2.;
@@ -58,7 +58,7 @@ class Hero extends Character {
 	}
 
 	public function reinitLife() {
-		initLife(100);
+		initLife(150);
 	}
 
 	public function multiplyLife(mul:Float) {
@@ -256,7 +256,7 @@ class Hero extends Character {
 		chargeStrongShotBar.visible = false;
 	}
 
-	private function spawnPrimaryBullet(damage:Int = 10, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
+	private function spawnPrimaryBullet(damage:Int = 15, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
 		setSquashX(0.85);
 		var bulletX = centerX + (dir * 2);
 		var bulletY = centerY - 3;
