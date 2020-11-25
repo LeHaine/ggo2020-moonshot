@@ -94,7 +94,7 @@ class Game extends Process {
 	var nextLevelReady = false;
 	var lastSpawn = 0;
 
-	static var BOSS_ROOM = 3;
+	static var BOSS_ROOM = 6;
 
 	public function new() {
 		super(Main.ME);
