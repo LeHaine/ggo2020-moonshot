@@ -236,13 +236,13 @@ class CrystalShardStationWindow extends dn.Process {
 		addUpgrades();
 		itemMask.width = itemFlow.innerWidth;
 		itemMask.height = Std.int(Math.min(itemFlow.outerHeight, 400));
+		itemFlow.minHeight = 900;
 		onResize();
 		Game.ME.pause();
 	}
 
 	function addUpgrades() {
 		itemFlow.enableInteractive = false;
-		itemFlow.y = 0;
 		items = [];
 		itemFlow.removeChildren();
 
@@ -261,6 +261,7 @@ class CrystalShardStationWindow extends dn.Process {
 	}
 
 	function addItem(upgrade:PermaUpgrade, index:Int) {
+		trace("add");
 		var flow = new h2d.Flow(itemFlow);
 		flow.verticalAlign = Top;
 		flow.backgroundTile = Assets.tiles.getTile("uiButton");
@@ -309,30 +310,17 @@ class CrystalShardStationWindow extends dn.Process {
 		flow.addSpacing(8);
 
 		var priceTf = new h2d.Text(Assets.fontPixelMedium, priceBox);
-		var maxed = upgrade.level == upgrade.maxLevel;
-		if (maxed) {
-			priceTf.text = "MAXED";
-			priceTf.textColor = 0xFF9900;
-		} else if (price > 0) {
-			priceTf.text = Std.string(price);
-			priceTf.textColor = price <= shards ? 0xFF9900 : 0xD20000;
-		} else {
-			priceTf.text = "FREE";
-			priceTf.textColor = 0x8CD12E;
-		}
-
+		setUpgradePrice(upgrade, priceTf);
 		var crystalIcon = Assets.tiles.h_get("crystal", priceBox);
 		crystalIcon.scale(0.5);
-		if (maxed) {
-			crystalIcon.alpha = 0;
-		}
 
 		var interact = () -> {
+			var maxed = upgrade.level == upgrade.maxLevel;
 			if (Game.ME.shards >= upgrade.price && !maxed) {
 				Game.ME.shards -= upgrade.price;
 				upgrade.modify();
 				Game.ME.storage.save();
-				addUpgrades();
+				setUpgradePrice(upgrade, priceTf);
 				if (onItemBought != null) {
 					onItemBought();
 				}
@@ -343,7 +331,9 @@ class CrystalShardStationWindow extends dn.Process {
 		flow.interactive.onOver = (e) -> {
 			cursorIdx = index;
 		}
-		flow.interactive.onClick = (e) -> interact();
+		flow.interactive.onClick = (e) -> {
+			interact();
+		}
 
 		items.push({
 			flow: flow,
@@ -353,12 +343,27 @@ class CrystalShardStationWindow extends dn.Process {
 		});
 	}
 
+	function setUpgradePrice(upgrade:PermaUpgrade, tf:h2d.Text) {
+		var shards = Game.ME.shards;
+		var price = upgrade.price;
+		var maxed = upgrade.level == upgrade.maxLevel;
+		if (maxed) {
+			tf.text = "MAXED";
+			tf.textColor = 0xFF9900;
+		} else if (price > 0) {
+			tf.text = Std.string(price);
+			tf.textColor = price <= shards ? 0xFF9900 : 0xD20000;
+		} else {
+			tf.text = "FREE";
+			tf.textColor = 0x8CD12E;
+		}
+	}
+
 	var closed:Bool;
 
 	function close() {
 		if (!closed) {
 			closed = true;
-			cd.setS("closing", 99999);
 			tw.createS(root.alpha, 0, 0.4);
 			tw.createS(masterFlow.y, -masterFlow.outerHeight, 0.4).end(() -> {
 				destroy();
