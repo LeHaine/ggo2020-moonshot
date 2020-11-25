@@ -1,7 +1,7 @@
 package entity.mob;
 
 class Blob extends Mob {
-	var explosionRadius = 6;
+	var explosionRadius = 3;
 
 	public function new(data:World.Entity_Mob) {
 		super(data);
