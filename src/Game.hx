@@ -320,8 +320,7 @@ class Game extends Process {
 		if (level.idx == 0) {
 			startLevel(level.idx + 2);
 		} else {
-			// startLevel(level.idx + 1);
-			startLevel(6);
+			startLevel(level.idx + 1);
 		}
 	}
 
