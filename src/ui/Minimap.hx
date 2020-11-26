@@ -45,8 +45,26 @@ class Minimap extends dn.Process {
 	var instructions:h2d.Flow;
 	var ca:dn.heaps.Controller.ControllerAccess;
 
-	var teleportInstructions = "[ESC] to close, [E] to teleport, [W,A,S,D] to navigate";
-	var minimapInstructions = "[ESC] to close, [W,A,S,D] to move";
+	var teleportInstructions(get, never):String;
+
+	inline function get_teleportInstructions() {
+		if (ca.isGamePad()) {
+			return "[B] to close, [RB] to teleport, [Left-Stick] to navigate";
+		} else {
+			return "[ESC] to close, [E] to teleport, [W,A,S,D] to navigate";
+		}
+	}
+
+	var minimapInstructions(get, never):String;
+
+	inline function get_minimapInstructions() {
+		if (ca.isGamePad()) {
+			return "[B] to close, [Left-Stick] to navigate";
+		} else {
+			return "[ESC] to close,  [W,A,S,D] to navigate";
+		}
+	}
+
 	var intrsuctionsTf:h2d.Text;
 
 	public function new() {
