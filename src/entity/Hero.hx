@@ -364,7 +364,7 @@ class Hero extends Character {
 			return;
 		}
 		if (ca.aPressed() && !ca.ltDown() && !onGround && !cd.has("onGroundRecently") && !doubleJump) {
-			dy = -0.5 * tmod;
+			dy = -0.5;
 			doubleJump = true;
 		}
 
@@ -373,17 +373,17 @@ class Hero extends Character {
 			if (climbing) {
 				climbing = false;
 				cd.setS("climbLock", 0.2);
-				dx = dir * 0.1 * tmod;
+				dx = dir * 0.1;
 				if (dy > 0) {
 					dy = 0.2;
 				} else {
-					dy = -0.05 * tmod;
+					dy = -0.05;
 					cd.setS("jumpForce", 0.1);
 					cd.setS("jumpExtra", 0.1);
 				}
 			} else {
 				setSquashX(0.7);
-				dy = -0.35 * tmod;
+				dy = -0.35;
 				cd.setS("jumpForce", 0.1);
 				cd.setS("jumpExtra", 0.1);
 			}
@@ -409,7 +409,7 @@ class Hero extends Character {
 			if (isLeftJoystickUp() && level.hasLadder(cx, cy)) {
 				startClimbing();
 				setSquashX(0.6);
-				dy -= 0.2 * tmod;
+				dy -= 0.2;
 			}
 			// start climbing down
 			if (isLeftJoystickDown() && level.hasLadder(cx, cy + 1) && dy == 0) {
@@ -417,7 +417,7 @@ class Hero extends Character {
 				cy++;
 				yr = 0.1;
 				setSquashY(0.6);
-				dy = 0.2 * tmod;
+				dy = 0.2;
 			}
 		}
 
@@ -429,7 +429,7 @@ class Hero extends Character {
 		// reached top
 		if (climbing && dy < 0 && !level.hasLadder(cx, cy - 1) && yr <= 0.7) {
 			stopClimbing();
-			dy = -0.2 * tmod;
+			dy = -0.2;
 			yr = 0.2;
 			cd.setS("climbLock", 0.2);
 		}
@@ -441,7 +441,7 @@ class Hero extends Character {
 		// reached bottom
 		if (climbing && dy > 0 && !level.hasLadder(cx, cy + 1)) {
 			stopClimbing();
-			dy = 0.1 * tmod;
+			dy = 0.1;
 			cd.setS("climbLock", 0.2);
 		}
 
@@ -455,7 +455,7 @@ class Hero extends Character {
 		if (!onGround && dy < 0) {
 			if (level.hasOneWayPlatform(cx, cy - 1) && yr <= 0.5) {
 				lockControlS(0.15);
-				dy = -0.38 * tmod;
+				dy = -0.38;
 				yr = 0;
 				spr.anim.playOverlap("heroLedgeClimb", 0.66);
 			}
@@ -483,8 +483,8 @@ class Hero extends Character {
 			spr.anim.playOverlap("heroLedgeClimb");
 			xr = 0.1;
 			yr = 0.1;
-			dx = M.fmin(-0.35, dx) * tmod;
-			dy = -0.16 * tmod;
+			dx = M.fmin(-0.35, dx);
+			dy = -0.16;
 
 			if (level.hasMark(GrabLeft, cx, cy - heightExtended)) {
 				cy -= 1;
@@ -503,8 +503,8 @@ class Hero extends Character {
 			spr.anim.playOverlap("heroLedgeClimb");
 			xr = 0.9;
 			yr = 0.1;
-			dx = M.fmax(0.35, dx) * tmod;
-			dy = -0.16 * tmod;
+			dx = M.fmax(0.35, dx);
+			dy = -0.16;
 
 			if (level.hasMark(GrabRight, cx, cy - heightExtended)) {
 				cy -= 1;
