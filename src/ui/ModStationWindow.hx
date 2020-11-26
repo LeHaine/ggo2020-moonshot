@@ -75,7 +75,7 @@ class ModStationWindow extends dn.Process {
 
 		masterFlow.addSpacing(8);
 		var tf = new h2d.Text(Assets.fontPixelMedium, masterFlow);
-		if (Game.ME.ca.isGamePad()) {
+		if (ca.isGamePad()) {
 			tf.text = "[B] to cancel";
 		} else {
 			tf.text = "ESC to cancel";

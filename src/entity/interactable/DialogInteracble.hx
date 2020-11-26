@@ -5,6 +5,8 @@ import h2d.Flow.FlowAlign;
 class DialogInteracble extends Interactable {
 	var onInteract:() -> Void;
 
+	var buttonSprite:HSprite;
+
 	public function new(x:Int, y:Int, ?text:String = "", onInteract:() -> Void) {
 		super(x, y);
 		this.onInteract = onInteract;
@@ -16,7 +18,8 @@ class DialogInteracble extends Interactable {
 	private function createWindow(text:String) {
 		window.maxWidth = 200;
 		window.horizontalAlign = FlowAlign.Middle;
-		new HSprite(Assets.tiles, "keyE", window);
+		var spriteId = Game.ME.ca.isGamePad() ? "gamepadRB" : "keyE";
+		buttonSprite = new HSprite(Assets.tiles, spriteId, window);
 		var title = new h2d.Text(Assets.fontPixel, window);
 		title.text = text;
 		wrapper.x -= Std.int(wrapper.outerWidth / 2);
@@ -25,5 +28,12 @@ class DialogInteracble extends Interactable {
 	override function interact(by:Hero) {
 		super.interact(by);
 		onInteract();
+	}
+
+	override function focus() {
+		super.focus();
+		var spriteId = Game.ME.ca.isGamePad() ? "gamepadRB" : "keyE";
+		buttonSprite.set(spriteId);
+		window.reflow();
 	}
 }
