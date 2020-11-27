@@ -52,7 +52,7 @@ class Boss extends Character {
 		this.data = data;
 
 		dir = -1;
-		initLife(1000 + (hero.traits.length * 100));
+		initLife(100 + (hero.traits.length * 100));
 		renderHealthBar();
 		healthBar.setSize(25, 2, 1);
 		registerAnims();
@@ -231,7 +231,28 @@ class Boss extends Character {
 	override function onDie() {
 		super.onDie();
 		game.bossKilled = true;
+		dropCollectibles();
 		new DeadBody(this, "boss", false, false);
+	}
+
+	function dropCollectibles() {
+		var bonus = game.permaUpgrades.bonusShardsLvl * 0.01;
+		var max = irnd(entity.collectible.CrystalShard.MIN_DROP, entity.collectible.CrystalShard.MAX_DROP);
+		max += M.ceil(max * bonus);
+		for (i in 0...max) {
+			var drop = new entity.collectible.CrystalShard(cx, cy, 2);
+			drop.dx = rnd(-0.5, 0.5);
+			drop.dy = rnd(-0.5, 0.3);
+		}
+
+		var bonus = game.permaUpgrades.bonusCoinsLvl * 0.01;
+		var max = irnd(entity.collectible.CoinShard.MIN_DROP, entity.collectible.CoinShard.MAX_DROP);
+		max += M.ceil(max * bonus);
+		for (i in 0...max) {
+			var drop = new entity.collectible.CoinShard(cx, cy);
+			drop.dx = rnd(-0.75, 0.75);
+			drop.dy = rnd(-0.75, 0.75);
+		}
 	}
 
 	function moveToHero(speed:Float) {
