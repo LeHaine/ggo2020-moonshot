@@ -24,18 +24,20 @@ class Boss extends Character {
 	var usingGun:Bool;
 
 	var gunDamage = 10;
-	var gunRange = 15;
-	var gunCd = 5;
+	var gunRange = 20;
+	var minGunCd = 2;
+	var maxGunCd = 4;
 	var gunSpeed = 0.02;
 
-	var meleeSpeed = 0.027;
+	var meleeSpeed = 0.029;
 	var meleeDamage = 20;
-	var meleeRange = 2;
-	var meleeCd = 3;
+	var meleeRange = 2.25;
+	var minMeleeCd = 0.5;
+	var maxMeleeCd = 3;
 
 	var floatSpeed = 0.03;
-	var moonBlastCdMin = 0.5;
-	var moonBlastCdMax = 1.25;
+	var moonBlastCdMin = 0.15;
+	var moonBlastCdMax = 0.75;
 	var moonBlastDamge = 50;
 
 	var playingIntro = false;
@@ -193,7 +195,7 @@ class Boss extends Character {
 					phase = PHASE_3;
 				}
 			case PHASE_3:
-				if (!cd.hasSetS("dirChange", 5) && irnd(0, 1) == 0) {
+				if (!cd.hasSetS("dirChange", 2) && irnd(0, 1) == 0) {
 					var dirToHero = dirTo(hero);
 					if (dir != dirToHero) {
 						dir = dir == 1 ? -1 : 1;
@@ -242,7 +244,9 @@ class Boss extends Character {
 
 	function attackIfInRange() {
 		var attackRange = usingGun ? gunRange : meleeRange;
-		var attackCd = usingGun ? gunCd : meleeCd;
+		var minCd = usingGun ? minGunCd : minMeleeCd;
+		var maxCd = usingGun ? minGunCd : minMeleeCd;
+		var attackCd = rnd(minCd, maxCd);
 		if (sightCheck(hero) && distCase(hero) <= attackRange) {
 			dir = dirTo(hero);
 			if (!cd.hasSetS("attackCooldown", attackCd)) {
