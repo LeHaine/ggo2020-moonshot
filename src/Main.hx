@@ -91,7 +91,9 @@ class Main extends dn.Process {
 		controller.bind(START, Key.R);
 
 		// Start
-		new dn.heaps.GameFocusHelper(Boot.ME.s2d, Assets.fontPixelMedium);
+		new CustomGameFocusHelper(Boot.ME.s2d, Assets.fontPixelMedium, () -> {
+			scene.events.defaultCursor = Cursor.Custom(new CustomCursor([Res.cursor.toBitmap()], 0, 16, 16));
+		});
 		#if debug
 		startGame();
 		#else
