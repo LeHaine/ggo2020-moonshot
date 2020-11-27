@@ -228,6 +228,7 @@ class Boss extends Character {
 
 	override function onDie() {
 		super.onDie();
+		game.bossKilled = true;
 		new DeadBody(this, "boss", false, false);
 	}
 

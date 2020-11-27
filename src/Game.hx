@@ -95,7 +95,9 @@ class Game extends Process {
 	var nextLevelReady = false;
 	var lastSpawn = 0;
 
-	static var BOSS_ROOM = 7;
+	public var bossKilled = false;
+
+	public static var BOSS_ROOM = 7;
 
 	public function new() {
 		super(Main.ME);
@@ -325,6 +327,7 @@ class Game extends Process {
 		if (coins > coinsToKeep) {
 			coins = coinsToKeep;
 		}
+		bossKilled = false;
 
 		storage.save();
 		hero.destroy();

@@ -17,6 +17,17 @@ class EndLevel extends Entity {
 		ignoreBullets = true;
 		interactable = new DialogInteracble(cx, cy, "Proceed", onEndLevel);
 		interactable.follow(this);
+
+		if (game.level.idx == Game.BOSS_ROOM) {
+			interactable.active = false;
+		}
+	}
+
+	override function update() {
+		super.update();
+		if (!interactable.active && game.bossKilled) {
+			interactable.active = true;
+		}
 	}
 
 	override function dispose() {
