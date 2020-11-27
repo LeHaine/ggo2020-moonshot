@@ -52,12 +52,21 @@ class Mob extends Character {
 	var targetAggroed:Bool;
 
 	public var defense = 0;
-	public var damage = 1;
+	public var damage(default, set):Int;
+
+	inline function set_damage(v) {
+		extraDamage = M.ceil(((game.level.idx - 2) * 0.1) * v);
+		return damage = v + extraDamage;
+	}
+
+	var extraDamage = 0;
+	var extraLife = 0;
 
 	public function new(data:World.Entity_Mob) {
 		super(data.cx, data.cy);
 		ALL.push(this);
 		this.data = data;
+		extraLife = hero.traits.length * 10;
 		initLife(data.f_health);
 
 		dir = data.f_initialDir;
@@ -111,6 +120,10 @@ class Mob extends Character {
 
 		calculateDrop();
 		calculateCollectibles();
+	}
+
+	override function initLife(v:Int) {
+		super.initLife(v + extraLife);
 	}
 
 	function calculateDrop() {

@@ -160,6 +160,16 @@ class Game extends Process {
 			}
 		}
 
+		if (hero == null) {
+			hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
+		} else {
+			var data = level.data.l_Entities.all_Hero[0];
+			hero.cx = data.cx;
+			hero.cy = data.cy;
+			hero.yr = 0.5;
+			hero.xr = 0.5;
+		}
+
 		for (e in level.data.l_Entities.all_Item) {
 			switch e.f_itemType {
 				case Syringe:
@@ -249,17 +259,6 @@ class Game extends Process {
 		for (e in level.data.l_Entities.all_Boss) {
 			new entity.boss.Boss(e);
 		}
-
-		if (hero == null) {
-			hero = new entity.Hero(level.data.l_Entities.all_Hero[0]);
-		} else {
-			var data = level.data.l_Entities.all_Hero[0];
-			hero.cx = data.cx;
-			hero.cy = data.cy;
-			hero.yr = 0.5;
-			hero.xr = 0.5;
-		}
-
 		if (idx != BOSS_ROOM) {
 			if (minimap == null) {
 				minimap = new ui.Minimap();
