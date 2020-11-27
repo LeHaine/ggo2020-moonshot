@@ -90,6 +90,7 @@ class Game extends Process {
 	#if debug
 	var fpsTf:h2d.Text;
 	#end
+	var levelTf:h2d.Text;
 
 	var nextLevelReady = false;
 	var lastSpawn = 0;
@@ -117,6 +118,10 @@ class Game extends Process {
 		fx = new Fx();
 		hud = new ui.Hud();
 
+		levelTf = new h2d.Text(Assets.fontPixel);
+		root.add(levelTf, Const.DP_UI_FRONT);
+		levelTf.setPosition(2, 2);
+
 		if (storage.settings.finishedTutorial) {
 			startLevel(1);
 		} else {
@@ -124,8 +129,8 @@ class Game extends Process {
 		}
 		#if debug
 		fpsTf = new h2d.Text(Assets.fontTiny);
-		root.add(fpsTf, Const.DP_UI);
-		fpsTf.setPosition(2, 2);
+		root.add(fpsTf, Const.DP_UI_FRONT);
+		fpsTf.setPosition(2, 18);
 		#end
 	}
 
@@ -265,6 +270,15 @@ class Game extends Process {
 				minimap = null;
 			}
 		}
+
+		if (level.idx >= 2) {
+			var start = level.idx - 1;
+			var remaining = world.levels.length - 2;
+			levelTf.text = '${start}/${remaining}';
+		} else {
+			levelTf.text = "";
+		}
+
 		setHeroSavedData();
 
 		trackHero();

@@ -4,7 +4,6 @@ import entity.CrystalShardStation;
 import entity.ModStation;
 import dn.DecisionHelper;
 import hxd.BitmapData;
-import hxd.Timer;
 import entity.Teleporter;
 import dn.Process;
 
@@ -40,6 +39,7 @@ class Minimap extends dn.Process {
 	var zoom = 1;
 	var enlarged = false;
 	var navigating = false;
+
 	var targetTeleporter:Null<Teleporter>;
 	var currentTeleporter:Null<Teleporter>;
 	var instructions:h2d.Flow;
