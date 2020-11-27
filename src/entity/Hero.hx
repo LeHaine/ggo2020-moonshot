@@ -261,7 +261,7 @@ class Hero extends Character {
 		chargeStrongShotBar.visible = false;
 	}
 
-	private function spawnPrimaryBullet(damage:Int = 15, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
+	private function spawnPrimaryBullet(damage:Int = 10, bounceMul:Float = 0., doesAoeDamage:Bool = false) {
 		setSquashX(0.85);
 		var bulletX = centerX + (dir * 2);
 		var bulletY = centerY - 3;
