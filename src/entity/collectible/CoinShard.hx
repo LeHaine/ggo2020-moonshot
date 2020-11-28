@@ -15,6 +15,7 @@ class CoinShard extends Collectible {
 
 	override function onCollect() {
 		super.onCollect();
+		Assets.SLIB.coin(0.3);
 		game.coins += value;
 	}
 }

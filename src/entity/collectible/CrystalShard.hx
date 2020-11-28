@@ -15,6 +15,7 @@ class CrystalShard extends Collectible {
 
 	override function onCollect() {
 		super.onCollect();
+		Assets.SLIB.crystal(0.3);
 		game.shards += value;
 	}
 }
