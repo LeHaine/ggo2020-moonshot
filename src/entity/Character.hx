@@ -98,6 +98,20 @@ class Character extends Entity {
 	override function onTouchGround(fallHeight:Float) {
 		super.onTouchGround(fallHeight);
 
+		if (fallHeight >= 3) {
+			if (is(Hero)) {
+				Assets.SLIB.land0(1);
+			} else {
+				Assets.SLIB.land0(0.3);
+			}
+		} else {
+			if (is(Hero)) {
+				Assets.SLIB.land1(0.5 * M.fmin(1, fallHeight / 2));
+			} else {
+				Assets.SLIB.land1(0.25 * M.fmin(1, fallHeight / 2));
+			}
+		}
+
 		var impact = M.fmin(1, fallHeight / 6);
 		dx *= (1 - impact) * 0.5;
 		setSquashY(1 - impact * 0.7);
@@ -111,7 +125,7 @@ class Character extends Entity {
 	}
 
 	public function startClimbing() {
-		// Assets.SLIB.ladder0(0.4);
+		Assets.SLIB.ladder0(0.4);
 		climbing = true;
 		bdx *= 0.2;
 		bdy *= 0.2;
