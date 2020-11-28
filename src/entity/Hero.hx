@@ -527,6 +527,7 @@ class Hero extends Character {
 		}
 
 		if (ca.aPressed() && ca.ltDown() && !cd.hasSetS("dash", 0.75)) {
+			Assets.SLIB.dash0().playOnGroup(Const.HERO_JUMP, 0.7);
 			dx = 1 * dir;
 			spr.anim.playOverlap("heroDash", 0.22);
 			ignoreBullets = true;

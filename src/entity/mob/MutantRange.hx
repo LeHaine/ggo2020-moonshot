@@ -20,6 +20,7 @@ class MutantRange extends Mob {
 			if (frame != 1) {
 				return;
 			}
+			Assets.SLIB.mutantAcidSpit0().playOnGroup(Const.MOB_ATTACK, 0.7);
 			spawnAcid();
 		};
 	}
