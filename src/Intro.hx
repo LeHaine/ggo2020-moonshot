@@ -45,7 +45,11 @@ class Intro extends dn.Process {
 		percent = 0.55;
 		#end
 		logo.y = M.ceil(h() * percent / Const.SCALE);
+		#if js
+		textBox.x = logo.getBounds().width * 0.5 / Const.SCALE - textBox.outerWidth;
+		#else
 		textBox.x = logo.getBounds().width * 0.5 / Const.SCALE - textBox.outerWidth * 0.5;
+		#end
 	}
 
 	override function preUpdate() {
