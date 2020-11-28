@@ -26,7 +26,7 @@ class ExplosiveBarrel extends Character {
 				var ang = angTo(entity);
 				entity.bump(Math.cos(ang) * 0.3, Math.sin(ang) * 0.3);
 				entity.hit(aoeDamage, this);
-				Assets.SLIB.explosion0().playOnGroup(Const.BARREL_EXPLOSION, 0.5);
+				Assets.SLIB.explosion0().playOnGroup(Const.BARREL_EXPLOSION, 0.35);
 			}
 		}
 	}
