@@ -531,6 +531,15 @@ class Hero extends Character {
 
 	override function hit(dmg:Int, from:Null<Entity>) {
 		super.hit(Std.int(dmg * armorMul), from);
+		playHitSound();
+		blink(0xFF0000);
+		setSquashX(0.8);
+	}
+
+	function playHitSound() {
+		var slib = Assets.SLIB;
+		var sounds = [slib.hit0, slib.hit1, slib.hit2, slib.hit3, slib.hit4, slib.hit5];
+		sounds[Std.random(sounds.length)]().playOnGroup(Const.MOB_HIT, 0.6);
 	}
 
 	override function onDie() {
