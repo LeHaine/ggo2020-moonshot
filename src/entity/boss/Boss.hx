@@ -129,7 +129,6 @@ class Boss extends Character {
 						phase = PHASE_1;
 					});
 				}
-			// todo cinematic
 			case PHASE_1:
 				var lifePercent = life / maxLife;
 				if (lifePercent <= 0.50) {
