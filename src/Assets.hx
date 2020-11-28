@@ -11,6 +11,7 @@ class Assets {
 
 	public static var runMusic:Sfx;
 	public static var restMusic:Sfx;
+	public static var bossMusic:Sfx;
 
 	static var initDone = false;
 
@@ -28,13 +29,16 @@ class Assets {
 		#if hl
 		runMusic = new Sfx(hxd.Res.music.bgm_hl);
 		restMusic = new Sfx(hxd.Res.music.tut_rest_hl);
+		bossMusic = new Sfx(hxd.Res.music.boss_hl);
 		#else
 		runMusic = new Sfx(hxd.Res.music.bgm_js);
 		restMusic = new Sfx(hxd.Res.music.tut_rest_js);
+		bossMusic = new Sfx(hxd.Res.music.boss_js);
 		#end
 
 		runMusic.groupId = 1;
 		restMusic.groupId = 1;
+		bossMusic.groupId = 1;
 
 		Sfx.setGroupVolume(0, 1);
 		Sfx.setGroupVolume(1, 0.3);

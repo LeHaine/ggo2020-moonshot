@@ -300,17 +300,24 @@ class Game extends Process {
 	}
 
 	function startMusic() {
-		if (level.idx > 1 && !Assets.runMusic.isPlaying()) {
+		if (level.idx > 1 && level.idx < BOSS_ROOM && !Assets.runMusic.isPlaying()) {
 			Assets.restMusic.stop();
+			Assets.bossMusic.stop();
 			Assets.runMusic.play(true);
 		} else if (level.idx <= 1 && !Assets.restMusic.isPlaying()) {
 			Assets.runMusic.stop();
+			Assets.bossMusic.stop();
 			Assets.restMusic.play(true);
+		} else if (level.idx >= BOSS_ROOM && !Assets.bossMusic.isPlaying()) {
+			Assets.restMusic.stop();
+			Assets.runMusic.stop();
+			Assets.bossMusic.play(true);
 		}
 		if (settings.musicMuted) {
 			Sfx.muteGroup(1);
 			Assets.restMusic.stop();
 			Assets.runMusic.stop();
+			Assets.bossMusic.stop();
 		}
 		if (!settings.musicMuted) {
 			Sfx.unmuteGroup(1);
