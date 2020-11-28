@@ -139,6 +139,7 @@ class Hero extends Character {
 
 	public function teleport(teleporter:Teleporter) {
 		lockControlS(0.15);
+		Assets.SLIB.teleport0().playOnGroup(Const.HERO_EXTRA, 0.6);
 		isCollidable = false;
 		cd.setS("recentlyTeleported", 1);
 		cx = teleporter.cx;

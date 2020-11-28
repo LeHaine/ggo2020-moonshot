@@ -150,6 +150,7 @@ class Minimap extends dn.Process {
 
 					var best = dh.getBest();
 					if (best != null) {
+						Assets.SLIB.select0().playOnGroup(Const.UI, 0.5);
 						targetTeleporter = best;
 						centerMaskTo(targetTeleporter.cx, targetTeleporter.cy);
 					}

@@ -31,6 +31,7 @@ class Const {
 	static var _soundInc = 2;
 	public static var HERO_SHOTS = _soundInc++;
 	public static var HERO_JUMP = _soundInc++;
+	public static var HERO_EXTRA = _soundInc++;
 	public static var MOB_HIT = _soundInc++;
 	public static var MOB_DEATH = _soundInc++;
 	public static var MOB_ATTACK = _soundInc++;
