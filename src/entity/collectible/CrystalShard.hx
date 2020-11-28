@@ -1,8 +1,8 @@
 package entity.collectible;
 
 class CrystalShard extends Collectible {
-	public static var MIN_DROP = 5;
-	public static var MAX_DROP = 12;
+	public static var MIN_DROP = 3;
+	public static var MAX_DROP = 7;
 
 	var value:Int;
 

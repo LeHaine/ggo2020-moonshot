@@ -1,8 +1,8 @@
 package entity.collectible;
 
 class CoinShard extends Collectible {
-	public static var MIN_DROP = 8;
-	public static var MAX_DROP = 13;
+	public static var MIN_DROP = 2;
+	public static var MAX_DROP = 4;
 
 	var value:Int;
 

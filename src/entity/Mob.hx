@@ -147,9 +147,9 @@ class Mob extends Character {
 
 	function calculateCollectibles() {
 		var dropList = new dn.RandList();
-		dropList.add(None, 35);
-		dropList.add(Coin, 35);
-		dropList.add(CrystalShard, 30);
+		dropList.add(None, 65);
+		dropList.add(Coin, 20);
+		dropList.add(CrystalShard, 15);
 
 		var result = dropList.draw();
 		if (result != null) {

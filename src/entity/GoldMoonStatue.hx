@@ -15,7 +15,7 @@ class GoldMoonStatue extends Character {
 		var max = M.ceil(dmg / 10);
 		max += M.ceil(max * bonus);
 		for (i in 0...max) {
-			var drop = new entity.collectible.CoinShard(cx, cy, 40);
+			var drop = new entity.collectible.CoinShard(cx, cy, 20);
 			drop.dx = rnd(0, 0.75) * -dirTo(from);
 			drop.dy = rnd(-0.75, 0.75);
 		}
@@ -28,7 +28,7 @@ class GoldMoonStatue extends Character {
 		var max = irnd(entity.collectible.CoinShard.MIN_DROP, entity.collectible.CoinShard.MAX_DROP);
 		max += M.ceil(max * bonus);
 		for (i in 0...max) {
-			var drop = new entity.collectible.CoinShard(cx, cy, 40);
+			var drop = new entity.collectible.CoinShard(cx, cy, 20);
 			drop.dx = rnd(-0.75, 0.75);
 			drop.dy = rnd(-0.75, 0.75);
 		}
