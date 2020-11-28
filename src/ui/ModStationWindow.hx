@@ -80,7 +80,7 @@ class ModStationWindow extends dn.Process {
 		} else {
 			tf.text = "ESC to cancel";
 		}
-		tf.textColor = 0xd95b52;
+		tf.textColor = 0xFF3333;
 
 		cd.setS("lock", 0.2);
 		generateTraits();
@@ -163,7 +163,7 @@ class ModStationWindow extends dn.Process {
 
 		var nameTf = new h2d.Text(Assets.fontPixelMedium, infoBox);
 		nameTf.text = trait.name;
-		nameTf.textColor = price <= coins ? 0xFFFFFF : 0xE77272;
+		nameTf.textColor = price <= coins ? 0xFFFFFF : 0xFF3333;
 
 		var desc = new h2d.Text(Assets.fontPixelSmall, infoBox);
 		desc.text = trait.desc;

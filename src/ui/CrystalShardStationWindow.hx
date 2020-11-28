@@ -230,7 +230,7 @@ class CrystalShardStationWindow extends dn.Process {
 		} else {
 			tf.text = "ESC to cancel";
 		}
-		tf.textColor = 0xd95b52;
+		tf.textColor = 0xFF3333;
 
 		cd.setS("lock", 0.2);
 		addUpgrades();
@@ -283,7 +283,7 @@ class CrystalShardStationWindow extends dn.Process {
 		var nameTf = new h2d.Text(Assets.fontPixelMedium, infoBox);
 		nameTf.text = upgrade.name;
 		nameTf.maxWidth = 300;
-		nameTf.textColor = price <= shards ? 0xFFFFFF : 0xE77272;
+		nameTf.textColor = price <= shards ? 0xFFFFFF : 0xFF3333;
 
 		var desc = new h2d.Text(Assets.fontPixelSmall, infoBox);
 		desc.text = upgrade.desc;
