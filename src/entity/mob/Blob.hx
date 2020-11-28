@@ -43,7 +43,7 @@ class Blob extends Mob {
 	override function onDie() {
 		super.onDie();
 		fx.blobExplosion(centerX, centerY, explosionRadius);
-		Assets.SLIB.blobExplosion0(0.7);
+		Assets.SLIB.blobExplosion0().playOnGroup(Const.MOB_EXTRA, 0.7);
 
 		if (distCase(aggroTarget) <= explosionRadius) {
 			var dmgVariance = M.ceil(damage * 0.15);

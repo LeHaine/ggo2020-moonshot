@@ -323,13 +323,13 @@ class CrystalShardStationWindow extends dn.Process {
 				if (onItemBought != null) {
 					onItemBought();
 				}
-				Assets.SLIB.accept0(0.5);
+				Assets.SLIB.accept0().playOnGroup(Const.UI, 0.5);
 			}
 		}
 
 		flow.interactive.propagateEvents = true;
 		flow.interactive.onOver = (e) -> {
-			Assets.SLIB.select0(0.5);
+			Assets.SLIB.select0().playOnGroup(Const.UI, 0.5);
 			cursorIdx = index;
 		}
 		flow.interactive.onClick = (e) -> {
@@ -387,13 +387,13 @@ class CrystalShardStationWindow extends dn.Process {
 
 			if ((ca.downPressed() || ca.dpadDownPressed()) && cursorIdx < items.length - 1) {
 				cursorIdx++;
-				Assets.SLIB.select0(0.5);
+				Assets.SLIB.select0().playOnGroup(Const.UI, 0.5);
 				itemFlow.y -= item.flow.outerHeight;
 			}
 
 			if ((ca.upPressed() || ca.dpadUpPressed()) && cursorIdx > 0) {
 				cursorIdx--;
-				Assets.SLIB.select0(0.5);
+				Assets.SLIB.select0().playOnGroup(Const.UI, 0.5);
 				itemFlow.y += item.flow.outerHeight;
 			}
 			if (!cd.has("lock") && ca.aPressed()) {

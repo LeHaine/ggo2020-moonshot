@@ -212,7 +212,7 @@ class ModStationWindow extends dn.Process {
 				if (onItemBought != null) {
 					onItemBought();
 				}
-				Assets.SLIB.burst0(0.5);
+				Assets.SLIB.burst0().playOnGroup(Const.UI, 0.5);
 				close();
 				Game.ME.coins -= price;
 				Game.ME.addTrait(trait);
@@ -221,7 +221,7 @@ class ModStationWindow extends dn.Process {
 
 		flow.interactive.onOver = (e) -> {
 			cursorIdx = index;
-			Assets.SLIB.select0(0.5);
+			Assets.SLIB.select0().playOnGroup(Const.UI, 0.5);
 		}
 		flow.interactive.onClick = (e) -> interact();
 
@@ -261,12 +261,12 @@ class ModStationWindow extends dn.Process {
 
 			if ((ca.downPressed() || ca.dpadDownPressed()) && cursorIdx < items.length - 1) {
 				cursorIdx++;
-				Assets.SLIB.select0(0.5);
+				Assets.SLIB.select0().playOnGroup(Const.UI, 0.5);
 			}
 
 			if ((ca.upPressed() || ca.dpadUpPressed()) && cursorIdx > 0) {
 				cursorIdx--;
-				Assets.SLIB.select0(0.5);
+				Assets.SLIB.select0().playOnGroup(Const.UI, 0.5);
 			}
 			if (!cd.has("lock") && ca.aPressed()) {
 				item.cb();

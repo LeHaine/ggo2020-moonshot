@@ -24,7 +24,7 @@ class ScientistPistol extends Mob {
 
 	override function attack() {
 		spawnPrimaryBullet();
-		Assets.SLIB.shot0(0.6);
+		Assets.SLIB.shot0().playOnGroup(Const.MOB_ATTACK, 0.6);
 	}
 
 	private function spawnPrimaryBullet() {

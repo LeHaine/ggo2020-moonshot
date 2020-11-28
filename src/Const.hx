@@ -27,4 +27,16 @@ class Const {
 	public static var DP_TOP = _inc++;
 	public static var DP_UI = _inc++;
 	public static var DP_UI_FRONT = _inc++;
+
+	static var _soundInc = 2;
+	public static var HERO_SHOTS = _soundInc++;
+	public static var HERO_JUMP = _soundInc++;
+	public static var MOB_HIT = _soundInc++;
+	public static var MOB_DEATH = _soundInc++;
+	public static var MOB_ATTACK = _soundInc++;
+	public static var MOB_JUMP = _soundInc++;
+	public static var MOB_EXTRA = _soundInc++;
+	public static var BARREL_EXPLOSION = _soundInc++;
+	public static var COLLECTIBLES = _soundInc++;
+	public static var UI = _soundInc++;
 }

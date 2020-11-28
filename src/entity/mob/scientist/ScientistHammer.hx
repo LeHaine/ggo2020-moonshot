@@ -21,7 +21,7 @@ class ScientistHammer extends Mob {
 			if (frame != 2) {
 				return;
 			}
-			Assets.SLIB.groundHit0(0.7);
+			Assets.SLIB.groundHit0().playOnGroup(Const.MOB_ATTACK, 0.7);
 			camera.bump(0, rnd(0.1, 0.15));
 			camera.shakeS(0.2, 0.5);
 			if (distCase(hero) <= attackRange) {

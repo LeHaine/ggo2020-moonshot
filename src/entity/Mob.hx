@@ -119,7 +119,7 @@ class Mob extends Character {
 	function playHitSound() {
 		var slib = Assets.SLIB;
 		var sounds = [slib.hit0, slib.hit1, slib.hit2, slib.hit3, slib.hit4, slib.hit5];
-		sounds[Std.random(sounds.length)](0.6);
+		sounds[Std.random(sounds.length)]().playOnGroup(Const.MOB_HIT, 0.6);
 	}
 
 	override function onDie() {
@@ -127,7 +127,7 @@ class Mob extends Character {
 
 		var slib = Assets.SLIB;
 		var sounds = [slib.death1, slib.death2];
-		sounds[Std.random(sounds.length)](0.6);
+		sounds[Std.random(sounds.length)]().playOnGroup(Const.MOB_DEATH, 0.6);
 
 		calculateDrop();
 		calculateCollectibles();

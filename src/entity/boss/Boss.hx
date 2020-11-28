@@ -89,7 +89,7 @@ class Boss extends Character {
 			if (frame != 2) {
 				return;
 			}
-			Assets.SLIB.groundHit0(0.7);
+			Assets.SLIB.groundHit0().playOnGroup(Const.MOB_ATTACK, 0.7);
 			camera.bump(0, rnd(0.1, 0.15));
 			camera.shakeS(0.2, 0.5);
 			if (distCase(hero) <= meleeRange) {
@@ -284,7 +284,7 @@ class Boss extends Character {
 			} else if (usingGun) {
 				lockControlS(1);
 				spawnPrimaryBullet();
-				Assets.SLIB.shot0(0.8);
+				Assets.SLIB.shot0().playOnGroup(Const.MOB_ATTACK, 0.8);
 				cd.setS("gunDownDelay", 0.5);
 			}
 		} else if (phase == PHASE_3) {
@@ -307,7 +307,7 @@ class Boss extends Character {
 	}
 
 	function performMoonBlast() {
-		Assets.SLIB.shot1(0.7);
+		Assets.SLIB.shot1().playOnGroup(Const.MOB_ATTACK, 0.7);
 		setSquashX(0.85);
 		var bulletX = centerX + (dir * 4);
 		var bulletY = centerY + 4;

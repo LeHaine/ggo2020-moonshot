@@ -100,15 +100,15 @@ class Character extends Entity {
 
 		if (fallHeight >= 3) {
 			if (is(Hero)) {
-				Assets.SLIB.land0(1);
+				Assets.SLIB.land0().playOnGroup(Const.HERO_JUMP, 1);
 			} else {
-				Assets.SLIB.land0(0.3);
+				Assets.SLIB.land0().playOnGroup(Const.MOB_JUMP, 0.3);
 			}
 		} else {
 			if (is(Hero)) {
-				Assets.SLIB.land1(0.5 * M.fmin(1, fallHeight / 2));
+				Assets.SLIB.land1().playOnGroup(Const.HERO_JUMP, 0.5 * M.fmin(1, fallHeight / 2));
 			} else {
-				Assets.SLIB.land1(0.25 * M.fmin(1, fallHeight / 2));
+				Assets.SLIB.land1().playOnGroup(Const.MOB_JUMP, 0.25 * M.fmin(1, fallHeight / 2));
 			}
 		}
 
@@ -125,7 +125,7 @@ class Character extends Entity {
 	}
 
 	public function startClimbing() {
-		Assets.SLIB.ladder0(0.7);
+		Assets.SLIB.ladder0().playOnGroup(Const.HERO_JUMP, 0.7);
 		climbing = true;
 		bdx *= 0.2;
 		bdy *= 0.2;
