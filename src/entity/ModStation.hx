@@ -31,5 +31,6 @@ class ModStation extends Entity {
 		spr.set("modStationInactive");
 		interactable.destroy();
 		fx.sparkBurst(centerX, centerY);
+		game.modStationsUsed++;
 	}
 }

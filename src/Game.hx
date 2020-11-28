@@ -92,8 +92,30 @@ class Game extends Process {
 	#end
 	var levelTf:h2d.Text;
 
+	var infoFlow:h2d.Flow;
+	var modStationsInfo:h2d.HtmlText;
+	var statuesInfo:h2d.HtmlText;
+
 	var nextLevelReady = false;
 	var lastSpawn = 0;
+
+	var totalModStations = 0;
+	var totalStatues = 0;
+
+	public var modStationsUsed(default, set):Int;
+	public var statuesDestroyed(default, set):Int;
+
+	inline function set_modStationsUsed(v) {
+		var color = v == totalModStations ? "#00FF00" : "#FF0000";
+		modStationsInfo.text = '<font color=\"${color}\">${Std.string(v)}/${Std.string(totalModStations)}</font> Mod stations found';
+		return modStationsUsed = v;
+	}
+
+	inline function set_statuesDestroyed(v) {
+		var color = v == totalStatues ? "#00FF00" : "#FF0000";
+		statuesInfo.text = '<font color=\"${color}\">${Std.string(v)}/${Std.string(totalStatues)}</font> Statues Destroyed';
+		return statuesDestroyed = v;
+	}
 
 	public var bossKilled = false;
 
@@ -122,6 +144,13 @@ class Game extends Process {
 
 		levelTf = new h2d.Text(Assets.fontPixel);
 		root.add(levelTf, Const.DP_UI_FRONT);
+
+		infoFlow = new h2d.Flow();
+		infoFlow.horizontalSpacing = 16;
+		modStationsInfo = new h2d.HtmlText(Assets.fontPixelMedium, infoFlow);
+		statuesInfo = new h2d.HtmlText(Assets.fontPixelMedium, infoFlow);
+		infoFlow.setPosition(Main.ME.w() * 0.5, 2);
+		root.add(infoFlow, Const.DP_UI);
 		levelTf.setPosition(2, 2);
 
 		if (storage.settings.finishedTutorial) {
@@ -151,6 +180,9 @@ class Game extends Process {
 		storage.loadSavedData();
 		// Init
 		level = new Level(idx, world.levels[idx]);
+
+		totalModStations = 0;
+		totalStatues = 0;
 
 		// Create entities here
 
@@ -188,11 +220,13 @@ class Game extends Process {
 		for (e in level.data.l_Entities.all_ModStation) {
 			if (e.f_isPersonal && permaUpgrades.personalModStation) {
 				new entity.ModStation(e);
+				totalModStations++;
 			} else {
 				var shouldSpawn = Lib.rnd(0, 1);
 				if (shouldSpawn <= 0.25 || lastSpawn >= 5) {
 					new entity.ModStation(e);
 					lastSpawn = 0;
+					totalModStations++;
 				} else {
 					var possibleSpawn = Assets.tiles.h_get("modStationPossibleSpawn", scroller);
 					possibleSpawn.x = e.pixelX - Const.GRID * 0.5;
@@ -213,6 +247,7 @@ class Game extends Process {
 			} else {
 				new entity.GoldMoonStatue(e.cx, e.cy);
 			}
+			totalStatues++;
 		}
 
 		for (e in level.data.l_Entities.all_Laser) {
@@ -279,6 +314,12 @@ class Game extends Process {
 		} else {
 			levelTf.text = "";
 		}
+
+		modStationsInfo.visible = totalModStations > 0;
+		statuesInfo.visible = totalStatues > 0;
+
+		modStationsUsed = 0;
+		statuesDestroyed = 0;
 
 		setHeroSavedData();
 
@@ -361,6 +402,7 @@ class Game extends Process {
 
 	override function onResize() {
 		super.onResize();
+		infoFlow.setPosition(Main.ME.w() * 0.5, 2);
 		scroller.setScale(Const.SCALE);
 	}
 

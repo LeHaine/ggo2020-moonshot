@@ -24,6 +24,7 @@ class GoldMoonStatue extends Character {
 	override function onDie() {
 		super.onDie();
 
+		game.statuesDestroyed++;
 		var bonus = game.permaUpgrades.bonusCoinsLvl * 0.01;
 		var max = irnd(entity.collectible.CoinShard.MIN_DROP, entity.collectible.CoinShard.MAX_DROP);
 		max += M.ceil(max * bonus);

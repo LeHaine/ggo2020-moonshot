@@ -23,6 +23,7 @@ class CrystalCrop extends Character {
 	override function onDie() {
 		super.onDie();
 
+		game.statuesDestroyed++;
 		var bonus = game.permaUpgrades.bonusShardsLvl * 0.01;
 		var max = irnd(entity.collectible.CrystalShard.MIN_DROP, entity.collectible.CrystalShard.MAX_DROP) * 2;
 		max += M.ceil(max * bonus);
