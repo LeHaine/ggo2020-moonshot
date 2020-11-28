@@ -131,7 +131,7 @@ class Boss extends Character {
 				}
 			case PHASE_1:
 				var lifePercent = life / maxLife;
-				if (lifePercent <= 0.50) {
+				if (lifePercent <= 0.75) {
 					hero.setAffectS(Stun, 3);
 					cd.setS("scream", 3);
 					camera.shakeS(3, 0.05);
@@ -165,7 +165,7 @@ class Boss extends Character {
 				phase = PHASE_2;
 			case PHASE_2:
 				var lifePercent = life / maxLife;
-				if (lifePercent <= 0.30) {
+				if (lifePercent <= 0.50) {
 					phase = PHASE_3_TARGET_WALK;
 				} else if (!controlsLocked()) {
 					moveToHero(meleeSpeed);
