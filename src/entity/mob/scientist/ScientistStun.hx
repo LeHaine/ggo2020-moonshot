@@ -24,6 +24,7 @@ class ScientistStun extends Mob {
 
 	override function attack() {
 		spawnPrimaryBullet();
+		Assets.SLIB.stunShot0(0.7);
 	}
 
 	private function spawnPrimaryBullet(damage:Int = 1, bounceMul:Float = 0., doesAoeDamage:Bool = false) {

@@ -86,6 +86,7 @@ class Mob extends Character {
 		if (!isAlive()) {
 			return;
 		}
+		playHitSound();
 		blink(0xFF0000);
 		if (from != null) {
 			if (M.dist(from.centerX, from.centerY, headX, headY) < 1) {
@@ -113,6 +114,12 @@ class Mob extends Character {
 				}
 			}
 		}
+	}
+
+	function playHitSound() {
+		var slib = Assets.SLIB;
+		var sounds = [slib.hit0, slib.hit1, slib.hit2, slib.hit3, slib.hit4, slib.hit5];
+		sounds[Std.random(sounds.length)](0.6);
 	}
 
 	override function onDie() {

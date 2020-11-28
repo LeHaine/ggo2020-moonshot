@@ -206,7 +206,7 @@ class Hero extends Character {
 				var sign = i % 2 == 0 ? 1 : -1;
 				bullet.setPosPixel(bullet.centerX, bullet.centerY - i * 3 * sign);
 			}
-			Assets.SLIB.shot0(0.5);
+			Assets.SLIB.shot0(0.8);
 		}
 	}
 

@@ -125,7 +125,7 @@ class Character extends Entity {
 	}
 
 	public function startClimbing() {
-		Assets.SLIB.ladder0(0.4);
+		Assets.SLIB.ladder0(0.7);
 		climbing = true;
 		bdx *= 0.2;
 		bdy *= 0.2;
