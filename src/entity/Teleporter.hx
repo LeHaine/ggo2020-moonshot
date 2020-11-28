@@ -31,8 +31,9 @@ class Teleporter extends Entity {
 		super.update();
 
 		if (hero != null) {
-			if (distCase(hero) <= 7) {
+			if (distCase(hero) <= 7 && !found) {
 				found = true;
+				Assets.SLIB.teleporterUnlock0().playOnGroup(Const.EXTRA, 0.6);
 			}
 		}
 	}

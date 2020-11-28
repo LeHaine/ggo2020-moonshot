@@ -39,5 +39,6 @@ class Const {
 	public static var MOB_EXTRA = _soundInc++;
 	public static var BARREL_EXPLOSION = _soundInc++;
 	public static var COLLECTIBLES = _soundInc++;
+	public static var EXTRA = _soundInc++;
 	public static var UI = _soundInc++;
 }

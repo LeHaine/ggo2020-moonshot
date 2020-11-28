@@ -356,6 +356,10 @@ class Hero extends Character {
 			return;
 		}
 		if (ca.leftDist() > 0 && !cd.has("run")) {
+			if (onGround && !cd.hasSetS("footstep", 0.35)) {
+				Assets.SLIB.footstep0().playOnGroup(Const.HERO_JUMP, 0.55);
+			}
+
 			dx += Math.cos(ca.leftAngle()) * ca.leftDist() * spd * (0.4 + 0.6 * cd.getRatio("airControl")) * tmod;
 			dir = M.sign(Math.cos(ca.leftAngle()));
 		} else {
