@@ -374,6 +374,7 @@ class CinematicControl extends dn.Process {
 		if (game.ca.bPressed())
 			if (!cd.has("skipLock")) {
 				cm.signal();
+				Assets.SLIB.accept0().playOnGroup(Const.UI, 0.7);
 			}
 	}
 

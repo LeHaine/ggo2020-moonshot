@@ -137,6 +137,7 @@ class Boss extends Character {
 					cd.setS("scream", 3);
 					camera.shakeS(3, 0.05);
 					spr.anim.playAndLoop("bossScream");
+					Assets.SLIB.bossYell0().playOnGroup(Const.MOB_EXTRA, 0.7);
 					isCollidable = false;
 					phase = PHASE_1_END;
 				} else if (!controlsLocked()) {
