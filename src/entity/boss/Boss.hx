@@ -52,7 +52,7 @@ class Boss extends Character {
 		this.data = data;
 
 		dir = -1;
-		initLife(100 + (hero.traits.length * 100));
+		initLife(1000 + (hero.traits.length * 100));
 		renderHealthBar();
 		healthBar.setSize(25, 2, 1);
 		registerAnims();
