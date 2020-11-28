@@ -189,6 +189,7 @@ class CrystalShardStationWindow extends dn.Process {
 		tw.createS(mask.alpha, 0 > 1, 0.3);
 
 		masterBox = new h2d.Flow(root);
+		masterBox.maxHeight = 900;
 		masterBox.layout = Vertical;
 		masterBox.verticalAlign = Middle;
 		masterBox.horizontalAlign = Middle;
