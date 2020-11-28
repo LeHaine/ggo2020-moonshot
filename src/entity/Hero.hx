@@ -206,7 +206,7 @@ class Hero extends Character {
 				var sign = i % 2 == 0 ? 1 : -1;
 				bullet.setPosPixel(bullet.centerX, bullet.centerY - i * 3 * sign);
 			}
-			Assets.SLIB.shot0(0.8);
+			Assets.SLIB.shot0().playOnGroup(4, 0.65);
 		}
 	}
 
@@ -226,6 +226,7 @@ class Hero extends Character {
 				bullet.damageRadiusMul = 1;
 				resetAndHideChargeBar();
 				cd.setS("strongShot", 0.5);
+				Assets.SLIB.shot1().playOnGroup(4, 0.75);
 			});
 		} else if (!chargingAction && isCharging && !cd.has("strongShot")) {
 			var timeLeft = getActionTimeLeft("strongShot");
@@ -238,6 +239,7 @@ class Hero extends Character {
 			var bullet = spawnSecondaryBullet(bulletDamage, bulletSize, maxCharge * ratio);
 			bullet.setSpeed(Math.max(0.5, 1 * ratio));
 			bullet.damageRadiusMul = ratio;
+			Assets.SLIB.shot1().playOnGroup(4, 0.75 * ratio);
 			resetAndHideChargeBar();
 		} else if (chargingAction && isCharging) {
 			var timeLeft = getActionTimeLeft("strongShot");
