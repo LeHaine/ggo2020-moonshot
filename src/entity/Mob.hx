@@ -125,6 +125,10 @@ class Mob extends Character {
 	override function onDie() {
 		super.onDie();
 
+		var slib = Assets.SLIB;
+		var sounds = [slib.death1, slib.death2];
+		sounds[Std.random(sounds.length)](0.6);
+
 		calculateDrop();
 		calculateCollectibles();
 	}
