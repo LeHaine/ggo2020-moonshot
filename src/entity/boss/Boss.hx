@@ -167,7 +167,7 @@ class Boss extends Character {
 				phase = PHASE_2;
 			case PHASE_2:
 				var lifePercent = life / maxLife;
-				if (lifePercent <= 0.50) {
+				if (lifePercent <= 0.40) {
 					phase = PHASE_3_TARGET_WALK;
 				} else if (!controlsLocked()) {
 					moveToHero(meleeSpeed);

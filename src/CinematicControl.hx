@@ -22,10 +22,12 @@ class CinematicControl extends dn.Process {
 	var cm:dn.Cinematic;
 	var endCb:Null<() -> Void>;
 	var controlColor = 0x736680;
+	var id:CinematicId;
 
 	public function new(id:CinematicId, ?trigger:World.Entity_CinematicTrigger, ?target:CPoint, ?cb:() -> Void) {
 		super(game);
 		ALL.push(this);
+		this.id = id;
 		endCb = cb;
 		cm = new dn.Cinematic(Const.FPS);
 
@@ -359,6 +361,10 @@ class CinematicControl extends dn.Process {
 
 	private function complete() {
 		clearText();
+
+		if (id == BossRoomExit && !game.settings.outroPlayed) {
+			new Outro();
+		}
 		delayer.addS(() -> {
 			if (endCb != null) {
 				endCb();

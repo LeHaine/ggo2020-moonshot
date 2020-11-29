@@ -1,4 +1,4 @@
-class Intro extends dn.Process {
+class Outro extends dn.Process {
 	var logo:HSprite;
 	var cm = new dn.Cinematic(Const.FPS);
 	var textBox:h2d.Flow;
@@ -16,16 +16,19 @@ class Intro extends dn.Process {
 
 		cm.create({
 			tw.createMs(root.alpha, 0 > 1, 500);
-			3000;
+			15000;
 			tw.createMs(root.alpha, 0, 3000);
 			3000;
 			destroy();
-			Main.ME.startGame();
 		});
-		text("A game by Colt Daily / LeHaine");
-		text("Programming, design, art by Colt Daily");
-		text("Sound effects and music by Andrew Tran");
-		text("Art by D");
+		var game = Game.ME;
+		game.settings.outroPlayed = true;
+		game.storage.saveSettings();
+		text("Congratulations! You beat the boss!\n\n");
+		text("Thanks for playing. We hope you enjoyed it!");
+		text("You may continue playing with your current progress");
+		text("to unlock anything else if you so please.");
+		text("You won't see this screen again!");
 
 		dn.Process.resizeAll();
 	}

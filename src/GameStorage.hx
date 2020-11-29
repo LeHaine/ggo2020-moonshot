@@ -18,6 +18,7 @@ typedef Settings = {
 	var sawNewPrisonCell:Bool;
 	var musicMuted:Bool;
 	var visitedBoss:Bool;
+	var outroPlayed:Bool;
 }
 
 typedef Collectibles = {
@@ -46,7 +47,8 @@ class GameStorage {
 			finishedTutorial: false,
 			sawNewPrisonCell: false,
 			musicMuted: false,
-			visitedBoss: false
+			visitedBoss: false,
+			outroPlayed: false
 		});
 		permaUpgrades = LocalStorage.readObject("perma_upgrades", true, {
 			bonusShardsLvl: 0,
