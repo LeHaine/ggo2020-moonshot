@@ -36,7 +36,7 @@ class Boss extends Character {
 	var maxMeleeCd = 3;
 
 	var floatSpeed = 0.03;
-	var moonBlastCdMin = 0.15;
+	var moonBlastCdMin = 0.35;
 	var moonBlastCdMax = 0.75;
 	var moonBlastDamge = 50;
 
