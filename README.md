@@ -1,4 +1,6 @@
-# About
+# Moon Liberator
+
+A game made during GitHub GameOff 2020. The theme was `moonshot`. Play the game [here](https://lehaine.com/moon-liberator).
 
 Base game structure using **Heaps** framework (https://heaps.io) and **Haxe** language (https://haxe.org).
 
