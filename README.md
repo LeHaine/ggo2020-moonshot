@@ -1,6 +1,6 @@
 # Moon Liberator
 
-A game made during GitHub GameOff 2020. The theme was `moonshot`. Play the game [here](https://lehaine.com/moon-liberator).
+A game made for [GitHub GameOff 2020](https://itch.io/jam/game-off-2020/rate/833299). The theme was `moonshot`. Play the game [here](https://lehaine.com/moon-liberator).
 
 ![gif](/screenshots/shooting.gif)
 
